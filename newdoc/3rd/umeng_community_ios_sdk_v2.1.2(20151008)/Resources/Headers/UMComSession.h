@@ -23,8 +23,6 @@
 #define kUnreadAtMeNoticeCountKey @"at"
 #define kUnreadLikeNoticeCountKey @"like"
 
-@import UIKit;
-
 @class UMComUserAccount;
 @class UMComFeedEntity, UMComUnReadNoticeModel;
 
