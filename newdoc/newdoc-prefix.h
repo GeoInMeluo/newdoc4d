@@ -18,6 +18,10 @@
 #ifdef __OBJC__
 #import "GlobalDefine.h"
 #import <UIKit/UIKit.h>
+#import "Button.h"
+#import "UIColor+Util.h"
+#import "UIView+Util.h"
+#import "UIImage+Util.h"
 #endif
 
 

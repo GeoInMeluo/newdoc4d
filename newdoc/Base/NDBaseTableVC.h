@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NDBaseTableVC : UITableViewController
-
+@property(nonatomic,retain) IBOutlet UIView * defaultHeader;
+@property(nonatomic,retain) IBOutlet UIView * defaultFooter;
 @end

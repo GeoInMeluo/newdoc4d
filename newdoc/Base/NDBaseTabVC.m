@@ -28,16 +28,35 @@
     
     NDRoomVC *roomVC = [NDRoomVC new];
     NDPersonalVC *personalVC = [NDPersonalVC new];
-    UINavigationController *communityVC = [UMCommunity getFeedsModalViewController];
+    UIViewController *communityVC = [UMCommunity getFeedsViewController];
+
+    [self addOneChlildVc:personalVC title:@"个人中心" imageName:@"personal" selectedImageName:@"personal_select"];
     
-    NDBaseNavVC *roomNav = [NDBaseNavVC new];
-    roomNav.viewControllers = @[roomVC];
+    [self addOneChlildVc:roomVC title:@"新医诊室" imageName:@"room" selectedImageName:@"room_select"];
     
-    NDBaseNavVC *personalNav = [NDBaseNavVC new];
-    personalNav.viewControllers = @[personalVC];
+    [self addOneChlildVc:communityVC title:@"社区交流" imageName:@"community" selectedImageName:@"community_select"];
     
+    self.selectedIndex = 1;
+
+}
+
+- (void)addOneChlildVc:(UIViewController *)childVc title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
+{
+    childVc.title = title;
     
-    [self setViewControllers:@[roomNav,personalNav,communityVC]];
+    childVc.tabBarItem.image = [UIImage imageNamed:imageName];
+    
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
+    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:10];
+    [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+    
+    UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
+    selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    childVc.tabBarItem.selectedImage = selectedImage;
+    
+    NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:childVc];
+    [self addChildViewController:nav];
 }
 
 - (void)didReceiveMemoryWarning {

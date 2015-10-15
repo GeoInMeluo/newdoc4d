@@ -10,16 +10,43 @@
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+#import "NDRoomCell.h"
 
 @interface NDRoomVC ()
-
 @end
 
 @implementation NDRoomVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self setupUI];
+}
+
+- (void)setupUI{
+    self.title = @"新医诊室";
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellId = @"NDRoomCell";
+    
+    NDRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if(cell == nil){
+        cell = [[NDRoomCell alloc] init];
+    }
+    
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 295;
 }
 
 - (void)share{

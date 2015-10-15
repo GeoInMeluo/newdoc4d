@@ -39,6 +39,8 @@
 		32EFFB5C1BCD2DD800A80994 /* NDBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EFFB5B1BCD2DD800A80994 /* NDBaseTableVC.m */; settings = {ASSET_TAGS = (); }; };
 		32EFFB6F1BCD3A3600A80994 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32EFFB6A1BCD3A3600A80994 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 		32EFFB711BCD3A3600A80994 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32EFFB6D1BCD3A3600A80994 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		32F331CD1BCF0429004D772B /* NDRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F331CB1BCF0429004D772B /* NDRoomCell.m */; settings = {ASSET_TAGS = (); }; };
+		32F331CE1BCF0429004D772B /* NDRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F331CC1BCF0429004D772B /* NDRoomCell.xib */; settings = {ASSET_TAGS = (); }; };
 		32FD49551BC790660054D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FD49541BC790660054D2EA /* main.m */; };
 		32FD49581BC790660054D2EA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 32FD49571BC790660054D2EA /* AppDelegate.mm */; };
 		32FD49601BC790660054D2EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32FD495F1BC790660054D2EA /* Assets.xcassets */; };
@@ -399,6 +401,9 @@
 		32EFFB6B1BCD3A3600A80994 /* newdocTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newdocTests.m; sourceTree = "<group>"; };
 		32EFFB6D1BCD3A3600A80994 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32EFFB6E1BCD3A3600A80994 /* newdocUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newdocUITests.m; sourceTree = "<group>"; };
+		32F331CA1BCF0429004D772B /* NDRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomCell.h; sourceTree = "<group>"; };
+		32F331CB1BCF0429004D772B /* NDRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomCell.m; sourceTree = "<group>"; };
+		32F331CC1BCF0429004D772B /* NDRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomCell.xib; sourceTree = "<group>"; };
 		32FD49501BC790660054D2EA /* newdoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newdoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32FD49541BC790660054D2EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32FD49561BC790660054D2EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1041,6 +1046,9 @@
 				32C48B091BCADAC8009CB1A3 /* NDRoomVC.h */,
 				32C48B0A1BCADAC8009CB1A3 /* NDRoomVC.m */,
 				32C48B0B1BCADAC8009CB1A3 /* NDRoomVC.xib */,
+				32F331CA1BCF0429004D772B /* NDRoomCell.h */,
+				32F331CB1BCF0429004D772B /* NDRoomCell.m */,
+				32F331CC1BCF0429004D772B /* NDRoomCell.xib */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -2199,6 +2207,7 @@
 				32FD4D791BC81B570054D2EA /* UMSnsAccountViewController.xib in Resources */,
 				32FD4CD41BC81B560054D2EA /* um_friend@2x.png in Resources */,
 				32FD4C9D1BC81B560054D2EA /* cancel+x@2x.png in Resources */,
+				32F331CE1BCF0429004D772B /* NDRoomCell.xib in Resources */,
 				32FD4CA71BC81B560054D2EA /* image-placeholder@2x.png in Resources */,
 				32FD4CF01BC81B560054D2EA /* um_sina_logo@2x.png in Resources */,
 				32FD4CA81BC81B560054D2EA /* kuang@2x.png in Resources */,
@@ -2321,6 +2330,7 @@
 				32FD4D0F1BC81B560054D2EA /* UMAssetsCollectionOverlayView.m in Sources */,
 				32FD4D1D1BC81B560054D2EA /* UMComActionStyleTableView.m in Sources */,
 				32FD4D981BC81DF20054D2EA /* AFHTTPRequestOperation.m in Sources */,
+				32F331CD1BCF0429004D772B /* NDRoomCell.m in Sources */,
 				32FD4D1B1BC81B560054D2EA /* UMComModel.xcdatamodeld in Sources */,
 				32FD4D3C1BC81B560054D2EA /* UMComHomeFeedViewController.m in Sources */,
 				32FD4D6B1BC81B560054D2EA /* UMComUserTableViewCell.m in Sources */,

@@ -16,22 +16,97 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setup];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setup{
+    self.navigationBar.barTintColor = [UIColor colorWithHex:@"#00aaff"];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
++ (void)initialize
+{
+    [self setupNavigationBarTheme];
+    
+    [self setupBarButtonItemTheme];
 }
-*/
+
+/**
+ *  设置UINavigationBarTheme的主题
+ */
++ (void)setupNavigationBarTheme
+{
+    UINavigationBar *appearance = [UINavigationBar appearance];
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
+
+    textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+
+    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
+    textAttrs[UITextAttributeTextColor] = [UIColor whiteColor];
+    [appearance setTitleTextAttributes:textAttrs];
+    
+    [appearance setTranslucent:NO];
+}
+
+/**
+ *  设置UIBarButtonItem的主题
+ */
++ (void)setupBarButtonItemTheme
+{
+    UIBarButtonItem *appearance = [UIBarButtonItem appearance];
+
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[UITextAttributeTextColor] = [UIColor orangeColor];
+    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:15];
+    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
+    [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+    
+    NSMutableDictionary *highTextAttrs = [NSMutableDictionary dictionaryWithDictionary:textAttrs];
+    highTextAttrs[UITextAttributeTextColor] = [UIColor redColor];
+    [appearance setTitleTextAttributes:highTextAttrs forState:UIControlStateHighlighted];
+    
+    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionaryWithDictionary:textAttrs];
+    disableTextAttrs[UITextAttributeTextColor] = [UIColor lightGrayColor];
+    [appearance setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
+}
+
+/**
+ *  能拦截所有push进来的子控制器
+ */
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (self.viewControllers.count > 0) {
+        viewController.hidesBottomBarWhenPushed = YES;
+        
+        viewController.navigationItem.leftBarButtonItem = [self itemWithImageName:@"navigationbar_back" highImageName:@"navigationbar_back_highlighted" target:self action:@selector(back)];
+        viewController.navigationItem.rightBarButtonItem = [self itemWithImageName:@"navigationbar_more" highImageName:@"navigationbar_more_highlighted" target:self action:@selector(more)];
+    }
+    [super pushViewController:viewController animated:animated];
+}
+
+- (void)back
+{
+#warning 这里用的是self, 因为self就是当前正在使用的导航控制器
+    [self popViewControllerAnimated:YES];
+}
+
+- (void)more
+{
+    [self popToRootViewControllerAnimated:YES];
+}
+
+- (UIBarButtonItem *)itemWithImageName:(NSString *)imageName highImageName:(NSString *)highImageName target:(id)target action:(SEL)action
+{
+    UIButton *button = [[UIButton alloc] init];
+    [button setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:highImageName] forState:UIControlStateHighlighted];
+    
+    button.size = button.currentBackgroundImage.size;
+    
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
 
 @end

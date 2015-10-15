@@ -7,7 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomVC">
             <connections>
-                <outlet property="view" destination="whv-5R-x3y" id="I5a-2c-WXF"/>
+                <outlet property="defaultHeader" destination="Oct-oM-AME" id="r77-6b-03K"/>
+                <outlet property="tableView" destination="whv-5R-x3y" id="twL-IE-d8S"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,10 +18,92 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="dataSource" destination="-1" id="M3g-2V-6b2"/>
-                <outlet property="delegate" destination="-1" id="Wx0-ne-gg5"/>
+                <outlet property="dataSource" destination="-1" id="bGi-7Q-png"/>
+                <outlet property="delegate" destination="-1" id="NZs-lJ-e7C"/>
             </connections>
-            <point key="canvasLocation" x="162.5" y="190.5"/>
+            <point key="canvasLocation" x="331.5" y="48.5"/>
         </tableView>
+        <view contentMode="scaleToFill" id="Oct-oM-AME">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-Ow-MHU" userLabel="header">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpL-2N-LiX">
+                            <rect key="frame" x="44" y="15" width="51" height="51"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="51" id="foN-cf-Mxh"/>
+                                <constraint firstAttribute="height" constant="51" id="iXK-1y-SXF"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="roomIcon2"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新医自诊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-yx-FQr">
+                            <rect key="frame" x="45" y="74" width="48" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5H-dF-Jo4">
+                            <rect key="frame" x="162" y="15" width="51" height="51"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="51" id="19c-vE-bIa"/>
+                                <constraint firstAttribute="width" constant="51" id="jCR-Lf-0g8"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="roomIcon1"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLE-Sd-pAl">
+                            <rect key="frame" x="280" y="15" width="51" height="51"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="51" id="fH3-LP-Jyk"/>
+                                <constraint firstAttribute="width" constant="51" id="gpc-7K-iUe"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="roomIcon0"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预约挂号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJk-H9-QgF">
+                            <rect key="frame" x="282" y="74" width="48" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在线问答" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FE-x4-Bv7">
+                            <rect key="frame" x="163" y="74" width="48" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="hAN-yx-FQr" firstAttribute="top" secondItem="hpL-2N-LiX" secondAttribute="bottom" constant="8" id="0pL-UD-C41"/>
+                        <constraint firstItem="w5H-dF-Jo4" firstAttribute="centerX" secondItem="bhH-Ow-MHU" secondAttribute="centerX" id="2LZ-cL-MMu"/>
+                        <constraint firstItem="w5H-dF-Jo4" firstAttribute="top" secondItem="bhH-Ow-MHU" secondAttribute="top" constant="15" id="63r-rk-6QT"/>
+                        <constraint firstItem="hpL-2N-LiX" firstAttribute="leading" secondItem="bhH-Ow-MHU" secondAttribute="leading" constant="44" id="TD6-nh-J4c"/>
+                        <constraint firstItem="9FE-x4-Bv7" firstAttribute="top" secondItem="w5H-dF-Jo4" secondAttribute="bottom" constant="8" id="TU3-Km-Spu"/>
+                        <constraint firstAttribute="trailing" secondItem="lLE-Sd-pAl" secondAttribute="trailing" constant="44" id="TWw-dK-cuc"/>
+                        <constraint firstItem="hJk-H9-QgF" firstAttribute="centerX" secondItem="lLE-Sd-pAl" secondAttribute="centerX" id="kd8-ZY-GNj"/>
+                        <constraint firstAttribute="height" constant="103" id="mSu-0j-qJi"/>
+                        <constraint firstItem="hAN-yx-FQr" firstAttribute="centerX" secondItem="hpL-2N-LiX" secondAttribute="centerX" id="oHE-et-afr"/>
+                        <constraint firstItem="lLE-Sd-pAl" firstAttribute="top" secondItem="bhH-Ow-MHU" secondAttribute="top" constant="15" id="ofx-Ub-5Cr"/>
+                        <constraint firstItem="9FE-x4-Bv7" firstAttribute="centerX" secondItem="w5H-dF-Jo4" secondAttribute="centerX" id="qSW-MV-Akw"/>
+                        <constraint firstItem="hpL-2N-LiX" firstAttribute="top" secondItem="bhH-Ow-MHU" secondAttribute="top" constant="15" id="sMY-RT-Zku"/>
+                        <constraint firstItem="hJk-H9-QgF" firstAttribute="top" secondItem="lLE-Sd-pAl" secondAttribute="bottom" constant="8" id="t6f-BN-IO7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bhH-Ow-MHU" secondAttribute="trailing" id="Pdh-gP-ObH"/>
+                <constraint firstItem="bhH-Ow-MHU" firstAttribute="leading" secondItem="Oct-oM-AME" secondAttribute="leading" id="dfU-LE-iSO"/>
+                <constraint firstItem="bhH-Ow-MHU" firstAttribute="top" secondItem="Oct-oM-AME" secondAttribute="top" id="r1n-s9-ZjY"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="324.5" y="757.5"/>
+        </view>
     </objects>
+    <resources>
+        <image name="roomIcon0" width="52" height="52"/>
+        <image name="roomIcon1" width="53" height="53"/>
+        <image name="roomIcon2" width="54" height="54"/>
+    </resources>
 </document>
