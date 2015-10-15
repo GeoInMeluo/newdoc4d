@@ -79,8 +79,28 @@
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
         
-        viewController.navigationItem.leftBarButtonItem = [self itemWithImageName:@"navigationbar_back" highImageName:@"navigationbar_back_highlighted" target:self action:@selector(back)];
-        viewController.navigationItem.rightBarButtonItem = [self itemWithImageName:@"navigationbar_more" highImageName:@"navigationbar_more_highlighted" target:self action:@selector(more)];
+//        viewController.navigationItem.leftBarButtonItem = [self itemWithImageName:@"back" highImageName:@"back" target:self action:@selector(back)];
+//        viewController.navigationItem.rightBarButtonItem = [self itemWithImageName:@"back" highImageName:@"back" target:self action:@selector(more)];
+        
+        if(!self.leftBtn){
+            UIButton *button = [[UIButton alloc] init];
+            self.leftBtn = button;
+            [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+            [button setImage:[UIImage imageNamed:@"back"]
+                forState:UIControlStateHighlighted];
+            [button setTitle:@"返回" forState:UIControlStateNormal];
+            [button setTitle:@"返回" forState:UIControlStateHighlighted];
+            [button sizeToFit];
+            [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn]
+        ;
+        
+//        if(self.rightBtn){
+//            viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn]
+//            ;
+//        }
     }
     [super pushViewController:viewController animated:animated];
 }

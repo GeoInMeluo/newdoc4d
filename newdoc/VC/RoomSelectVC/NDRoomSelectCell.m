@@ -1,18 +1,18 @@
 //
-//  NDRoomCell.m
+//  NDRoomSelectCell.m
 //  newdoc
 //
-//  Created by zzc on 15/10/15.
+//  Created by zzc on 15/10/16.
 //  Copyright © 2015年 zzc. All rights reserved.
 //
 
-#import "NDRoomCell.h"
+#import "NDRoomSelectCell.h"
 
-@implementation NDRoomCell
+@implementation NDRoomSelectCell
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        self = [[NSBundle mainBundle] loadNibNamed:@"NDRoomCell" owner:nil options: nil][0];
+        self = [[NSBundle mainBundle] loadNibNamed:@"NDRoomSelectCell" owner:nil options: nil][0];
     }
     return self;
 }

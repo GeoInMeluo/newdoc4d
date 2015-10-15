@@ -10,4 +10,8 @@
 
 @interface NDBaseNavVC : UINavigationController
 
+@property (nonatomic, strong) UIButton *leftBtn;
+
+@property (nonatomic, strong) UIButton *rightBtn;
+
 @end

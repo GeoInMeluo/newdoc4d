@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomSelectVC">
+            <connections>
+                <outlet property="defaultHeader" destination="m3s-SU-YPj" id="x4y-eN-RNz"/>
+                <outlet property="view" destination="MG5-kp-GB0" id="c1a-GR-WOh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MG5-kp-GB0">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="3rc-s6-YBv"/>
+                <outlet property="delegate" destination="-1" id="Noj-jt-k42"/>
+            </connections>
+            <point key="canvasLocation" x="206" y="281"/>
+        </tableView>
+        <view contentMode="scaleToFill" id="m3s-SU-YPj">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pA1-hQ-6R2">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="45"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cm5-AO-lUO">
+                            <rect key="frame" x="54" y="8" width="52" height="29"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map_ten" translatesAutoresizingMaskIntoConstraints="NO" id="zsD-n5-fP2">
+                                    <rect key="frame" x="0.0" y="7" width="14" height="14"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="诊室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIv-xU-Zo5">
+                                    <rect key="frame" x="22" y="6" width="30" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="52" id="65O-wA-1vz"/>
+                                <constraint firstAttribute="height" constant="29" id="txj-IN-KaI"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Cm5-AO-lUO" firstAttribute="centerY" secondItem="pA1-hQ-6R2" secondAttribute="centerY" id="e7i-vL-3L5"/>
+                        <constraint firstItem="Cm5-AO-lUO" firstAttribute="centerX" secondItem="pA1-hQ-6R2" secondAttribute="centerX" id="iDV-8s-3qT"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbG-lQ-IMT">
+                    <rect key="frame" x="160" y="0.0" width="160" height="45"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrX-0M-xMV">
+                            <rect key="frame" x="55" y="8" width="50" height="29"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQY-k3-OUD">
+                                    <rect key="frame" x="20" y="6" width="30" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map_star" translatesAutoresizingMaskIntoConstraints="NO" id="GOA-On-g6L">
+                                    <rect key="frame" x="0.0" y="8" width="12" height="13"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="29" id="Iv2-TL-kwN"/>
+                                <constraint firstAttribute="width" constant="50" id="LQ5-Kh-erS"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="yrX-0M-xMV" firstAttribute="centerX" secondItem="pbG-lQ-IMT" secondAttribute="centerX" id="P1J-aJ-oHw"/>
+                        <constraint firstItem="yrX-0M-xMV" firstAttribute="centerY" secondItem="pbG-lQ-IMT" secondAttribute="centerY" id="Txr-WV-no0"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7VU-ba-aad">
+                    <rect key="frame" x="160" y="15" width="1" height="15"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="6Eu-K1-sJ8"/>
+                        <constraint firstAttribute="width" constant="1" id="KEc-ww-T7z"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7VU-ba-aad" firstAttribute="centerY" secondItem="m3s-SU-YPj" secondAttribute="centerY" id="2l2-pg-2TE"/>
+                <constraint firstItem="pA1-hQ-6R2" firstAttribute="leading" secondItem="m3s-SU-YPj" secondAttribute="leading" id="C8j-Rw-hOq"/>
+                <constraint firstAttribute="bottom" secondItem="pA1-hQ-6R2" secondAttribute="bottom" id="I3p-h2-FKI"/>
+                <constraint firstItem="pbG-lQ-IMT" firstAttribute="top" secondItem="m3s-SU-YPj" secondAttribute="top" id="PfE-nI-xdd"/>
+                <constraint firstItem="pbG-lQ-IMT" firstAttribute="leading" secondItem="pA1-hQ-6R2" secondAttribute="trailing" id="SVC-gX-zJi"/>
+                <constraint firstAttribute="trailing" secondItem="pbG-lQ-IMT" secondAttribute="trailing" id="eFV-62-UqQ"/>
+                <constraint firstItem="pA1-hQ-6R2" firstAttribute="top" secondItem="m3s-SU-YPj" secondAttribute="top" id="lEY-G8-UKw"/>
+                <constraint firstItem="7VU-ba-aad" firstAttribute="centerX" secondItem="m3s-SU-YPj" secondAttribute="centerX" id="mmi-3h-Xwc"/>
+                <constraint firstItem="pbG-lQ-IMT" firstAttribute="width" secondItem="pA1-hQ-6R2" secondAttribute="width" id="p5z-T5-S3n"/>
+                <constraint firstAttribute="bottom" secondItem="pbG-lQ-IMT" secondAttribute="bottom" id="uZV-io-jfO"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="206" y="656.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="map_star" width="12" height="13"/>
+        <image name="map_ten" width="14" height="14"/>
+    </resources>
+</document>

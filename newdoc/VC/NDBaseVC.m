@@ -16,8 +16,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    [self setup];
+}
+
+- (void)setup{
+    // 设置CGRectZero从导航栏下开始计算
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    if([self rightView]){
+        self.navigationController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightView]];
+    }
+}
+
+- (UIButton *)rightView{
+    return nil;
 }
 
 - (void)didReceiveMemoryWarning {

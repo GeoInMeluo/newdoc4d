@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3217AD051BCFCCF2003E9D83 /* NDRoomMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3217AD031BCFCCF2003E9D83 /* NDRoomMapVC.m */; settings = {ASSET_TAGS = (); }; };
+		3217AD061BCFCCF2003E9D83 /* NDRoomMapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3217AD041BCFCCF2003E9D83 /* NDRoomMapVC.xib */; settings = {ASSET_TAGS = (); }; };
+		3217AD081BCFDB39003E9D83 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3217AD071BCFDB39003E9D83 /* BaiduMapAPI.framework */; settings = {ASSET_TAGS = (); }; };
 		3261974F1BCBFB4A00351022 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326197341BCBFB4A00351022 /* TencentOpenAPI.framework */; settings = {ASSET_TAGS = (); }; };
 		326197501BCBFB4A00351022 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 326197351BCBFB4A00351022 /* TencentOpenApi_IOS_Bundle.bundle */; settings = {ASSET_TAGS = (); }; };
 		326197511BCBFB4A00351022 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 326197371BCBFB4A00351022 /* libWeiboSDK.a */; settings = {ASSET_TAGS = (); }; };
@@ -28,13 +31,16 @@
 		326197681BCC085000351022 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326197671BCC085000351022 /* AdSupport.framework */; };
 		3261976C1BCC181F00351022 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3261976B1BCC181F00351022 /* libPushSDK-1.8.5.a */; settings = {ASSET_TAGS = (); }; };
 		3261976E1BCC185D00351022 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3261976D1BCC185D00351022 /* PushConfig.plist */; settings = {ASSET_TAGS = (); }; };
+		328B78B61BD0171D000F38DA /* NDRoomSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 328B78B41BD0171D000F38DA /* NDRoomSelectVC.m */; settings = {ASSET_TAGS = (); }; };
+		328B78B71BD0171D000F38DA /* NDRoomSelectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328B78B51BD0171D000F38DA /* NDRoomSelectVC.xib */; settings = {ASSET_TAGS = (); }; };
+		328B78BB1BD03254000F38DA /* NDRoomSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328B78B91BD03254000F38DA /* NDRoomSelectCell.m */; settings = {ASSET_TAGS = (); }; };
+		328B78BC1BD03254000F38DA /* NDRoomSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */; settings = {ASSET_TAGS = (); }; };
 		32C48B0C1BCADAC8009CB1A3 /* NDPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C48B061BCADAC8009CB1A3 /* NDPersonalVC.m */; settings = {ASSET_TAGS = (); }; };
 		32C48B0D1BCADAC8009CB1A3 /* NDPersonalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C48B071BCADAC8009CB1A3 /* NDPersonalVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32C48B0E1BCADAC8009CB1A3 /* NDRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C48B0A1BCADAC8009CB1A3 /* NDRoomVC.m */; settings = {ASSET_TAGS = (); }; };
 		32C48B0F1BCADAC8009CB1A3 /* NDRoomVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C48B0B1BCADAC8009CB1A3 /* NDRoomVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32C48B151BCADD77009CB1A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C48B141BCADD77009CB1A3 /* QuartzCore.framework */; };
 		32C48B171BCADD80009CB1A3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C48B161BCADD80009CB1A3 /* OpenGLES.framework */; };
-		32C48B1A1BCAE62E009CB1A3 /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C48B181BCAE62E009CB1A3 /* BaiduMapAPI.framework */; settings = {ASSET_TAGS = (); }; };
 		32C48B1B1BCAE62E009CB1A3 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 32C48B191BCAE62E009CB1A3 /* mapapi.bundle */; settings = {ASSET_TAGS = (); }; };
 		32EFFB5C1BCD2DD800A80994 /* NDBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EFFB5B1BCD2DD800A80994 /* NDBaseTableVC.m */; settings = {ASSET_TAGS = (); }; };
 		32EFFB6F1BCD3A3600A80994 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32EFFB6A1BCD3A3600A80994 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
@@ -350,6 +356,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3217AD021BCFCCF2003E9D83 /* NDRoomMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomMapVC.h; sourceTree = "<group>"; };
+		3217AD031BCFCCF2003E9D83 /* NDRoomMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomMapVC.m; sourceTree = "<group>"; };
+		3217AD041BCFCCF2003E9D83 /* NDRoomMapVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomMapVC.xib; sourceTree = "<group>"; };
+		3217AD071BCFDB39003E9D83 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI.framework; path = newdoc/3rd/BaiduMapAPI.framework; sourceTree = SOURCE_ROOT; };
 		326197341BCBFB4A00351022 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		326197351BCBFB4A00351022 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		326197371BCBFB4A00351022 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -385,6 +395,12 @@
 		3261976A1BCC181F00351022 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		3261976B1BCC181F00351022 /* libPushSDK-1.8.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.5.a"; sourceTree = "<group>"; };
 		3261976D1BCC185D00351022 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		328B78B31BD0171D000F38DA /* NDRoomSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomSelectVC.h; sourceTree = "<group>"; };
+		328B78B41BD0171D000F38DA /* NDRoomSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomSelectVC.m; sourceTree = "<group>"; };
+		328B78B51BD0171D000F38DA /* NDRoomSelectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomSelectVC.xib; sourceTree = "<group>"; };
+		328B78B81BD03254000F38DA /* NDRoomSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomSelectCell.h; sourceTree = "<group>"; };
+		328B78B91BD03254000F38DA /* NDRoomSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomSelectCell.m; sourceTree = "<group>"; };
+		328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomSelectCell.xib; sourceTree = "<group>"; };
 		32C48B051BCADAC8009CB1A3 /* NDPersonalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalVC.h; sourceTree = "<group>"; };
 		32C48B061BCADAC8009CB1A3 /* NDPersonalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalVC.m; sourceTree = "<group>"; };
 		32C48B071BCADAC8009CB1A3 /* NDPersonalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalVC.xib; sourceTree = "<group>"; };
@@ -393,7 +409,6 @@
 		32C48B0B1BCADAC8009CB1A3 /* NDRoomVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomVC.xib; sourceTree = "<group>"; };
 		32C48B141BCADD77009CB1A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32C48B161BCADD80009CB1A3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		32C48B181BCAE62E009CB1A3 /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		32C48B191BCAE62E009CB1A3 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		32EFFB5A1BCD2DD800A80994 /* NDBaseTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDBaseTableVC.h; sourceTree = "<group>"; };
 		32EFFB5B1BCD2DD800A80994 /* NDBaseTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDBaseTableVC.m; sourceTree = "<group>"; };
@@ -913,6 +928,7 @@
 				3261975C1BCBFBCE00351022 /* libicucore.tbd in Frameworks */,
 				32FD4D831BC81BE50054D2EA /* Security.framework in Frameworks */,
 				32FD4DA81BC823220054D2EA /* CoreGraphics.framework in Frameworks */,
+				3217AD081BCFDB39003E9D83 /* BaiduMapAPI.framework in Frameworks */,
 				32FD4DA61BC823130054D2EA /* SystemConfiguration.framework in Frameworks */,
 				326197571BCBFB4A00351022 /* ShareSDKConnector.framework in Frameworks */,
 				32C48B171BCADD80009CB1A3 /* OpenGLES.framework in Frameworks */,
@@ -935,7 +951,6 @@
 				3261975A1BCBFB4A00351022 /* ShareSDKUI.framework in Frameworks */,
 				326197581BCBFB4A00351022 /* ShareSDKExtension.framework in Frameworks */,
 				32FD4D7C1BC81B570054D2EA /* libSocialSina.a in Frameworks */,
-				32C48B1A1BCAE62E009CB1A3 /* BaiduMapAPI.framework in Frameworks */,
 				32FD4D801BC81B570054D2EA /* libSocialWechat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -957,6 +972,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3217AD011BCFC6EA003E9D83 /* RoomMap */ = {
+			isa = PBXGroup;
+			children = (
+				3217AD021BCFCCF2003E9D83 /* NDRoomMapVC.h */,
+				3217AD031BCFCCF2003E9D83 /* NDRoomMapVC.m */,
+				3217AD041BCFCCF2003E9D83 /* NDRoomMapVC.xib */,
+			);
+			path = RoomMap;
+			sourceTree = "<group>";
+		};
 		326197311BCBFB4A00351022 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -1028,6 +1053,19 @@
 				3261976B1BCC181F00351022 /* libPushSDK-1.8.5.a */,
 			);
 			path = jpush;
+			sourceTree = "<group>";
+		};
+		328B78B21BD016C4000F38DA /* RoomSelectVC */ = {
+			isa = PBXGroup;
+			children = (
+				328B78B31BD0171D000F38DA /* NDRoomSelectVC.h */,
+				328B78B41BD0171D000F38DA /* NDRoomSelectVC.m */,
+				328B78B51BD0171D000F38DA /* NDRoomSelectVC.xib */,
+				328B78B81BD03254000F38DA /* NDRoomSelectCell.h */,
+				328B78B91BD03254000F38DA /* NDRoomSelectCell.m */,
+				328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */,
+			);
+			path = RoomSelectVC;
 			sourceTree = "<group>";
 		};
 		32C48B041BCADAC8009CB1A3 /* Personal */ = {
@@ -1125,9 +1163,9 @@
 		32FD49861BC790A70054D2EA /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				3217AD071BCFDB39003E9D83 /* BaiduMapAPI.framework */,
 				326197691BCC181F00351022 /* jpush */,
 				326197311BCBFB4A00351022 /* libraries */,
-				32C48B181BCAE62E009CB1A3 /* BaiduMapAPI.framework */,
 				32C48B191BCAE62E009CB1A3 /* mapapi.bundle */,
 				32FD4D841BC81DF20054D2EA /* AFNetworking */,
 				32FD4AB51BC81B560054D2EA /* umeng_community_ios_sdk_v2.1.2(20151008) */,
@@ -1203,6 +1241,8 @@
 		32FD498C1BC790A70054D2EA /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				328B78B21BD016C4000F38DA /* RoomSelectVC */,
+				3217AD011BCFC6EA003E9D83 /* RoomMap */,
 				32C48B041BCADAC8009CB1A3 /* Personal */,
 				32C48B081BCADAC8009CB1A3 /* Room */,
 				32FD4DBB1BC82EA90054D2EA /* Community */,
@@ -2156,6 +2196,7 @@
 				32FD4D601BC81B560054D2EA /* UMComPhotoAlbumViewController.xib in Resources */,
 				32FD4CC81BC81B560054D2EA /* um_collection+@2x.png in Resources */,
 				32FD4CFC1BC81B560054D2EA /* ♀.png in Resources */,
+				328B78B71BD0171D000F38DA /* NDRoomSelectVC.xib in Resources */,
 				32FD4D441BC81B560054D2EA /* UMComFeedContentView.xib in Resources */,
 				32FD4C8E1BC81B560054D2EA /* FZLanTingHei-L-GBK-M.TTF in Resources */,
 				32FD4D5E1BC81B560054D2EA /* UMComMessageSettingViewController.xib in Resources */,
@@ -2233,6 +2274,7 @@
 				32FD4CE41BC81B560054D2EA /* um_public.png in Resources */,
 				32FD4D2F1BC81B560054D2EA /* UMComEditViewController.xib in Resources */,
 				32FD4C891BC81B560054D2EA /* UMComLoginViewController.xib in Resources */,
+				3217AD061BCFCCF2003E9D83 /* NDRoomMapVC.xib in Resources */,
 				32FD4C961BC81B560054D2EA /* all_more@2x.png in Resources */,
 				32C48B0F1BCADAC8009CB1A3 /* NDRoomVC.xib in Resources */,
 				32FD4CF81BC81B560054D2EA /* user_center@2x.png in Resources */,
@@ -2251,6 +2293,7 @@
 				32FD4C941BC81B560054D2EA /* @x@2x.png in Resources */,
 				32FD4D7B1BC81B570054D2EA /* UMSocialSDKResourcesNew.bundle in Resources */,
 				32FD4C971BC81B560054D2EA /* Back+x@2x.png in Resources */,
+				328B78BC1BD03254000F38DA /* NDRoomSelectCell.xib in Resources */,
 				32FD4D731BC81B570054D2EA /* UMSCommentDetailController.xib in Resources */,
 				32FD4D621BC81B560054D2EA /* UMComProfileSettingController.xib in Resources */,
 				32FD4D351BC81B560054D2EA /* UMComLocationTableViewCell.xib in Resources */,
@@ -2341,6 +2384,7 @@
 				32FD4D0A1BC81B560054D2EA /* UMComPageControlView.m in Sources */,
 				32FD4D5A1BC81B560054D2EA /* UMComNavigationController.m in Sources */,
 				32FD4D6A1BC81B560054D2EA /* UMComUsersTableViewController.m in Sources */,
+				3217AD051BCFCCF2003E9D83 /* NDRoomMapVC.m in Sources */,
 				32FD4D9A1BC81DF20054D2EA /* AFHTTPSessionManager.m in Sources */,
 				32FD4D6D1BC81B560054D2EA /* UMComEditViewModel.m in Sources */,
 				32FD4D5F1BC81B560054D2EA /* UMComPhotoAlbumViewController.m in Sources */,
@@ -2448,10 +2492,12 @@
 				32FD4D2D1BC81B560054D2EA /* UMComEditTopicsViewController.m in Sources */,
 				32C48B0C1BCADAC8009CB1A3 /* NDPersonalVC.m in Sources */,
 				32FD4D221BC81B560054D2EA /* UMComTableView.m in Sources */,
+				328B78BB1BD03254000F38DA /* NDRoomSelectCell.m in Sources */,
 				32FD4CFF1BC81B560054D2EA /* UMComButton.m in Sources */,
 				32FD4D631BC81B560054D2EA /* UMComSettingViewController.m in Sources */,
 				32FD49A91BC7A4300054D2EA /* UIColor+Util.m in Sources */,
 				32FD4D1A1BC81B560054D2EA /* UMComImageView.m in Sources */,
+				328B78B61BD0171D000F38DA /* NDRoomSelectVC.m in Sources */,
 				32FD4AB41BC80B960054D2EA /* NCNetManager.m in Sources */,
 				32FD4D581BC81B560054D2EA /* UMComTopicsTableViewController.m in Sources */,
 			);
@@ -2598,6 +2644,7 @@
 					"$(PROJECT_DIR)/newdoc/3rd/libraries/extends/QQSDK",
 					"$(PROJECT_DIR)/newdoc/3rd/libraries",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(PROJECT_DIR)/newdoc/3rd/BaiduMapAPI.framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newdoc/newdoc-prefix.h";
@@ -2635,6 +2682,7 @@
 					"$(PROJECT_DIR)/newdoc/3rd/libraries/extends/QQSDK",
 					"$(PROJECT_DIR)/newdoc/3rd/libraries",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+					"$(PROJECT_DIR)/newdoc/3rd/BaiduMapAPI.framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newdoc/newdoc-prefix.h";

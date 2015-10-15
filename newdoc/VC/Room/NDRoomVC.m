@@ -11,6 +11,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import "NDRoomCell.h"
+#import "NDRoomMapVC.h"
 
 @interface NDRoomVC ()
 @end
@@ -47,6 +48,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 295;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ShowVC(NDRoomMapVC);
 }
 
 - (void)share{
