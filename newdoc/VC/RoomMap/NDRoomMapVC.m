@@ -9,12 +9,21 @@
 #import "NDRoomMapVC.h"
 #import "NDBaseNavVC.h"
 #import "NDRoomSelectVC.h"
+#import "NDRoomAnnotationPopView.h"
+#import "NDRoomSelectMoreVC.h"
 
 @interface NDRoomMapVC ()
 
 @property (nonatomic, weak) IBOutlet BMKMapView* mapView;
 @property (nonatomic, strong) NDRoomSelectVC *selectVC;
+@property (nonatomic, strong) NDRoomSelectMoreVC *selectMoreVC;
 @property (weak, nonatomic) IBOutlet UIView *searchDiv;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (strong, nonatomic) IBOutlet UIView *segmentView;
+@property (nonatomic, assign) BOOL currentMap;
+@property (weak, nonatomic) UIView *slider;
+
+
 
 @end
 
@@ -30,6 +39,8 @@
 
 - (void)setupUI{
     
+    self.currentMap = YES;
+    
     UIButton *button = [[UIButton alloc] init];
     [button setImage:[UIImage imageNamed:@"map_rightBtn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -38,7 +49,20 @@
     
     self.searchDiv.layer.cornerRadius = 5;
     self.searchDiv.layer.masksToBounds = YES;
+    
+    UIView *slider = [[UIView alloc] initWithFrame:CGRectMake(0, self.segmentView.height - 2, self.segmentView.width * 0.4, 2)];
+    slider.centerX = kScreenSize.width * 0.75;
+    slider.backgroundColor = Blue;
+    
+    [self.segmentView addSubview:slider];
+    self.slider = slider;
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [_mapView viewWillAppear];
+    
+    _mapView.delegate = self;
+    
     //     添加一个PointAnnotation
     BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
     CLLocationCoordinate2D coor;
@@ -48,35 +72,42 @@
     annotation.title = @"这里是北京";
     [_mapView addAnnotation:annotation];
     
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    [_mapView selectAnnotation:annotation animated:YES];
     
-    _mapView.delegate = self;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NDRoomSelectVC *selectVC = [NDRoomSelectVC new];
-    selectVC.tableView.frame = _mapView.frame;
-    [self.view addSubview:selectVC.tableView];
-    selectVC.view.hidden = YES;
+    self.segmentView.hidden = self.currentMap;
+    [self.view addSubview:self.segmentView];
+    self.segmentView.top = self.topView.bottom;
+    self.segmentView.width = self.view.width;
     
+    NDRoomSelectMoreVC *selectMoreVC = [NDRoomSelectMoreVC new];
+    selectMoreVC.view.width = _mapView.width;
+    selectMoreVC.view.height = _mapView.height - self.segmentView.height;
+    selectMoreVC.view.top = self.segmentView.bottom;
+    [self.view addSubview:selectMoreVC.view];
+    selectMoreVC.view.hidden = YES;
+    self.selectMoreVC = selectMoreVC;
+    
+    
+    NDRoomSelectVC *selectVC = [NDRoomSelectVC new];
+    selectVC.tableView.width = _mapView.width;
+    selectVC.tableView.height = _mapView.height - self.segmentView.height;
+    selectVC.tableView.top = self.segmentView.bottom;
+    [self.view addSubview:selectVC.tableView];
+    selectVC.view.hidden = self.currentMap;
     self.selectVC = selectVC;
+
 }
 
 // Override
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-//        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
-//        newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
-//        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
-//        return newAnnotationView;
-        
-        BMKPinAnnotationView *newAnnotation = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+        BMKPinAnnotationView *newAnnotation = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
         // 设置颜色
         newAnnotation.pinColor = BMKPinAnnotationColorPurple;
         // 从天上掉下效果
@@ -84,54 +115,37 @@
         // 设置可拖拽
         newAnnotation.draggable = YES;
         //设置大头针图标
-        newAnnotation.image = [UIImage imageNamed:@"zhaohuoche"]; UIView *popView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 60)];
-        //设置弹出气泡图片
-        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wenzi"]]; image.frame = CGRectMake(0, 0, 100, 60); [popView addSubview:image];
+        newAnnotation.image = [UIImage imageNamed:@"map_ten_L"];
         //自定义显示的内容
-        UILabel *driverName = [[UILabel alloc]initWithFrame:CGRectMake(0, 3, 100, 20)];
-        driverName.text = @"张XX师傅";
-        driverName.backgroundColor = [UIColor clearColor];
-        driverName.font = [UIFont systemFontOfSize:14];
-        driverName.textColor = [UIColor whiteColor];
-        driverName.textAlignment = NSTextAlignmentCenter;
-        [popView addSubview:driverName];
-        UILabel *carName = [[UILabel alloc]initWithFrame:CGRectMake(0, 25, 100, 20)];
-        carName.text = @"京A123456"; carName.backgroundColor = [UIColor clearColor];
-        carName.font = [UIFont systemFontOfSize:14];
-        carName.textColor = [UIColor whiteColor];
-        carName.textAlignment = NSTextAlignmentCenter;
-        [popView addSubview:carName];
-        BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc]initWithCustomView:popView];
-        pView.frame = CGRectMake(0, 0, 100, 60);
+        NDRoomAnnotationPopView *pop = [NDRoomAnnotationPopView new];
+        BMKActionPaopaoView *pView = [[BMKActionPaopaoView alloc]initWithCustomView:pop];
+        pView.frame = CGRectMake(0, 0, 161, 116);
+        pView.backgroundColor = [UIColor whiteColor];
+        pView.layer.cornerRadius = 10;
+        pView.layer.masksToBounds = YES;
+        pView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        pView.layer.borderWidth = 1;
         ((BMKPinAnnotationView*)newAnnotation).paopaoView = nil;
         ((BMKPinAnnotationView*)newAnnotation).paopaoView = pView;
-
-        return newAnnotation;
         
+        return newAnnotation;
+
     }
     return nil;
 
 }
 
-//- (UIButton *)rightView{
-//    UIButton *btn = [UIButton new];
-//    [btn setImage:[UIImage imageNamed:@"map_rightBtn"] forState:UIControlStateNormal];
-//    [btn sizeToFit];
-//    [btn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    return btn;
-//}
-
 - (void)rightBtnClicked:(UIButton *)btn{
     btn.selected = !btn.selected;
+    self.currentMap = !self.currentMap;
+    self.selectVC.tableView.hidden = self.currentMap;
+    self.segmentView.hidden = self.currentMap;
+    self.selectMoreVC.view.hidden = self.selectVC.tableView.hidden;
     
     if(btn.selected){
-        self.selectVC.tableView.hidden = NO;
-        
         [BMKMapView willBackGround];
     }else{
         [BMKMapView didForeGround];
-        
-        self.selectVC.tableView.hidden = YES;
     }
     
 }
@@ -142,6 +156,30 @@
     _mapView.delegate = nil; // 不用时，置nil
     
     self.selectVC = nil;
+}
+
+
+- (IBAction)leftSegClicked:(UIButton *)sender {
+    WEAK_SELF;
+    
+    self.selectVC.tableView.hidden = YES;
+    self.selectMoreVC.view.hidden = NO;
+
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        weakself.slider.centerX = weakself.view.width * 0.25;
+    }];
+}
+
+- (IBAction)rightSegClicked:(UIButton *)sender {
+    WEAK_SELF;
+    
+    self.selectVC.tableView.hidden = NO;
+    self.selectMoreVC.view.hidden = YES;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        weakself.slider.centerX = weakself.view.width * 0.75;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

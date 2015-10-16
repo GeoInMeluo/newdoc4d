@@ -14,7 +14,6 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import "APService.h"
-#import <BaiduMapAPI/BMKMapView.h>
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -108,7 +107,7 @@
     // 要使用百度地图，请先启动
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"9gruTMoGBC7nKiCcYpZQ5KPx"  generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"PuZ6YVdbpbbuj9pmOwj1rBhK"  generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed!");
     }

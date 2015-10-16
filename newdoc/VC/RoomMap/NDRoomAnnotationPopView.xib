@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="eZG-qV-yJt" customClass="NDRoomAnnotationPopView">
+            <rect key="frame" x="0.0" y="0.0" width="161" height="116"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_ten" translatesAutoresizingMaskIntoConstraints="NO" id="Odb-HD-lS3">
+                    <rect key="frame" x="15" y="15" width="19" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="19" id="6ei-59-yF9"/>
+                        <constraint firstAttribute="height" constant="19" id="mVn-VX-G9k"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柳州市第三社区诊室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1J-qO-EG5">
+                    <rect key="frame" x="42" y="17" width="108" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柳州市第三社区诊室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzL-oF-ovt">
+                    <rect key="frame" x="42" y="40" width="90" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拨打电话:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zeu-WP-gvu">
+                    <rect key="frame" x="42" y="60" width="44" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFi-oN-eoA">
+                    <rect key="frame" x="91" y="60" width="66" height="13"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="13" id="2n3-UE-5AX"/>
+                        <constraint firstAttribute="width" constant="66" id="VkY-KQ-y78"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="18601293201"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKa-No-kDe">
+                    <rect key="frame" x="38" y="80" width="67" height="23"/>
+                    <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="8qv-cj-JQc"/>
+                        <constraint firstAttribute="width" constant="67" id="A2J-hH-zRb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="诊室简介">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="j1J-qO-EG5" firstAttribute="top" secondItem="eZG-qV-yJt" secondAttribute="top" constant="17" id="1xb-xP-gYl"/>
+                <constraint firstItem="MFi-oN-eoA" firstAttribute="leading" secondItem="Zeu-WP-gvu" secondAttribute="trailing" constant="5" id="7lC-em-yHb"/>
+                <constraint firstItem="j1J-qO-EG5" firstAttribute="leading" secondItem="Odb-HD-lS3" secondAttribute="trailing" constant="8" id="CIn-Qw-BNt"/>
+                <constraint firstItem="MFi-oN-eoA" firstAttribute="top" secondItem="qzL-oF-ovt" secondAttribute="bottom" constant="8" id="ERd-Xg-BHz"/>
+                <constraint firstItem="Odb-HD-lS3" firstAttribute="leading" secondItem="eZG-qV-yJt" secondAttribute="leading" constant="15" id="ESZ-ri-KUH"/>
+                <constraint firstItem="HKa-No-kDe" firstAttribute="top" secondItem="MFi-oN-eoA" secondAttribute="bottom" constant="7" id="ILC-yZ-uUF"/>
+                <constraint firstItem="qzL-oF-ovt" firstAttribute="leading" secondItem="j1J-qO-EG5" secondAttribute="leading" id="VF1-HS-0vU"/>
+                <constraint firstItem="Zeu-WP-gvu" firstAttribute="leading" secondItem="qzL-oF-ovt" secondAttribute="leading" id="ZxJ-KI-3jL"/>
+                <constraint firstItem="qzL-oF-ovt" firstAttribute="top" secondItem="j1J-qO-EG5" secondAttribute="bottom" constant="8" id="aeH-li-XVT"/>
+                <constraint firstItem="Zeu-WP-gvu" firstAttribute="top" secondItem="qzL-oF-ovt" secondAttribute="bottom" constant="8" id="dsr-Tf-DWO"/>
+                <constraint firstItem="HKa-No-kDe" firstAttribute="leading" secondItem="eZG-qV-yJt" secondAttribute="leading" constant="38" id="ejJ-3o-UAm"/>
+                <constraint firstItem="Odb-HD-lS3" firstAttribute="top" secondItem="eZG-qV-yJt" secondAttribute="top" constant="15" id="fS3-oN-HZy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="298.5" y="207"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="map_ten" width="14" height="14"/>
+    </resources>
+</document>

@@ -8,6 +8,7 @@
 
 #import "NDRoomSelectVC.h"
 #import "NDRoomSelectCell.h"
+#import "NDRoomDetailVC.h"
 
 @interface NDRoomSelectVC ()
 
@@ -40,6 +41,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 132;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    ShowVC(NDRoomDetailVC);
+    NDRoomDetailVC *vc =[NDRoomDetailVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

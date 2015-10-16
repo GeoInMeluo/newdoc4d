@@ -7,7 +7,7 @@
 //
 
 #import "NDBaseVC.h"
-#import <BaiduMapAPI/BMKMapComponent.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 @interface NDRoomMapVC : NDBaseVC<BMKMapViewDelegate>
 

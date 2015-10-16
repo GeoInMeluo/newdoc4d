@@ -31,4 +31,7 @@ VcClassName * vc = [[VcClassName alloc] init]; \
 #define WEAK_SELF __weak typeof (self) weakself = self; weakself
 #define WEAK_CELL __weak typeof (cell) weakcell = cell; weakcell
 
+#define LightGray [UIColor colorWithHex:@"#eeeeee"]
+#define Blue [UIColor colorWithHex:@"#00aaff"]
+#define kScreenSize [UIScreen mainScreen].bounds.size
 #endif /* GlobalDefine_h */
