@@ -46,7 +46,9 @@
     textAttrs[UITextAttributeTextColor] = [UIColor whiteColor];
     [appearance setTitleTextAttributes:textAttrs];
     
-    [appearance setTranslucent:NO];
+    if([appearance respondsToSelector:@selector(setTranslucent:)]){
+        [appearance setTranslucent:NO];
+    }
 }
 
 /**
