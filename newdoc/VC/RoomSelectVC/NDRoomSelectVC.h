@@ -9,5 +9,5 @@
 #import "NDBaseTableVC.h"
 
 @interface NDRoomSelectVC : NDBaseTableVC
-
+@property (nonatomic, weak) UIViewController *parentVC;
 @end

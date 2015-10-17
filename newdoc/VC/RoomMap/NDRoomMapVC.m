@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NDRoomSelectMoreVC *selectMoreVC;
 @property (weak, nonatomic) IBOutlet UIView *searchDiv;
 @property (weak, nonatomic) IBOutlet UIView *topView;
-@property (strong, nonatomic) IBOutlet UIView *segmentView;
+@property (weak, nonatomic) IBOutlet UIView *segmentView;
 @property (nonatomic, assign) BOOL currentMap;
 @property (weak, nonatomic) UIView *slider;
 
@@ -54,6 +54,8 @@
     slider.centerX = kScreenSize.width * 0.75;
     slider.backgroundColor = Blue;
     
+    self.segmentView.hidden = self.currentMap;
+    [self.view addSubview:self.segmentView];
     [self.segmentView addSubview:slider];
     self.slider = slider;
 }
@@ -79,8 +81,6 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.segmentView.hidden = self.currentMap;
-    [self.view addSubview:self.segmentView];
     self.segmentView.top = self.topView.bottom;
     self.segmentView.width = self.view.width;
     
@@ -99,6 +99,7 @@
     selectVC.tableView.top = self.segmentView.bottom;
     [self.view addSubview:selectVC.tableView];
     selectVC.view.hidden = self.currentMap;
+    selectVC.parentVC = self;
     self.selectVC = selectVC;
 
 }
@@ -143,19 +144,24 @@
     self.selectMoreVC.view.hidden = self.selectVC.tableView.hidden;
     
     if(btn.selected){
-        [BMKMapView willBackGround];
+
     }else{
-        [BMKMapView didForeGround];
+
     }
     
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
     
+    [self.selectVC.view removeFromSuperview];
     self.selectVC = nil;
+    
+    [self.selectMoreVC.view removeFromSuperview];
+    self.selectMoreVC = nil;
 }
 
 

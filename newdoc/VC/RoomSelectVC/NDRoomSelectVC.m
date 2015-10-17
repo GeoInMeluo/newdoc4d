@@ -46,7 +46,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    ShowVC(NDRoomDetailVC);
     NDRoomDetailVC *vc =[NDRoomDetailVC new];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.parentVC.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

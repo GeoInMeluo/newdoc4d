@@ -7,8 +7,13 @@
 //
 
 #import "NDRoomDetailVC.h"
+#import "NDRoomDetailDocCell.h"
+#import "NDRoomOrderVC.h"
 
-@interface NDRoomDetailVC ()
+@interface NDRoomDetailVC ()<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UIView *pickClass;
+@property (weak, nonatomic) IBOutlet UIView *moreView;
+
 
 @end
 
@@ -16,22 +21,70 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [self setupUI];
 }
+
+- (void)setupUI{
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    self.pickClass.left = self.moreView.left;
+    self.pickClass.top = self.moreView.bottom;
+    self.pickClass.width = self.moreView.width;
+    self.pickClass.hidden = YES;
+    
+    [self.view addSubview:self.pickClass];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellId = @"NDRoomDetailDocCell";
+    
+    NDRoomDetailDocCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if(cell == nil){
+        cell = [NDRoomDetailDocCell new];
+    }
+    
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 139;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ShowVC(NDRoomOrderVC);
+}
+
+- (IBAction)showMore:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    
+    self.pickClass.hidden = !sender.selected;
+}
+
+- (IBAction)btnPickDoneClicked:(id)sender {
+    self.pickClass.hidden = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
