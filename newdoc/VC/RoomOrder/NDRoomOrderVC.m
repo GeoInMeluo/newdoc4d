@@ -8,6 +8,8 @@
 
 #import "NDRoomOrderVC.h"
 #import "NDRoomOrderLabeCell.h"
+#import "NDRoomDocDetail.h"
+#import "NDRoomUserComment.h"
 
 @interface NDRoomOrderVC ()<UICollectionViewDataSource, UIBarPositioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *roomCollectionView;
@@ -17,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnTimeArea2;
 @property (weak, nonatomic) IBOutlet UIButton *btnTimeArea3;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblCountMoment;
 
 @end
 
@@ -138,6 +141,15 @@
 
 - (IBAction)btnTimeArea3Click:(id)sender {
 }
+
+- (IBAction)btnDocDetailClick:(id)sender {
+    ShowVC(NDRoomDocDetail);
+}
+
+- (IBAction)btnUserCommentClick:(id)sender {
+    ShowVC(NDRoomUserComment);
+}
+
 
 
 - (void)didReceiveMemoryWarning {

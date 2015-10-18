@@ -11,6 +11,7 @@
                 <outlet property="btnTimeArea2" destination="Fms-NV-3M8" id="GUW-d1-ozk"/>
                 <outlet property="btnTimeArea3" destination="xTD-Mt-0vc" id="ECD-ZB-ec1"/>
                 <outlet property="dateView" destination="qXW-e4-ucV" id="7Jl-Vw-N7y"/>
+                <outlet property="lblCountMoment" destination="jIS-oy-HML" id="59s-Jc-DEj"/>
                 <outlet property="roomCollectionView" destination="GZi-9D-Veg" id="MNc-pH-MvL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -40,6 +41,9 @@
                             <state key="normal" title="医生简介">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="btnDocDetailClick:" destination="-1" eventType="touchUpInside" id="wb2-vu-JuD"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOe-Ho-qZU">
                             <rect key="frame" x="8" y="9" width="56" height="56"/>
@@ -84,6 +88,9 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7H-Ae-zVe">
                                     <rect key="frame" x="0.0" y="0.0" width="81" height="30"/>
+                                    <connections>
+                                        <action selector="btnUserCommentClick:" destination="-1" eventType="touchUpInside" id="67a-yC-wMe"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户评价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3oK-Bm-6p9">
                                     <rect key="frame" x="8" y="7" width="52" height="16"/>

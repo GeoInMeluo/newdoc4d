@@ -23,6 +23,8 @@
 #import "UIView+Util.h"
 #import "UIImage+Util.h"
 #import "NSDate+Util.h"
+#import "NDBaseTableVC.h"
+#import "NDBaseVC.h"
 #endif
 
 
