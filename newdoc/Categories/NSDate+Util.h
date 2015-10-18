@@ -19,6 +19,16 @@
 @property(nonatomic,readonly) NSString * displayPastTimeForLocTeam;
 @property(nonatomic,readonly) BOOL isDay;
 
+//这个月有多少天
+- (NSUInteger)numberOfDaysInCurrentMonth;
+
+//这个月第一天的日期
+- (NSDate *)firstDayOfCurrentMonth;
+
+//这一天是星期几
+- (NSUInteger)weeklyOrdinality;
+
+
 -(NSDate*)floorDate;
 -(NSDate*)ceilDate;
 -(NSDate*)nextDate;

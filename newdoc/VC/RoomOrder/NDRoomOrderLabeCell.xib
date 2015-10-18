@@ -31,6 +31,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="JUV-yH-BI6" secondAttribute="trailing" constant="8" id="718-tP-otw"/>
                 <constraint firstAttribute="bottom" secondItem="fXc-Sb-plE" secondAttribute="bottom" constant="27" id="UwE-Qg-KIF"/>
@@ -40,6 +41,9 @@
                 <constraint firstItem="fXc-Sb-plE" firstAttribute="top" secondItem="uVP-hA-ubs" secondAttribute="top" constant="27" id="eeq-BM-3tF"/>
             </constraints>
             <size key="customSize" width="273" height="50"/>
+            <connections>
+                <outlet property="lblRoomName" destination="JUV-yH-BI6" id="Fpd-um-1xJ"/>
+            </connections>
             <point key="canvasLocation" x="306" y="210.5"/>
         </collectionViewCell>
     </objects>

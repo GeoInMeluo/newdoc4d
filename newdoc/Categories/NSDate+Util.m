@@ -17,6 +17,27 @@ NSCalendar * sharedCalendar()
 }
 
 @implementation NSDate (Util)
+
+- (NSUInteger)numberOfDaysInCurrentMonth
+{
+    // 频繁调用 [NSCalendar currentCalendar] 可能存在性能问题
+    return [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:self].length;
+}
+
+- (NSDate *)firstDayOfCurrentMonth
+{
+    NSDate *startDate = nil;
+    BOOL ok = [[NSCalendar currentCalendar] rangeOfUnit:NSMonthCalendarUnit startDate:&startDate interval:NULL forDate:self];
+    NSAssert1(ok, @"Failed to calculate the first day of the month based on %@", self);
+    return startDate;
+}
+
+- (NSUInteger)weeklyOrdinality
+{
+    return [[NSCalendar currentCalendar] ordinalityOfUnit:NSDayCalendarUnit inUnit:NSWeekCalendarUnit forDate:self];
+}
+
+
 -(NSDate*)floorDate
 {
     NSDateComponents * tempComponents = [sharedCalendar() components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:self];
@@ -203,56 +224,6 @@ NSCalendar * sharedCalendar()
     
     return [sharedCalendar() dateFromComponents:c];
 }
-//+(void)test
-//{
-//    int cnt = 0;
-//    NSDate * d1230 = [NSDate dateWithYear:2013 month:12 day:30 hour:8 minute:8 second:8];
-//    NSDate * d1228 = [NSDate dateWithYear:2013 month:12 day:28 hour:9 minute:8 second:8];
-//    NSDate * d1210 = [NSDate dateWithYear:2013 month:12 day:10 hour:7 minute:8 second:8];
-//    NSDate * d1231 = [NSDate dateWithYear:2013 month:12 day:31 hour:7 minute:8 second:8];
-//    NSDate * d0104 = [NSDate dateWithYear:2014 month:1 day:4 hour:7 minute:8 second:8];
-//    
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1228,3,&cnt);
-//        NSAssert(cnt == 1,@"");
-//        NSAssert(d.day == 30,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1228,2,&cnt);
-//        NSAssert(cnt == 0,@"");
-//        NSAssert(d == nil,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1228,1,&cnt);
-//        NSAssert(cnt == 0,@"");
-//        NSAssert(d == nil,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1228,4,&cnt);
-//        NSAssert(cnt == 2,@"");
-//        NSAssert(d.day == 30,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1228,5,&cnt);
-//        NSAssert(cnt == 2,@"");
-//        NSAssert(d.day == 30,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1210,3,&cnt);
-//        NSAssert(cnt == 0,@"");
-//        NSAssert(d == nil,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1231,3,&cnt);
-//        NSAssert(cnt == 1,@"");
-//        NSAssert(d.day == 31,@"");
-//    }
-//    {
-//        NSDate * d = dateInterset(d1230,2,d1231,1,&cnt);
-//        NSAssert(cnt == 1,@"");
-//        NSAssert(d.day == 31,@"");
-//    }
-//}
 -(BOOL)isAfter:(NSDate*)d
 {
     if([self compare:d]==NSOrderedDescending)

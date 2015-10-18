@@ -58,19 +58,19 @@
 {
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
 
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[UITextAttributeTextColor] = [UIColor orangeColor];
-    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:15];
-    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
-    [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+//    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+//    textAttrs[UITextAttributeTextColor] = [UIColor orangeColor];
+//    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:15];
+//    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
+//    [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+//    
+//    NSMutableDictionary *highTextAttrs = [NSMutableDictionary dictionaryWithDictionary:textAttrs];
+//    highTextAttrs[UITextAttributeTextColor] = [UIColor redColor];
+//    [appearance setTitleTextAttributes:highTextAttrs forState:UIControlStateHighlighted];
     
-    NSMutableDictionary *highTextAttrs = [NSMutableDictionary dictionaryWithDictionary:textAttrs];
-    highTextAttrs[UITextAttributeTextColor] = [UIColor redColor];
-    [appearance setTitleTextAttributes:highTextAttrs forState:UIControlStateHighlighted];
-    
-    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionaryWithDictionary:textAttrs];
-    disableTextAttrs[UITextAttributeTextColor] = [UIColor lightGrayColor];
-    [appearance setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
+//    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionaryWithDictionary:textAttrs];
+//    disableTextAttrs[UITextAttributeTextColor] = [UIColor lightGrayColor];
+//    [appearance setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
 }
 
 /**
