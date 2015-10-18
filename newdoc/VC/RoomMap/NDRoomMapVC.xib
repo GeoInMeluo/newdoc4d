@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="mapView" destination="L8L-vR-gZ7" id="Cpa-ds-7b7"/>
                 <outlet property="searchDiv" destination="3RH-nb-tOf" id="nvh-iL-Uzh"/>
+                <outlet property="searchFiled" destination="sEf-si-ZvF" id="gKo-cb-EfK"/>
                 <outlet property="segmentView" destination="9GN-DM-2jX" id="N1t-Y4-d02"/>
                 <outlet property="topView" destination="tF8-Zr-5fa" id="0vP-ve-Ndc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,6 +37,9 @@
                                     <rect key="frame" x="44" y="0.0" width="195" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="LJv-k0-brV"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,8 +61,11 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="btnChangeLocationClick:" destination="-1" eventType="touchUpInside" id="fBA-iM-XUs"/>
+                            </connections>
                         </button>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="切换位置" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsE-Mo-rhL">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="切换位置" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsE-Mo-rhL">
                             <rect key="frame" x="291" y="7" width="35" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="35" id="eZp-QW-sLl"/>

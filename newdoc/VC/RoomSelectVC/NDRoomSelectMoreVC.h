@@ -9,6 +9,7 @@
 #import "NDBaseVC.h"
 
 @interface NDRoomSelectMoreVC : NDBaseVC
+@property (nonatomic, weak) UIViewController *parentVC;
 @property (weak, nonatomic) IBOutlet UITableView *leftTable;
 @property (weak, nonatomic) IBOutlet UITableView *rightTable;
 

@@ -11,18 +11,21 @@
 #import "NDRoomSelectVC.h"
 #import "NDRoomAnnotationPopView.h"
 #import "NDRoomSelectMoreVC.h"
+#import "NDRoomSelectLocationVC.h"
 
 @interface NDRoomMapVC ()
 
 @property (nonatomic, weak) IBOutlet BMKMapView* mapView;
 @property (nonatomic, strong) NDRoomSelectVC *selectVC;
 @property (nonatomic, strong) NDRoomSelectMoreVC *selectMoreVC;
+@property (nonatomic, strong) NDRoomSelectLocationVC *selectLocationVC;
 @property (weak, nonatomic) IBOutlet UIView *searchDiv;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIView *segmentView;
 @property (nonatomic, assign) BOOL currentMap;
 @property (weak, nonatomic) UIView *slider;
 
+@property (weak, nonatomic) IBOutlet UITextField *searchFiled;
 
 
 @end
@@ -90,6 +93,7 @@
     selectMoreVC.view.top = self.segmentView.bottom;
     [self.view addSubview:selectMoreVC.view];
     selectMoreVC.view.hidden = YES;
+    selectMoreVC.parentVC = self;
     self.selectMoreVC = selectMoreVC;
     
     
@@ -101,7 +105,7 @@
     selectVC.view.hidden = self.currentMap;
     selectVC.parentVC = self;
     self.selectVC = selectVC;
-
+    
 }
 
 // Override
@@ -142,6 +146,9 @@
     self.selectVC.tableView.hidden = self.currentMap;
     self.segmentView.hidden = self.currentMap;
     self.selectMoreVC.view.hidden = self.selectVC.tableView.hidden;
+    [self.selectLocationVC.view removeFromSuperview];
+    self.selectLocationVC = nil;
+    [self.searchFiled resignFirstResponder];
     
     if(btn.selected){
 
@@ -162,6 +169,9 @@
     
     [self.selectMoreVC.view removeFromSuperview];
     self.selectMoreVC = nil;
+    
+    [self.selectLocationVC.view removeFromSuperview];
+    self.selectLocationVC = nil;
 }
 
 
@@ -186,6 +196,29 @@
     [UIView animateWithDuration:0.3 animations:^{
         weakself.slider.centerX = weakself.view.width * 0.75;
     }];
+}
+
+- (IBAction)btnChangeLocationClick:(id)sender {
+    [self.searchFiled resignFirstResponder];
+    
+    self.selectLocationVC.view.hidden = YES;
+    
+    [self.selectLocationVC.view removeFromSuperview];
+    self.selectLocationVC = nil;
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+//    self.selectLocationVC.view.hidden = NO;
+    
+    NDRoomSelectLocationVC *selectLocationVC = [NDRoomSelectLocationVC new];
+    selectLocationVC.view.width = _mapView.width;
+    selectLocationVC.view.height = _mapView.height;
+    selectLocationVC.view.top = self.topView.bottom;
+    selectLocationVC.parentVC = self;
+    [self.view addSubview:selectLocationVC.view];
+//    selectLocationVC.view.hidden = YES;
+    self.selectLocationVC = selectLocationVC;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -58,7 +58,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShowVC(NDRoomDetailVC);
+    if(tableView != self.leftTable){
+        [self.parentVC.navigationController pushViewController:[NDRoomDetailVC new] animated:YES];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -69,6 +69,8 @@
 		32EFFB5C1BCD2DD800A80994 /* NDBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EFFB5B1BCD2DD800A80994 /* NDBaseTableVC.m */; settings = {ASSET_TAGS = (); }; };
 		32EFFB6F1BCD3A3600A80994 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32EFFB6A1BCD3A3600A80994 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 		32EFFB711BCD3A3600A80994 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32EFFB6D1BCD3A3600A80994 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		32F0D4181BD3D93800229828 /* NDRoomSelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0D4161BD3D93800229828 /* NDRoomSelectLocationVC.m */; settings = {ASSET_TAGS = (); }; };
+		32F0D4191BD3D93800229828 /* NDRoomSelectLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F0D4171BD3D93800229828 /* NDRoomSelectLocationVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32F331CD1BCF0429004D772B /* NDRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F331CB1BCF0429004D772B /* NDRoomCell.m */; settings = {ASSET_TAGS = (); }; };
 		32F331CE1BCF0429004D772B /* NDRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F331CC1BCF0429004D772B /* NDRoomCell.xib */; settings = {ASSET_TAGS = (); }; };
 		32FD49551BC790660054D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FD49541BC790660054D2EA /* main.m */; };
@@ -474,6 +476,9 @@
 		32EFFB6B1BCD3A3600A80994 /* newdocTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newdocTests.m; sourceTree = "<group>"; };
 		32EFFB6D1BCD3A3600A80994 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32EFFB6E1BCD3A3600A80994 /* newdocUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newdocUITests.m; sourceTree = "<group>"; };
+		32F0D4151BD3D93800229828 /* NDRoomSelectLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomSelectLocationVC.h; sourceTree = "<group>"; };
+		32F0D4161BD3D93800229828 /* NDRoomSelectLocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomSelectLocationVC.m; sourceTree = "<group>"; };
+		32F0D4171BD3D93800229828 /* NDRoomSelectLocationVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomSelectLocationVC.xib; sourceTree = "<group>"; };
 		32F331CA1BCF0429004D772B /* NDRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomCell.h; sourceTree = "<group>"; };
 		32F331CB1BCF0429004D772B /* NDRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomCell.m; sourceTree = "<group>"; };
 		32F331CC1BCF0429004D772B /* NDRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomCell.xib; sourceTree = "<group>"; };
@@ -1183,6 +1188,9 @@
 				32647D5B1BD152820099D7A8 /* NDRoomSelectMoreVC.h */,
 				32647D5C1BD152820099D7A8 /* NDRoomSelectMoreVC.m */,
 				32647D5D1BD152820099D7A8 /* NDRoomSelectMoreVC.xib */,
+				32F0D4151BD3D93800229828 /* NDRoomSelectLocationVC.h */,
+				32F0D4161BD3D93800229828 /* NDRoomSelectLocationVC.m */,
+				32F0D4171BD3D93800229828 /* NDRoomSelectLocationVC.xib */,
 			);
 			name = RoomSelect;
 			path = RoomSelectVC;
@@ -2379,6 +2387,7 @@
 				32FD4CD81BC81B560054D2EA /* um_like+@2x.png in Resources */,
 				32FD4D791BC81B570054D2EA /* UMSnsAccountViewController.xib in Resources */,
 				32FD4CD41BC81B560054D2EA /* um_friend@2x.png in Resources */,
+				32F0D4191BD3D93800229828 /* NDRoomSelectLocationVC.xib in Resources */,
 				32FD4C9D1BC81B560054D2EA /* cancel+x@2x.png in Resources */,
 				32F331CE1BCF0429004D772B /* NDRoomCell.xib in Resources */,
 				32FD4CA71BC81B560054D2EA /* image-placeholder@2x.png in Resources */,
@@ -2596,6 +2605,7 @@
 				32647D901BD3A8420099D7A8 /* NDRoomUserCommentCell.m in Sources */,
 				32FD4D1E1BC81B560054D2EA /* UMComCommentEditView.m in Sources */,
 				32FD49551BC790660054D2EA /* main.m in Sources */,
+				32F0D4181BD3D93800229828 /* NDRoomSelectLocationVC.m in Sources */,
 				32FD49AB1BC7A4300054D2EA /* UIImage+Util.m in Sources */,
 				32FD4D4E1BC81B560054D2EA /* UMComNoticeSystemViewController.m in Sources */,
 				32FD4D511BC81B560054D2EA /* UMComSysLikeTableView.m in Sources */,
