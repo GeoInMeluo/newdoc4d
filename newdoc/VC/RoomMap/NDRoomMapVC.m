@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *segmentView;
 @property (nonatomic, assign) BOOL currentMap;
 @property (weak, nonatomic) UIView *slider;
+@property (nonatomic, strong) NSMutableArray *annotations;
 
 @property (weak, nonatomic) IBOutlet UITextField *searchFiled;
 
@@ -31,6 +32,13 @@
 @end
 
 @implementation NDRoomMapVC
+
+- (NSMutableArray *)annotations{
+    if(_annotations == nil){
+        _annotations = [NSMutableArray array];
+    }
+    return _annotations;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,20 +72,21 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [_mapView viewWillAppear];
-    
-    _mapView.delegate = self;
-    
-    //     添加一个PointAnnotation
-    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
-    CLLocationCoordinate2D coor;
-    coor.latitude = 39.915;
-    coor.longitude = 116.404;
-    annotation.coordinate = coor;
-    annotation.title = @"这里是北京";
-    [_mapView addAnnotation:annotation];
-    
-    [_mapView selectAnnotation:annotation animated:YES];
+//    [self.mapView viewWillAppear];
+//    
+//    self.mapView.delegate = self;
+//    
+//    //     添加一个PointAnnotation
+//    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+//    CLLocationCoordinate2D coor;
+//    coor.latitude = 39.915;
+//    coor.longitude = 116.404;
+//    annotation.coordinate = coor;
+//    annotation.title = @"这里是北京";
+//    [self.mapView addAnnotation:annotation];
+//    [self.annotations addObject:annotation];
+//    
+////    [self.mapView selectAnnotation:annotation animated:YES];
     
 }
 
@@ -140,6 +149,26 @@
 
 }
 
+//百度定位获取经纬度信息
+-(void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation{
+    NSLog(@"!latitude!!!  %f",userLocation.location.coordinate.latitude);//获取经度
+    NSLog(@"!longtitude!!!  %f",userLocation.location.coordinate.longitude);//获取纬度
+    CLLocationDegrees localLatitude=userLocation.location.coordinate.latitude;//把获取的地理信息记录下来
+    CLLocationDegrees localLongitude=userLocation.location.coordinate.longitude;
+    CLGeocoder *Geocoder=[[CLGeocoder alloc]init];//CLGeocoder用法参加之前博客
+    CLGeocodeCompletionHandler handler = ^(NSArray *place, NSError *error) {
+        for (CLPlacemark *placemark in place) {
+            NSString * cityStr=placemark.thoroughfare;
+            NSString * cityName=placemark.locality;
+            NSLog(@"city %@",cityStr);//获取街道地址
+            NSLog(@"cityName %@",cityName);//获取城市名
+            break;
+        }
+    };
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
+    [Geocoder reverseGeocodeLocation:loc completionHandler:handler];
+}
+
 - (void)rightBtnClicked:(UIButton *)btn{
     btn.selected = !btn.selected;
     self.currentMap = !self.currentMap;
@@ -161,8 +190,14 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_mapView viewWillDisappear];
-    _mapView.delegate = nil; // 不用时，置nil
+    
+    [self.mapView removeAnnotations:self.annotations];
+    
+    [self.mapView viewWillDisappear];
+    
+    self.mapView.delegate = nil; // 不用时，置nil
+    
+    self.mapView = nil;
     
     [self.selectVC.view removeFromSuperview];
     self.selectVC = nil;
@@ -219,6 +254,21 @@
     [self.view addSubview:selectLocationVC.view];
 //    selectLocationVC.view.hidden = YES;
     self.selectLocationVC = selectLocationVC;
+}
+
+- (void)dealloc{
+    [self.mapView removeFromSuperview];
+    self.mapView.delegate = nil; // 不用时，置nil
+    self.mapView = nil;
+    
+    [self.selectVC.view removeFromSuperview];
+    self.selectVC = nil;
+    
+    [self.selectMoreVC.view removeFromSuperview];
+    self.selectMoreVC = nil;
+    
+    [self.selectLocationVC.view removeFromSuperview];
+    self.selectLocationVC = nil;
 }
 
 - (void)didReceiveMemoryWarning {
