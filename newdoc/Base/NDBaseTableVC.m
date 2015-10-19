@@ -8,11 +8,17 @@
 
 #import "NDBaseTableVC.h"
 
-@interface NDBaseTableVC ()
-
+@interface NDBaseTableVC ()<UITableViewDelegate,UITableViewDataSource>
 @end
 
 @implementation NDBaseTableVC
+
+- (NSMutableArray *)cells{
+    if(_cells == nil){
+        _cells = [NSMutableArray array];
+    }
+    return _cells;
+}
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +31,34 @@
     
     self.tableView.tableHeaderView = self.defaultHeader;
     self.tableView.tableFooterView = self.defaultFooter;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = self.cells[indexPath.row];
+    
+    if([cell isKindOfClass:[FormCell class]]){
+        FormCell *formCell = (FormCell *)cell;
+        
+        if(formCell.callback){
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+            
+            formCell.callback(formCell, indexPath);
+        }
+        
+    }
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.cells.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return self.cells[indexPath.row];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [self.cells[indexPath.row] height];
 }
 
 - (void)didReceiveMemoryWarning {

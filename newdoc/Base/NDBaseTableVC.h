@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FormCell.h"
 
 @interface NDBaseTableVC : UITableViewController
 @property(nonatomic,retain) IBOutlet UIView * defaultHeader;
 @property(nonatomic,retain) IBOutlet UIView * defaultFooter;
+
+@property (nonatomic, strong)  NSMutableArray *cells;
 @end

@@ -7,8 +7,17 @@
 //
 
 #import "NDPersonalCenterHomeVC.h"
+#import "NDPersonalInfo.h"
 
-@interface NDPersonalCenterHomeVC ()
+@interface NDPersonalCenterHomeVC ()<UITableViewDataSource,UITabBarDelegate>
+@property (strong, nonatomic) IBOutlet FormCell *cellInfomation;
+@property (strong, nonatomic) IBOutlet FormCell *cellRefer;
+@property (strong, nonatomic) IBOutlet FormCell *cellSetting;
+@property (strong, nonatomic) IBOutlet FormCell *cellMineRoom;
+@property (strong, nonatomic) IBOutlet FormCell *cellMineDoc;
+@property (strong, nonatomic) IBOutlet FormCell *cellOrder;
+@property (strong, nonatomic) IBOutlet FormCell *cellEhr;
+@property (weak, nonatomic) IBOutlet UIButton *headImg;
 
 @end
 
@@ -16,7 +25,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self setupUI];
+}
+
+- (void)setupUI{
+    [self initCells];
+    
+    self.headImg.layer.cornerRadius = self.headImg.width * 0.5;
+    self.headImg.layer.masksToBounds = YES;
+    self.headImg.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.headImg.layer.borderWidth = 2;
+}
+
+- (void)initCells{
+    WEAK_SELF;
+    
+    [self.cells addObjectsFromArray:@[self.cellInfomation,self.cellEhr,self.cellMineDoc,self.cellMineRoom,self.cellOrder,self.cellRefer,self.cellSetting]];
+ 
+    self.cellInfomation.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        CreateVC(NDPersonalInfo);
+        
+        PushVCWeak(vc);
+    };
+    
+    self.cellEhr.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        todo();
+    };
+    
+    self.cellMineDoc.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        todo();
+    };
+    
+    self.cellMineRoom.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        todo();
+    };
+    
+    self.cellOrder.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        todo();
+    };
+    
+    self.cellRefer.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        todo();
+    };
+    
+    self.cellSetting.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        todo();
+    };
+    
 }
 
 - (void)didReceiveMemoryWarning {

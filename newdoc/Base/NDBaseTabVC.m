@@ -9,7 +9,7 @@
 #import "NDBaseTabVC.h"
 #import "NDBaseNavVC.h"
 #import "NDRoomVC.h"
-#import "NDPersonalVC.h"
+#import "NDPersonalCenterHomeVC.h"
 #import "UMCommunity.h"
 
 @interface NDBaseTabVC ()
@@ -17,6 +17,8 @@
 @end
 
 @implementation NDBaseTabVC
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,14 +29,15 @@
 - (void)setup{
     
     NDRoomVC *roomVC = [NDRoomVC new];
-    NDPersonalVC *personalVC = [NDPersonalVC new];
+    NDPersonalCenterHomeVC *personalVC = [NDPersonalCenterHomeVC new];
     UIViewController *communityVC = [UMCommunity getFeedsViewController];
 
-    [self addOneChlildVc:personalVC title:@"个人中心" imageName:@"personal" selectedImageName:@"personal_select"];
+    
+    [self addOneChlildVc:communityVC title:@"社区交流" imageName:@"community" selectedImageName:@"community_select"];
     
     [self addOneChlildVc:roomVC title:@"新医诊室" imageName:@"room" selectedImageName:@"room_select"];
     
-    [self addOneChlildVc:communityVC title:@"社区交流" imageName:@"community" selectedImageName:@"community_select"];
+    [self addOneChlildVc:personalVC title:@"个人中心" imageName:@"personal" selectedImageName:@"personal_select"];
     
     self.selectedIndex = 1;
 
@@ -58,6 +61,8 @@
     NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:childVc];
     [self addChildViewController:nav];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -60,8 +60,6 @@
 		328B78B71BD0171D000F38DA /* NDRoomSelectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328B78B51BD0171D000F38DA /* NDRoomSelectVC.xib */; settings = {ASSET_TAGS = (); }; };
 		328B78BB1BD03254000F38DA /* NDRoomSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328B78B91BD03254000F38DA /* NDRoomSelectCell.m */; settings = {ASSET_TAGS = (); }; };
 		328B78BC1BD03254000F38DA /* NDRoomSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */; settings = {ASSET_TAGS = (); }; };
-		32C48B0C1BCADAC8009CB1A3 /* NDPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C48B061BCADAC8009CB1A3 /* NDPersonalVC.m */; settings = {ASSET_TAGS = (); }; };
-		32C48B0D1BCADAC8009CB1A3 /* NDPersonalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C48B071BCADAC8009CB1A3 /* NDPersonalVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32C48B0E1BCADAC8009CB1A3 /* NDRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C48B0A1BCADAC8009CB1A3 /* NDRoomVC.m */; settings = {ASSET_TAGS = (); }; };
 		32C48B0F1BCADAC8009CB1A3 /* NDRoomVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C48B0B1BCADAC8009CB1A3 /* NDRoomVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32C48B151BCADD77009CB1A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C48B141BCADD77009CB1A3 /* QuartzCore.framework */; };
@@ -73,6 +71,13 @@
 		32F0D4191BD3D93800229828 /* NDRoomSelectLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F0D4171BD3D93800229828 /* NDRoomSelectLocationVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32F0D41E1BD4954D00229828 /* NDPersonalCenterHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0D41C1BD4954D00229828 /* NDPersonalCenterHomeVC.m */; settings = {ASSET_TAGS = (); }; };
 		32F0D41F1BD4954D00229828 /* NDPersonalCenterHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F0D41D1BD4954D00229828 /* NDPersonalCenterHomeVC.xib */; settings = {ASSET_TAGS = (); }; };
+		32F0D4221BD52F8A00229828 /* FormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0D4211BD52F8A00229828 /* FormCell.m */; settings = {ASSET_TAGS = (); }; };
+		32F0D4271BD53F9E00229828 /* NDPersonalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0D4251BD53F9E00229828 /* NDPersonalInfo.m */; settings = {ASSET_TAGS = (); }; };
+		32F0D4281BD53F9E00229828 /* NDPersonalInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F0D4261BD53F9E00229828 /* NDPersonalInfo.xib */; settings = {ASSET_TAGS = (); }; };
+		32F0D4331BD54D3300229828 /* NDPersonalChangeGender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0D4311BD54D3300229828 /* NDPersonalChangeGender.m */; settings = {ASSET_TAGS = (); }; };
+		32F0D4341BD54D3300229828 /* NDPersonalChangeGender.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F0D4321BD54D3300229828 /* NDPersonalChangeGender.xib */; settings = {ASSET_TAGS = (); }; };
+		32F0D4431BD54D8800229828 /* NDPersonalChangeAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F0D4411BD54D8800229828 /* NDPersonalChangeAccountVC.m */; settings = {ASSET_TAGS = (); }; };
+		32F0D4441BD54D8800229828 /* NDPersonalChangeAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F0D4421BD54D8800229828 /* NDPersonalChangeAccountVC.xib */; settings = {ASSET_TAGS = (); }; };
 		32F331CD1BCF0429004D772B /* NDRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F331CB1BCF0429004D772B /* NDRoomCell.m */; settings = {ASSET_TAGS = (); }; };
 		32F331CE1BCF0429004D772B /* NDRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F331CC1BCF0429004D772B /* NDRoomCell.xib */; settings = {ASSET_TAGS = (); }; };
 		32FD49551BC790660054D2EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FD49541BC790660054D2EA /* main.m */; };
@@ -464,9 +469,6 @@
 		328B78B81BD03254000F38DA /* NDRoomSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomSelectCell.h; sourceTree = "<group>"; };
 		328B78B91BD03254000F38DA /* NDRoomSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomSelectCell.m; sourceTree = "<group>"; };
 		328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomSelectCell.xib; sourceTree = "<group>"; };
-		32C48B051BCADAC8009CB1A3 /* NDPersonalVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalVC.h; sourceTree = "<group>"; };
-		32C48B061BCADAC8009CB1A3 /* NDPersonalVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalVC.m; sourceTree = "<group>"; };
-		32C48B071BCADAC8009CB1A3 /* NDPersonalVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalVC.xib; sourceTree = "<group>"; };
 		32C48B091BCADAC8009CB1A3 /* NDRoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomVC.h; sourceTree = "<group>"; };
 		32C48B0A1BCADAC8009CB1A3 /* NDRoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomVC.m; sourceTree = "<group>"; };
 		32C48B0B1BCADAC8009CB1A3 /* NDRoomVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomVC.xib; sourceTree = "<group>"; };
@@ -484,6 +486,17 @@
 		32F0D41B1BD4954D00229828 /* NDPersonalCenterHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalCenterHomeVC.h; sourceTree = "<group>"; };
 		32F0D41C1BD4954D00229828 /* NDPersonalCenterHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalCenterHomeVC.m; sourceTree = "<group>"; };
 		32F0D41D1BD4954D00229828 /* NDPersonalCenterHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalCenterHomeVC.xib; sourceTree = "<group>"; };
+		32F0D4201BD52F8A00229828 /* FormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCell.h; sourceTree = "<group>"; };
+		32F0D4211BD52F8A00229828 /* FormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCell.m; sourceTree = "<group>"; };
+		32F0D4241BD53F9E00229828 /* NDPersonalInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalInfo.h; sourceTree = "<group>"; };
+		32F0D4251BD53F9E00229828 /* NDPersonalInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalInfo.m; sourceTree = "<group>"; };
+		32F0D4261BD53F9E00229828 /* NDPersonalInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalInfo.xib; sourceTree = "<group>"; };
+		32F0D4301BD54D3300229828 /* NDPersonalChangeGender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalChangeGender.h; sourceTree = "<group>"; };
+		32F0D4311BD54D3300229828 /* NDPersonalChangeGender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalChangeGender.m; sourceTree = "<group>"; };
+		32F0D4321BD54D3300229828 /* NDPersonalChangeGender.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalChangeGender.xib; sourceTree = "<group>"; };
+		32F0D4401BD54D8800229828 /* NDPersonalChangeAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalChangeAccountVC.h; sourceTree = "<group>"; };
+		32F0D4411BD54D8800229828 /* NDPersonalChangeAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalChangeAccountVC.m; sourceTree = "<group>"; };
+		32F0D4421BD54D8800229828 /* NDPersonalChangeAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalChangeAccountVC.xib; sourceTree = "<group>"; };
 		32F331CA1BCF0429004D772B /* NDRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomCell.h; sourceTree = "<group>"; };
 		32F331CB1BCF0429004D772B /* NDRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomCell.m; sourceTree = "<group>"; };
 		32F331CC1BCF0429004D772B /* NDRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomCell.xib; sourceTree = "<group>"; };
@@ -1201,16 +1214,6 @@
 			path = RoomSelectVC;
 			sourceTree = "<group>";
 		};
-		32C48B041BCADAC8009CB1A3 /* Personal */ = {
-			isa = PBXGroup;
-			children = (
-				32C48B051BCADAC8009CB1A3 /* NDPersonalVC.h */,
-				32C48B061BCADAC8009CB1A3 /* NDPersonalVC.m */,
-				32C48B071BCADAC8009CB1A3 /* NDPersonalVC.xib */,
-			);
-			path = Personal;
-			sourceTree = "<group>";
-		};
 		32C48B081BCADAC8009CB1A3 /* Room */ = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1253,38 @@
 				32F0D41D1BD4954D00229828 /* NDPersonalCenterHomeVC.xib */,
 			);
 			path = PersonalCenter;
+			sourceTree = "<group>";
+		};
+		32F0D4231BD53F7300229828 /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				32F0D43F1BD54D8800229828 /* PersonalChangeAcount */,
+				32F0D42F1BD54D1800229828 /* PersonalChangeGender */,
+				32F0D4241BD53F9E00229828 /* NDPersonalInfo.h */,
+				32F0D4251BD53F9E00229828 /* NDPersonalInfo.m */,
+				32F0D4261BD53F9E00229828 /* NDPersonalInfo.xib */,
+			);
+			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
+		32F0D42F1BD54D1800229828 /* PersonalChangeGender */ = {
+			isa = PBXGroup;
+			children = (
+				32F0D4301BD54D3300229828 /* NDPersonalChangeGender.h */,
+				32F0D4311BD54D3300229828 /* NDPersonalChangeGender.m */,
+				32F0D4321BD54D3300229828 /* NDPersonalChangeGender.xib */,
+			);
+			path = PersonalChangeGender;
+			sourceTree = "<group>";
+		};
+		32F0D43F1BD54D8800229828 /* PersonalChangeAcount */ = {
+			isa = PBXGroup;
+			children = (
+				32F0D4401BD54D8800229828 /* NDPersonalChangeAccountVC.h */,
+				32F0D4411BD54D8800229828 /* NDPersonalChangeAccountVC.m */,
+				32F0D4421BD54D8800229828 /* NDPersonalChangeAccountVC.xib */,
+			);
+			path = PersonalChangeAcount;
 			sourceTree = "<group>";
 		};
 		32FD49471BC790660054D2EA = {
@@ -1378,6 +1413,8 @@
 				32FD49B01BC7A4E90054D2EA /* Button.m */,
 				32FD49B11BC7A4E90054D2EA /* TextView.h */,
 				32FD49B21BC7A4E90054D2EA /* TextView.m */,
+				32F0D4201BD52F8A00229828 /* FormCell.h */,
+				32F0D4211BD52F8A00229828 /* FormCell.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1385,6 +1422,7 @@
 		32FD498C1BC790A70054D2EA /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				32F0D4231BD53F7300229828 /* PersonalInfo */,
 				32F0D41A1BD4940E00229828 /* PersonalCenter */,
 				32647D871BD3836C0099D7A8 /* RoomUserComment */,
 				32647D7C1BD36DC10099D7A8 /* RoomDocDetail */,
@@ -1392,7 +1430,6 @@
 				32647D601BD1687B0099D7A8 /* RoomDetail */,
 				328B78B21BD016C4000F38DA /* RoomSelect */,
 				3217AD011BCFC6EA003E9D83 /* RoomMap */,
-				32C48B041BCADAC8009CB1A3 /* Personal */,
 				32C48B081BCADAC8009CB1A3 /* Room */,
 				32FD4DBB1BC82EA90054D2EA /* Community */,
 			);
@@ -2340,7 +2377,6 @@
 				32FD4CC11BC81B560054D2EA /* tencent+x@2x.png in Resources */,
 				32FD4C911BC81B560054D2EA /* ##+x@2x.png in Resources */,
 				32FD4CC61BC81B560054D2EA /* um_album@2x.png in Resources */,
-				32C48B0D1BCADAC8009CB1A3 /* NDPersonalVC.xib in Resources */,
 				32647D7B1BD282590099D7A8 /* NDRoomOrderLabeCell.xib in Resources */,
 				32FD4CC51BC81B560054D2EA /* um_album.png in Resources */,
 				32FD4D7A1BC81B570054D2EA /* UMSShareListController.xib in Resources */,
@@ -2382,6 +2418,7 @@
 				32647D761BD21E830099D7A8 /* NDRoomOrderVC.xib in Resources */,
 				326197521BCBFB4A00351022 /* WeiboSDK.bundle in Resources */,
 				32FD4CA11BC81B560054D2EA /* female@2x.png in Resources */,
+				32F0D4441BD54D8800229828 /* NDPersonalChangeAccountVC.xib in Resources */,
 				32FD4CFA1BC81B560054D2EA /* wechat+x@2x.png in Resources */,
 				32FD4CDC1BC81B560054D2EA /* um_more@2x.png in Resources */,
 				32FD4CC71BC81B560054D2EA /* um_collection+.png in Resources */,
@@ -2392,6 +2429,8 @@
 				32FD4CB61BC81B560054D2EA /* pin3x@2x.png in Resources */,
 				32647D591BD14A8F0099D7A8 /* NDRoomAnnotationPopView.xib in Resources */,
 				32FD4CCD1BC81B560054D2EA /* um_copy@2x.png in Resources */,
+				32F0D4281BD53F9E00229828 /* NDPersonalInfo.xib in Resources */,
+				32F0D4341BD54D3300229828 /* NDPersonalChangeGender.xib in Resources */,
 				32FD4D771BC81B570054D2EA /* UMShareEditViewControlleriPad.xib in Resources */,
 				32FD4C981BC81B560054D2EA /* Backx@2x.png in Resources */,
 				32FD4CF51BC81B560054D2EA /* um_topic@2x.png in Resources */,
@@ -2535,6 +2574,7 @@
 				32FD4D0F1BC81B560054D2EA /* UMAssetsCollectionOverlayView.m in Sources */,
 				32FD4D1D1BC81B560054D2EA /* UMComActionStyleTableView.m in Sources */,
 				32FD4D981BC81DF20054D2EA /* AFHTTPRequestOperation.m in Sources */,
+				32F0D4331BD54D3300229828 /* NDPersonalChangeGender.m in Sources */,
 				32F331CD1BCF0429004D772B /* NDRoomCell.m in Sources */,
 				32FD4D1B1BC81B560054D2EA /* UMComModel.xcdatamodeld in Sources */,
 				32FD4D3C1BC81B560054D2EA /* UMComHomeFeedViewController.m in Sources */,
@@ -2618,6 +2658,7 @@
 				32EFFB5C1BCD2DD800A80994 /* NDBaseTableVC.m in Sources */,
 				32FD4D4D1BC81B560054D2EA /* UMComMenuControlView.m in Sources */,
 				32FD4D341BC81B560054D2EA /* UMComLocationTableViewCell.m in Sources */,
+				32F0D4221BD52F8A00229828 /* FormCell.m in Sources */,
 				32FD49B41BC7A4E90054D2EA /* Button.m in Sources */,
 				32647D901BD3A8420099D7A8 /* NDRoomUserCommentCell.m in Sources */,
 				32FD4D1E1BC81B560054D2EA /* UMComCommentEditView.m in Sources */,
@@ -2656,6 +2697,7 @@
 				32FD49AA1BC7A4300054D2EA /* UIFont+size.m in Sources */,
 				32FD4D3B1BC81B560054D2EA /* UMComFeedTableViewController.m in Sources */,
 				32FD4D051BC81B560054D2EA /* UMComGenderView.m in Sources */,
+				32F0D4431BD54D8800229828 /* NDPersonalChangeAccountVC.m in Sources */,
 				32FD4D651BC81B560054D2EA /* UMComUserCenterCollectionView.m in Sources */,
 				32FD4D691BC81B560054D2EA /* UMComUsersTableView.m in Sources */,
 				32FD4D031BC81B560054D2EA /* UMImageProgressView.m in Sources */,
@@ -2665,7 +2707,6 @@
 				32FD4D001BC81B560054D2EA /* UMComGridView.m in Sources */,
 				32FD4D131BC81B560054D2EA /* UMComSearchBar.m in Sources */,
 				32FD4D2D1BC81B560054D2EA /* UMComEditTopicsViewController.m in Sources */,
-				32C48B0C1BCADAC8009CB1A3 /* NDPersonalVC.m in Sources */,
 				32FD4D221BC81B560054D2EA /* UMComTableView.m in Sources */,
 				328B78BB1BD03254000F38DA /* NDRoomSelectCell.m in Sources */,
 				32FD4CFF1BC81B560054D2EA /* UMComButton.m in Sources */,
@@ -2673,6 +2714,7 @@
 				32FD49A91BC7A4300054D2EA /* UIColor+Util.m in Sources */,
 				32FD4D1A1BC81B560054D2EA /* UMComImageView.m in Sources */,
 				328B78B61BD0171D000F38DA /* NDRoomSelectVC.m in Sources */,
+				32F0D4271BD53F9E00229828 /* NDPersonalInfo.m in Sources */,
 				32FD4AB41BC80B960054D2EA /* NCNetManager.m in Sources */,
 				32FD4D581BC81B560054D2EA /* UMComTopicsTableViewController.m in Sources */,
 			);
