@@ -50,14 +50,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(self.cells.count == 0){
+        return 0;
+    }
+    
     return self.cells.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.cells.count == 0){
+        return nil;
+    }
+    
     return self.cells[indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.cells.count == 0){
+        return 0;
+    }
+    
     return [self.cells[indexPath.row] height];
 }
 

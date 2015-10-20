@@ -14,10 +14,11 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oMp-jp-p0d">
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oMp-jp-p0d">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="sectionIndexBackgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="12u-8O-ygM"/>
                 <outlet property="delegate" destination="-1" id="MhM-mW-AiB"/>
@@ -45,12 +46,22 @@
                             <constraint firstAttribute="width" constant="33" id="oY2-gZ-tlq"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAv-xf-Kbd">
+                        <rect key="frame" x="0.0" y="48" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="8dz-WG-7rj"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bCS-yp-k51" firstAttribute="trailing" secondItem="PBV-6S-rKR" secondAttribute="trailingMargin" id="9My-di-HyN"/>
                     <constraint firstItem="bCS-yp-k51" firstAttribute="centerY" secondItem="PBV-6S-rKR" secondAttribute="centerY" id="Oja-qR-qYi"/>
                     <constraint firstItem="P6v-3X-4L5" firstAttribute="centerY" secondItem="PBV-6S-rKR" secondAttribute="centerY" id="WoJ-fv-gy8"/>
+                    <constraint firstItem="cAv-xf-Kbd" firstAttribute="leading" secondItem="PBV-6S-rKR" secondAttribute="leadingMargin" constant="-8" id="Y1h-VP-Yht"/>
                     <constraint firstItem="P6v-3X-4L5" firstAttribute="leading" secondItem="PBV-6S-rKR" secondAttribute="leadingMargin" constant="15" id="jrA-RI-5jl"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cAv-xf-Kbd" secondAttribute="bottom" constant="-8" id="w4X-8z-rnh"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cAv-xf-Kbd" secondAttribute="trailing" constant="-8" id="y9r-Kf-UXb"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="216" y="720"/>
@@ -76,11 +87,21 @@
                             <constraint firstAttribute="width" constant="33" id="Ylv-A1-eFY"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ql2-Zb-Ymi">
+                        <rect key="frame" x="0.0" y="48" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="hBJ-oL-dwa"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SIe-Zm-cqr" firstAttribute="trailing" secondItem="MKA-TL-LBs" secondAttribute="trailingMargin" id="0qV-lE-FqT"/>
                     <constraint firstItem="SIe-Zm-cqr" firstAttribute="centerY" secondItem="MKA-TL-LBs" secondAttribute="centerY" id="6Bs-XW-R2x"/>
                     <constraint firstItem="4Sb-Jr-E4y" firstAttribute="centerY" secondItem="MKA-TL-LBs" secondAttribute="centerY" id="lXV-DN-Wc9"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ql2-Zb-Ymi" secondAttribute="bottom" constant="-8" id="mrH-Gd-AUx"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ql2-Zb-Ymi" secondAttribute="trailing" constant="-8" id="rhA-rE-fVr"/>
+                    <constraint firstItem="ql2-Zb-Ymi" firstAttribute="leading" secondItem="MKA-TL-LBs" secondAttribute="leadingMargin" constant="-8" id="wM2-Ps-3Gr"/>
                     <constraint firstItem="4Sb-Jr-E4y" firstAttribute="leading" secondItem="MKA-TL-LBs" secondAttribute="leadingMargin" constant="15" id="yem-7M-GGJ"/>
                 </constraints>
             </tableViewCellContentView>

@@ -8,6 +8,8 @@
 
 #import "NDPersonalCenterHomeVC.h"
 #import "NDPersonalInfo.h"
+#import "NDLoginVC.h"
+#import "NDPersonalEhrVC.h"
 
 @interface NDPersonalCenterHomeVC ()<UITableViewDataSource,UITabBarDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellInfomation;
@@ -18,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet FormCell *cellOrder;
 @property (strong, nonatomic) IBOutlet FormCell *cellEhr;
 @property (weak, nonatomic) IBOutlet UIButton *headImg;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
 @end
 
@@ -50,7 +53,7 @@
     };
     
     self.cellEhr.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        todo();
+        ShowVCWeak(NDPersonalEhrVC);
     };
     
     self.cellMineDoc.callback = ^(FormCell *cell, NSIndexPath *indexPath){
@@ -74,6 +77,12 @@
     };
     
 }
+
+- (IBAction)btnLoginClick:(id)sender {
+    ShowVC(NDLoginVC);
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

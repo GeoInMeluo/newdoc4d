@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDPersonalCenterHomeVC">
             <connections>
+                <outlet property="btnLogin" destination="vc3-2m-FAx" id="2m5-xi-Sg3"/>
                 <outlet property="cellEhr" destination="2rn-nA-XbZ" id="exB-xj-Vkn"/>
                 <outlet property="cellInfomation" destination="RJc-A0-r7c" id="TTL-p3-ZVB"/>
                 <outlet property="cellMineDoc" destination="aEy-7X-oZn" id="D9F-6b-U0J"/>
@@ -36,17 +37,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-C5-to8">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc3-2m-FAx">
                     <rect key="frame" x="8" y="92" width="359" height="39"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="39" id="Tip-gN-HEc"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="请登陆">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="btnLoginClick:" destination="-1" eventType="touchUpInside" id="R80-wN-zHY"/>
+                    </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-3s-c55">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-3s-c55">
                     <rect key="frame" x="8" y="92" width="359" height="39"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajr-1x-kjs">
@@ -92,13 +92,14 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.67536449432373047" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="vc3-2m-FAx" secondAttribute="trailing" constant="8" id="48k-q7-0PB"/>
+                <constraint firstItem="vc3-2m-FAx" firstAttribute="leading" secondItem="YUi-8l-aUH" secondAttribute="leading" constant="8" id="79Z-rh-ttV"/>
                 <constraint firstItem="qeC-3s-c55" firstAttribute="top" secondItem="PdL-XS-9OD" secondAttribute="bottom" constant="8" id="Ahv-XX-y0E"/>
-                <constraint firstAttribute="trailing" secondItem="3g6-C5-to8" secondAttribute="trailing" constant="8" id="C0e-yw-RVv"/>
-                <constraint firstItem="3g6-C5-to8" firstAttribute="leading" secondItem="YUi-8l-aUH" secondAttribute="leading" constant="8" id="FhA-kv-DgU"/>
-                <constraint firstAttribute="bottom" secondItem="3g6-C5-to8" secondAttribute="bottom" constant="8" id="LlH-Yk-Mvm"/>
                 <constraint firstAttribute="trailing" secondItem="qeC-3s-c55" secondAttribute="trailing" constant="8" id="WTc-zl-aKR"/>
+                <constraint firstItem="vc3-2m-FAx" firstAttribute="top" secondItem="PdL-XS-9OD" secondAttribute="bottom" constant="8" id="aDu-Ge-Xc8"/>
                 <constraint firstItem="qeC-3s-c55" firstAttribute="leading" secondItem="YUi-8l-aUH" secondAttribute="leading" constant="8" id="okL-Fg-eis"/>
                 <constraint firstAttribute="bottom" secondItem="qeC-3s-c55" secondAttribute="bottom" constant="8" id="pyC-Nr-OPH"/>
+                <constraint firstAttribute="bottom" secondItem="vc3-2m-FAx" secondAttribute="bottom" constant="8" id="umc-kq-OAi"/>
                 <constraint firstItem="PdL-XS-9OD" firstAttribute="centerX" secondItem="YUi-8l-aUH" secondAttribute="centerX" id="vCb-eC-AcB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -25,6 +25,7 @@
 #import "NSDate+Util.h"
 #import "NDBaseTableVC.h"
 #import "NDBaseVC.h"
+#import "NCNetManager.h"
 #endif
 
 

@@ -9,6 +9,8 @@
 #import "NDPersonalInfo.h"
 #import "NDPersonalChangeAccountVC.h"
 #import "NDPersonalChangeGender.h"
+#import "NDPersonalApproveVC.h"
+#import "NDPersonalChangePwd.h"
 
 @interface NDPersonalInfo ()
 @property (strong, nonatomic) IBOutlet FormCell *cellHeadImg;
@@ -47,7 +49,18 @@
         CreateVC(NDPersonalChangeGender);
         PushVCWeak(vc);
     };
+
+    self.cellApprove.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        CreateVC(NDPersonalApproveVC);
+        PushVCWeak(vc);
+    };
+    
+    self.cellChangePwd.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+        CreateVC(NDPersonalChangePwd);
+        PushVCWeak(vc);
+    };
 }
+
 
 
 

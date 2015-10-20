@@ -26,6 +26,8 @@
 #import "WeiboSDK.h"
 //新浪微博SDK需要在项目Build Settings中的Other Linker Flags添加"-ObjC"
 
+#import "AFNetworking.h"
+
 @interface AppDelegate ()
 
 @end
@@ -35,6 +37,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSDictionary *param = @{};
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+//    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007"}]];
+//
+//    [manager GET:@"http://newdoc.meluo.net/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+    
+    [[NCNetManager sharedNetManager] GET:@"http://newdoc.meluo.net/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *responseObj = responseObject;
+        NSLog(@"%@", responseObj);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
     
     [self setupBaiduMap];
     
