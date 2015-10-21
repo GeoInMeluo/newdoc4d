@@ -34,6 +34,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.cells.count == 0){
+        return;
+    }
+    
     UITableViewCell *cell = self.cells[indexPath.row];
     
     if([cell isKindOfClass:[FormCell class]]){

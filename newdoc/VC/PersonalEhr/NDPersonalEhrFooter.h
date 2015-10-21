@@ -1,5 +1,5 @@
 //
-//  NDPersonalEhrCell.h
+//  NDPersonalEhrFooter.h
 //  newdoc
 //
 //  Created by zzc on 15/10/21.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NDPersonalEhrCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imgArrow;
+@interface NDPersonalEhrFooter : UIView
 
 @end

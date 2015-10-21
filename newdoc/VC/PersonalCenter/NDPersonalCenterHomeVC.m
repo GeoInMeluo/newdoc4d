@@ -10,6 +10,11 @@
 #import "NDPersonalInfo.h"
 #import "NDLoginVC.h"
 #import "NDPersonalEhrVC.h"
+#import "NDSettingTableViewController.h"
+#import "NDPersonalBindingRoomVC.h"
+#import "NDPersonalReferVC.h"
+#import "NDRoomOrderVC.h"
+#import "NDPersonalAttentionDocVC.h"
 
 @interface NDPersonalCenterHomeVC ()<UITableViewDataSource,UITabBarDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellInfomation;
@@ -57,23 +62,23 @@
     };
     
     self.cellMineDoc.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        todo();
+        ShowVCWeak(NDPersonalAttentionDocVC);
     };
     
     self.cellMineRoom.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        todo();
+        ShowVCWeak(NDPersonalBindingRoomVC);
     };
     
     self.cellOrder.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        todo();
+        ShowVCWeak(NDRoomOrderVC);
     };
     
     self.cellRefer.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        todo();
+        ShowVCWeak(NDPersonalReferVC);
     };
     
     self.cellSetting.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        todo();
+        ShowVCWeak(NDSettingTableViewController);
     };
     
 }

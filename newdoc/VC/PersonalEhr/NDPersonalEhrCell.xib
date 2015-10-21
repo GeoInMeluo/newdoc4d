@@ -63,6 +63,9 @@
                     <constraint firstAttribute="bottomMargin" secondItem="vlS-GE-4r6" secondAttribute="bottom" constant="-8" id="tv0-4m-dZf"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imgArrow" destination="kwu-An-l84" id="gju-Es-xaZ"/>
+            </connections>
             <point key="canvasLocation" x="114" y="208"/>
         </tableViewCell>
     </objects>

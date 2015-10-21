@@ -8,17 +8,21 @@
 
 #import "NDPersonalEhrVC.h"
 #import "NDPersonalEhrCell.h"
+#import "NDPersonalEhrFooter.h"
 
 @interface NDPersonalEhrVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *sections;
+@property (nonatomic, assign) NSInteger lastSelectedIndex;
 @end
 
 @implementation NDPersonalEhrVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.sections = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -37,8 +41,18 @@
     
     if(cell == nil){
         cell = [NDPersonalEhrCell new];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    if([self.sections[indexPath.section] isEqualToString: @"1"]){
+//        CABasicAnimation *anim = [[CABasicAnimation alloc] init];
+//        anim.keyPath = @"transform.rotation";
+//        anim.toValue = [NSNumber numberWithDouble:(M_PI * 0.5)];
+//        [cell.imgArrow.layer addAnimation:anim forKey:@"imgArrow"];
+    
+    }
+
     return cell;
     
 }
@@ -48,27 +62,27 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     self.sections = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+    self.sections[indexPath.section] = @"1";
+    self.lastSelectedIndex = indexPath.section;
+//
+//    NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
+//    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
+//    
+//    NSIndexSet *lastSet = [NSIndexSet indexSetWithIndex:self.lastSelectedIndex];
+//    [self.tableView reloadSections:lastSet withRowAnimation:UITableViewRowAnimationNone];
+//
     
-    
-    if([self.sections[indexPath.section] isEqualToString:@"0"]){
-        self.sections[indexPath.section] = @"1";
-    }else{
-        self.sections[indexPath.section] = @"0";
-    }
-    
-    NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
-    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-    
-//    [self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
     if([self.sections[section] isEqualToString:@"1"]){
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        view.backgroundColor = [UIColor orangeColor];
-        
+        NDPersonalEhrFooter *view = [NDPersonalEhrFooter new];
+//        view.width = [UIScreen mainScreen].bounds.size.width;
+//        [view setPreservesSuperviewLayoutMargins:YES];
         return view;
     }
     
@@ -77,10 +91,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if([self.sections[section] isEqualToString:@"1"]){
-        return 20;
+        return [self tableView:tableView viewForFooterInSection:section].height;
     }
     return 0;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -88,13 +103,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
