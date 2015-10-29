@@ -121,6 +121,16 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="btnAttention" destination="H8F-85-Uk2" id="urV-qq-33S"/>
+                <outlet property="btnGo2Order" destination="uzj-Lo-uQY" id="sJf-PZ-4AW"/>
+                <outlet property="btnHeadImg" destination="qbL-5D-r6t" id="JdE-Ja-QJp"/>
+                <outlet property="lblCanOrder" destination="lnm-vB-mhT" id="nL4-Ad-F9z"/>
+                <outlet property="lblDocDetail" destination="wqh-eB-7Oq" id="Aes-Na-OvM"/>
+                <outlet property="lblDocName" destination="Bsd-Yr-UVO" id="iDh-oJ-pIj"/>
+                <outlet property="lblGoodat" destination="TIo-gf-Y8N" id="o8r-dD-Naz"/>
+                <outlet property="lblSubroom" destination="4Hq-NF-h6b" id="z2v-xu-pw6"/>
+            </connections>
             <point key="canvasLocation" x="268" y="363.5"/>
         </tableViewCell>
     </objects>

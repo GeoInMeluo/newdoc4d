@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NDRoom.h"
 
 @interface NDRoomSelectCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomGoodat;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomAdress;
+@property (weak, nonatomic) IBOutlet Button *btnIsBond;
+
+@property (weak, nonatomic) IBOutlet Button *btnGo2RoomDetail;
+
+@property (nonatomic, strong) NDRoom *room;
 @end

@@ -38,33 +38,25 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    NSDictionary *param = @{};
+//    NSDictionary *param = @{};
 //
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    
-//    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007"}]];
-//
-//    [manager GET:@"http://newdoc.meluo.net/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
+    
+//    [[NCNetManager sharedNetManager] GET:@"/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSDictionary *responseObj = responseObject;
+//        NSLog(@"%@", responseObj);
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        
 //    }];
     
-    [[NCNetManager sharedNetManager] GET:@"http://newdoc.meluo.net/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *responseObj = responseObject;
-        NSLog(@"%@", responseObj);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-    
     
     [self setupBaiduMap];
-    
-    [self setupShareSdk3rd];
+//
+//    [self setupShareSdk3rd];
     
 //    [self setupJPush:launchOptions];
     
-    [self setupUmengCommunity];
+//    [self setupUmengCommunity];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
@@ -126,6 +118,14 @@
 //}
 
 - (void)setupBaiduMap{
+//    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+//    
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//        
+//        [locationManager requestWhenInUseAuthorization];
+//        
+//    }
+    
     // 要使用百度地图，请先启动
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数

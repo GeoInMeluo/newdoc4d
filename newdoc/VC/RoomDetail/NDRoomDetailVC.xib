@@ -7,8 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomDetailVC">
             <connections>
+                <outlet property="lblRoomAddress" destination="waT-t7-aYm" id="Vyb-Yd-Pl8"/>
+                <outlet property="lblRoomGoodat" destination="Obn-md-TyU" id="TGv-NU-66Y"/>
+                <outlet property="lblRoomName" destination="rIX-Hw-vRd" id="X12-JZ-8T2"/>
                 <outlet property="moreView" destination="pcv-cI-0AJ" id="rb6-dw-Yi9"/>
                 <outlet property="pickClass" destination="ag2-ST-2eW" id="EuI-u0-brw"/>
+                <outlet property="pkSubroom" destination="ivK-p3-aLR" id="MxY-cE-Scu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -138,6 +142,10 @@
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivK-p3-aLR">
                     <rect key="frame" x="0.0" y="33" width="359" height="492"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="fbi-FK-i4k"/>
+                        <outlet property="delegate" destination="-1" id="dhj-ST-PvS"/>
+                    </connections>
                 </pickerView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUX-GE-hO2">
                     <rect key="frame" x="305" y="0.0" width="46" height="30"/>

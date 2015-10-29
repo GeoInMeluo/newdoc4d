@@ -10,4 +10,5 @@
 
 @interface NDRoomSelectVC : NDBaseTableVC
 @property (nonatomic, weak) UIViewController *parentVC;
+@property (nonatomic, strong) NSArray *rooms;
 @end

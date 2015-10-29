@@ -37,6 +37,9 @@
                                 <constraint firstAttribute="height" constant="51" id="iXK-1y-SXF"/>
                             </constraints>
                             <state key="normal" backgroundImage="roomIcon2"/>
+                            <connections>
+                                <action selector="btnHeader1Click:" destination="-1" eventType="touchUpInside" id="Stj-hR-s0T"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新医自诊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-yx-FQr">
                             <rect key="frame" x="45" y="74" width="48" height="15"/>
@@ -51,6 +54,9 @@
                                 <constraint firstAttribute="width" constant="51" id="jCR-Lf-0g8"/>
                             </constraints>
                             <state key="normal" backgroundImage="roomIcon1"/>
+                            <connections>
+                                <action selector="btnHeader2Click:" destination="-1" eventType="touchUpInside" id="pPv-P7-Aru"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLE-Sd-pAl">
                             <rect key="frame" x="280" y="15" width="51" height="51"/>
@@ -59,6 +65,9 @@
                                 <constraint firstAttribute="width" constant="51" id="gpc-7K-iUe"/>
                             </constraints>
                             <state key="normal" backgroundImage="roomIcon0"/>
+                            <connections>
+                                <action selector="btnHeader3Click:" destination="-1" eventType="touchUpInside" id="nmb-NK-OzL"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预约挂号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJk-H9-QgF">
                             <rect key="frame" x="282" y="74" width="48" height="15"/>

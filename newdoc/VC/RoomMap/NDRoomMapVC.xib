@@ -7,9 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomMapVC">
             <connections>
+                <outlet property="btnSearch" destination="mi3-Yq-umE" id="hXg-F5-Xi8"/>
                 <outlet property="mapView" destination="L8L-vR-gZ7" id="Cpa-ds-7b7"/>
                 <outlet property="searchDiv" destination="3RH-nb-tOf" id="nvh-iL-Uzh"/>
-                <outlet property="searchFiled" destination="sEf-si-ZvF" id="gKo-cb-EfK"/>
                 <outlet property="segmentView" destination="9GN-DM-2jX" id="N1t-Y4-d02"/>
                 <outlet property="topView" destination="tF8-Zr-5fa" id="0vP-ve-Ndc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -33,23 +33,25 @@
                                         <constraint firstAttribute="height" constant="16" id="NSD-ik-XEC"/>
                                     </constraints>
                                 </imageView>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sEf-si-ZvF">
-                                    <rect key="frame" x="44" y="0.0" width="195" height="29"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mi3-Yq-umE">
+                                    <rect key="frame" x="44" y="0.0" width="198" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <state key="normal">
+                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </state>
                                     <connections>
-                                        <outlet property="delegate" destination="-1" id="LJv-k0-brV"/>
+                                        <action selector="btnSearchClicked:" destination="-1" eventType="touchUpInside" id="4Hw-Gg-aIO"/>
                                     </connections>
-                                </textField>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="dpx-If-3C6" firstAttribute="top" secondItem="3RH-nb-tOf" secondAttribute="top" constant="5" id="ChN-pB-8cT"/>
-                                <constraint firstItem="sEf-si-ZvF" firstAttribute="top" secondItem="3RH-nb-tOf" secondAttribute="top" id="Y8k-9C-Mof"/>
-                                <constraint firstAttribute="trailing" secondItem="sEf-si-ZvF" secondAttribute="trailing" constant="48" id="k5I-jY-qON"/>
+                                <constraint firstItem="mi3-Yq-umE" firstAttribute="top" secondItem="3RH-nb-tOf" secondAttribute="top" id="ZVI-jf-t8b"/>
+                                <constraint firstAttribute="bottom" secondItem="mi3-Yq-umE" secondAttribute="bottom" constant="-1" id="Zqu-Dz-Stb"/>
                                 <constraint firstAttribute="height" constant="29" id="kGh-D1-CyG"/>
-                                <constraint firstItem="sEf-si-ZvF" firstAttribute="leading" secondItem="dpx-If-3C6" secondAttribute="trailing" constant="8" id="t4a-P2-dfa"/>
-                                <constraint firstAttribute="bottom" secondItem="sEf-si-ZvF" secondAttribute="bottom" id="uHQ-AW-7ap"/>
+                                <constraint firstItem="mi3-Yq-umE" firstAttribute="leading" secondItem="dpx-If-3C6" secondAttribute="trailing" constant="8" id="oJA-DQ-0BA"/>
+                                <constraint firstAttribute="trailing" secondItem="mi3-Yq-umE" secondAttribute="trailing" constant="45" id="ugL-3I-WxB"/>
                                 <constraint firstItem="dpx-If-3C6" firstAttribute="leading" secondItem="3RH-nb-tOf" secondAttribute="leading" constant="24" id="zKT-pW-rsH"/>
                             </constraints>
                         </view>

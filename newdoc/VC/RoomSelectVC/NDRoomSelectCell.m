@@ -17,6 +17,15 @@
     return self;
 }
 
+- (void)setRoom:(NDRoom *)room{
+    _room = room;
+    
+    self.lblRoomTitle.text = room.name;
+    self.lblRoomAdress.text = room.address;
+    self.lblRoomGoodat.text = room.detail;
+    self.btnIsBond.selected = room.isBound;
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }

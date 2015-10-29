@@ -15,6 +15,12 @@
 @end
 
 @implementation NDRoomSelectVC
+- (NSArray *)rooms{
+    if(_rooms == nil){
+        _rooms = [NSArray array];
+    }
+    return _rooms;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +28,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.rooms.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -35,6 +41,9 @@
         cell = [[NDRoomSelectCell alloc] init];
     }
     
+    NDRoom *room = self.rooms[indexPath.row];
+    cell.room = room;
+    
     return cell;
     
 }
@@ -46,6 +55,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    ShowVC(NDRoomDetailVC);
     NDRoomDetailVC *vc =[NDRoomDetailVC new];
+    vc.room = self.rooms[indexPath.row];
     [self.parentVC.navigationController pushViewController:vc animated:YES];
 }
 

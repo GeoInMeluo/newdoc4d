@@ -73,7 +73,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="2NF-mw-GeY" secondAttribute="trailing" constant="-8" id="yno-Yn-89H"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="114" y="673"/>
+            <point key="canvasLocation" x="207" y="635"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vaz-sV-CBQ" customClass="FormCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -104,7 +104,7 @@
                     <constraint firstItem="a49-nO-WHl" firstAttribute="leading" secondItem="k7B-WP-1h9" secondAttribute="leadingMargin" constant="-8" id="WHn-kG-Z6j"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="258" y="724"/>
+            <point key="canvasLocation" x="151" y="737"/>
         </tableViewCell>
     </objects>
 </document>

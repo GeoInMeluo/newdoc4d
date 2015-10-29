@@ -33,7 +33,7 @@
     UIViewController *communityVC = [UMCommunity getFeedsViewController];
 
     
-    [self addOneChlildVc:communityVC title:@"社区交流" imageName:@"community" selectedImageName:@"community_select"];
+//    [self addOneChlildVc:communityVC title:@"社区交流" imageName:@"community" selectedImageName:@"community_select"];
     
     [self addOneChlildVc:roomVC title:@"新医诊室" imageName:@"room" selectedImageName:@"room_select"];
     

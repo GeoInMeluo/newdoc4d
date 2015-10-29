@@ -7,7 +7,13 @@
 //
 
 #import "NDBaseVC.h"
+#import "NDRoom.h"
 
-@interface NDRoomDetailVC : NDBaseVC
+@interface NDRoomDetailVC : NDBaseVC<UIPickerViewDataSource,UIPickerViewDelegate>
+@property (nonatomic, strong) NDRoom *room;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomGoodat;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomAddress;
+
 
 @end

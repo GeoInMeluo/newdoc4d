@@ -6,6 +6,8 @@
 //  Copyright © 2015年 zzc. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #ifndef GlobalDefine_h
 #define GlobalDefine_h
 
@@ -34,4 +36,11 @@ VcClassName * vc = [[VcClassName alloc] init]; \
 #define LightGray [UIColor colorWithHex:@"#eeeeee"]
 #define Blue [UIColor colorWithHex:@"#00aaff"]
 #define kScreenSize [UIScreen mainScreen].bounds.size
+
+#define kHostStr @"http://newdoc.meluo.net"
+
+
+void ShowAlert(NSString * text);
+
+
 #endif /* GlobalDefine_h */

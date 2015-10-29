@@ -12,5 +12,5 @@
 @property (nonatomic, weak) UIViewController *parentVC;
 @property (weak, nonatomic) IBOutlet UITableView *leftTable;
 @property (weak, nonatomic) IBOutlet UITableView *rightTable;
-
+@property (nonatomic, strong) NSArray *rooms;
 @end

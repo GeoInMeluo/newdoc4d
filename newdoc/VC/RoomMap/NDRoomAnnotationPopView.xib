@@ -36,7 +36,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFi-oN-eoA">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFi-oN-eoA" customClass="Button">
                     <rect key="frame" x="91" y="60" width="66" height="13"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="13" id="2n3-UE-5AX"/>
@@ -45,7 +45,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <state key="normal" title="18601293201"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKa-No-kDe">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKa-No-kDe" customClass="Button">
                     <rect key="frame" x="38" y="80" width="67" height="23"/>
                     <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -74,6 +74,12 @@
                 <constraint firstItem="Odb-HD-lS3" firstAttribute="top" secondItem="eZG-qV-yJt" secondAttribute="top" constant="15" id="fS3-oN-HZy"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnPhoneNumber" destination="MFi-oN-eoA" id="wLC-Zb-dij"/>
+                <outlet property="btnRoomDetail" destination="HKa-No-kDe" id="nJ7-zW-6Ef"/>
+                <outlet property="lblLocation" destination="qzL-oF-ovt" id="Nrz-d9-CDm"/>
+                <outlet property="lblTitle" destination="j1J-qO-EG5" id="sVt-if-DlH"/>
+            </connections>
             <point key="canvasLocation" x="298.5" y="207"/>
         </view>
     </objects>

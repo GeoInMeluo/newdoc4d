@@ -18,21 +18,54 @@
 
 @implementation NDRoomSelectLocationVC
 
+- (NSArray *)provinces{
+    if(_provinces == nil){
+        _provinces = [NSArray array];
+    }
+    return _provinces;
+}
+
+- (NSArray *)citys{
+    if(_citys == nil){
+        _citys = [NSArray array];
+    }
+    return _citys;
+}
+
+- (NSArray *)countys{
+    if(_countys == nil){
+        _countys = [NSArray array];
+    }
+    return _countys;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self startGetProvinces];
+}
+
+- (void)startGetProvinces{
+    WEAK_SELF;
+    
+    [self startGetProvinceListAndSuccess:^(NSArray *provinces) {
+        weakself.provinces = provinces;
+        [weakself.tableProvince reloadData];
+    } failure:^(NSDictionary *result, NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if(tableView == self.tableProvince){
-        return 10;
+        return self.provinces.count;
     }
     if(tableView == self.tableCity){
-        return 5;
+        return self.citys.count;
     }
     if(tableView == self.tableCounty){
-        return 7;
+        return self.countys.count;
     }
     
     return 0;
@@ -49,13 +82,13 @@
     }
     
     if(tableView == self.tableProvince){
-        cell.textLabel.text = @"广西";
+        cell.textLabel.text = self.provinces[indexPath.row];
     }
     if(tableView == self.tableCity){
-        cell.textLabel.text = @"柳州市";
+        cell.textLabel.text = self.citys[indexPath.row];
     }
     if(tableView == self.tableCounty){
-        cell.textLabel.text = @"xx县";
+        cell.textLabel.text = self.countys[indexPath.row];
     }
     
     return cell;
@@ -63,7 +96,36 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.parentVC.navigationController pushViewController:[NDRoomDetailVC new] animated:YES];
+    WEAK_SELF;
+    
+    if(tableView == self.tableProvince){
+        self.provinceName = self.provinces[indexPath.row];
+        self.area = self.provinces[indexPath.row];
+        [self startGetCityListWithProvince:self.provinces[indexPath.row] success:^(NSArray *citys) {
+            weakself.citys = citys;
+            [weakself.tableCity reloadData];
+        } failure:^(NSDictionary *result, NSError *error) {
+            
+        }];
+    }
+    if(tableView == self.tableCity){
+        self.cityName = self.citys[indexPath.row];
+        self.area = [NSString stringWithFormat:@"%@ %@", self.provinceName, self.citys[indexPath.row]];
+        [self startGetCountyListWithCity:self.citys[indexPath.row] success:^(NSArray *countys) {
+            weakself.countys = countys;
+            [weakself.tableCounty reloadData];
+        } failure:^(NSDictionary *result, NSError *error) {
+            
+        }];
+    }
+    if(tableView == self.tableCounty){
+        self.countyName = self.countys[indexPath.row];
+        self.area = [NSString stringWithFormat:@"%@ %@ %@", self.provinceName, self.cityName, self.countys[indexPath.row]];
+        self.view.hidden = YES;
+        self.countyCellCallback();
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"roomMapChangeSearchFieldText" object:nil];
 }
 
 

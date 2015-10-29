@@ -8,12 +8,28 @@
 
 #import "NDRoomSelectMoreVC.h"
 #import "NDRoomDetailVC.h"
+#import "NDSubroom.h"
 
 @interface NDRoomSelectMoreVC ()<UITableViewDataSource,UITableViewDelegate>
-
+@property (nonatomic, strong) NSArray *subrooms;
+@property (nonatomic, strong) NDRoom *selectRoom;
 @end
 
 @implementation NDRoomSelectMoreVC
+
+- (NSArray *)subrooms{
+    if(_subrooms == nil){
+        _subrooms = [NSArray array];
+    }
+    return _subrooms;
+}
+
+- (NSArray *)rooms{
+    if(_rooms == nil){
+        _rooms = [NSArray array];
+    }
+    return _rooms;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,9 +38,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(tableView == self.leftTable){
-        return 5;
+        return self.rooms.count;
     }
-    return 10;
+    return self.subrooms.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -38,7 +54,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         }
         
-        cell.textLabel.text = @"诊所";
+        NDRoom *room = self.rooms[indexPath.row];
+        cell.textLabel.text = room.name;
         
         return cell;
     }
@@ -50,18 +67,32 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    
-    cell.textLabel.text = @"科室";
+
+    NDSubroom *subroom = self.subrooms[indexPath.row];
+    cell.textLabel.text = subroom.name;
     
     return cell;
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(tableView != self.leftTable){
-        [self.parentVC.navigationController pushViewController:[NDRoomDetailVC new] animated:YES];
+    if(tableView == self.leftTable){
+        NDRoom *room = self.rooms[indexPath.row];
+        
+        WEAK_SELF;
+        
+        [self startGetSubroomListWithRoomId:room.ID success:^(NDRoom *room) {
+            weakself.subrooms = room.catalogs[indexPath.row];
+            weakself.selectRoom = room;
+            [weakself.rightTable reloadData];
+        } failure:^(NSDictionary *result, NSError *error) {
+            
+        }];
     }
     
+    NDRoomDetailVC *roomDeatailVC = [NDRoomDetailVC new];
+    roomDeatailVC.room = self.selectRoom;
+    [self.parentVC.navigationController pushViewController:roomDeatailVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

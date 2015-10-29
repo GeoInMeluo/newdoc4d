@@ -12,8 +12,10 @@
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import "NDRoomCell.h"
 #import "NDRoomMapVC.h"
+#import "NDQAOnlineVC.h"
 
 @interface NDRoomVC ()
+
 @end
 
 @implementation NDRoomVC
@@ -53,6 +55,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ShowVC(NDRoomMapVC);
 }
+
+- (IBAction)btnHeader1Click:(id)sender {
+    todo();
+}
+
+- (IBAction)btnHeader2Click:(id)sender {
+    ShowVC(NDQAOnlineVC);
+}
+
+- (IBAction)btnHeader3Click:(id)sender {
+    ShowVC(NDRoomMapVC);
+}
+
 
 - (void)share{
     //创建分享参数

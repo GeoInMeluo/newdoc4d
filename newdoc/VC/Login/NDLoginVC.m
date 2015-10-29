@@ -7,11 +7,14 @@
 //
 
 #import "NDLoginVC.h"
+#import "NDPersonalRegistVC.h"
 
 @interface NDLoginVC ()
 @property (strong, nonatomic) IBOutlet FormCell *cellAccount;
 @property (strong, nonatomic) IBOutlet FormCell *cellPwd;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UITextField *tfUsername;
+@property (weak, nonatomic) IBOutlet UITextField *tfPassword;
 
 @end
 
@@ -36,6 +39,7 @@
     btnRegist.layer.borderWidth = 1;
     btnRegist.bottom = self.tableView.height - 100;
     btnRegist.centerX = self.tableView.width * 0.5;
+    [btnRegist addTarget:self action:@selector(btnRegistClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:btnRegist];
 }
 
@@ -47,6 +51,11 @@
 }
 
 - (IBAction)btnLoginClick:(UIButton *)sender {
+    [self startLoginWithUsername:self.tfPassword.text andPassword:self.tfPassword.text success:^(NSObject *resultDic) {
+        
+    } failure:^(NSDictionary *result, NSError *error) {
+        
+    }];
 }
 
 - (IBAction)btnWechat:(id)sender {
@@ -56,6 +65,10 @@
 }
 
 - (IBAction)btnQQ:(id)sender {
+}
+
+- (void)btnRegistClick{
+    ShowVC(NDPersonalRegistVC);
 }
 
 - (void)didReceiveMemoryWarning {

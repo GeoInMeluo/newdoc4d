@@ -8,7 +8,9 @@
 
 #import "NDBaseVC.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
-@interface NDRoomMapVC : NDBaseVC<BMKMapViewDelegate>
+@interface NDRoomMapVC : NDBaseVC<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
 @end

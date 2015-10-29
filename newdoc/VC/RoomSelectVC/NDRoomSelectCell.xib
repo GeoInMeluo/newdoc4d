@@ -37,13 +37,14 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-DA-MEJ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-DA-MEJ" customClass="Button">
                                                 <rect key="frame" x="177" y="17" width="48" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="48" id="1gK-Z8-q8x"/>
                                                     <constraint firstAttribute="height" constant="15" id="HGn-JT-MCU"/>
                                                 </constraints>
                                                 <state key="normal" image="map_bindingRoom"/>
+                                                <state key="selected" image="map_bindingRoom_select"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主治：皮肤病、不孕不育、骨科、妇科、胸科、脑科、神经科等" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmY-8Y-46l">
                                                 <rect key="frame" x="43" y="40" width="182" height="29"/>
@@ -98,7 +99,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7E-kp-hhi">
                                         <rect key="frame" x="180" y="93" width="180" height="34"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-Nf-bfu">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-Nf-bfu" customClass="Button">
                                                 <rect key="frame" x="53" y="7" width="75" height="20"/>
                                                 <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -168,11 +169,19 @@
                     <constraint firstItem="AFE-AA-wRb" firstAttribute="top" secondItem="gkm-BQ-ziW" secondAttribute="topMargin" constant="-8" id="opk-Yy-oTE"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="297" y="691"/>
+            <connections>
+                <outlet property="btnGo2RoomDetail" destination="Ty3-Nf-bfu" id="zGn-De-Ne5"/>
+                <outlet property="btnIsBond" destination="dJf-DA-MEJ" id="YLQ-yp-lZh"/>
+                <outlet property="lblRoomAdress" destination="zVw-o3-Xwj" id="7Yk-NF-zjH"/>
+                <outlet property="lblRoomGoodat" destination="bmY-8Y-46l" id="6c5-Uo-NrC"/>
+                <outlet property="lblRoomTitle" destination="Lch-qI-i8d" id="80z-V8-7Se"/>
+            </connections>
+            <point key="canvasLocation" x="351.5" y="661"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="map_bindingRoom" width="43" height="13"/>
+        <image name="map_bindingRoom_select" width="55" height="14"/>
         <image name="map_icon" width="12" height="16"/>
         <image name="map_ten_L" width="37" height="37"/>
     </resources>

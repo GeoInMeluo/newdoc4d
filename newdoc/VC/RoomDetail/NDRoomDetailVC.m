@@ -13,8 +13,8 @@
 @interface NDRoomDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *pickClass;
 @property (weak, nonatomic) IBOutlet UIView *moreView;
-
-
+@property (weak, nonatomic) IBOutlet UIPickerView *pkSubroom;
+@property (nonatomic, copy) NSString *selectSubroom;
 @end
 
 @implementation NDRoomDetailVC
@@ -23,6 +23,10 @@
     [super viewDidLoad];
 
     [self setupUI];
+}
+
+- (void)startGetDocsList{
+    
 }
 
 - (void)setupUI{
@@ -46,7 +50,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.room.doctors.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -58,6 +62,9 @@
     if(cell == nil){
         cell = [NDRoomDetailDocCell new];
     }
+    
+    NDDoctor *doctor = self.room.doctors[indexPath.row];
+    cell.doctor = doctor;
     
     return cell;
     
@@ -79,8 +86,29 @@
 
 - (IBAction)btnPickDoneClicked:(id)sender {
     self.pickClass.hidden = YES;
+    
+    NSInteger currentSelectRow = [self.pkSubroom selectedRowInComponent:0];
+    
+    NDSubroom *subroom = self.room.catalogs[currentSelectRow];
+    
+    self.selectSubroom = subroom.name;
 }
 
+#pragma pickerViewDatasource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return self.room.catalogs.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NDSubroom *subroom = self.room.catalogs[component];
+    return subroom.name;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
