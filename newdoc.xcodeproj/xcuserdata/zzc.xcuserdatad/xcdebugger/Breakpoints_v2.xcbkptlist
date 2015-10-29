@@ -26,7 +26,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "newdoc/Protalcal/NSObject+Protalcals.m"
-            timestampString = "467783057.331605"
+            timestampString = "467782886.795453"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-startGetRoomListWithLocation:andCityName:andAreaName:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newdoc/Protalcal/NSObject+Protalcals.m"
+            timestampString = "467783671.510858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -42,7 +58,7 @@
                   moduleName = "newdoc"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzc/Desktop/meluo/newdoc_ios/newdoc/Protalcal/NSObject+Protalcals.m"
-                  timestampString = "467783061.672319"
+                  timestampString = "467783686.910104"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -57,7 +73,7 @@
                   moduleName = "newdoc"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/zzc/Desktop/meluo/newdoc_ios/newdoc/Protalcal/NSObject+Protalcals.m"
-                  timestampString = "467783061.672812"
+                  timestampString = "467783686.910512"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -73,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "newdoc/Protalcal/NSObject+Protalcals.m"
-            timestampString = "467782886.795453"
+            filePath = "newdoc/3rd/AFNetworking/AFHTTPRequestOperationManager.m"
+            timestampString = "467784150.579156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-startGetRoomListWithLocation:andCityName:andAreaName:success:failure:"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-GET:parameters:success:failure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
