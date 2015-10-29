@@ -168,24 +168,24 @@
 
 - (void)startGetRoomsWithLocation:(CLLocationCoordinate2D)coordinate andCityName:(NSString *)cityName andCountyName:(NSString *)countyName {
     [self startGetRoomListWithLocation:coordinate andCityName:cityName andAreaName:countyName success:^(NSArray *rooms) {
-//        if(rooms != nil){
-            NDRoom *room1 = [NDRoom new];
-            room1.latitude = @"39.92";
-            room1.longitude = @"116.42";
-            room1.name = @"test1";
-            
-            NDRoom *room2 = [NDRoom new];
-            room2.latitude = @"39.81";
-            room2.longitude = @"116.41";
-            room2.name = @"test2";
-            
-            NDRoom *room3 = [NDRoom new];
-            room3.latitude = @"39.73";
-            room3.longitude = @"116.43";
-            room3.name = @"test3";
-            
-            self.rooms = @[room1,room2,room3];
-//            self.rooms = rooms;
+        if(rooms != nil){
+//            NDRoom *room1 = [NDRoom new];
+//            room1.latitude = @"39.92";
+//            room1.longitude = @"116.42";
+//            room1.name = @"test1";
+//            
+//            NDRoom *room2 = [NDRoom new];
+//            room2.latitude = @"39.81";
+//            room2.longitude = @"116.41";
+//            room2.name = @"test2";
+//            
+//            NDRoom *room3 = [NDRoom new];
+//            room3.latitude = @"39.73";
+//            room3.longitude = @"116.43";
+//            room3.name = @"test3";
+//            
+//            self.rooms = @[room1,room2,room3];
+            self.rooms = rooms;
         
             [self addRoomAnnotations];
         
@@ -194,9 +194,7 @@
         
         self.selectVC.rooms = self.rooms;
         [self.selectVC.tableView reloadData];
-        
-        
-//        }
+        }
     } failure:^(NSDictionary *result, NSError *error) {
         
     }];

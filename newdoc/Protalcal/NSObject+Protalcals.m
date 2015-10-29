@@ -43,11 +43,15 @@
     if(coordinate.longitude && coordinate.latitude){
         [param setObject:SafeNumber([NSNumber numberWithDouble:coordinate.longitude]) forKey:@"longitude"];
         [param setObject:SafeNumber([NSNumber numberWithDouble:coordinate.latitude]) forKey:@"latitude"];
-    }else if(area){
+    }
+    else if(area){
         [param setObject:SafeString(city) forKey:@"area"];
-    }else if (city){
+    }
+    else if (city){
         [param setObject:SafeString(city) forKey:@"city"];
     }
+    
+    [param setObject:SafeString(@"5000") forKey:@"scope"];
     
     [[NDNetManager sharedNetManager] get:@"/app/1/Rooms?action=near" parameters:param success:^(NSDictionary *result) {
         NSMutableArray *rooms = [NSMutableArray array];

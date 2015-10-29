@@ -11,13 +11,24 @@
 #import "NDRoomOrderVC.h"
 
 @interface NDRoomDetailVC ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) IBOutlet UIView *pickClass;
 @property (weak, nonatomic) IBOutlet UIView *moreView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pkSubroom;
 @property (nonatomic, copy) NSString *selectSubroom;
+@property (nonatomic, strong) NSMutableArray *docs;
 @end
 
 @implementation NDRoomDetailVC
+
+- (NSMutableArray *)docs{
+    if(_docs == nil){
+        _docs = [NSMutableArray array];
+    }
+    return _docs;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,11 +36,24 @@
     [self setupUI];
 }
 
-- (void)startGetDocsList{
+- (void)startGetDocsListWithSelectSubroom{
+    NSMutableArray *temp = [NSMutableArray array];
     
+    for(NDDoctor *doctor in self.room.doctors){
+        for(NDSubroom *subroom in doctor.catalog){
+            if([subroom.name isEqualToString:self.selectSubroom]){
+                [temp addObject:subroom];
+            }
+        }
+    }
+    
+    self.docs = temp;
+    [self.tableView reloadData];
 }
 
 - (void)setupUI{
+    self.docs = [NSMutableArray arrayWithArray:self.room.doctors];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -50,7 +74,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.room.doctors.count;
+    return self.docs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -63,7 +87,7 @@
         cell = [NDRoomDetailDocCell new];
     }
     
-    NDDoctor *doctor = self.room.doctors[indexPath.row];
+    NDDoctor *doctor = self.docs[indexPath.row];
     cell.doctor = doctor;
     
     return cell;
@@ -92,6 +116,8 @@
     NDSubroom *subroom = self.room.catalogs[currentSelectRow];
     
     self.selectSubroom = subroom.name;
+    
+    [self startGetDocsListWithSelectSubroom];
 }
 
 #pragma pickerViewDatasource
