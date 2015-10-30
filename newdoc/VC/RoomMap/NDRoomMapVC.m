@@ -150,9 +150,6 @@
     [self.view addSubview:self.segmentView];
     [self.segmentView addSubview:slider];
     
-    self.segmentView.top = self.topView.bottom;
-    self.segmentView.width = self.view.width;
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSearchFieldText:) name:kRoomMapChangeSearchFieldText object:nil];
     
     BMKLocationService *locService = [[BMKLocationService alloc]init];
@@ -240,6 +237,8 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    self.segmentView.top = self.topView.bottom;
+    self.segmentView.width = self.view.width;
 }
 
 /**
@@ -325,7 +324,9 @@
         pop.lblTitle.text = pA.room.name;
         pop.lblLocation.text = pA.room.address;
         pop.btnRoomDetail.callback = ^(Button *btn){
-            [weakself.navigationController pushViewController:[NDRoomDetailVC new] animated:YES];
+            NDRoomDetailVC *vc = [NDRoomDetailVC new];
+            vc.room = pA.room;
+            [weakself.navigationController pushViewController:vc animated:YES];
         };
         pop.btnPhoneNumber.callback = ^(Button *btn){
             NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",btn.titleLabel.text];

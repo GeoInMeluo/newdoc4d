@@ -33,4 +33,11 @@
 
 //得到诊室详情
 - (void)startGetSubroomListWithRoomId:(NSString *)roomId success:(void(^)(NDRoom *room))success failure:(void(^)(NSDictionary *result,NSError *error))failure;
+
+//关注医生
+- (void)startAttentionDoctorWithDocId:(NSString *)docId success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure;
+
+//取消关注医生
+- (void)startCancelAttentionDoctorWithDocId:(NSString *)docId success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure;
+
 @end

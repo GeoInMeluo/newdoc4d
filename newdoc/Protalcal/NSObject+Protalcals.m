@@ -53,6 +53,8 @@
     
     [param setObject:SafeString(@"5000") forKey:@"scope"];
     
+    
+    
     [[NDNetManager sharedNetManager] get:@"/app/1/Rooms?action=near" parameters:param success:^(NSDictionary *result) {
         NSMutableArray *rooms = [NSMutableArray array];
         
@@ -158,6 +160,8 @@
     [[NDNetManager sharedNetManager] get:[NSString stringWithFormat:@"/app/1/Rooms/%@?action=index",SafeString(roomId)] parameters:param success:^(NSDictionary *result) {
 //        NSMutableArray *subRooms = [NSMutableArray array];
         
+        FLog(@"%@", result);
+        
         if([[result allKeys] containsObject:@"data"]){
             if([[result[@"data"] allKeys] containsObject:@"catalogs"]){
                 NDRoom *room = [NDRoom objectWithKeyValues:result[@"data"]];
@@ -179,4 +183,35 @@
         failure(result, error);
     }];
 }
+
+//关注医生
+- (void)startAttentionDoctorWithDocId:(NSString *)docId success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [param setObject:SafeString(docId) forKey:@"doctorid"];
+    
+    [[NDNetManager sharedNetManager] post:@"app/1/Focus" parameters:param success:^(NSDictionary *result) {
+        success();
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+
+}
+
+//取消关注医生
+- (void)startCancelAttentionDoctorWithDocId:(NSString *)docId success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [param setObject:SafeString(docId) forKey:@"doctorid"];
+    [param setObject:@"del" forKey:@"action"];
+    
+    [[NDNetManager sharedNetManager] post:@"app/1/Focus" parameters:param success:^(NSDictionary *result) {
+        success();
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+}
+
 @end

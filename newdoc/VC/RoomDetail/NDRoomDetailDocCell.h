@@ -14,10 +14,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnHeadImg;
 @property (weak, nonatomic) IBOutlet UILabel *lblDocName;
 @property (weak, nonatomic) IBOutlet UILabel *lblDocDetail;
-@property (weak, nonatomic) IBOutlet UIButton *btnAttention;
+@property (weak, nonatomic) IBOutlet Button *btnAttention;
 @property (weak, nonatomic) IBOutlet UILabel *lblSubroom;
 @property (weak, nonatomic) IBOutlet UILabel *lblGoodat;
 @property (weak, nonatomic) IBOutlet UILabel *lblCanOrder;
-@property (weak, nonatomic) IBOutlet UIButton *btnGo2Order;
+@property (weak, nonatomic) IBOutlet Button *btnGo2Order;
 
 @end

@@ -125,6 +125,7 @@
         self.countyCellCallback();
     }
     
+    //通知地图页面做相应的处理
     [[NSNotificationCenter defaultCenter] postNotificationName:@"roomMapChangeSearchFieldText" object:nil];
 }
 

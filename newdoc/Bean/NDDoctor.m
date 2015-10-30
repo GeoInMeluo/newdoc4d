@@ -13,4 +13,8 @@
 {
     return @{@"ID" : @"id"};
 }
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"catalog" : @"NDSubroom",@"preserve_window":@"NDPreserveWindow"};
+}
 @end

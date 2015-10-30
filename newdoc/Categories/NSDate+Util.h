@@ -38,7 +38,6 @@
 -(BOOL)isRecent:(NSTimeInterval)ti;
 -(BOOL)isExpired:(NSTimeInterval)ti;
 
-
 +(int)dayCountFrom:(NSDate*)d1 to:(NSDate*)d2;
 +(int)dayDiffCountFrom:(NSDate*)d1 to:(NSDate*)d2;
 +(NSDate*)dateWithYmd:(NSDate*)d andHms:(NSDate*)t;

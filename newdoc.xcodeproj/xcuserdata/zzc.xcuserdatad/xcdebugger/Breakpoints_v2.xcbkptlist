@@ -6,16 +6,74 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newdoc/VC/RoomDetail/NDRoomDetailVC.m"
+            timestampString = "467809854.063119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-startGet"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newdoc/VC/RoomDetail/NDRoomDetailVC.m"
+            timestampString = "467809854.063119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newdoc/VC/RoomDetail/NDRoomDetailVC.m"
+            timestampString = "467809854.063119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "newdoc/VC/RoomMap/NDRoomMapVC.m"
-            timestampString = "467782273.212968"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newdoc/VC/RoomOrder/NDRoomOrderVC.m"
+            timestampString = "467862310.282892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-startGetRoomsWithLocation:andCityName:andCountyName:"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "-initWithDatePicker"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,78 +83,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "newdoc/Protalcal/NSObject+Protalcals.m"
-            timestampString = "467782886.795453"
+            filePath = "newdoc/VC/RoomOrder/NDRoomOrderVC.m"
+            timestampString = "467862310.282892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-startGetRoomListWithLocation:andCityName:andAreaName:success:failure:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "newdoc/Protalcal/NSObject+Protalcals.m"
-            timestampString = "467783671.510858"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-startGetRoomListWithLocation:andCityName:andAreaName:success:failure:"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-initWithDatePicker"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[NSObject(Protalcals) startGetRoomListWithLocation:andCityName:andAreaName:success:failure:]"
+                  symbolName = "-[NDRoomOrderVC initWithDatePicker]"
                   moduleName = "newdoc"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzc/Desktop/meluo/newdoc_ios/newdoc/Protalcal/NSObject+Protalcals.m"
-                  timestampString = "467783686.910104"
+                  urlString = "file:///Users/zzc/Desktop/meluo/newdoc_ios/newdoc/VC/RoomOrder/NDRoomOrderVC.m"
+                  timestampString = "467861259.306272"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "2196">
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "5580">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__93-[NSObject(Protalcals) startGetRoomListWithLocation:andCityName:andAreaName:success:failure:]_block_invoke"
+                  symbolName = "-[NDRoomOrderVC initWithDatePicker]"
                   moduleName = "newdoc"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zzc/Desktop/meluo/newdoc_ios/newdoc/Protalcal/NSObject+Protalcals.m"
-                  timestampString = "467783686.910512"
+                  urlString = "file:///Users/zzc/Desktop/meluo/newdoc_ios/newdoc/VC/RoomOrder/NDRoomOrderVC.m"
+                  timestampString = "467861259.306689"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "392">
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "5604">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "newdoc/3rd/AFNetworking/AFHTTPRequestOperationManager.m"
-            timestampString = "467784150.579156"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-GET:parameters:success:failure:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

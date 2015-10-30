@@ -13,4 +13,8 @@
 {
     return @{@"ID" : @"id"};
 }
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"slots" : @"NDSlot"};
+}
 @end

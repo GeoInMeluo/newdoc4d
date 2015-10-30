@@ -18,14 +18,17 @@
 @property (weak, nonatomic) IBOutlet UIView *moreView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pkSubroom;
 @property (nonatomic, copy) NSString *selectSubroom;
-@property (nonatomic, strong) NSMutableArray *docs;
+@property (nonatomic, strong) NSArray *docs;
+
+
+
 @end
 
 @implementation NDRoomDetailVC
 
-- (NSMutableArray *)docs{
+- (NSArray *)docs{
     if(_docs == nil){
-        _docs = [NSMutableArray array];
+        _docs = [NSArray array];
     }
     return _docs;
 }
@@ -33,7 +36,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setupUI];
+    [self startGet];
+}
+
+- (void)startGet{
+    WEAK_SELF;
+    
+    [self startGetSubroomListWithRoomId:self.room.ID success:^(NDRoom *room) {
+        weakself.room = room;
+        
+        [weakself setupUI];
+    } failure:^(NSDictionary *result, NSError *error) {
+        
+    }];
 }
 
 - (void)startGetDocsListWithSelectSubroom{
@@ -42,7 +57,7 @@
     for(NDDoctor *doctor in self.room.doctors){
         for(NDSubroom *subroom in doctor.catalog){
             if([subroom.name isEqualToString:self.selectSubroom]){
-                [temp addObject:subroom];
+                [temp addObject:doctor];
             }
         }
     }
@@ -52,7 +67,12 @@
 }
 
 - (void)setupUI{
-    self.docs = [NSMutableArray arrayWithArray:self.room.doctors];
+    self.lblRoomName.text = self.room.name;
+    self.lblRoomAddress.text = self.room.address;
+    self.lblRoomGoodat.text = self.room.detail;
+    
+    self.docs = self.room.doctors;
+    [self.tableView reloadData];
     
 }
 
@@ -79,6 +99,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WEAK_SELF;
+    
     static NSString *cellId = @"NDRoomDetailDocCell";
     
     NDRoomDetailDocCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -87,8 +109,26 @@
         cell = [NDRoomDetailDocCell new];
     }
     
-    NDDoctor *doctor = self.docs[indexPath.row];
+    __block NDDoctor *doctor = self.docs[indexPath.row];
     cell.doctor = doctor;
+    cell.btnAttention.callback = ^(Button *btn){
+        if(btn.selected){
+            [weakself startCancelAttentionDoctorWithDocId:doctor.ID success:^{
+                
+            } failure:^(NSDictionary *result, NSError *error) {
+                
+            }];
+        }
+        
+        [weakself startAttentionDoctorWithDocId:doctor.ID success:^{
+            
+        } failure:^(NSDictionary *result, NSError *error) {
+            
+        }];
+    };
+    cell.btnGo2Order.callback = ^(Button *btn){
+        
+    };
     
     return cell;
     
@@ -99,8 +139,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShowVC(NDRoomOrderVC);
+    NDRoomOrderVC *vc = [NDRoomOrderVC new];
+    vc.doc = self.docs[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
+
+//- (void)push2RoomOrder{
+//    NDRoomOrderVC *vc = [NDRoomOrderVC new];
+//    
+//    PushVC(vc);
+//}
 
 - (IBAction)showMore:(UIButton *)sender {
     sender.selected = !sender.selected;

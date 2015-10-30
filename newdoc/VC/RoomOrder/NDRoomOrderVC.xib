@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomOrderVC">
             <connections>
+                <outlet property="btnAttention" destination="1jf-BL-hIR" id="Kot-vw-N0j"/>
+                <outlet property="btnDocIntro" destination="ctc-Cm-wF7" id="uE5-Qr-nyF"/>
                 <outlet property="btnTimeArea1" destination="HcH-uv-X3Y" id="mIu-TM-a7c"/>
                 <outlet property="btnTimeArea2" destination="Fms-NV-3M8" id="GUW-d1-ozk"/>
                 <outlet property="btnTimeArea3" destination="xTD-Mt-0vc" id="ECD-ZB-ec1"/>
+                <outlet property="btnUserComment" destination="3oK-Bm-6p9" id="70Q-s9-CEA"/>
                 <outlet property="dateView" destination="qXW-e4-ucV" id="7Jl-Vw-N7y"/>
                 <outlet property="lblCountMoment" destination="jIS-oy-HML" id="59s-Jc-DEj"/>
+                <outlet property="lblDocName" destination="dxg-n4-7EX" id="eYk-up-1uC"/>
+                <outlet property="lblDocTitle" destination="bEi-fD-aaU" id="rkl-yg-6x8"/>
+                <outlet property="lblGoodat" destination="DeX-X9-rgw" id="K5b-zB-HQ0"/>
+                <outlet property="lblSubroom" destination="uoh-86-5pJ" id="748-iq-dBb"/>
                 <outlet property="roomCollectionView" destination="GZi-9D-Veg" id="MNc-pH-MvL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -43,6 +50,7 @@
                             </state>
                             <connections>
                                 <action selector="btnDocDetailClick:" destination="-1" eventType="touchUpInside" id="wb2-vu-JuD"/>
+                                <action selector="btnIntroClicked:" destination="-1" eventType="touchUpInside" id="xmB-je-b9b"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOe-Ho-qZU">
@@ -80,7 +88,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxg-n4-7EX">
                             <rect key="frame" x="72" y="9" width="54" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZX-zv-UGb">
@@ -89,6 +97,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7H-Ae-zVe">
                                     <rect key="frame" x="0.0" y="0.0" width="81" height="30"/>
                                     <connections>
+                                        <action selector="btnCommentClicked:" destination="-1" eventType="touchUpInside" id="pMu-BX-OZR"/>
                                         <action selector="btnUserCommentClick:" destination="-1" eventType="touchUpInside" id="67a-yC-wMe"/>
                                     </connections>
                                 </button>
@@ -129,21 +138,21 @@
                         <constraint firstItem="DeX-X9-rgw" firstAttribute="top" secondItem="uoh-86-5pJ" secondAttribute="bottom" constant="8" id="116-f7-VK8"/>
                         <constraint firstItem="1jf-BL-hIR" firstAttribute="top" secondItem="2hs-Ls-ykc" secondAttribute="top" constant="7" id="413-fg-jjR"/>
                         <constraint firstAttribute="trailing" secondItem="DeX-X9-rgw" secondAttribute="trailing" constant="15" id="426-wd-Aqm"/>
-                        <constraint firstItem="bEi-fD-aaU" firstAttribute="leading" secondItem="dxg-n4-7EX" secondAttribute="trailing" constant="3" id="Bbb-Nl-ajf"/>
                         <constraint firstItem="XOe-Ho-qZU" firstAttribute="top" secondItem="2hs-Ls-ykc" secondAttribute="top" constant="9" id="EPK-rh-nGG"/>
                         <constraint firstItem="ctc-Cm-wF7" firstAttribute="top" secondItem="DeX-X9-rgw" secondAttribute="bottom" constant="8" id="GKy-bs-7oh"/>
+                        <constraint firstItem="1jf-BL-hIR" firstAttribute="leading" secondItem="bEi-fD-aaU" secondAttribute="trailing" constant="8" id="Hss-Nd-UmW"/>
                         <constraint firstItem="ctc-Cm-wF7" firstAttribute="leading" secondItem="DeX-X9-rgw" secondAttribute="leading" id="IOe-Ku-abU"/>
+                        <constraint firstItem="bEi-fD-aaU" firstAttribute="top" secondItem="2hs-Ls-ykc" secondAttribute="top" constant="15" id="Iel-ea-X66"/>
                         <constraint firstItem="DeX-X9-rgw" firstAttribute="leading" secondItem="2hs-Ls-ykc" secondAttribute="leading" constant="72" id="Kyi-Kw-8w7"/>
                         <constraint firstItem="XOe-Ho-qZU" firstAttribute="leading" secondItem="2hs-Ls-ykc" secondAttribute="leading" constant="8" id="Nkz-BH-Afu"/>
                         <constraint firstItem="dxg-n4-7EX" firstAttribute="leading" secondItem="XOe-Ho-qZU" secondAttribute="trailing" constant="8" id="QsC-Qx-RdA"/>
-                        <constraint firstItem="1jf-BL-hIR" firstAttribute="leading" secondItem="bEi-fD-aaU" secondAttribute="trailing" constant="8" id="Veb-Qa-oow"/>
                         <constraint firstAttribute="height" constant="141" id="Xf9-qg-fbw"/>
                         <constraint firstItem="uoh-86-5pJ" firstAttribute="leading" secondItem="XOe-Ho-qZU" secondAttribute="trailing" constant="8" id="drq-gf-kgb"/>
                         <constraint firstItem="TZX-zv-UGb" firstAttribute="leading" secondItem="ctc-Cm-wF7" secondAttribute="trailing" constant="8" id="exA-RZ-4KL"/>
                         <constraint firstItem="uoh-86-5pJ" firstAttribute="top" secondItem="dxg-n4-7EX" secondAttribute="bottom" constant="7" id="fsS-fc-N2z"/>
                         <constraint firstItem="TZX-zv-UGb" firstAttribute="top" secondItem="ctc-Cm-wF7" secondAttribute="top" id="rG1-wA-Sb5"/>
                         <constraint firstItem="dxg-n4-7EX" firstAttribute="top" secondItem="2hs-Ls-ykc" secondAttribute="top" constant="9" id="vAm-qF-hX6"/>
-                        <constraint firstItem="bEi-fD-aaU" firstAttribute="top" secondItem="2hs-Ls-ykc" secondAttribute="top" constant="15" id="zoR-0Z-hL1"/>
+                        <constraint firstItem="bEi-fD-aaU" firstAttribute="leading" secondItem="dxg-n4-7EX" secondAttribute="trailing" constant="3" id="xho-ZA-4Rr"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Mh-9s-wtE">

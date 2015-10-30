@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsd-Yr-UVO">
                                 <rect key="frame" x="72" y="9" width="54" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(主任医师20年)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqh-eB-7Oq">
@@ -37,16 +37,16 @@
                                 <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8F-85-Uk2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8F-85-Uk2" customClass="Button">
                                 <rect key="frame" x="221" y="8" width="46" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NcR-Yk-m25"/>
                                     <constraint firstAttribute="width" constant="46" id="ebi-WY-2Pd"/>
                                 </constraints>
-                                <state key="normal" title="关注">
+                                <state key="normal" image="attention">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="attention_select"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科室：皮肤科" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hq-NF-h6b">
                                 <rect key="frame" x="72" y="38" width="84" height="17"/>
@@ -70,21 +70,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzA-2L-fbd">
-                                <rect key="frame" x="170" y="104" width="1" height="12"/>
+                                <rect key="frame" x="169" y="104" width="1" height="12"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="a5U-at-ODp"/>
                                     <constraint firstAttribute="width" constant="1" id="coO-K2-XSo"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzj-Lo-uQY">
-                                <rect key="frame" x="207" y="94" width="60" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzj-Lo-uQY" customClass="Button">
+                                <rect key="frame" x="197" y="94" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="CWk-bx-JDR"/>
                                     <constraint firstAttribute="height" constant="30" id="zPn-2i-GhS"/>
                                 </constraints>
-                                <state key="normal" title="预约挂号">
+                                <state key="normal" image="btn_yuyue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -101,10 +100,10 @@
                             <constraint firstAttribute="bottom" secondItem="UzA-2L-fbd" secondAttribute="bottom" constant="13" id="C4q-2X-kly"/>
                             <constraint firstItem="H8F-85-Uk2" firstAttribute="leading" secondItem="wqh-eB-7Oq" secondAttribute="trailing" constant="8" id="EN7-oK-jcW"/>
                             <constraint firstItem="qbL-5D-r6t" firstAttribute="top" secondItem="Tmo-YA-qsn" secondAttribute="top" constant="9" id="JwZ-w2-Dak"/>
-                            <constraint firstItem="UzA-2L-fbd" firstAttribute="leading" secondItem="lnm-vB-mhT" secondAttribute="trailing" constant="28" id="NVc-ed-E19"/>
+                            <constraint firstItem="UzA-2L-fbd" firstAttribute="leading" secondItem="lnm-vB-mhT" secondAttribute="trailing" constant="27" id="NVc-ed-E19"/>
                             <constraint firstItem="4Hq-NF-h6b" firstAttribute="leading" secondItem="qbL-5D-r6t" secondAttribute="trailing" constant="8" id="O5N-LN-DfJ"/>
                             <constraint firstItem="Bsd-Yr-UVO" firstAttribute="top" secondItem="Tmo-YA-qsn" secondAttribute="top" constant="9" id="OrY-pY-pCo"/>
-                            <constraint firstItem="uzj-Lo-uQY" firstAttribute="leading" secondItem="UzA-2L-fbd" secondAttribute="trailing" constant="36" id="dxM-2Q-gKa"/>
+                            <constraint firstItem="uzj-Lo-uQY" firstAttribute="leading" secondItem="UzA-2L-fbd" secondAttribute="trailing" constant="27" id="dxM-2Q-gKa"/>
                             <constraint firstAttribute="bottom" secondItem="uzj-Lo-uQY" secondAttribute="bottom" constant="5" id="lZ7-Y0-eBt"/>
                             <constraint firstItem="wqh-eB-7Oq" firstAttribute="top" secondItem="Tmo-YA-qsn" secondAttribute="top" constant="15" id="mI3-Ep-mBZ"/>
                             <constraint firstItem="H8F-85-Uk2" firstAttribute="top" secondItem="Tmo-YA-qsn" secondAttribute="top" constant="8" id="mTb-R0-Tu8"/>
@@ -134,4 +133,9 @@
             <point key="canvasLocation" x="268" y="363.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="attention" width="27" height="14"/>
+        <image name="attention_select" width="43" height="15"/>
+        <image name="btn_yuyue" width="57" height="19"/>
+    </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NDPreserveWindow.h"
 //医生
 @interface NDDoctor : NSObject
 @property (nonatomic, copy) NSString *ID;

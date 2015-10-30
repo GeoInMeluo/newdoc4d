@@ -10,8 +10,17 @@
 
 @implementation NDRoomOrderLabeCell
 
+- (void)setPreserveWindow:(NDPreserveWindow *)preserveWindow{
+    _preserveWindow = preserveWindow;
+
+    self.lblRoomName.text = [NSString stringWithFormat:@"%@(%@)",preserveWindow.room_address,preserveWindow.room_name];
+    self.btnBond.selected = preserveWindow.isBound;
+    
+}
+
 - (void)awakeFromNib {
     // Initialization code
+    
 }
 
 @end

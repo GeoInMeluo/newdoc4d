@@ -8,6 +8,7 @@
 
 #import "NDRoomDetailDocCell.h"
 #import "NDPreserveWindow.h"
+#import "NDSlot.h"
 
 @implementation NDRoomDetailDocCell
 
@@ -22,20 +23,23 @@
     _doctor = doctor;
     
     [self.btnHeadImg sd_setImageWithURL:[NSURL URLWithString:doctor.picture_url] forState:UIControlStateNormal];
-//    self.btnAttention
+    self.btnAttention.selected = doctor.isFocus;
 //    self.btnGo2Order
     self.lblDocName.text = doctor.name;
-    self.lblDocDetail.text = doctor.title;
-    self.lblGoodat.text = doctor.goodat;
+    self.lblDocDetail.text = [NSString stringWithFormat:@"(%@)",doctor.title];
+    self.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@",doctor.goodat];
     NDPreserveWindow *preserveWindow = doctor.preserve_window[0];
-    self.lblCanOrder.text = preserveWindow.timescope;
+    NDSlot *slot = preserveWindow.slots[0];
+    self.lblCanOrder.text = slot.timescope;
     
-    NSMutableString *subrooms = [NSMutableString string];
-    for(NDSubroom *subroom in doctor.catalog){
-        [NSString stringWithFormat:@"%@、",subroom.name];
-    }
+//    NSMutableString *subrooms = [NSMutableString string];
+//    for(NDSubroom *subroom in doctor.catalog){
+//        [NSString stringWithFormat:@"%@、",subroom.name];
+//    }
     
-    self.lblSubroom.text = subrooms;
+    NDSubroom *subroom = doctor.catalog[0];
+    
+    self.lblSubroom.text = [NSString stringWithFormat:@"科室：%@",subroom.name];
 }
 
 - (void)awakeFromNib {

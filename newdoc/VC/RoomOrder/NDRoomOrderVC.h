@@ -9,5 +9,5 @@
 #import "NDBaseVC.h"
 
 @interface NDRoomOrderVC : NDBaseVC
-
+@property (nonatomic, strong) NDDoctor *doc;
 @end

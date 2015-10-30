@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NDRoomOrderLabeCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIButton *lblRoomName;
+
+@property (nonatomic, strong) NDPreserveWindow *preserveWindow;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet UIButton *btnBond;
 
 @end

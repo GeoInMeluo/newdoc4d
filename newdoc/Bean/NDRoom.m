@@ -11,6 +11,10 @@
 @implementation NDRoom
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{@"ID" : @"id"};
+    return @{@"ID" : @"id",@"doctors":@"doctors.subs"};
+}
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"catalogs" : @"NDSubroom",@"doctors":@"NDDoctor"};
 }
 @end
