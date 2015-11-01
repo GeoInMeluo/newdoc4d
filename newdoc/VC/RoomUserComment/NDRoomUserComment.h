@@ -11,4 +11,6 @@
 @interface NDRoomUserComment : NDBaseVC
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UIView *mineCommentView;
+@property (nonatomic, strong) NDDoctor *doc;
+@property (nonatomic, strong) NSArray *docComments;
 @end

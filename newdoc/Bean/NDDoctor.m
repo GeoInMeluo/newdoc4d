@@ -15,6 +15,10 @@
 }
 
 + (NSDictionary *)objectClassInArray{
-    return @{@"catalog" : @"NDSubroom",@"preserve_window":@"NDPreserveWindow"};
+    return @{@"catalog" : @"NDSubroom"};
 }
+
+//+ (NSDictionary *)objectClassInArray{
+//    return @{@"catalog" : @"NDSubroom",@"preserve_window":@"NDPreserveWindow"};
+//}
 @end

@@ -8,6 +8,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomDocDetail">
             <connections>
                 <outlet property="defaultHeader" destination="80m-qb-29r" id="zCq-l4-2rH"/>
+                <outlet property="lblDocName" destination="qhD-Y0-cAg" id="DeG-qx-FLc"/>
+                <outlet property="lblDocTitle" destination="Qlc-na-4Nb" id="Hb9-h5-Srk"/>
+                <outlet property="lblEducation" destination="1j5-oh-CRb" id="v8V-dr-QrB"/>
+                <outlet property="lblGoodat" destination="qek-M2-trg" id="bcd-RA-HcM"/>
+                <outlet property="lblRoomName" destination="iTD-J2-AYD" id="Qul-7u-rLZ"/>
+                <outlet property="lblSubroom" destination="f0k-vw-ral" id="VaS-lD-nOg"/>
                 <outlet property="view" destination="7Mh-bK-XWu" id="T1A-Kl-Kzq"/>
             </connections>
         </placeholder>
@@ -33,7 +39,7 @@
                         <constraint firstAttribute="width" constant="115" id="1ml-0m-bPF"/>
                     </constraints>
                     <state key="normal" title="用户评价">
-                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -45,7 +51,7 @@
                         <constraint firstAttribute="width" constant="115" id="pdm-t9-3zn"/>
                     </constraints>
                     <state key="normal" title="我的评价">
-                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,7 +84,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhD-Y0-cAg">
                     <rect key="frame" x="122" y="10" width="54" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(主任医师20年)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlc-na-4Nb">
@@ -90,19 +96,19 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柳州市第一诊室大夫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTD-J2-AYD">
                     <rect key="frame" x="122" y="39" width="126" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长：黄褐斑、黄褐斑、黄褐斑、黄褐斑" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qek-M2-trg">
                     <rect key="frame" x="122" y="67" width="245" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学历：北京大学医学部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1j5-oh-CRb">
                     <rect key="frame" x="122" y="101" width="140" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIg-Ig-bOv">
@@ -115,7 +121,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科室：皮肤科" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0k-vw-ral">
                     <rect key="frame" x="122" y="54" width="84" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

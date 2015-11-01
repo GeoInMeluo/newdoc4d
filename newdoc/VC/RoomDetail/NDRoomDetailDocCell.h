@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NDDoctor.h"
 
 @interface NDRoomDetailDocCell : UITableViewCell
 @property (nonatomic, strong) NDDoctor *doctor;

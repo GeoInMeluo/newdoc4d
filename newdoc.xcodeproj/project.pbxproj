@@ -10,6 +10,9 @@
 		3217AD051BCFCCF2003E9D83 /* NDRoomMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3217AD031BCFCCF2003E9D83 /* NDRoomMapVC.m */; };
 		3217AD061BCFCCF2003E9D83 /* NDRoomMapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3217AD041BCFCCF2003E9D83 /* NDRoomMapVC.xib */; };
 		32368FAF1BE24EE700018176 /* NDSlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 32368FAE1BE24EE700018176 /* NDSlot.m */; };
+		32368FB21BE30A9100018176 /* NDDoctorIntro.m in Sources */ = {isa = PBXBuildFile; fileRef = 32368FB11BE30A9100018176 /* NDDoctorIntro.m */; };
+		32368FB71BE3481000018176 /* NDDoctorComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 32368FB61BE3481000018176 /* NDDoctorComment.m */; };
+		32368FBA1BE376DE00018176 /* NDDoctorMorePreserveWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 32368FB91BE376DE00018176 /* NDDoctorMorePreserveWindow.m */; };
 		324736381BD7BE900032C73C /* NDSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324736361BD7BE900032C73C /* NDSettingTableViewController.m */; };
 		324736391BD7BE900032C73C /* NDSettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324736371BD7BE900032C73C /* NDSettingTableViewController.xib */; };
 		3247363D1BD7C4680032C73C /* NDPersonalEhrFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3247363B1BD7C4680032C73C /* NDPersonalEhrFooter.m */; };
@@ -57,7 +60,6 @@
 		32647D801BD36E630099D7A8 /* NDRoomDocDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 32647D7E1BD36E630099D7A8 /* NDRoomDocDetail.m */; };
 		32647D811BD36E630099D7A8 /* NDRoomDocDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32647D7F1BD36E630099D7A8 /* NDRoomDocDetail.xib */; };
 		32647D851BD37A3A0099D7A8 /* NDRoomDocDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32647D831BD37A3A0099D7A8 /* NDRoomDocDetailCell.m */; };
-		32647D861BD37A3A0099D7A8 /* NDRoomDocDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32647D841BD37A3A0099D7A8 /* NDRoomDocDetailCell.xib */; };
 		32647D8B1BD3838B0099D7A8 /* NDRoomUserComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 32647D891BD3838B0099D7A8 /* NDRoomUserComment.m */; };
 		32647D8C1BD3838B0099D7A8 /* NDRoomUserComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32647D8A1BD3838B0099D7A8 /* NDRoomUserComment.xib */; };
 		32647D901BD3A8420099D7A8 /* NDRoomUserCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32647D8E1BD3A8420099D7A8 /* NDRoomUserCommentCell.m */; };
@@ -485,6 +487,12 @@
 		3217AD041BCFCCF2003E9D83 /* NDRoomMapVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomMapVC.xib; sourceTree = "<group>"; };
 		32368FAD1BE24EE700018176 /* NDSlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDSlot.h; sourceTree = "<group>"; };
 		32368FAE1BE24EE700018176 /* NDSlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDSlot.m; sourceTree = "<group>"; };
+		32368FB01BE30A9100018176 /* NDDoctorIntro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDDoctorIntro.h; sourceTree = "<group>"; };
+		32368FB11BE30A9100018176 /* NDDoctorIntro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDDoctorIntro.m; sourceTree = "<group>"; };
+		32368FB51BE3481000018176 /* NDDoctorComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDDoctorComment.h; sourceTree = "<group>"; };
+		32368FB61BE3481000018176 /* NDDoctorComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDDoctorComment.m; sourceTree = "<group>"; };
+		32368FB81BE376DE00018176 /* NDDoctorMorePreserveWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDDoctorMorePreserveWindow.h; sourceTree = "<group>"; };
+		32368FB91BE376DE00018176 /* NDDoctorMorePreserveWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDDoctorMorePreserveWindow.m; sourceTree = "<group>"; };
 		324736351BD7BE900032C73C /* NDSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDSettingTableViewController.h; sourceTree = "<group>"; };
 		324736361BD7BE900032C73C /* NDSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDSettingTableViewController.m; sourceTree = "<group>"; };
 		324736371BD7BE900032C73C /* NDSettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDSettingTableViewController.xib; sourceTree = "<group>"; };
@@ -557,7 +565,6 @@
 		32647D7F1BD36E630099D7A8 /* NDRoomDocDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomDocDetail.xib; sourceTree = "<group>"; };
 		32647D821BD37A3A0099D7A8 /* NDRoomDocDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomDocDetailCell.h; sourceTree = "<group>"; };
 		32647D831BD37A3A0099D7A8 /* NDRoomDocDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomDocDetailCell.m; sourceTree = "<group>"; };
-		32647D841BD37A3A0099D7A8 /* NDRoomDocDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomDocDetailCell.xib; sourceTree = "<group>"; };
 		32647D881BD3838B0099D7A8 /* NDRoomUserComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomUserComment.h; sourceTree = "<group>"; };
 		32647D891BD3838B0099D7A8 /* NDRoomUserComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomUserComment.m; sourceTree = "<group>"; };
 		32647D8A1BD3838B0099D7A8 /* NDRoomUserComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomUserComment.xib; sourceTree = "<group>"; };
@@ -1455,7 +1462,6 @@
 				32647D7F1BD36E630099D7A8 /* NDRoomDocDetail.xib */,
 				32647D821BD37A3A0099D7A8 /* NDRoomDocDetailCell.h */,
 				32647D831BD37A3A0099D7A8 /* NDRoomDocDetailCell.m */,
-				32647D841BD37A3A0099D7A8 /* NDRoomDocDetailCell.xib */,
 			);
 			path = RoomDocDetail;
 			sourceTree = "<group>";
@@ -1624,6 +1630,12 @@
 				32F1C64A1BE0EF03001DCE34 /* NDPreserveWindow.m */,
 				32368FAD1BE24EE700018176 /* NDSlot.h */,
 				32368FAE1BE24EE700018176 /* NDSlot.m */,
+				32368FB01BE30A9100018176 /* NDDoctorIntro.h */,
+				32368FB11BE30A9100018176 /* NDDoctorIntro.m */,
+				32368FB51BE3481000018176 /* NDDoctorComment.h */,
+				32368FB61BE3481000018176 /* NDDoctorComment.m */,
+				32368FB81BE376DE00018176 /* NDDoctorMorePreserveWindow.h */,
+				32368FB91BE376DE00018176 /* NDDoctorMorePreserveWindow.m */,
 			);
 			path = Bean;
 			sourceTree = "<group>";
@@ -3017,7 +3029,6 @@
 				32FD4CC71BC81B560054D2EA /* um_collection+.png in Resources */,
 				32FD4CF11BC81B560054D2EA /* um_spam@2x.png in Resources */,
 				32FD4CAD1BC81B560054D2EA /* midle_frame@2x.png in Resources */,
-				32647D861BD37A3A0099D7A8 /* NDRoomDocDetailCell.xib in Resources */,
 				32FD4C9E1BC81B560054D2EA /* cancelx@2x.png in Resources */,
 				32FD4CB61BC81B560054D2EA /* pin3x@2x.png in Resources */,
 				32647D591BD14A8F0099D7A8 /* NDRoomAnnotationPopView.xib in Resources */,
@@ -3211,6 +3222,7 @@
 				3217AD051BCFCCF2003E9D83 /* NDRoomMapVC.m in Sources */,
 				32E229FB1BDF3C7F00AF12E7 /* MKAnnotationView+WebCache.m in Sources */,
 				32E229EC1BDF3C7F00AF12E7 /* MJRefreshHeader.m in Sources */,
+				32368FBA1BE376DE00018176 /* NDDoctorMorePreserveWindow.m in Sources */,
 				32FD4D9A1BC81DF20054D2EA /* AFHTTPSessionManager.m in Sources */,
 				329344C31BD7F12D0029CF0D /* NDPersonalReferFooter.m in Sources */,
 				32FD4D6D1BC81B560054D2EA /* UMComEditViewModel.m in Sources */,
@@ -3273,6 +3285,7 @@
 				32FD4D6E1BC81B560054D2EA /* UMComViewModel.m in Sources */,
 				32E229EF1BDF3C7F00AF12E7 /* MJRefreshAutoStateFooter.m in Sources */,
 				32FD4D021BC81B560054D2EA /* UMComProgressView.m in Sources */,
+				32368FB21BE30A9100018176 /* NDDoctorIntro.m in Sources */,
 				32FD4D0C1BC81B560054D2EA /* UMAssetsCollectionCheckMarkView.m in Sources */,
 				329344EA1BD918D30029CF0D /* NDPersonalRegistVC.m in Sources */,
 				32FD4D991BC81DF20054D2EA /* AFHTTPRequestOperationManager.m in Sources */,
@@ -3333,6 +3346,7 @@
 				32FD4D491BC81B560054D2EA /* UMComFindTableViewCell.m in Sources */,
 				32E22A011BDF3C7F00AF12E7 /* SDWebImageDownloaderOperation.m in Sources */,
 				32FD4D611BC81B560054D2EA /* UMComProfileSettingController.m in Sources */,
+				32368FB71BE3481000018176 /* NDDoctorComment.m in Sources */,
 				32E229E81BDF3C7F00AF12E7 /* MJRefreshAutoFooter.m in Sources */,
 				32FD4D071BC81B560054D2EA /* UMComMutiStyleTextView.m in Sources */,
 				32FD4D061BC81B560054D2EA /* UMComLevelImage.m in Sources */,

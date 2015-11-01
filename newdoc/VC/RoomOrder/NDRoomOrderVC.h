@@ -10,4 +10,6 @@
 
 @interface NDRoomOrderVC : NDBaseVC
 @property (nonatomic, strong) NDDoctor *doc;
+@property (nonatomic, strong) NDDoctorMorePreserveWindow *docMorePreserveWindow;
+@property (nonatomic, copy) NSString *roomId;
 @end

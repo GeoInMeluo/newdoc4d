@@ -10,6 +10,12 @@
 #import "NDRoomDocDetailCell.h"
 
 @interface NDRoomDocDetail ()
+@property (weak, nonatomic) IBOutlet UILabel *lblDocName;
+@property (weak, nonatomic) IBOutlet UILabel *lblDocTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblGoodat;
+@property (weak, nonatomic) IBOutlet UILabel *lblEducation;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet UILabel *lblSubroom;
 
 @end
 
@@ -17,8 +23,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self setupUI];
+
 }
+
+- (void)setupUI{
+    WEAK_SELF;
+    
+    self.title = @"医生简介";
+    
+    
+    
+    [self startGetDoctorIntroWithDocId:self.doctor.ID success:^(NDDoctorIntro *intro) {
+        weakself.docIntro = intro;
+        
+        weakself.lblDocName.text = weakself.doctor.name;
+        weakself.lblDocTitle.text = weakself.doctor.title;
+        weakself.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@", weakself.doctor.goodat];
+        NDSubroom *subroom = weakself.doctor.catalog[0];
+        weakself.lblSubroom.text = [NSString stringWithFormat:@"科室：%@",subroom.name];
+        weakself.lblEducation.text = [NSString stringWithFormat:@"学历：%@",intro.graduate_college];
+        
+        [weakself.tableView reloadData];
+    } failure:^(NSDictionary *result, NSError *error) {
+        
+    }];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
@@ -34,12 +66,32 @@
         cell = [NDRoomDocDetailCell new];
     }
     
+    if(indexPath.row == 0){
+        cell.lblTitle.text = @"教育背景";
+        cell.lblDetail.text = self.docIntro.graduate_college;
+    }
+    if (indexPath.row == 1){
+        cell.lblTitle.text = @"从医经验";
+        cell.lblDetail.text = self.docIntro.detail;
+//                cell.lblDetail.text = @"sadfalksjdfljsadljfljasdlkjfljasdkjflkjsaljdflkjasldjflkajsdljfjasdjfjaslkjdfaslkdjfaslkdjfjalskjdfjalsjdfljalsjdflk";
+    }
+    if(indexPath.row == 2){
+        cell.lblTitle.text = @"科研成果";
+        cell.lblDetail.text = self.docIntro.research;
+    }
+    
+    [cell layoutIfNeeded];
+    
     return cell;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 126;
+    
+    NDRoomDocDetailCell *cell = (NDRoomDocDetailCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+
+    
+    return cell.cellHeight;//    return 100;
 }
 
 /*

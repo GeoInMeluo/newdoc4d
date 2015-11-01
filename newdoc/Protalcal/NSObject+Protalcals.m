@@ -154,10 +154,11 @@
 }
 
 //得到诊室详情
-- (void)startGetSubroomListWithRoomId:(NSString *)roomId success:(void(^)(NDRoom *room))success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+- (void)startGetRoomWithRoomId:(NSString *)roomId success:(void(^)(NDRoom *room))success failure:(void(^)(NSDictionary *result,NSError *error))failure{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     
     [[NDNetManager sharedNetManager] get:[NSString stringWithFormat:@"/app/1/Rooms/%@?action=index",SafeString(roomId)] parameters:param success:^(NSDictionary *result) {
+    
 //        NSMutableArray *subRooms = [NSMutableArray array];
         
         FLog(@"%@", result);
@@ -212,6 +213,102 @@
     } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
         failure(result, error);
     }];
+}
+
+//得到医生简介
+- (void)startGetDoctorIntroWithDocId:(NSString *)docId success:(void(^)( NDDoctorIntro *intro))success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [[NDNetManager sharedNetManager] get:[NSString stringWithFormat:@"/app/1/Doctors/%@?action=intro",SafeString(docId)] parameters:param success:^(NSDictionary *result) {
+        //        NSMutableArray *subRooms = [NSMutableArray array];
+        
+        FLog(@"%@", result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+            NDDoctorIntro *intro = [NDDoctorIntro objectWithKeyValues:result[@"data"]];
+            success(intro);
+        }
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+
+}
+
+
+//得到医生的所有评论
+- (void)startGetDoctorCommentsWithDocId:(NSString *)docId success:(void(^)( NSArray *docComments))success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [[NDNetManager sharedNetManager] get:[NSString stringWithFormat:@"/app/1/Doctors/%@?action=comments",SafeString(docId)] parameters:param success:^(NSDictionary *result) {
+        NSMutableArray *comments = [NSMutableArray array];
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                NSArray *dics = result[@"data"][@"subs"];
+                for(id obj in dics){
+                    NDDoctorComment *comment = [NDDoctorComment objectWithKeyValues:obj];
+                    [comments addObject:comment];
+                }
+            }
+        }
+        
+        success(comments);
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+
+}
+
+//得到医生详情(预约内使用的医生数据模型)
+- (void)startGetDoctorDetailWithDocId:(NSString *)docId andRoomId:(NSString *)roomId success:(void(^)( NDDoctorMorePreserveWindow *doctorMorePreserveWindow))success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [param setObject:SafeString(roomId) forKey:@"roomid"];
+    
+    [[NDNetManager sharedNetManager] get:[NSString stringWithFormat:@"/app/1/Doctors/%@?action=index",SafeString(docId)] parameters:param success:^(NSDictionary *result) {
+        
+        FLog(@"%@", result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow objectWithKeyValues:result[@"data"]];
+            
+            success(doctor);
+        }
+        
+        
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+
+}
+
+//用户预约挂号
+- (void)startOrderWithSlot:(NDSlot *)slot success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [param setObject:SafeString(slot.ID) forKey:@"timeslotid"];
+    [param setObject:SafeString(slot.actual_date) forKey:@"actual_date"];
+    
+    [[NDNetManager sharedNetManager] post:@"/app/1/Appointments" parameters:param success:^(NSDictionary *result) {
+        
+        FLog(@"%@", result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow objectWithKeyValues:result[@"data"]];
+            
+            success(doctor);
+        }
+        
+        
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+    
 }
 
 @end

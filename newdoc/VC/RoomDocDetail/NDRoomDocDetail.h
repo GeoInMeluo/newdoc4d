@@ -9,5 +9,6 @@
 #import "NDBaseTableVC.h"
 
 @interface NDRoomDocDetail : NDBaseTableVC
-
+@property (nonatomic, strong) NDDoctor *doctor;
+@property (nonatomic, strong) NDDoctorIntro *docIntro;
 @end

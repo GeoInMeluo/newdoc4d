@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NDRoomDocDetailCell : UITableViewCell
-
+@property (weak, nonatomic) UILabel *lblTitle;
+@property (weak, nonatomic) UILabel *lblDetail;
+@property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, strong) NSString *detailText;
+@property (nonatomic, weak) UIView *seprator;
 @end

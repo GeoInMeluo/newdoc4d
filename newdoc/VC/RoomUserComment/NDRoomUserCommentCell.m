@@ -23,12 +23,23 @@
     return self;
 }
 
+- (void)setDocComment:(NDDoctorComment *)docComment{
+    _docComment = docComment;
+    
+    _lblUsername.text = docComment.name;
+    _lblContent.text = docComment.doctor_comment;
+    _lblCommentTime.text = docComment.actual_date;
+    [_btnIcon sd_setImageWithURL:[NSURL URLWithString:docComment.picture_url] forState:UIControlStateNormal placeholderImage:nil];
+    _starRateView.scorePercent = [docComment.doctor_rating doubleValue] * 0.2;
+}
+
 - (void)awakeFromNib {
     
     CWStarRateView *starRateView = [[CWStarRateView alloc] initWithFrame:self.rateDiv.bounds numberOfStars:5];
-    self.starRateView.scorePercent = 0;
-    self.starRateView.scorePercent = 4;
+//    self.starRateView.scorePercent = 0;
+//    self.starRateView.scorePercent = 4;
     self.starRateView.hasAnimation = YES;
+    self.starRateView.allowIncompleteStar = YES;
     self.starRateView = starRateView;
     self.starRateView.userInteractionEnabled = NO;
     [self.rateDiv addSubview:starRateView];

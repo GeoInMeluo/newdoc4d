@@ -81,7 +81,7 @@
         
         WEAK_SELF;
         
-        [self startGetSubroomListWithRoomId:room.ID success:^(NDRoom *room) {
+        [self startGetRoomWithRoomId:room.ID success:^(NDRoom *room) {
             weakself.subrooms = room.catalogs[indexPath.row];
             weakself.selectRoom = room;
             [weakself.rightTable reloadData];

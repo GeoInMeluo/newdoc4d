@@ -28,7 +28,7 @@
     self.lblDocName.text = doctor.name;
     self.lblDocDetail.text = [NSString stringWithFormat:@"(%@)",doctor.title];
     self.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@",doctor.goodat];
-    NDPreserveWindow *preserveWindow = doctor.preserve_window[0];
+    NDPreserveWindow *preserveWindow = doctor.preserve_window;
     NDSlot *slot = preserveWindow.slots[0];
     self.lblCanOrder.text = slot.timescope;
     

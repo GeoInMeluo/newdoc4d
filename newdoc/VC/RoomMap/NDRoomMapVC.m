@@ -39,6 +39,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 
+@property (nonatomic, weak) UIButton *btnNavRight;
+
 
 @end
 
@@ -58,66 +60,66 @@
     return _annotations;
 }
 
-- (NDRoomSelectLocationVC *)selectLocationVC{
-    if(_selectLocationVC == nil){
-        WEAK_SELF;
-        
-        NDRoomSelectLocationVC *selectLocationVC = [NDRoomSelectLocationVC new];
-        selectLocationVC.view.width = _mapView.width;
-        selectLocationVC.view.height = _mapView.height;
-        selectLocationVC.view.top = self.topView.bottom;
-        selectLocationVC.parentVC = self;
-        
-        __weak typeof(selectLocationVC) weakSelectionVC = selectLocationVC;
-        //选择完地点后进行的操作
-        selectLocationVC.countyCellCallback = ^(){
-            weakself.mapView.hidden = NO;
-            BMKGeoCodeSearchOption *geocodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
-            geocodeSearchOption.city = weakSelectionVC.cityName;
-            geocodeSearchOption.address = weakSelectionVC.countyName;
-            BOOL flag = [weakself.geoSearch geoCode:geocodeSearchOption];
-            if(flag)
-            {
-                NSLog(@"geo检索发送成功");
-            }
-            else
-            {
-                NSLog(@"geo检索发送失败");
-            }
-        };
-        [self.view addSubview:selectLocationVC.view];
-        _selectLocationVC = selectLocationVC;
-    }
-    return _selectLocationVC;
-}
+//- (NDRoomSelectLocationVC *)selectLocationVC{
+//    if(_selectLocationVC == nil){
+//        WEAK_SELF;
+//        
+//        NDRoomSelectLocationVC *selectLocationVC = [NDRoomSelectLocationVC new];
+//        selectLocationVC.view.width = _mapView.width;
+//        selectLocationVC.view.height = _mapView.height;
+//        selectLocationVC.view.top = self.topView.bottom;
+//        selectLocationVC.parentVC = self;
+//        
+//        __weak typeof(selectLocationVC) weakSelectionVC = selectLocationVC;
+//        //选择完地点后进行的操作
+//        selectLocationVC.countyCellCallback = ^(){
+//            weakself.mapView.hidden = NO;
+//            BMKGeoCodeSearchOption *geocodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
+//            geocodeSearchOption.city = weakSelectionVC.cityName;
+//            geocodeSearchOption.address = weakSelectionVC.countyName;
+//            BOOL flag = [weakself.geoSearch geoCode:geocodeSearchOption];
+//            if(flag)
+//            {
+//                NSLog(@"geo检索发送成功");
+//            }
+//            else
+//            {
+//                NSLog(@"geo检索发送失败");
+//            }
+//        };
+//        [self.view addSubview:selectLocationVC.view];
+//        _selectLocationVC = selectLocationVC;
+//    }
+//    return _selectLocationVC;
+//}
 
-- (NDRoomSelectVC *)selectVC{
-    if(_selectVC == nil){
-        NDRoomSelectVC *selectVC = [NDRoomSelectVC new];
-        selectVC.tableView.width = _mapView.width;
-        selectVC.tableView.height = _mapView.height - self.segmentView.height;
-        selectVC.tableView.top = self.segmentView.bottom;
-        [self.view addSubview:selectVC.tableView];
-        selectVC.view.hidden = self.currentMap;
-        selectVC.parentVC = self;
-        _selectVC = selectVC;
-    }
-    return _selectVC;
-}
+//- (NDRoomSelectVC *)selectVC{
+//    if(_selectVC == nil){
+//        NDRoomSelectVC *selectVC = [NDRoomSelectVC new];
+//        selectVC.tableView.width = _mapView.width;
+//        selectVC.tableView.height = _mapView.height - self.segmentView.height;
+//        selectVC.tableView.top = self.segmentView.bottom;
+//        [self.view addSubview:selectVC.tableView];
+//        selectVC.view.hidden = self.currentMap;
+//        selectVC.parentVC = self;
+//        _selectVC = selectVC;
+//    }
+//    return _selectVC;
+//}
 
-- (NDRoomSelectMoreVC *)selectMoreVC{
-    if(_selectMoreVC == nil){
-        NDRoomSelectMoreVC *selectMoreVC = [NDRoomSelectMoreVC new];
-        selectMoreVC.view.width = _mapView.width;
-        selectMoreVC.view.height = _mapView.height - self.segmentView.height;
-        selectMoreVC.view.top = self.segmentView.bottom;
-        [self.view addSubview:selectMoreVC.view];
-        selectMoreVC.view.hidden = YES;
-        selectMoreVC.parentVC = self;
-        _selectMoreVC = selectMoreVC;
-    }
-    return _selectMoreVC;
-}
+//- (NDRoomSelectMoreVC *)selectMoreVC{
+//    if(_selectMoreVC == nil){
+//        NDRoomSelectMoreVC *selectMoreVC = [NDRoomSelectMoreVC new];
+//        selectMoreVC.view.width = _mapView.width;
+//        selectMoreVC.view.height = _mapView.height - self.segmentView.height;
+//        selectMoreVC.view.top = self.segmentView.bottom;
+//        [self.view addSubview:selectMoreVC.view];
+//        selectMoreVC.view.hidden = YES;
+//        selectMoreVC.parentVC = self;
+//        _selectMoreVC = selectMoreVC;
+//    }
+//    return _selectMoreVC;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -136,6 +138,8 @@
     [button addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [button sizeToFit];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.btnNavRight = button;
+    button.enabled = NO;
     
     self.searchDiv.layer.cornerRadius = 5;
     self.searchDiv.layer.masksToBounds = YES;
@@ -144,11 +148,11 @@
     slider.centerX = kScreenSize.width * 0.75;
     slider.backgroundColor = Blue;
     self.slider = slider;
+
+    [self.segmentView addSubview:slider];
     
-//    self.segmentView.frame = self.topView.frame;
     self.segmentView.hidden = self.currentMap;
     [self.view addSubview:self.segmentView];
-    [self.segmentView addSubview:slider];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSearchFieldText:) name:kRoomMapChangeSearchFieldText object:nil];
     
@@ -165,7 +169,9 @@
 
 - (void)startGetRoomsWithLocation:(CLLocationCoordinate2D)coordinate andCityName:(NSString *)cityName andCountyName:(NSString *)countyName {
     [self startGetRoomListWithLocation:coordinate andCityName:cityName andAreaName:countyName success:^(NSArray *rooms) {
-        if(rooms != nil){
+        WEAK_SELF;
+        
+        if(rooms.count != 0){
 //            NDRoom *room1 = [NDRoom new];
 //            room1.latitude = @"39.92";
 //            room1.longitude = @"116.42";
@@ -182,15 +188,19 @@
 //            room3.name = @"test3";
 //            
 //            self.rooms = @[room1,room2,room3];
-            self.rooms = rooms;
+            weakself.rooms = rooms;
         
-            [self addRoomAnnotations];
+            [weakself addRoomAnnotations];
         
-        self.selectMoreVC.rooms = self.rooms;
-        [self.selectMoreVC.leftTable reloadData];
-        
-        self.selectVC.rooms = self.rooms;
-        [self.selectVC.tableView reloadData];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                weakself.selectMoreVC.rooms = weakself.rooms;
+                [weakself.selectMoreVC.leftTable reloadData];
+                
+                weakself.selectVC.rooms = weakself.rooms;
+                [weakself.selectVC.tableView reloadData];
+            });
+            
+            weakself.btnNavRight.enabled = YES;
         }
     } failure:^(NSDictionary *result, NSError *error) {
         
@@ -215,6 +225,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [self.mapView viewWillAppear];
     
     self.mapView.delegate = self;
@@ -231,14 +242,61 @@
     _mapView.showsUserLocation = YES;//显示定位图层
     
 //    [self.mapView selectAnnotation:annotation animated:YES];
-    
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     self.segmentView.top = self.topView.bottom;
     self.segmentView.width = self.view.width;
+    
+    NDRoomSelectMoreVC *selectMoreVC = [NDRoomSelectMoreVC new];
+    selectMoreVC.view.width = _mapView.width;
+    selectMoreVC.view.height = _mapView.height - self.segmentView.height;
+    selectMoreVC.view.top = self.segmentView.bottom;
+    [self.view addSubview:selectMoreVC.view];
+    selectMoreVC.view.hidden = YES;
+    selectMoreVC.parentVC = self;
+    _selectMoreVC = selectMoreVC;
+    
+    NDRoomSelectVC *selectVC = [NDRoomSelectVC new];
+    selectVC.tableView.width = _mapView.width;
+    selectVC.tableView.height = _mapView.height - self.segmentView.height;
+    selectVC.tableView.top = self.segmentView.bottom;
+    [self.view addSubview:selectVC.tableView];
+    selectVC.tableView.hidden = self.currentMap;
+    selectVC.parentVC = self;
+    _selectVC.rooms = self.rooms;
+    _selectVC = selectVC;
+    
+    WEAK_SELF;
+    
+    NDRoomSelectLocationVC *selectLocationVC = [NDRoomSelectLocationVC new];
+    selectLocationVC.view.width = _mapView.width;
+    selectLocationVC.view.height = _mapView.height;
+    selectLocationVC.view.top = self.topView.bottom;
+    selectLocationVC.view.hidden = self.currentMap;
+    selectLocationVC.parentVC = self;
+    
+    __weak typeof(selectLocationVC) weakSelectionVC = selectLocationVC;
+    //选择完地点后进行的操作
+    selectLocationVC.countyCellCallback = ^(){
+        weakself.mapView.hidden = NO;
+        BMKGeoCodeSearchOption *geocodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
+        geocodeSearchOption.city = weakSelectionVC.cityName;
+        geocodeSearchOption.address = weakSelectionVC.countyName;
+        BOOL flag = [weakself.geoSearch geoCode:geocodeSearchOption];
+        if(flag)
+        {
+            NSLog(@"geo检索发送成功");
+        }
+        else
+        {
+            NSLog(@"geo检索发送失败");
+        }
+    };
+    [self.view addSubview:selectLocationVC.view];
+    _selectLocationVC = selectLocationVC;
 }
 
 /**
@@ -264,8 +322,9 @@
     [_mapView updateLocationData:userLocation];
 //    [_mapView setCenterCoordinate:userLocation.location.coordinate animated:YES];
     
-    if(CLLocationCoordinate2DIsValid(self.lastLocation)){
-        
+//    if(CLLocationCoordinate2DIsValid(self.lastLocation)){
+    if (self.rooms.count == 0) {
+
         self.lastLocation = userLocation.location.coordinate;
 
         BMKReverseGeoCodeOption *geoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
@@ -276,9 +335,13 @@
         [self.mapView setCenterCoordinate:self.lastLocation];
         
         [self.mapView setZoomLevel:14];
+        
+//        if(self.selectVC){
+//            [self.selectVC.tableView reloadData];
+//        }
+        
+        [self.loactionService stopUserLocationService];
     }
-    
-    [self.loactionService stopUserLocationService];
 }
 
 //反向地理编码(进入地图时，根据地图定位位置得到地点名称，查询诊室列表)
@@ -370,18 +433,37 @@
 //}
 
 - (void)rightBtnClicked:(UIButton *)btn{
+    
     btn.selected = !btn.selected;
     self.currentMap = !self.currentMap;
-    self.selectMoreVC.view.hidden = self.currentMap;
+//    self.selectMoreVC.view.hidden = self.currentMap;
     self.selectVC.tableView.hidden = self.currentMap;
     self.segmentView.hidden = self.currentMap;
-    self.selectLocationVC.view.hidden = YES;
+    [self.segmentView.superview bringSubviewToFront:self.segmentView];
+//    self.selectLocationVC.view.hidden = YES;
     
+    if(!self.selectVC.tableView.hidden){
+        self.selectMoreVC.view.hidden = YES;
+        self.selectLocationVC.view.hidden = YES;
+    }
+    
+//    if(!self.selectMoreVC.view.hidden){
+//        self.selectMoreVC.view.hidden = YES;
+//        self.selectLocationVC.view.hidden = YES;
+//    }
+//    
+//    if(!self.selectLocationVC.view.hidden){
+//        self.selectMoreVC.view.hidden = YES;
+//        self.selectLocationVC.view.hidden = YES;
+//    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    
     [super viewWillDisappear:animated];
+    
+    [self.loactionService stopUserLocationService];
     
     [self.mapView removeAnnotations:self.annotations];
     
@@ -392,14 +474,14 @@
     self.geoSearch.delegate = nil;
     
     
-//    [self.selectVC.view removeFromSuperview];
-//    self.selectVC = nil;
-//    
-//    [self.selectMoreVC.view removeFromSuperview];
-//    self.selectMoreVC = nil;
-//    
-//    [self.selectLocationVC.view removeFromSuperview];
-//    self.selectLocationVC = nil;
+    [self.selectVC.tableView removeFromSuperview];
+    self.selectVC = nil;
+    
+    [self.selectMoreVC.view removeFromSuperview];
+    self.selectMoreVC = nil;
+    
+    [self.selectLocationVC.view removeFromSuperview];
+    self.selectLocationVC = nil;
 }
 
 
@@ -447,7 +529,7 @@
     _geoSearch.delegate = nil;
     _geoSearch = nil;
     
-    [_selectVC.view removeFromSuperview];
+    [_selectVC.tableView removeFromSuperview];
     _selectVC = nil;
     
     [_selectMoreVC.view removeFromSuperview];

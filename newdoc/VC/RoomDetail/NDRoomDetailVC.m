@@ -42,7 +42,7 @@
 - (void)startGet{
     WEAK_SELF;
     
-    [self startGetSubroomListWithRoomId:self.room.ID success:^(NDRoom *room) {
+    [self startGetRoomWithRoomId:self.room.ID success:^(NDRoom *room) {
         weakself.room = room;
         
         [weakself setupUI];
@@ -141,6 +141,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NDRoomOrderVC *vc = [NDRoomOrderVC new];
     vc.doc = self.docs[indexPath.row];
+    vc.roomId = self.room.ID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

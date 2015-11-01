@@ -11,6 +11,7 @@
 #import "NDRoomDocDetail.h"
 #import "NDRoomUserComment.h"
 #import "NDSlot.h"
+#import "NDPreserveWindow.h"
 
 @interface NDRoomOrderVC ()<UICollectionViewDataSource, UIBarPositioningDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *roomCollectionView;
@@ -23,6 +24,7 @@
 @property (nonatomic, assign) NSInteger currentDate;
 @property (nonatomic, strong) NDPreserveWindow *currentPreserveWindow;
 @property (nonatomic, assign) NSInteger currentWindowIndex;
+@property (nonatomic, strong) NSMutableArray *selectedOrderDates;
 
 #pragma 头部控件
 @property (weak, nonatomic) IBOutlet UILabel *lblDocName;
@@ -37,13 +39,24 @@
 
 @implementation NDRoomOrderVC
 
+- (NSMutableArray *)selectedOrderDates{
+    if(_selectedOrderDates == nil){
+        _selectedOrderDates = [NSMutableArray array];
+    }
+    return _selectedOrderDates;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupUI];
+//    self.docMorePreserveWindow.ID = self.doc.ID;
+    
 }
 
+
 - (void)setupUI{
+    self.title = @"预约挂号";
+    
     UIButton *button = [[UIButton alloc] init];
     [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"back"]
@@ -55,14 +68,14 @@
     
     self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     
-    self.currentPreserveWindow = self.doc.preserve_window[0];
+    self.currentPreserveWindow = self.docMorePreserveWindow.preserve_window[0];
     
     self.title = @"预约挂号";
     
-    self.lblDocName.text = self.doc.name;
-    self.lblDocTitle.text = self.doc.title;
-    self.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@", self.doc.goodat];
-    NDSubroom *subroom = self.doc.catalog[0];
+    self.lblDocName.text = self.docMorePreserveWindow.name;
+    self.lblDocTitle.text = self.docMorePreserveWindow.title;
+    self.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@", self.docMorePreserveWindow.goodat];
+    NDSubroom *subroom = self.docMorePreserveWindow.catalog[0];
     self.lblSubroom.text = [NSString stringWithFormat:@"科室：%@",subroom.name];
 //    self.lblCountMoment.text = [NSString stringWithFormat:@"%@",self.doc];
     
@@ -88,24 +101,29 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self initWithDatePicker];
+    
+    WEAK_SELF;
+    
+    [self startGetDoctorDetailWithDocId:self.doc.ID andRoomId:self.roomId success:^(NDDoctorMorePreserveWindow *doctorMorePreserveWindow) {
+        weakself.docMorePreserveWindow = doctorMorePreserveWindow;
+        [weakself setupUI];
+        [weakself.roomCollectionView reloadData];
+        
+        [weakself initWithDatePicker];
+    } failure:^(NSDictionary *result, NSError *error) {
+        
+    }];
+    
+    
 }
 
 - (void)initWithDatePicker{
-//    NSMutableArray *canOrderSlots = [NSMutableArray array];
-//    
-//    for(NDSlot *slot in self.currentPreserveWindow.slots){
-//        if(slot.status){
-//            can
-//        }
-//    }
-    
+    [self.dateView clearSubviews];
     
     //得到今天是周几
     NSUInteger weekNumber = [[NSDate date] weeklyOrdinality];
@@ -130,16 +148,20 @@
     
     int tempNumber = 0;
     
+    NSInteger tagNumber = 100;
+    
+    @autoreleasepool {
+    
     for (int i = 0; i < row * rowCount; i++) {
         
         int itemRow = i / rowCount;
         int itemCol = i % rowCount;
         
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *btn = [[UIButton alloc] init];
         btn.enabled = NO;
         [self.dateView addSubview:btn];
         btn.frame = CGRectMake(                                                                                                      itemCol * (marginW + itemW) + marginW, itemRow * (marginH + itemH) + marginH , itemW, itemH);
-        btn.tag = i;
+//        btn.tag = i;
         
         if(i < 7){
             [btn setTitle:tempArray[i] forState:UIControlStateNormal];
@@ -153,10 +175,9 @@
             NSInteger btnTitleNumber = dateNumber - temp + i;
                 
             //今天以后的有效日期
-            if(i >= temp && btnTitleNumber <= countMonthDay){
-                btn.enabled = YES;
-                [btn addTarget:self action:@selector(btnDateGridClicked:) forControlEvents:UIControlEventTouchUpInside];
-                //                btn.backgroundColor = [UIColor whiteColor];
+            if(i >= temp && btnTitleNumber <= dateNumber + 13){
+//                btn.enabled = YES;
+                btn.backgroundColor = [UIColor whiteColor];
                 [btn setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateSelected];
                 [btn setBackgroundImage:[UIImage imageWithColor:[UIColor greenColor]] forState:UIControlStateSelected];
                 
@@ -189,41 +210,64 @@
 
             for(NDSlot *slot in self.currentPreserveWindow.slots){
                 
-                NSDate *orderDate = timestamp2Datetime([slot.ts integerValue]);
+                NSDate *orderDate = timestamp2Datetime([slot.ts integerValue ] * 1000);
+                
+//                [self.canOrderDates addObject:slot];
+                
                 NSInteger diffNumber = [NSDate dayDiffCountFrom:[NSDate date] to:orderDate];
                 
                 if(btnTitleNumber == (diffNumber + dateNumber)){
+                    [btn addTarget:self action:@selector(btnDateGridClicked:) forControlEvents:UIControlEventTouchUpInside];
+                    btn.enabled = YES;
                     btn.backgroundColor = [UIColor redColor];
+                    btn.tag = tagNumber;
+                    tagNumber ++;
                 }
             }
         }
 
     }
+        
+    }
 }
 
 #pragma 日期按钮点击事件
 - (void)btnDateGridClicked:(UIButton *)btn{
+    FLog(@"%@",btn);
+    
     btn.selected = !btn.selected;
     
-//    if(btn.state == UIControlStateSelected){
+    NDSlot *selectSlot = self.currentPreserveWindow.slots[btn.tag - 100];
+    
+    FLog(@"%@",selectSlot);
+    
+    if(btn.selected){
 //        btn.layer.borderColor = [UIColor whiteColor].CGColor;
-//    }else{
+        [self.selectedOrderDates addObject:selectSlot];
+        
+        
+    }else{
+        
+        
+        [self.selectedOrderDates removeObject:selectSlot];
 //        if(btn.tag == self.currentDate){
 //            btn.layer.borderColor = [UIColor orangeColor].CGColor;
 //        }else{
 //            btn.layer.borderColor = [UIColor darkGrayColor].CGColor;
 //        }
-//    }
+    }
+    
+    FLog(@"%@",self.selectedOrderDates);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.doc.preserve_window.count;
+    return self.docMorePreserveWindow.preserve_window.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NDRoomOrderLabeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NDRoomOrderLabeCell" forIndexPath:indexPath];
     
-    NDPreserveWindow *preserveWindow = self.doc.preserve_window[indexPath.row];
+    NDPreserveWindow *preserveWindow = self.docMorePreserveWindow.preserve_window[indexPath.row];
     
     cell.preserveWindow = preserveWindow;
     
@@ -237,48 +281,85 @@
 
 - (IBAction)btnPreviousClick:(id)sender {
     
-    if(self.currentWindowIndex == 0){
+    self.currentWindowIndex--;
+    
+    if(self.currentWindowIndex < 0){
+        self.currentWindowIndex = 0;
         return;
     }
     
-    self.currentWindowIndex--;
+    [self.roomCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentWindowIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     
-    [self.roomCollectionView setContentOffset:CGPointMake(- self.roomCollectionView.width * self.currentWindowIndex , 0) animated:YES];
+    self.currentPreserveWindow = self.docMorePreserveWindow.preserve_window[self.currentWindowIndex];
     
+    [self initWithDatePicker];
 }
 
 - (IBAction)btnNextClick:(id)sender {
     
-    if(self.currentWindowIndex >= self.doc.preserve_window.count){
+    self.currentWindowIndex++;
+    
+    if(self.currentWindowIndex == self.docMorePreserveWindow.preserve_window.count){
+        self.currentWindowIndex = self.docMorePreserveWindow.preserve_window.count - 1;
         return;
     }
     
-    self.currentWindowIndex++;
+    [self.roomCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentWindowIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+
+    self.currentPreserveWindow = self.docMorePreserveWindow.preserve_window[self.currentWindowIndex];
     
-    [self.roomCollectionView setContentOffset:CGPointMake(self.roomCollectionView.width * self.currentWindowIndex , 0) animated:YES];
+    [self initWithDatePicker];
 }
 
 - (IBAction)btnTimeArea1Click:(id)sender {
-}
-
-- (IBAction)btnTimeArea2Click:(id)sender {
 }
 
 - (IBAction)btnTimeArea3Click:(id)sender {
 }
 
 - (IBAction)btnDocDetailClick:(id)sender {
-    ShowVC(NDRoomDocDetail);
+    CreateVC(NDRoomDocDetail);
+    vc.doctor = self.doc;
+    PushVC(vc);
 }
 
 - (IBAction)btnUserCommentClick:(id)sender {
-    ShowVC(NDRoomUserComment);
+    CreateVC(NDRoomUserComment);
+    vc.doc = self.doc;
+    PushVC(vc);
 }
 
-- (IBAction)btnIntroClicked:(id)sender {
+- (IBAction)btnAttentionClick:(id)sender {
+    WEAK_SELF;
+    
+    if(self.docMorePreserveWindow.isFocus){
+        [self startCancelAttentionDoctorWithDocId:self.docMorePreserveWindow.ID success:^{
+            weakself.docMorePreserveWindow.isFocus = NO;
+            weakself.btnAttention.selected = NO;
+        } failure:^(NSDictionary *result, NSError *error) {
+            
+        }];
+    }else{
+        [self startAttentionDoctorWithDocId:self.docMorePreserveWindow.ID success:^{
+            weakself.docMorePreserveWindow.isFocus = YES;
+            weakself.btnAttention.selected = YES;
+        } failure:^(NSDictionary *result, NSError *error) {
+            
+        }];
+    }
 }
 
-- (IBAction)btnCommentClicked:(id)sender {
+- (IBAction)btnOrderClicked:(id)sender {
+    
+    if(self.selectedOrderDates.count == 0){
+        return;
+    }
+    
+    [self startOrderWithSlot:self.selectedOrderDates[0] success:^{
+        
+    } failure:^(NSDictionary *result, NSError *error) {
+        
+    }];
 }
 
 

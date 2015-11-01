@@ -1,15 +1,16 @@
 //
-//  NDDoctor.h
+//  NDDoctorMorePreserveWindow.h
 //  newdoc
 //
-//  Created by zzc on 15/10/28.
+//  Created by zzc on 15/10/30.
 //  Copyright © 2015年 zzc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "NDPreserveWindow.h"
-//医生
-@interface NDDoctor : NSObject
+
+//医生(预约界面)
+@interface NDDoctorMorePreserveWindow : NSObject
+
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *picture_url;
@@ -20,5 +21,5 @@
 @property (nonatomic, strong) NSArray *catalog;
 @property (nonatomic, copy) NSString *goodat;
 @property (nonatomic, assign) BOOL isFocus;
-@property (nonatomic, strong) NDPreserveWindow *preserve_window;
+@property (nonatomic, strong) NSArray *preserve_window;
 @end

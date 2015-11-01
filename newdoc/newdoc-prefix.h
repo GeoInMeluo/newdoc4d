@@ -32,6 +32,7 @@
 #import "MJExtension.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import "UIFont+size.h"
 #endif
 
 
