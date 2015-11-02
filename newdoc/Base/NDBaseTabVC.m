@@ -43,6 +43,7 @@
     
     self.selectedIndex = 1;
 
+    
 }
 
 - (void)addOneChlildVc:(UIViewController *)childVc title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName

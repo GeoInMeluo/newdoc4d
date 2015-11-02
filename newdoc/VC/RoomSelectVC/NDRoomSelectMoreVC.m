@@ -82,12 +82,14 @@
         WEAK_SELF;
         
         [self startGetRoomWithRoomId:room.ID success:^(NDRoom *room) {
-            weakself.subrooms = room.catalogs[indexPath.row];
+            weakself.subrooms = room.catalogs;
             weakself.selectRoom = room;
             [weakself.rightTable reloadData];
         } failure:^(NSDictionary *result, NSError *error) {
             
         }];
+        
+        return;
     }
     
     NDRoomDetailVC *roomDeatailVC = [NDRoomDetailVC new];

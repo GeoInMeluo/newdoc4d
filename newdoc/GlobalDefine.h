@@ -34,7 +34,7 @@ VcClassName * vc = [[VcClassName alloc] init]; \
 #define WEAK_CELL __weak typeof (cell) weakcell = cell; weakcell
 
 #define LightGray [UIColor colorWithHex:@"#eeeeee"]
-#define Blue [UIColor colorWithHex:@"#00aaff"]
+#define Blue [UIColor colorWithHex:@"#00AAFF"]
 #define kScreenSize [UIScreen mainScreen].bounds.size
 
 #define kHostStr @"http://newdoc.meluo.net"

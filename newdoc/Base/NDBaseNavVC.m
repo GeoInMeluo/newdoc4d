@@ -21,7 +21,8 @@
 }
 
 - (void)setup{
-    self.navigationBar.barTintColor = [UIColor colorWithHex:@"#00aaff"];
+    
+    
 }
 
 + (void)initialize
@@ -36,19 +37,23 @@
  */
 + (void)setupNavigationBarTheme
 {
-    UINavigationBar *appearance = [UINavigationBar appearance];
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
-
-    textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
-
-    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
-    textAttrs[UITextAttributeTextColor] = [UIColor whiteColor];
-    [appearance setTitleTextAttributes:textAttrs];
+//    [UINavigationBar appearance].backgroundColor = Blue;
     
-    if([appearance respondsToSelector:@selector(setTranslucent:)]){
-        [appearance setTranslucent:NO];
-    }
+//    [[UINavigationBar appearance] setTranslucent:NO];
+    
+//    UINavigationBar *appearance = [UINavigationBar appearance];
+//    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+//    textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
+//
+//    textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+//
+//    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
+//    textAttrs[UITextAttributeTextColor] = [UIColor whiteColor];
+//    [appearance setTitleTextAttributes:textAttrs];
+//    
+//    if([appearance respondsToSelector:@selector(setTranslucent:)]){
+//        [appearance setTranslucent:NO];
+//    }
 }
 
 /**
