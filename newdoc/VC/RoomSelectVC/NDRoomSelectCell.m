@@ -27,11 +27,15 @@
 }
 
 - (void)awakeFromNib {
+    
+    self.btnGo2RoomDetail.layer.cornerRadius = 5;
+    self.btnGo2RoomDetail.layer.masksToBounds = YES;
+    
     // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+//    [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }

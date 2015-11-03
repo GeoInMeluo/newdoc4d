@@ -13,8 +13,9 @@
 #import "NDSettingTableViewController.h"
 #import "NDPersonalBindingRoomVC.h"
 #import "NDPersonalReferVC.h"
-#import "NDRoomOrderVC.h"
+//#import "NDRoomOrderVC.h"
 #import "NDPersonalAttentionDocVC.h"
+#import "NDPersonalOrderVC.h"
 
 @interface NDPersonalCenterHomeVC ()<UITableViewDataSource,UITabBarDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellInfomation;
@@ -49,7 +50,7 @@
 - (void)initCells{
     WEAK_SELF;
     
-    [self.cells addObjectsFromArray:@[self.cellInfomation,self.cellEhr,self.cellMineDoc,self.cellMineRoom,self.cellOrder,self.cellRefer,self.cellSetting]];
+    [self.cells addObjectsFromArray:@[self.cellInfomation,self.cellMineDoc,self.cellRefer,self.cellOrder,self.cellEhr,self.cellMineRoom,self.cellSetting]];
  
     self.cellInfomation.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         CreateVC(NDPersonalInfo);
@@ -70,7 +71,7 @@
     };
     
     self.cellOrder.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDRoomOrderVC);
+        ShowVCWeak(NDPersonalOrderVC);
     };
     
     self.cellRefer.callback = ^(FormCell *cell, NSIndexPath *indexPath){

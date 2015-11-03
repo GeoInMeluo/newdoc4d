@@ -1,19 +1,19 @@
 //
-//  NDPersonalReferDetail.m
+//  NDPersonalOrderVC.m
 //  newdoc
 //
-//  Created by zzc on 15/10/22.
+//  Created by zzc on 15/11/2.
 //  Copyright © 2015年 zzc. All rights reserved.
 //
 
-#import "NDPersonalReferDetail.h"
-#import "NDPersonalReferDetailCell.h"
+#import "NDPersonalOrderVC.h"
+#import "NDPersonalOrderCell.h"
 
-@interface NDPersonalReferDetail ()<UITableViewDataSource,UITableViewDelegate>
+@interface NDPersonalOrderVC ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation NDPersonalReferDetail
+@implementation NDPersonalOrderVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,17 +21,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellId = @"NDPersonalReferDetailCell";
+    static NSString *cellId = @"NDPersonalOrderCell";
     
-    NDPersonalReferDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    NDPersonalOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
-        cell = [NDPersonalReferDetailCell new];
+        cell = [NDPersonalOrderCell new];
     }
     
     return cell;
@@ -39,9 +39,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 85;
+    return 110;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

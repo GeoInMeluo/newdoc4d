@@ -39,6 +39,7 @@
                                         <constraint firstAttribute="height" constant="90" id="Elo-aw-Dko"/>
                                         <constraint firstAttribute="width" constant="74" id="z6J-QR-ngv"/>
                                     </constraints>
+                                    <state key="normal" backgroundImage="icon_placeHolder"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="183-eL-fBC">
                                     <rect key="frame" x="122" y="10" width="54" height="22"/>
@@ -257,5 +258,6 @@
     <resources>
         <image name="attention" width="27" height="14"/>
         <image name="attention_select" width="43" height="15"/>
+        <image name="icon_placeHolder" width="145" height="145"/>
     </resources>
 </document>

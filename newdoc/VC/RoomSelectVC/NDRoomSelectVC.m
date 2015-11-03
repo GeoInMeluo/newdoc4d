@@ -54,6 +54,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    ShowVC(NDRoomDetailVC);
+    
     NDRoomDetailVC *vc =[NDRoomDetailVC new];
     vc.room = self.rooms[indexPath.row];
     [self.parentVC.navigationController pushViewController:vc animated:YES];

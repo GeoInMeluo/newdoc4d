@@ -15,10 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bai-Vl-BxG">
-                        <rect key="frame" x="16" y="22" width="46" height="30"/>
-                        <state key="normal" title="Button"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9Z-Yl-elU">
                         <rect key="frame" x="70" y="11" width="45" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -31,7 +27,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="擅长：！！！！！！！！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCe-JF-dVl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="擅长：各种疑难杂症" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCe-JF-dVl">
                         <rect key="frame" x="70" y="49" width="143" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,11 +42,19 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="sRi-dC-naF">
                         <rect key="frame" x="295" y="29" width="9" height="16"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bai-Vl-BxG">
+                        <rect key="frame" x="16" y="15" width="46" height="46"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="46" id="JAm-kJ-luj"/>
+                            <constraint firstAttribute="width" constant="46" id="UM7-PV-LfZ"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="icon_placeHolder"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Bai-Vl-BxG" firstAttribute="leading" secondItem="T4h-vO-Jvl" secondAttribute="leadingMargin" constant="8" id="3xC-Gm-XNn"/>
                     <constraint firstItem="0ak-bB-z2p" firstAttribute="top" secondItem="i9Z-Yl-elU" secondAttribute="bottom" constant="1" id="C2A-xR-S57"/>
-                    <constraint firstItem="Bai-Vl-BxG" firstAttribute="centerY" secondItem="T4h-vO-Jvl" secondAttribute="centerY" id="CMe-gO-00R"/>
+                    <constraint firstItem="Bai-Vl-BxG" firstAttribute="centerY" secondItem="T4h-vO-Jvl" secondAttribute="centerY" constant="1.5" id="CMe-gO-00R"/>
                     <constraint firstItem="0ak-bB-z2p" firstAttribute="leading" secondItem="Bai-Vl-BxG" secondAttribute="trailing" constant="8" id="FVm-97-6U0"/>
                     <constraint firstItem="i9Z-Yl-elU" firstAttribute="top" secondItem="T4h-vO-Jvl" secondAttribute="topMargin" constant="3" id="KmS-7i-JZX"/>
                     <constraint firstItem="sRi-dC-naF" firstAttribute="centerY" secondItem="T4h-vO-Jvl" secondAttribute="centerY" id="RR5-BS-B1z"/>
@@ -66,6 +70,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_placeHolder" width="145" height="145"/>
         <image name="personal_arrow_right" width="9" height="16"/>
     </resources>
 </document>

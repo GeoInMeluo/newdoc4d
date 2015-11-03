@@ -30,7 +30,7 @@
     self.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@",doctor.goodat];
     NDPreserveWindow *preserveWindow = doctor.preserve_window;
     NDSlot *slot = preserveWindow.slots[0];
-    self.lblCanOrder.text = slot.timescope;
+//    self.lblCanOrder.text = slot.timescope;
     
 //    NSMutableString *subrooms = [NSMutableString string];
 //    for(NDSubroom *subroom in doctor.catalog){

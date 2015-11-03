@@ -70,7 +70,30 @@
                     <constraint firstItem="fx0-7A-8XJ" firstAttribute="leading" secondItem="UFd-us-PfQ" secondAttribute="leading" id="trj-BH-36M"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="275" y="224.5"/>
+            <point key="canvasLocation" x="275" y="426.5"/>
+        </tableViewCell>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="121" id="Odh-bw-x5g">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Odh-bw-x5g" id="IWo-OA-o0e">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_home_1" translatesAutoresizingMaskIntoConstraints="NO" id="xMw-MX-esJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="xMw-MX-esJ" firstAttribute="leading" secondItem="IWo-OA-o0e" secondAttribute="leadingMargin" constant="-8" id="8ft-Pn-sGI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xMw-MX-esJ" secondAttribute="bottom" constant="-8" id="FIv-iG-5tS"/>
+                    <constraint firstItem="xMw-MX-esJ" firstAttribute="top" secondItem="IWo-OA-o0e" secondAttribute="topMargin" constant="-8" id="GNN-ed-Mk6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xMw-MX-esJ" secondAttribute="trailing" constant="-8" id="HPi-LE-ga0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="291" y="28.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="temp_home_1" width="2480" height="1268"/>
+    </resources>
 </document>

@@ -106,6 +106,12 @@
 		32C6583B1BD6EDA900490F37 /* NDPersonalEhrVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C658391BD6EDA900490F37 /* NDPersonalEhrVC.xib */; };
 		32C6583F1BD6EF6B00490F37 /* NDPersonalEhrCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C6583D1BD6EF6B00490F37 /* NDPersonalEhrCell.m */; };
 		32C658401BD6EF6B00490F37 /* NDPersonalEhrCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32C6583E1BD6EF6B00490F37 /* NDPersonalEhrCell.xib */; };
+		32D2E9EE1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D2E9EC1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.m */; };
+		32D2E9EF1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D2E9ED1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.xib */; };
+		32D2E9F51BE7691A00DC12C5 /* NDPersonalOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D2E9F31BE7691A00DC12C5 /* NDPersonalOrderVC.m */; };
+		32D2E9F61BE7691A00DC12C5 /* NDPersonalOrderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D2E9F41BE7691A00DC12C5 /* NDPersonalOrderVC.xib */; };
+		32D2E9FA1BE7698D00DC12C5 /* NDPersonalOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D2E9F81BE7698D00DC12C5 /* NDPersonalOrderCell.m */; };
+		32D2E9FB1BE7698D00DC12C5 /* NDPersonalOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D2E9F91BE7698D00DC12C5 /* NDPersonalOrderCell.xib */; };
 		32E2297E1BDF3C0000AF12E7 /* NDRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2297D1BDF3C0000AF12E7 /* NDRoom.m */; };
 		32E229E01BDF3C7F00AF12E7 /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E229811BDF3C7F00AF12E7 /* MJConst.m */; };
 		32E229E11BDF3C7F00AF12E7 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E229841BDF3C7F00AF12E7 /* MJFoundation.m */; };
@@ -634,6 +640,15 @@
 		32C6583C1BD6EF6B00490F37 /* NDPersonalEhrCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalEhrCell.h; sourceTree = "<group>"; };
 		32C6583D1BD6EF6B00490F37 /* NDPersonalEhrCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalEhrCell.m; sourceTree = "<group>"; };
 		32C6583E1BD6EF6B00490F37 /* NDPersonalEhrCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalEhrCell.xib; sourceTree = "<group>"; };
+		32D2E9EB1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomTempCellTableViewCell.h; sourceTree = "<group>"; };
+		32D2E9EC1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomTempCellTableViewCell.m; sourceTree = "<group>"; };
+		32D2E9ED1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomTempCellTableViewCell.xib; sourceTree = "<group>"; };
+		32D2E9F21BE7691A00DC12C5 /* NDPersonalOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalOrderVC.h; sourceTree = "<group>"; };
+		32D2E9F31BE7691A00DC12C5 /* NDPersonalOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalOrderVC.m; sourceTree = "<group>"; };
+		32D2E9F41BE7691A00DC12C5 /* NDPersonalOrderVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalOrderVC.xib; sourceTree = "<group>"; };
+		32D2E9F71BE7698D00DC12C5 /* NDPersonalOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalOrderCell.h; sourceTree = "<group>"; };
+		32D2E9F81BE7698D00DC12C5 /* NDPersonalOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalOrderCell.m; sourceTree = "<group>"; };
+		32D2E9F91BE7698D00DC12C5 /* NDPersonalOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalOrderCell.xib; sourceTree = "<group>"; };
 		32E2297C1BDF3C0000AF12E7 /* NDRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoom.h; sourceTree = "<group>"; };
 		32E2297D1BDF3C0000AF12E7 /* NDRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoom.m; sourceTree = "<group>"; };
 		32E229801BDF3C7F00AF12E7 /* MJConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJConst.h; sourceTree = "<group>"; };
@@ -1587,6 +1602,9 @@
 				32F331CA1BCF0429004D772B /* NDRoomCell.h */,
 				32F331CB1BCF0429004D772B /* NDRoomCell.m */,
 				32F331CC1BCF0429004D772B /* NDRoomCell.xib */,
+				32D2E9EB1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.h */,
+				32D2E9EC1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.m */,
+				32D2E9ED1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.xib */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -1615,6 +1633,19 @@
 				3247363C1BD7C4680032C73C /* NDPersonalEhrFooter.xib */,
 			);
 			path = PersonalEhr;
+			sourceTree = "<group>";
+		};
+		32D2E9F11BE768F900DC12C5 /* PersonalOrder */ = {
+			isa = PBXGroup;
+			children = (
+				32D2E9F21BE7691A00DC12C5 /* NDPersonalOrderVC.h */,
+				32D2E9F31BE7691A00DC12C5 /* NDPersonalOrderVC.m */,
+				32D2E9F41BE7691A00DC12C5 /* NDPersonalOrderVC.xib */,
+				32D2E9F71BE7698D00DC12C5 /* NDPersonalOrderCell.h */,
+				32D2E9F81BE7698D00DC12C5 /* NDPersonalOrderCell.m */,
+				32D2E9F91BE7698D00DC12C5 /* NDPersonalOrderCell.xib */,
+			);
+			path = PersonalOrder;
 			sourceTree = "<group>";
 		};
 		32E2297B1BDF3BEC00AF12E7 /* Bean */ = {
@@ -2015,6 +2046,7 @@
 		32FD498C1BC790A70054D2EA /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				32D2E9F11BE768F900DC12C5 /* PersonalOrder */,
 				329344FB1BD9485E0029CF0D /* QAOnline */,
 				329344E61BD918900029CF0D /* Regist */,
 				329344D61BD7FEBD0029CF0D /* PersonalAttentionDoc */,
@@ -2983,6 +3015,7 @@
 				32647D7B1BD282590099D7A8 /* NDRoomOrderLabeCell.xib in Resources */,
 				32FD4CC51BC81B560054D2EA /* um_album.png in Resources */,
 				32FD4D7A1BC81B570054D2EA /* UMSShareListController.xib in Resources */,
+				32D2E9FB1BE7698D00DC12C5 /* NDPersonalOrderCell.xib in Resources */,
 				32FD4CED1BC81B560054D2EA /* um_share+@2x.png in Resources */,
 				32FD4D601BC81B560054D2EA /* UMComPhotoAlbumViewController.xib in Resources */,
 				32647D8C1BD3838B0099D7A8 /* NDRoomUserComment.xib in Resources */,
@@ -3007,6 +3040,7 @@
 				32FD4CB21BC81B560054D2EA /* origin_image_bg@2x.png in Resources */,
 				32FD4CA01BC81B560054D2EA /* edit_background@2x.png in Resources */,
 				329344CA1BD7F41D0029CF0D /* NDPersonalReferFooterCell.xib in Resources */,
+				32D2E9EF1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.xib in Resources */,
 				32FD4CDD1BC81B560054D2EA /* um_near@2x.png in Resources */,
 				32FD4CBA1BC81B560054D2EA /* search_frame@2x.png in Resources */,
 				32FD4CC91BC81B560054D2EA /* um_collection.png in Resources */,
@@ -3153,6 +3187,7 @@
 				32FD4CAC1BC81B560054D2EA /* male@2x.png in Resources */,
 				32C658401BD6EF6B00490F37 /* NDPersonalEhrCell.xib in Resources */,
 				32FD4CCC1BC81B560054D2EA /* um_comment@2x.png in Resources */,
+				32D2E9F61BE7691A00DC12C5 /* NDPersonalOrderVC.xib in Resources */,
 				32FD4CE11BC81B560054D2EA /* um_notice_f@2x.png in Resources */,
 				329344D01BD7F96A0029CF0D /* NDPersonalReferDetail.xib in Resources */,
 				32FD4CE71BC81B560054D2EA /* um_qzone_logo@2x.png in Resources */,
@@ -3259,6 +3294,7 @@
 				32FD4D3E1BC81B560054D2EA /* UMComTopicFeedViewController.m in Sources */,
 				32FD4D431BC81B560054D2EA /* UMComFeedContentView.m in Sources */,
 				32647D801BD36E630099D7A8 /* NDRoomDocDetail.m in Sources */,
+				32D2E9F51BE7691A00DC12C5 /* NDPersonalOrderVC.m in Sources */,
 				32FD4D391BC81B560054D2EA /* UMComFeedStyle.m in Sources */,
 				32FD4D0B1BC81B560054D2EA /* UMAssetsCollectionCell.m in Sources */,
 				32FD4D5D1BC81B560054D2EA /* UMComMessageSettingViewController.m in Sources */,
@@ -3282,6 +3318,7 @@
 				32FD4D161BC81B560054D2EA /* UMComiToast.m in Sources */,
 				32FD4D171BC81B560054D2EA /* UMComShowToast.m in Sources */,
 				32FD4D141BC81B560054D2EA /* UMComGridTableViewCell.m in Sources */,
+				32D2E9FA1BE7698D00DC12C5 /* NDPersonalOrderCell.m in Sources */,
 				329344C91BD7F41D0029CF0D /* NDPersonalReferFooterCell.m in Sources */,
 				32FD4D6E1BC81B560054D2EA /* UMComViewModel.m in Sources */,
 				32E229EF1BDF3C7F00AF12E7 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -3293,6 +3330,7 @@
 				32C48B0E1BCADAC8009CB1A3 /* NDRoomVC.m in Sources */,
 				329344DF1BD7FF200029CF0D /* NDPersonalAttentionDocCell.m in Sources */,
 				32FD4D331BC81B560054D2EA /* UMComLocationListController.m in Sources */,
+				32D2E9EE1BE753FA00DC12C5 /* NDRoomTempCellTableViewCell.m in Sources */,
 				32FD4D121BC81B560054D2EA /* UMImagePickerThumbnailView.m in Sources */,
 				32FD4D211BC81B560054D2EA /* UMComShareCollectionView.m in Sources */,
 				32FD4D181BC81B560054D2EA /* UMComEmojiKeyBoardView.m in Sources */,

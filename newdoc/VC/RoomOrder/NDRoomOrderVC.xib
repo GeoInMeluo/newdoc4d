@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="btnAttention" destination="1jf-BL-hIR" id="Kot-vw-N0j"/>
                 <outlet property="btnDocIntro" destination="ctc-Cm-wF7" id="uE5-Qr-nyF"/>
+                <outlet property="btnOrder" destination="jGI-9v-IGw" id="6zS-cd-bX7"/>
                 <outlet property="btnTimeArea1" destination="HcH-uv-X3Y" id="mIu-TM-a7c"/>
                 <outlet property="btnTimeArea3" destination="xTD-Mt-0vc" id="ECD-ZB-ec1"/>
                 <outlet property="btnUserComment" destination="3oK-Bm-6p9" id="70Q-s9-CEA"/>
@@ -51,12 +52,13 @@
                                 <action selector="btnDocDetailClick:" destination="-1" eventType="touchUpInside" id="wb2-vu-JuD"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOe-Ho-qZU">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOe-Ho-qZU">
                             <rect key="frame" x="8" y="9" width="56" height="56"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="8Iu-Qb-k5u"/>
                                 <constraint firstAttribute="width" constant="56" id="LZF-tb-xZX"/>
                             </constraints>
+                            <state key="normal" image="icon_placeHolder"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科室：皮肤科" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoh-86-5pJ">
                             <rect key="frame" x="72" y="38" width="84" height="17"/>
@@ -184,7 +186,7 @@
                         </button>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="GZi-9D-Veg">
                             <rect key="frame" x="34" y="0.0" width="252" height="75"/>
-                            <color key="backgroundColor" red="0.94509803920000002" green="0.92941176469999998" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431369999995" green="0.90588235289999997" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Prb-4q-S3y">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -197,7 +199,7 @@
                             </connections>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" red="0.94509803921568625" green="0.92941176470588238" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.90588235294117647" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="co5-qU-lfV" firstAttribute="leading" secondItem="GZi-9D-Veg" secondAttribute="trailing" constant="8" id="Bvw-Q1-U1I"/>
                         <constraint firstAttribute="trailing" secondItem="co5-qU-lfV" secondAttribute="trailing" id="LMe-J6-TlW"/>
@@ -216,14 +218,19 @@
                     <rect key="frame" x="0.0" y="227" width="320" height="301"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qXW-e4-ucV">
-                            <rect key="frame" x="8" y="8" width="304" height="170"/>
+                            <rect key="frame" x="8" y="8" width="304" height="128"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="170" id="lDY-Ro-8N5"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="lDY-Ro-8N5"/>
+                                </mask>
+                            </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bR4-6G-nit">
-                            <rect key="frame" x="8" y="209" width="304" height="36"/>
+                            <rect key="frame" x="8" y="167" width="304" height="36"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-uv-X3Y">
                                     <rect key="frame" x="39" y="8" width="107" height="20"/>
@@ -256,14 +263,17 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务流程：免费预约 &gt; 准时报到 &gt; 医生安排加号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-Ef-gE3">
-                            <rect key="frame" x="8" y="186" width="258" height="15"/>
+                            <rect key="frame" x="34" y="144" width="258" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGI-9v-IGw">
-                            <rect key="frame" x="93" y="253" width="134" height="30"/>
+                            <rect key="frame" x="93" y="211" width="134" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="tIQ-TW-SOT"/>
+                            </constraints>
                             <state key="normal" title="预约">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -274,14 +284,15 @@
                     </subviews>
                     <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="S6S-Ef-gE3" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="8" id="6Eh-Vn-bCK"/>
+                        <constraint firstAttribute="bottom" secondItem="jGI-9v-IGw" secondAttribute="bottom" constant="50" id="60e-YU-aaD"/>
+                        <constraint firstItem="S6S-Ef-gE3" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="34" id="6Eh-Vn-bCK"/>
                         <constraint firstAttribute="trailing" secondItem="bR4-6G-nit" secondAttribute="trailing" constant="8" id="8ll-if-Gs3"/>
                         <constraint firstItem="qXW-e4-ucV" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="8" id="EEm-Gl-bx8"/>
-                        <constraint firstItem="bR4-6G-nit" firstAttribute="top" secondItem="S6S-Ef-gE3" secondAttribute="bottom" constant="8" id="GD8-0d-anZ"/>
-                        <constraint firstItem="S6S-Ef-gE3" firstAttribute="top" secondItem="qXW-e4-ucV" secondAttribute="bottom" constant="8" id="R01-Yd-O7A"/>
-                        <constraint firstItem="jGI-9v-IGw" firstAttribute="top" secondItem="bR4-6G-nit" secondAttribute="bottom" constant="8" id="b43-TS-0MP"/>
+                        <constraint firstItem="jGI-9v-IGw" firstAttribute="top" secondItem="bR4-6G-nit" secondAttribute="bottom" constant="8" id="JV6-Kf-ugb"/>
+                        <constraint firstItem="bR4-6G-nit" firstAttribute="top" secondItem="S6S-Ef-gE3" secondAttribute="bottom" constant="8" id="LI0-7h-zHy"/>
                         <constraint firstItem="jGI-9v-IGw" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="93" id="cAe-Nb-RXt"/>
                         <constraint firstItem="bR4-6G-nit" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="8" id="cY7-1o-HEk"/>
+                        <constraint firstItem="S6S-Ef-gE3" firstAttribute="top" secondItem="qXW-e4-ucV" secondAttribute="bottom" constant="8" id="ghc-yD-awW"/>
                         <constraint firstAttribute="trailing" secondItem="jGI-9v-IGw" secondAttribute="trailing" constant="93" id="kec-5Q-eCX"/>
                         <constraint firstItem="qXW-e4-ucV" firstAttribute="top" secondItem="Z6s-kM-Bjb" secondAttribute="top" constant="8" id="w4m-Zu-JgO"/>
                         <constraint firstAttribute="trailing" secondItem="qXW-e4-ucV" secondAttribute="trailing" constant="8" id="xMZ-BQ-eHb"/>
@@ -307,5 +318,6 @@
     </objects>
     <resources>
         <image name="attention" width="27" height="14"/>
+        <image name="icon_placeHolder" width="145" height="145"/>
     </resources>
 </document>

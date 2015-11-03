@@ -21,6 +21,7 @@
                             <constraint firstAttribute="height" constant="42" id="COb-o6-9WR"/>
                             <constraint firstAttribute="width" constant="42" id="JLl-8q-lIl"/>
                         </constraints>
+                        <state key="normal" backgroundImage="icon_placeHolder"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猪小屁xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dy-UZ-jtm">
                         <rect key="frame" x="80" y="19" width="55" height="15"/>
@@ -85,4 +86,7 @@
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_placeHolder" width="145" height="145"/>
+    </resources>
 </document>

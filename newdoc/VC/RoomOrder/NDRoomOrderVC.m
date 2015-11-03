@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NDPreserveWindow *currentPreserveWindow;
 @property (nonatomic, assign) NSInteger currentWindowIndex;
 @property (nonatomic, strong) NSMutableArray *selectedOrderDates;
+@property (weak, nonatomic) IBOutlet UIButton *btnOrder;
 
 #pragma 头部控件
 @property (weak, nonatomic) IBOutlet UILabel *lblDocName;
@@ -56,6 +57,9 @@
 
 - (void)setupUI{
     self.title = @"预约挂号";
+    
+    self.btnOrder.layer.masksToBounds = YES;
+    self.btnOrder.layer.cornerRadius = 5;
     
     UIButton *button = [[UIButton alloc] init];
     [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
@@ -179,7 +183,7 @@
 //                btn.enabled = YES;
                 btn.backgroundColor = [UIColor whiteColor];
                 [btn setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateSelected];
-                [btn setBackgroundImage:[UIImage imageWithColor:[UIColor greenColor]] forState:UIControlStateSelected];
+//                [btn setBackgroundImage:[UIImage imageWithColor:[UIColor greenColor]] forState:UIControlStateSelected];
                 
                 if(btnTitleNumber == dateNumber){
                     btn.layer.borderColor = [UIColor orangeColor].CGColor;
@@ -216,10 +220,13 @@
                 
                 NSInteger diffNumber = [NSDate dayDiffCountFrom:[NSDate date] to:orderDate];
                 
-                if(btnTitleNumber == (diffNumber + dateNumber)){
+                if(btnTitleNumber == (diffNumber + dateNumber) && btnTitleNumber <= dateNumber + 13){
                     [btn addTarget:self action:@selector(btnDateGridClicked:) forControlEvents:UIControlEventTouchUpInside];
                     btn.enabled = YES;
-                    btn.backgroundColor = [UIColor redColor];
+                    btn.layer.borderWidth = 0;
+//                    btn.backgroundColor = [UIColor redColor];
+                    [btn setBackgroundImage:[UIImage imageNamed:@"btn_date_normal"] forState:UIControlStateNormal];
+                    [btn setBackgroundImage:[UIImage imageNamed:@"btn_date_selected"] forState:UIControlStateSelected];
                     btn.tag = tagNumber;
                     tagNumber ++;
                 }

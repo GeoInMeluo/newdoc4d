@@ -74,12 +74,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-z1-4i2">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZu-z1-4i2">
                     <rect key="frame" x="40" y="10" width="74" height="90"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="SS6-aO-aqK"/>
                         <constraint firstAttribute="width" constant="74" id="jDg-58-Zc0"/>
                     </constraints>
+                    <state key="normal" image="icon_placeHolder"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhD-Y0-cAg">
                     <rect key="frame" x="122" y="10" width="54" height="22"/>
@@ -151,4 +152,7 @@
             <point key="canvasLocation" x="275.5" y="859"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_placeHolder" width="145" height="145"/>
+    </resources>
 </document>

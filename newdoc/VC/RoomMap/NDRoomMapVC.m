@@ -42,6 +42,8 @@
 @property (nonatomic, weak) UIButton *btnNavRight;
 
 
+
+
 @end
 
 @implementation NDRoomMapVC

@@ -13,8 +13,11 @@
 #import "NDRoomCell.h"
 #import "NDRoomMapVC.h"
 #import "NDQAOnlineVC.h"
+#import "NDRoomTempCellTableViewCell.h"
 
 @interface NDRoomVC ()
+@property (strong, nonatomic) IBOutlet UITableViewCell *tempCell1;
+@property (strong, nonatomic) IBOutlet UITableViewCell *tempCell2;
 
 @end
 
@@ -34,34 +37,62 @@
     return 5;
 }
 
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//    static NSString *cellId = @"NDRoomCell";
+//    
+//    NDRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+//
+//    if(cell == nil){
+//        cell = [[NDRoomCell alloc] init];
+//    }
+//    
+//    return cell;
+//}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellId = @"NDRoomCell";
+    static NSString *cellId = @"NDRoomTempCellTableViewCell";
     
-    NDRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    NDRoomTempCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
-        cell = [[NDRoomCell alloc] init];
+        cell = [NDRoomTempCellTableViewCell new];
+    }
+    
+    if(indexPath.row == 0){
+        cell.image.image = [UIImage imageNamed:@"temp_home_1"];
+    }else{
+         cell.image.image = [UIImage imageNamed:@"temp_home_2"];
     }
     
     return cell;
     
 }
 
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 295;
+//    return 295;
+    
+    if(indexPath.row == 0){
+        return 200;
+    }else{
+        return 100;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShowVC(NDRoomMapVC);
+//    todo();
+//    ShowVC(NDRoomMapVC);
 }
 
 - (IBAction)btnHeader1Click:(id)sender {
-    todo();
+//    todo();
 }
 
 - (IBAction)btnHeader2Click:(id)sender {
-    ShowVC(NDQAOnlineVC);
+//    ShowVC(NDQAOnlineVC);
 }
 
 - (IBAction)btnHeader3Click:(id)sender {
