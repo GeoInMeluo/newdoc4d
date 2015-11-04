@@ -55,4 +55,7 @@
 
 //用户预约挂号
 - (void)startOrderWithSlot:(NDSlot *)slot success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure;
+
+//主动注册
+- (void)startRegistWithUsername:(NSString *)username andPassWord:(NSString *)pwd andVerifyCode:(NSString *)verifyCode  success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure;
 @end

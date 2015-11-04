@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NDPreserveWindow *preserveWindow;
 @property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnBond;
 
 @end

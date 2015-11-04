@@ -29,6 +29,8 @@
     if([self rightView]){
         self.navigationController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightView]];
     }
+    
+    self.view.height -= 44;
 }
 
 - (UIButton *)rightView{

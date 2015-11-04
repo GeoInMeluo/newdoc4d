@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *dateView;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnTimeArea1;
-@property (weak, nonatomic) IBOutlet UIButton *btnTimeArea2;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnTimeArea3;
 @property (weak, nonatomic) IBOutlet UILabel *lblCountMoment;
 @property (nonatomic, assign) NSInteger currentDate;
@@ -88,7 +88,6 @@
     self.roomCollectionView.pagingEnabled = YES;
     
     [self changeBtnStyle:self.btnTimeArea1];
-    [self changeBtnStyle:self.btnTimeArea2];
     [self changeBtnStyle:self.btnTimeArea3];
 }
 
@@ -246,7 +245,7 @@
     
     NDSlot *selectSlot = self.currentPreserveWindow.slots[btn.tag - 100];
     
-    FLog(@"%@",selectSlot);
+    FLog(@"%@",selectSlot.ID);
     
     if(btn.selected){
 //        btn.layer.borderColor = [UIColor whiteColor].CGColor;

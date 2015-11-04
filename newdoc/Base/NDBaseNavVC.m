@@ -80,7 +80,7 @@
     
     
     if (self.viewControllers.count > 0) {
-        viewController.hidesBottomBarWhenPushed = YES;
+//        viewController.hidesBottomBarWhenPushed = YES;
         
 //        viewController.navigationItem.leftBarButtonItem = [self itemWithImageName:@"back" highImageName:@"back" target:self action:@selector(back)];
 //        viewController.navigationItem.rightBarButtonItem = [self itemWithImageName:@"back" highImageName:@"back" target:self action:@selector(more)];

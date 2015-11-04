@@ -311,4 +311,27 @@
     
 }
 
+//主动注册
+- (void)startRegistWithUsername:(NSString *)username andPassWord:(NSString *)pwd andVerifyCode:(NSString *)verifyCode andPhoneNumber:(NSString *)phoneNumber  success:(void(^)())success failure:(void(^)(NSDictionary *result,NSError *error))failure{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    [param setObject:SafeString(username) forKey:@"newdocid"];
+    [param setObject:SafeString(pwd) forKey:@"passwdMd5"];
+    [param setObject:SafeString(phoneNumber) forKey:@"mobile"];
+    [param setObject:SafeString(verifyCode) forKey:@"smstoken"];
+    
+    [[NDNetManager sharedNetManager] post:@"/Common/1/reg" parameters:param success:^(NSDictionary *result) {
+        
+        FLog(@"%@", result);
+        
+        success();
+        
+        
+        
+    } failure:^(NSDictionary *result, NSString *errorMessage, NSError *error) {
+        failure(result, error);
+    }];
+
+}
+
 @end

@@ -35,6 +35,8 @@
     
     self.tableView.tableHeaderView = self.defaultHeader;
     self.tableView.tableFooterView = self.defaultFooter;
+    
+    self.tableView.height -= 44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -13,7 +13,8 @@
 - (void)setPreserveWindow:(NDPreserveWindow *)preserveWindow{
     _preserveWindow = preserveWindow;
 
-    self.lblRoomName.text = [NSString stringWithFormat:@"%@(%@)",preserveWindow.room_address,preserveWindow.room_name];
+    self.lblRoomName.text = [NSString stringWithFormat:@"%@",preserveWindow.room_name];
+    self.lblLocation.text = preserveWindow.room_address;
     self.btnBond.selected = preserveWindow.isBound;
     
 }
