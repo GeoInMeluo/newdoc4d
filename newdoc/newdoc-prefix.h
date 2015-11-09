@@ -37,6 +37,7 @@
 #import "NSString+Base64.h"
 #import "MBProgressHUD+MJ.h"
 #import "NSObject+Util.h"
+#import "NSObject+Json.h"
 #endif
 
 

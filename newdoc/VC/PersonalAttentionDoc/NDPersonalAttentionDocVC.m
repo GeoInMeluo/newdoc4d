@@ -18,7 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    WEAK_SELF;
+    
+    [self startGetAttetionDocsWithAndSuccess:^(NSArray *doc) {
+        [weakself.tableView reloadData];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

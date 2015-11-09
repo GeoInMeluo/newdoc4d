@@ -85,6 +85,8 @@
             [NSKeyedArchiver archiveRootObject:user toFile:filePath];
             
             [weakself.navigationController popViewControllerAnimated:YES];
+            
+//            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
 //            for (UIViewController *controller in self.navigationController.viewControllers) {
 //                if ([controller isKindOfClass:[NDPersonalCenterHomeVC class]]) {
 //                    
@@ -111,7 +113,7 @@
     SendAuthReq* req =[[SendAuthReq alloc ] init ];
     
     if([NDCoreSession coreSession].openId.length){
-        req.scope = @"snsapi_basee" ;
+        req.scope = @"snsapi_base" ;
     }else{
         req.scope = @"snsapi_userinfo" ;
     }

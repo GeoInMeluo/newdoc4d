@@ -11,6 +11,11 @@
 @interface NDPersonalApproveVC ()
 @property (strong, nonatomic) IBOutlet FormCell *cellName;
 @property (strong, nonatomic) IBOutlet FormCell *cellId;
+@property (strong, nonatomic) IBOutlet FormCell *cellCitizenNumber;
+
+@property (weak, nonatomic) IBOutlet UITextField *tfName;
+@property (weak, nonatomic) IBOutlet UITextField *tfIdCard;
+@property (weak, nonatomic) IBOutlet UITextField *tfCitizenNumber;
 
 
 @end
@@ -21,12 +26,44 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
     [self setupUI];
 }
 
 - (void)setupUI{
-    [self appendSection:@[self.cellName,self.cellId] withHeader:nil];
+    
+    WEAK_SELF;
+    
+//    [self startGetRealNameAuthenticationWithNameAndSuccess:^(NDRealNameAuth *realNameAuth) {
+//        weakself.tfName.text = realNameAuth.real_name;
+//        weakself.tfIdCard.text = realNameAuth.insuranceid;
+//        weakself.tfCitizenNumber.text = realNameAuth.citizenid;
+//        
 
+//    } failure:^(NSString *error_message) {
+//        
+//    }];
+//    
+    
+    [self appendSection:@[self.cellName,self.cellId,self.cellCitizenNumber] withHeader:nil];
+    
+    UIButton *button = [[UIButton alloc] init];
+    [button setTitle:@"保存" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [button sizeToFit];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+
+}
+
+- (void)rightBtnClicked:(UIButton *)btn{
+    WEAK_SELF;
+    
+    [self startRealNameAuthenticationWithName:self.tfName.text andIdCard:self.tfIdCard.text andCitizenNumber:self.tfCitizenNumber.text success:^(NSObject *resultDic) {
+        weakself.vcCallback(self.tfName.text,self.tfIdCard.text);
+        [weakself.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

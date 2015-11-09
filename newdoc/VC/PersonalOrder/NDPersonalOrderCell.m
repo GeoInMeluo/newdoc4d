@@ -17,6 +17,17 @@
     return self;
 }
 
+- (void)setOrder:(NDOrder *)order{
+    _order = order;
+    
+    _lblIndex.text = order.ID;
+//    _lblLocation.text = order;
+    _lblDoc.text = order.doctor_name;
+    _lblOrderTime.text = [NSString stringWithFormat:@"预约时间：%@",order.actual_date];
+    _lblSubRoom.text = order.catalog_name;
+    _lblRoomName.text = [NSString stringWithFormat:@"医院：%@",order.room_name];
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }

@@ -43,7 +43,7 @@
     
 //    NSDictionary *param = @{};
 //
-//    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
+
     
     
 //    [[NCNetManager sharedNetManager] GET:@"/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -71,6 +71,15 @@
     self.window.rootViewController = tabVC;
     
     [self.window makeKeyAndVisible];
+    
+//    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+//    
+//    for(int i= 0; i < cookies.count ; i++){
+//        NSHTTPCookie *cookie = cookies[i];
+//        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+//    }
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"openid"];
     
     
     return YES;

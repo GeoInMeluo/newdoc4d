@@ -7,7 +7,7 @@
 //
 
 #import "NDBaseTableVC.h"
-
+typedef void(^vcCallback)(NSString* name, NSString *idCardNumber);
 @interface NDPersonalApproveVC : NDBaseTableVC
-
+@property (nonatomic, copy) vcCallback vcCallback;
 @end

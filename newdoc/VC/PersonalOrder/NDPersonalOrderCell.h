@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface NDPersonalOrderCell : UITableViewCell
+@property (nonatomic, strong) NDOrder *order;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblIndex;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+@property (weak, nonatomic) IBOutlet UILabel *lblSubRoom;
+@property (weak, nonatomic) IBOutlet UILabel *lblDoc;
+@property (weak, nonatomic) IBOutlet UILabel *lblOrderTime;
 
 @end

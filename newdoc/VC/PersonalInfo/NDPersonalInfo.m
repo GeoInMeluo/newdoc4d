@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblSex;
 
+@property (nonatomic, strong) NDUser *tempUser;
 
 @end
 
@@ -42,13 +43,30 @@
 - (void)setupUI{
     
     NDUser *user = [NDCoreSession coreSession].user;
+    self.tempUser = user;
     
-    UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user.picture_url]]];
-    tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self.btnHeadImage setImage:tempImage forState:UIControlStateNormal];
+    
+    WEAK_SELF;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
+        
+        tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.btnHeadImage  setImage:tempImage forState:UIControlStateNormal];
+        });
+        
+    });
+    
+    
+//    UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user.picture_url]]];
+//    tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    [self.btnHeadImage setImage:tempImage forState:UIControlStateNormal];
     
     self.lblName.text = user.name;
-    self.lblSex.text = user.sex;
+    self.lblSex.text = [user.sex isEqualToString:@"0"] ? @"男":@"女" ;
     
     [self initWithCells];
 }
@@ -60,16 +78,27 @@
     
     self.cellAcount.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         CreateVC(NDPersonalChangeAccountVC);
+        vc.nameCallBack = ^(NSString *name){
+            weakself.lblName.text = name;
+            weakself.tempUser.name = name;
+        };
         PushVCWeak(vc);
     };
     
     self.cellGender.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         CreateVC(NDPersonalChangeGender);
+        vc.genderCallBack = ^(NSString *gender){
+            weakself.lblSex.text = gender;
+            weakself.tempUser.sex = [gender isEqualToString:@"男"] ? @"0" : @"1";
+        };
         PushVCWeak(vc);
     };
 
     self.cellApprove.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         CreateVC(NDPersonalApproveVC);
+        vc.vcCallback = ^(NSString* name, NSString *idCardNumber){
+
+        };
         PushVCWeak(vc);
     };
     

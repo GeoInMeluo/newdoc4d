@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDPersonalChangeAccountVC">
             <connections>
+                <outlet property="tf" destination="zQj-wr-7TQ" id="FDg-4e-bbk"/>
                 <outlet property="tfAccount" destination="bne-Se-C0A" id="CUD-eK-fmN"/>
                 <outlet property="view" destination="kvW-cs-ZWP" id="EIc-cU-Ysu"/>
             </connections>

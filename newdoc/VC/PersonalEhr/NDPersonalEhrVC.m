@@ -11,8 +11,9 @@
 #import "NDPersonalEhrFooter.h"
 
 @interface NDPersonalEhrVC ()<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic, strong) NSMutableArray *sections;
+@property (nonatomic, strong) NSMutableArray *sectionIds;
 @property (nonatomic, assign) NSInteger lastSelectedIndex;
+@property (nonatomic, strong) NSArray *ehrs;
 @end
 
 @implementation NDPersonalEhrVC
@@ -20,13 +21,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.sections = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+    [self startGet];
+    
+    
+}
 
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+- (void)startGet{
+    WEAK_SELF;
+    
+    [self startGetEhrsWithAndSuccess:^(NSArray *ehrs) {
+        weakself.ehrs = ehrs;
+        
+//        self.sectionIds = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+        
+        self.sectionIds = [NSMutableArray array];
+        
+        for (int i = 0; i< ehrs.count; i++) {
+            [self.sectionIds addObject:@"0"];
+        }
+        
+        weakself.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        [weakself.tableView reloadData];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.sections.count;
+    return self.ehrs.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -45,7 +68,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if([self.sections[indexPath.section] isEqualToString: @"1"]){
+    if([self.sectionIds[indexPath.section] isEqualToString: @"1"]){
 //        CABasicAnimation *anim = [[CABasicAnimation alloc] init];
 //        anim.keyPath = @"transform.rotation";
 //        anim.toValue = [NSNumber numberWithDouble:(M_PI * 0.5)];
@@ -63,8 +86,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.sections = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
-    self.sections[indexPath.section] = @"1";
+//    self.sectionIds = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+    self.sectionIds = [NSMutableArray array];
+    
+    for (int i = 0; i< self.ehrs.count; i++) {
+        [self.sectionIds addObject:@"0"];
+    }
+    
+    self.sectionIds[indexPath.section] = @"1";
     self.lastSelectedIndex = indexPath.section;
 //
 //    NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
@@ -79,7 +108,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     
-    if([self.sections[section] isEqualToString:@"1"]){
+    if([self.sectionIds[section] isEqualToString:@"1"]){
         NDPersonalEhrFooter *view = [NDPersonalEhrFooter new];
 //        view.width = [UIScreen mainScreen].bounds.size.width;
 //        [view setPreservesSuperviewLayoutMargins:YES];
@@ -90,7 +119,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if([self.sections[section] isEqualToString:@"1"]){
+    if([self.sectionIds[section] isEqualToString:@"1"]){
         return [self tableView:tableView viewForFooterInSection:section].height;
     }
     return 0;

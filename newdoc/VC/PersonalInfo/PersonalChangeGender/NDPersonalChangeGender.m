@@ -31,7 +31,13 @@
 }
 
 - (void)rightBtnClicked:(UIButton *)btn{
+    if(self.maleRight.hidden){
+        self.genderCallBack(@"女");
+    }else{
+        self.genderCallBack(@"男");
+    }
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)initWithCells{

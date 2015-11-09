@@ -421,29 +421,29 @@
     }];
 }
 
-//编辑用户信息
+//编辑用户信息（先不写）
 - (void)startEditUserInfo:(NDUser *)user success:(void(^)(NDUser *user))success failure:(void(^)(NSString *error_message))failure{
-    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+////    [param setValue:user.name forKey:@""];
 //    [param setValue:user.name forKey:@""];
-    [param setValue:user.name forKey:@""];
-    
-    
-    [[NDNetManager sharedNetManager] post:@"/app/1/Clients" parameters:param success:^(NSDictionary *result) {
-        
-        FLog(@"%@", result);
-        
-        if([[result allKeys] containsObject:@"data"]){
-            NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
-            
-            FLog(@"%@", user);
-            FLog(@"%@", result[@"data"]);
-            
-            success(user);
-        }
-        
-    } failure:^(NSString *error_message) {
-        failure(error_message);
-    }];
+//    
+//    
+//    [[NDNetManager sharedNetManager] post:@"/app/1/Clients" parameters:param success:^(NSDictionary *result) {
+//        
+//        FLog(@"%@", result);
+//        
+//        if([[result allKeys] containsObject:@"data"]){
+//            NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
+//            
+//            FLog(@"%@", user);
+//            FLog(@"%@", result[@"data"]);
+//            
+//            success(user);
+//        }
+//        
+//    } failure:^(NSString *error_message) {
+//        failure(error_message);
+//    }];
 
 }
 
@@ -484,6 +484,181 @@
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/wxlogin" parameters:param success:^(NSDictionary *result) {
         success(result);
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//实名认证
+- (void)startRealNameAuthenticationWithName:(NSString *)name andIdCard:(NSString *)idCard andCitizenNumber:(NSString *)citizenNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure{
+    
+    NSDictionary *item = @{@"real_name":SafeString(name),
+                            @"citizenid":SafeString(idCard),
+                            @"insuranceid":SafeString(citizenNumber)};
+    
+    NSArray *items = @[item];
+    
+    FLog(@"%@", items);
+    
+    if(items == nil){
+        return;
+    }
+    
+    NSString *jsonStr = [items jsonString];
+    
+    FLog(@"%@", jsonStr);
+    
+    NSDictionary *param = @{ @"action":@"realname",
+                             @"items":jsonStr};
+    
+    [[NDNetManager sharedNetManager] post:@"/app/1/Clients" parameters:param success:^(NSDictionary *result) {
+        success(result);
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//得到实名认证信息
+//- (void)startGetRealNameAuthenticationWithNameAndSuccess:(void(^)(NDRealNameAuth *realNameAuth))success failure:(void(^)(NSString *error_message))failure{
+//    NSDictionary *param = [NSDictionary dictionary];
+//    
+//    [[NDNetManager sharedNetManager] get:@"/Common/1/wxlogin" parameters:param success:^(NSDictionary *result) {
+//        if([[result allKeys] containsObject:@"data"]){
+//            NDRealNameAuth *auth = [NDRealNameAuth objectWithKeyValues:result[@"data"]];
+//            
+//            success(auth);
+//        }
+//    } failure:^(NSString *error_message) {
+//        failure(error_message);
+//    }];
+//}
+
+//得到用户关注的医生
+- (void)startGetAttetionDocsWithAndSuccess:(void(^)(NSArray *doc))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"pageNum":@"0",
+                             @"pageCnt":@"10"};
+    
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Focus?action=index" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+#pragma 返回数据少参数
+/*
+ data =     {
+ cnt = 1;
+ hasNext = 0;
+ pageCnt = 10;
+ pageNum = 0;
+ subs =         (
+ {
+ id = 1;
+ name = "jone smith";
+ "picture_url" = "";
+ }
+ );
+ };
+ */
+        }
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//得到咨询列表
+- (void)startGetRefersWithAndSuccess:(void(^)(NSArray *refers))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"pageNum":@"0",
+                             @"pageCnt":@"10"};
+    
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Consults?action=index" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+#pragma 返回数据少参数
+            /*
+             
+             */
+        }
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+// 得到用户的预约
+- (void)startGetOrdersWithAndSuccess:(void(^)(NSArray *orders))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"pageNum":@"0",
+                             @"pageCnt":@"10"};
+    
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Appointments" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        NSMutableArray *orders = [NSMutableArray array];
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                for(id obj in result[@"data"][@"subs"]){
+                    NDOrder *order = [NDOrder objectWithKeyValues:obj];
+                    [orders addObject:order];
+                }
+                
+                success(orders);
+            }
+        }
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+};
+
+//得到用户的病历列表
+- (void)startGetEhrsWithAndSuccess:(void(^)(NSArray *ehrs))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"pageNum":@"0",
+                             @"pageCnt":@"10"};
+    
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Medhistorys?action=index" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        NSMutableArray *ehrs = [NSMutableArray array];
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                for(id obj in result[@"data"][@"subs"]){
+                    NDEhr *ehr = [NDEhr objectWithKeyValues:obj];
+                    [ehrs addObject:ehr];
+                }
+                
+                success(ehrs);
+            }
+        }
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+
+}
+
+
+//得到用户的绑定的诊室
+- (void)startGetBindRoomsWithAndSuccess:(void(^)(NSArray *roomNames))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"pageNum":@"0",
+                             @"pageCnt":@"10"};
+    
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Binding?action=index" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                NSArray *roomNames = result[@"data"][@"subs"];
+                success(roomNames);
+            }
+        }
+        
     } failure:^(NSString *error_message) {
         failure(error_message);
     }];

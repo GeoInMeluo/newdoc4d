@@ -10,6 +10,7 @@
 
 @interface NDPersonalChangeAccountVC ()
 @property (strong, nonatomic) IBOutlet FormCell *tfAccount;
+@property (weak, nonatomic) IBOutlet UITextField *tf;
 
 @end
 
@@ -33,7 +34,17 @@
 }
 
 - (void)rightBtnClicked:(UIButton *)btn{
-    todo();
+    
+    NDUser *user = [NDCoreSession coreSession].user;
+    
+    user.name = self.tf.text;
+    
+//    [self startEditUserInfo:user success:^(NDUser *user) {
+//        self.nameCallBack(self.tf.text);
+//        [self.navigationController popViewControllerAnimated:YES];
+//    } failure:^(NSString *error_message) {
+//        
+//    }];
 }
 
 - (void)initWithCells{

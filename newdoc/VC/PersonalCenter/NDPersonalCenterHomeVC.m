@@ -57,10 +57,22 @@
     if([NDCoreSession coreSession].openId.length != 0){
         self.vAccountAndPhone.hidden = NO;
         
-        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
-        tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        WEAK_SELF;
         
-        [self.headImg setImage:tempImage forState:UIControlStateNormal];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
+            
+            tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakself.headImg setImage:tempImage forState:UIControlStateNormal];
+            });
+            
+        });
+        
+        
+        
         
         self.lblAccount.text = [NDCoreSession coreSession].user.name;
         self.lblPhoneNumber.text = [NDCoreSession coreSession].user.mobile;

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NDPersonalBindingRoomCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
 
 @end

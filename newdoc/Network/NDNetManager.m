@@ -33,6 +33,7 @@
         [MBProgressHUD hideHUD];
         
         FLog(@"%@", responseObject);
+        FLog(@"%@", operation.responseSerializer);
         
         NSDictionary *result = responseObject;
         
@@ -59,11 +60,39 @@
                     [MBProgressHUD showError:@"列表为空"];
                     failure(@"列表为空");
                 }else if([result[@"retcode"] isEqualToString:@"8"]){
-                    [MBProgressHUD showError:@"登陆失败"];
-                    failure(@"登陆失败");
+//                    [MBProgressHUD showError:@"登陆失败"];
+//                    failure(@"登陆失败");
+                    
+                    //构造SendAuthReq结构体
+                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+                    
+//                    if([NDCoreSession coreSession].openId.length){
+                    req.scope = @"snsapi_base";
+                    
+//                    }else{
+//                        req.scope = @"snsapi_userinfo" ;
+//                    }
+                    
+                    req.state = @"123" ;
+                    //第三方向微信终端发送一个SendAuthReq消息结构
+                    [WXApi sendReq:req];
+                    
                 }else if([result[@"retcode"] isEqualToString:@"9"]){
-                    [MBProgressHUD showError:@"用户未注册"];
-                    failure(@"用户未注册");
+//                    [MBProgressHUD showError:@"用户未注册"];
+//                    failure(@"用户未注册");
+                    
+                    //构造SendAuthReq结构体
+                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+                    
+//                    if([NDCoreSession coreSession].openId.length){
+//                        req.scope = @"snsapi_base" ;
+//                    }else{
+                    req.scope = @"snsapi_userinfo" ;
+//                    }
+                    
+                    req.state = @"123" ;
+                    //第三方向微信终端发送一个SendAuthReq消息结构
+                    [WXApi sendReq:req];
                 }
                 else if([result[@"retcode"] isEqualToString:@"10"]){
                     [MBProgressHUD showError:@"用户权限不够"];
@@ -112,16 +141,34 @@
                     [MBProgressHUD showError:@"列表为空"];
                     failure(@"列表为空");
                 }else if([result[@"retcode"] isEqualToString:@"8"]){
-                    [MBProgressHUD showError:@"登陆失败"];
-                    failure(@"登陆失败");
+//                    [MBProgressHUD showError:@"登陆失败"];
+//                    failure(@"登陆失败");
+//                    
+                    //构造SendAuthReq结构体
+                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
                     
-                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
+                    req.scope = @"snsapi_base" ;
+                    
+                    req.state = @"123" ;
+                    //第三方向微信终端发送一个SendAuthReq消息结构
+                    [WXApi sendReq:req];
+                    
+//                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
                 }else if([result[@"retcode"] isEqualToString:@"9"]){
                     
-                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
+//                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
                     
-                    [MBProgressHUD showError:@"用户未注册"];
-                    failure(@"用户未注册");
+//                    [MBProgressHUD showError:@"用户未注册"];
+//                    failure(@"用户未注册");
+                    
+                    //构造SendAuthReq结构体
+                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+
+                    req.scope = @"snsapi_userinfo";
+                    
+                    req.state = @"123" ;
+                    //第三方向微信终端发送一个SendAuthReq消息结构
+                    [WXApi sendReq:req];
                 }
                 else if([result[@"retcode"] isEqualToString:@"10"]){
                     [MBProgressHUD showError:@"用户权限不够"];
@@ -144,4 +191,57 @@
     
     return operation;
 }
+
+///*********实现和微信终端交互的具体请求与回应***********/
+//-(void) onReq:(BaseReq*)req{
+//    
+//}
+
+////授权后回调 WXApiDelegate
+//-(void)onResp:(BaseReq *)resp
+//{
+//    WEAK_SELF;
+//    
+//    /*
+//     ErrCode ERR_OK = 0(用户同意)
+//     ERR_AUTH_DENIED = -4（用户拒绝授权）
+//     ERR_USER_CANCEL = -2（用户取消）
+//     code    用户换取access_token的code，仅在ErrCode为0时有效
+//     state   第三方程序发送时用来标识其请求的唯一性的标志，由第三方程序调用sendReq时传入，由微信终端回传，state字符串长度不能超过1K
+//     lang    微信客户端当前语言
+//     country 微信用户当前国家信息
+//     */
+//    SendAuthResp *aresp = (SendAuthResp *)resp;
+//    if (aresp.errCode== 0) {
+//        NSString *code = aresp.code;
+//        
+//        [self startRegistWithWXCode:code success:^(NSObject *resultDic) {
+//            
+//            __block NSDictionary * result = (NSDictionary *)resultDic;
+//            
+//            [weakself startGetUserInfoAndSuccess:^(NDUser *user) {
+//                if(user != nil){
+//                    [[NSUserDefaults standardUserDefaults] setObject:result[@"openid"] forKey:@"openid"];
+//                    [[NSUserDefaults standardUserDefaults] synchronize];
+//                    [NDCoreSession coreSession].openId = result[@"openid"];
+//                    [NDCoreSession coreSession].user = user;
+//                    
+//                    
+//                    NSString *tempPath =  NSTemporaryDirectory();
+//                    
+//                    NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
+//                    
+//                    [NSKeyedArchiver archiveRootObject:user toFile:filePath];
+//                    
+//                }
+//            } failure:^(NSString *error_message) {
+//                
+//            }];
+//            
+//        } failure:^(NSString *error_message) {
+//            
+//        }];
+//    }
+//}
+///********************/
 @end

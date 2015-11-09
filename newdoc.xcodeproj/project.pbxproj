@@ -21,6 +21,9 @@
 		3247363E1BD7C4680032C73C /* NDPersonalEhrFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3247363C1BD7C4680032C73C /* NDPersonalEhrFooter.xib */; };
 		324736431BD7E4E80032C73C /* NDPersonalBindingRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324736411BD7E4E80032C73C /* NDPersonalBindingRoomVC.m */; };
 		324736441BD7E4E80032C73C /* NDPersonalBindingRoomVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324736421BD7E4E80032C73C /* NDPersonalBindingRoomVC.xib */; };
+		325970AB1BF09D8B006B1FD8 /* NDRealNameAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 325970AA1BF09D8B006B1FD8 /* NDRealNameAuth.m */; };
+		325970AE1BF153EC006B1FD8 /* NDOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 325970AD1BF153EC006B1FD8 /* NDOrder.m */; };
+		325970B11BF15A5B006B1FD8 /* NDEhr.m in Sources */ = {isa = PBXBuildFile; fileRef = 325970B01BF15A5B006B1FD8 /* NDEhr.m */; };
 		3261974F1BCBFB4A00351022 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 326197341BCBFB4A00351022 /* TencentOpenAPI.framework */; };
 		326197501BCBFB4A00351022 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 326197351BCBFB4A00351022 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		326197511BCBFB4A00351022 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 326197371BCBFB4A00351022 /* libWeiboSDK.a */; };
@@ -543,6 +546,12 @@
 		324736401BD7E4E80032C73C /* NDPersonalBindingRoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalBindingRoomVC.h; sourceTree = "<group>"; };
 		324736411BD7E4E80032C73C /* NDPersonalBindingRoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalBindingRoomVC.m; sourceTree = "<group>"; };
 		324736421BD7E4E80032C73C /* NDPersonalBindingRoomVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalBindingRoomVC.xib; sourceTree = "<group>"; };
+		325970A91BF09D8B006B1FD8 /* NDRealNameAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRealNameAuth.h; sourceTree = "<group>"; };
+		325970AA1BF09D8B006B1FD8 /* NDRealNameAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRealNameAuth.m; sourceTree = "<group>"; };
+		325970AC1BF153EC006B1FD8 /* NDOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDOrder.h; sourceTree = "<group>"; };
+		325970AD1BF153EC006B1FD8 /* NDOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDOrder.m; sourceTree = "<group>"; };
+		325970AF1BF15A5B006B1FD8 /* NDEhr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDEhr.h; sourceTree = "<group>"; };
+		325970B01BF15A5B006B1FD8 /* NDEhr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDEhr.m; sourceTree = "<group>"; };
 		326197341BCBFB4A00351022 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		326197351BCBFB4A00351022 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		326197371BCBFB4A00351022 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -1833,6 +1842,12 @@
 				32368FB91BE376DE00018176 /* NDDoctorMorePreserveWindow.m */,
 				32D2E9FC1BE9C56100DC12C5 /* NDUser.h */,
 				32D2E9FD1BE9C56100DC12C5 /* NDUser.m */,
+				325970A91BF09D8B006B1FD8 /* NDRealNameAuth.h */,
+				325970AA1BF09D8B006B1FD8 /* NDRealNameAuth.m */,
+				325970AC1BF153EC006B1FD8 /* NDOrder.h */,
+				325970AD1BF153EC006B1FD8 /* NDOrder.m */,
+				325970AF1BF15A5B006B1FD8 /* NDEhr.h */,
+				325970B01BF15A5B006B1FD8 /* NDEhr.m */,
 			);
 			path = Bean;
 			sourceTree = "<group>";
@@ -3466,9 +3481,11 @@
 				32E229F91BDF3C7F00AF12E7 /* UIScrollView+MJRefresh.m in Sources */,
 				32E229FA1BDF3C7F00AF12E7 /* UIView+MJExtension.m in Sources */,
 				32FD4D981BC81DF20054D2EA /* AFHTTPRequestOperation.m in Sources */,
+				325970AB1BF09D8B006B1FD8 /* NDRealNameAuth.m in Sources */,
 				32F1C6451BE0D782001DCE34 /* NDSubroom.m in Sources */,
 				32F0D4331BD54D3300229828 /* NDPersonalChangeGender.m in Sources */,
 				32F331CD1BCF0429004D772B /* NDRoomCell.m in Sources */,
+				325970AE1BF153EC006B1FD8 /* NDOrder.m in Sources */,
 				32FD4D1B1BC81B560054D2EA /* UMComModel.xcdatamodeld in Sources */,
 				32FD4D3C1BC81B560054D2EA /* UMComHomeFeedViewController.m in Sources */,
 				32FD4D6B1BC81B560054D2EA /* UMComUserTableViewCell.m in Sources */,
@@ -3542,6 +3559,7 @@
 				32F4CE8C1BEB47FD0098958F /* CommonFunc.m in Sources */,
 				32FD4D5D1BC81B560054D2EA /* UMComMessageSettingViewController.m in Sources */,
 				32FD4D261BC81B560054D2EA /* UMComWebViewController.m in Sources */,
+				325970B11BF15A5B006B1FD8 /* NDEhr.m in Sources */,
 				32F4CE8E1BEB47FD0098958F /* Encryption.m in Sources */,
 				32E229E01BDF3C7F00AF12E7 /* MJConst.m in Sources */,
 				32FD4D191BC81B560054D2EA /* UMComEmojiPageView.m in Sources */,

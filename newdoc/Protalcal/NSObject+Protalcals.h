@@ -16,6 +16,9 @@
 #import "NDDoctorMorePreserveWindow.h"
 #import "NDSlot.h"
 #import "NDUser.h"
+#import "NDRealNameAuth.h"
+#import "NDOrder.h"
+#import "NDEhr.h"
 
 @interface NSObject (Protalcals)
 //获取验证码
@@ -80,4 +83,25 @@
 
 //微信注册接口
 - (void)startRegistWithWXCode:(NSString *)code success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure;
+
+//实名认证
+- (void)startRealNameAuthenticationWithName:(NSString *)name andIdCard:(NSString *)idCard andCitizenNumber:(NSString *)citizenNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure;
+
+//得到实名认证信息
+//- (void)startGetRealNameAuthenticationWithNameAndSuccess:(void(^)(NDRealNameAuth *realNameAuth))success failure:(void(^)(NSString *error_message))failure;
+
+//得到用户关注的医生
+- (void)startGetAttetionDocsWithAndSuccess:(void(^)(NSArray *doc))success failure:(void(^)(NSString *error_message))failure;
+
+//得到咨询列表
+- (void)startGetRefersWithAndSuccess:(void(^)(NSArray *refers))success failure:(void(^)(NSString *error_message))failure;
+
+// 得到用户的预约
+- (void)startGetOrdersWithAndSuccess:(void(^)(NSArray *orders))success failure:(void(^)(NSString *error_message))failure;
+
+//得到用户的病历列表
+- (void)startGetEhrsWithAndSuccess:(void(^)(NSArray *ehrs))success failure:(void(^)(NSString *error_message))failure;
+
+//得到用户的绑定的诊室
+- (void)startGetBindRoomsWithAndSuccess:(void(^)(NSArray *roomNames))success failure:(void(^)(NSString *error_message))failure;
 @end

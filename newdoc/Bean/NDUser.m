@@ -12,9 +12,5 @@
 
 MJCodingImplementation
 
-//+ (NSDictionary *)replacedKeyFromPropertyName
-//{
-//    return @{@"ID" : @"newdocid"};
-//}
 
 @end

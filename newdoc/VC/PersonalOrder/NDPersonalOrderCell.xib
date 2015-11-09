@@ -111,6 +111,14 @@
                     <constraint firstItem="W93-JX-CQR" firstAttribute="leading" secondItem="h5t-I1-lYt" secondAttribute="leading" id="zPl-XH-avD"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lblDoc" destination="0Xn-h4-Y9X" id="PvW-Au-cFK"/>
+                <outlet property="lblIndex" destination="h5t-I1-lYt" id="OxC-cb-bzn"/>
+                <outlet property="lblLocation" destination="g3H-As-UJr" id="l1Q-US-0Qe"/>
+                <outlet property="lblOrderTime" destination="c3b-x8-iU3" id="L4c-JG-oWC"/>
+                <outlet property="lblRoomName" destination="W93-JX-CQR" id="IgH-5g-Ucw"/>
+                <outlet property="lblSubRoom" destination="N9c-jf-lIL" id="AvA-tL-wrH"/>
+            </connections>
             <point key="canvasLocation" x="278.5" y="239"/>
         </tableViewCell>
     </objects>

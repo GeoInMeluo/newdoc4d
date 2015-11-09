@@ -477,6 +477,17 @@ forHTTPHeaderField:(NSString *)field
         }
     }
 
+    FLog(@"allHTTPHeaderFields == %@", mutableRequest.allHTTPHeaderFields);
+//    FLog(@"absoluteString === %@", [mutableRequest.URL absoluteString]);
+//    FLog(@"parameters === %@", parameters);
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    for (NSHTTPCookie *cookie in cookieStorage.cookies){
+        
+        FLog(@"%@",cookie);
+    }
+
+    
     return mutableRequest;
 }
 

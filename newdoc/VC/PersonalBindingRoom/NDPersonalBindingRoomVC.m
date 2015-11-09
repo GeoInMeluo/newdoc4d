@@ -11,19 +11,38 @@
 #import "NDRoomDetailVC.h"
 
 @interface NDPersonalBindingRoomVC ()<UITableViewDataSource,UITableViewDelegate>
-
+@property (nonatomic, strong) NSArray *roomNames;
 @end
 
 @implementation NDPersonalBindingRoomVC
+
+- (NSArray *)roomNames{
+    if(_roomNames ==nil){
+        _roomNames = [NSArray array];
+    }
+    return _roomNames;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
+}
+
+- (void)startGet{
+    WEAK_SELF;
+    
+    [self startGetBindRoomsWithAndSuccess:^(NSArray *roomNames) {
+        weakself.roomNames = roomNames;
+        [weakself.tableView reloadData];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.roomNames.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -35,6 +54,8 @@
     if(cell == nil){
         cell = [NDPersonalBindingRoomCell new];
     }
+    
+    cell.lblRoomName.text = self.roomNames[indexPath.row];
     
     return cell;
     

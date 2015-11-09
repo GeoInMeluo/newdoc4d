@@ -10,18 +10,34 @@
 #import "NDPersonalOrderCell.h"
 
 @interface NDPersonalOrderVC ()<UITableViewDataSource,UITableViewDelegate>
-
+@property (nonatomic, strong) NSArray *orders;
 @end
 
 @implementation NDPersonalOrderVC
 
+- (NSArray *)orders{
+    if(_orders == nil){
+        _orders = [NSArray array];
+    }
+    return _orders;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    WEAK_SELF;
+    
+    [self startGetOrdersWithAndSuccess:^(NSArray *orders) {
+        weakself.orders = orders;
+        
+        [weakself.tableView reloadData];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.orders.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -30,9 +46,13 @@
     
     NDPersonalOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
+    NDOrder *order = self.orders[indexPath.row];
+    
     if(cell == nil){
         cell = [NDPersonalOrderCell new];
     }
+    
+    cell.order = order;
     
     return cell;
     

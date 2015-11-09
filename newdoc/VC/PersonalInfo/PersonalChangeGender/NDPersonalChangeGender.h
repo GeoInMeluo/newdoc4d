@@ -8,6 +8,8 @@
 
 #import "NDBaseTableVC.h"
 
-@interface NDPersonalChangeGender : NDBaseTableVC
+typedef void(^Callback)(NSString* gender);
 
+@interface NDPersonalChangeGender : NDBaseTableVC
+@property (nonatomic, copy) Callback genderCallBack;
 @end

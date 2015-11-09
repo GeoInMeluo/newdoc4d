@@ -7,7 +7,8 @@
 //
 
 #import "NDBaseTableVC.h"
+typedef void(^Callback)(NSString* name);
 
 @interface NDPersonalChangeAccountVC : NDBaseTableVC
-
+@property (nonatomic, copy) Callback nameCallBack;
 @end
