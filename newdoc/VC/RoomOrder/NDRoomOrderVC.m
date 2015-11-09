@@ -118,7 +118,7 @@
         [weakself.roomCollectionView reloadData];
         
         [weakself initWithDatePicker];
-    } failure:^(NSDictionary *result, NSError *error) {
+    } failure:^(NSString *error_message) {
         
     }];
     
@@ -271,11 +271,28 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    NDRoomOrderLabeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NDRoomOrderLabeCell" forIndexPath:indexPath];
+    WEAK_SELF;
+    
+    __block NDRoomOrderLabeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NDRoomOrderLabeCell" forIndexPath:indexPath];
     
     NDPreserveWindow *preserveWindow = self.docMorePreserveWindow.preserve_window[indexPath.row];
     
     cell.preserveWindow = preserveWindow;
+    cell.btnBond.callback = ^(Button *btn){
+        if(btn.selected){
+            [weakself startCancelAttentionDoctorWithDocId:weakself.roomId success:^{
+                cell.btnBond.selected = !cell.btnBond.selected;
+            } failure:^(NSString *error_message) {
+                
+            }];
+        }else{
+            [weakself startBindRoomWithRoomId:weakself.roomId success:^{
+                cell.btnBond.selected = !cell.btnBond.selected;
+            } failure:^(NSString *error_message) {
+                
+            }];
+        }
+    };
     
     return cell;
 }
@@ -342,14 +359,14 @@
         [self startCancelAttentionDoctorWithDocId:self.docMorePreserveWindow.ID success:^{
             weakself.docMorePreserveWindow.isFocus = NO;
             weakself.btnAttention.selected = NO;
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
     }else{
         [self startAttentionDoctorWithDocId:self.docMorePreserveWindow.ID success:^{
             weakself.docMorePreserveWindow.isFocus = YES;
             weakself.btnAttention.selected = YES;
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
     }
@@ -363,8 +380,8 @@
     
     [self startOrderWithSlot:self.selectedOrderDates[0] success:^{
         
-    } failure:^(NSDictionary *result, NSError *error) {
-        
+    } failure:^(NSString *error_message) {
+
     }];
 }
 

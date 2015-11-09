@@ -33,11 +33,12 @@
 }
 
 - (void)rightBtnClicked:(UIButton *)btn{
-    
+    todo();
 }
 
 - (void)initWithCells{
-    [self.cells addObjectsFromArray:@[self.tfAccount]];
+    [self appendSection:@[self.tfAccount] withHeader:nil];
+
 }
 
 /*

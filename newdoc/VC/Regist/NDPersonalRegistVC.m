@@ -7,7 +7,8 @@
 //
 
 #import "NDPersonalRegistVC.h"
-#import "NDPersonalRegistConfirmVC.h"
+#import "NDPersonalCenterHomeVC.h"
+#import "NDUser.h"
 
 @interface NDPersonalRegistVC ()
 @property (strong, nonatomic) IBOutlet FormCell *cellPhoneNumber;
@@ -52,9 +53,9 @@
         btn.selected = !btn.selected;
     };
     
-    [self.cells addObjectsFromArray:@[self.cellPhoneNumber,self.cellPwd,self.cellConfirmPwd,self.cellVerifyCode]];
+    [self appendSection:@[self.cellPhoneNumber,self.cellPwd,self.cellConfirmPwd] withHeader:nil];
     
-    
+    [self appendSection:@[self.cellVerifyCode] withHeader:self.tempSectionHeader];
 }
 
 - (IBAction)btnVerifyCodeClick:(id)sender {
@@ -69,7 +70,7 @@
     
     [self startSendVerifyCodeWithPhoneNumber:self.tfPhoneNumber.text success:^(NSObject *resultDic) {
 
-    }  failure:^(NSDictionary *result, NSError *error) {
+    }  failure:^(NSString *error_message) {
         
     }];
 }
@@ -97,20 +98,86 @@
     
 //    self.btnVerifyCode.enabled = NO;
     
-    [self.btnVerifyCode setTitle:[NSString stringWithFormat:@"%zd 秒",_startTime] forState:UIControlStateNormal];
+    [self.btnVerifyCode setTitle:[NSString stringWithFormat:@"%zd  s",_startTime] forState:UIControlStateNormal];
     
     if(_startTime == 0){
         self.btnVerifyCode.enabled = YES;
         [self timeStop];
         _startTime = 60;
-        [self.btnVerifyCode setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [self.btnVerifyCode setTitle:@"重新发送" forState:UIControlStateNormal];
     }
     
     
 }
 
 - (IBAction)btnRegistClick:(id)sender {
-//    self startRegistWithUsername:self.tf andPassWord:<#(NSString *)#> andVerifyCode:<#(NSString *)#> success:<#^(void)success#> failure:<#^(NSDictionary *result, NSError *error)failure#>
+    WEAK_SELF;
+    
+    if(![self isPhoneText:self.tfPhoneNumber.text]){
+        
+        ShowAlert(@"请输入正确手机号");
+        
+        return;
+    }
+    
+    if(self.tfVerifyCode.text.length == 0 ){
+        ShowAlert(@"请输入验证码");
+        
+        return;
+    }
+    
+    if(self.tfPhoneNumber.text.length == 0 ){
+        ShowAlert(@"请输入手机号");
+        
+        return;
+    }
+    
+    if(self.tfPwd.text.length == 0 ){
+        ShowAlert(@"请输入密码");
+        
+        return;
+    }
+    
+    if(self.tfPwdConfirm.text.length == 0 ){
+        ShowAlert(@"请再次输入密码");
+        
+        return;
+    }
+    
+    if(![self.tfPwd.text isEqualToString:self.tfPwdConfirm.text]){
+        ShowAlert(@"两次输入的密码不一致");
+        
+        return;
+    }
+    
+    if(!self.btnAgree.selected){
+        ShowAlert(@"请阅读新医协议，同意打钩");
+        
+        return;
+    }
+    
+//    NDUser *user = [[NDUser alloc] init];
+//    user.name = @"test";
+//    user.picture_url = [[NSBundle mainBundle] pathForResource:@"testUserIcon" ofType:nil];
+//    user.mobile = self.tfPhoneNumber.text;
+//    [NDCoreSession coreSession].user = user;
+//    
+//    for (UIViewController *controller in self.navigationController.viewControllers) {
+//        if ([controller isKindOfClass:[NDPersonalCenterHomeVC class]]) {
+//            
+//            [weakself.navigationController popToViewController:controller animated:YES];
+//        }
+//    }
+    
+    [self startRegistWithUsername:self.tfPhoneNumber.text andPassWord:self.tfPwd.text andVerifyCode:self.tfVerifyCode.text andPhoneNumber:self.tfPhoneNumber.text success:^{
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[NDPersonalCenterHomeVC class]]) {
+                [weakself.navigationController popToViewController:controller animated:YES];
+            }
+        }
+    } failure:^(NSString *error_message) {
+        
+    }];
     
 }
 

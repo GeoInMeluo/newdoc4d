@@ -79,10 +79,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzj-Lo-uQY" customClass="Button">
-                                <rect key="frame" x="188" y="94" width="60" height="30"/>
+                                <rect key="frame" x="188" y="94" width="60" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="NZ8-fX-3pc"/>
-                                    <constraint firstAttribute="height" constant="30" id="gG8-DX-NvD"/>
+                                    <constraint firstAttribute="height" constant="35" id="gG8-DX-NvD"/>
                                 </constraints>
                                 <state key="normal" image="btn_yuyue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,7 +109,7 @@
                             <constraint firstItem="TIo-gf-Y8N" firstAttribute="leading" secondItem="4Hq-NF-h6b" secondAttribute="leading" id="nqY-gi-Gez"/>
                             <constraint firstAttribute="bottom" secondItem="lnm-vB-mhT" secondAttribute="bottom" constant="12" id="uQD-th-444"/>
                             <constraint firstItem="UzA-2L-fbd" firstAttribute="leading" secondItem="lnm-vB-mhT" secondAttribute="trailing" constant="27" id="ux1-yV-sVg"/>
-                            <constraint firstAttribute="bottom" secondItem="uzj-Lo-uQY" secondAttribute="bottom" constant="5" id="zRo-Xh-PGk"/>
+                            <constraint firstAttribute="bottom" secondItem="uzj-Lo-uQY" secondAttribute="bottom" id="zRo-Xh-PGk"/>
                         </constraints>
                     </view>
                 </subviews>

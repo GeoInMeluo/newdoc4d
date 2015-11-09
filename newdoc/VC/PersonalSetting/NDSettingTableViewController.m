@@ -28,7 +28,7 @@
 }
 
 - (void)initWithCells{
-    [self.cells addObjectsFromArray:@[self.cellProtocal,self.cellAbout]];
+    [self appendSection:@[self.cellProtocal,self.cellAbout] withHeader:nil];
 }
     
 @end

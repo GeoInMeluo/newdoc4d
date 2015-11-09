@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDLoginVC">
             <connections>
+                <outlet property="btnForgetPwd" destination="vdG-M0-Jk0" id="Qbl-OP-DNC"/>
                 <outlet property="btnLogin" destination="26m-Z8-I7i" id="o4q-Sd-MPD"/>
                 <outlet property="cellAccount" destination="0mn-CG-RSG" id="JzZ-7T-8mn"/>
                 <outlet property="cellPwd" destination="rH9-hu-P1T" id="YCU-wm-grO"/>
@@ -216,11 +217,22 @@
                         <constraint firstAttribute="bottom" secondItem="UsX-RS-2sV" secondAttribute="bottom" id="sqj-Fp-T69"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdG-M0-Jk0" customClass="Button">
+                    <rect key="frame" x="270" y="102" width="105" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="2JE-5x-C5m"/>
+                        <constraint firstAttribute="width" constant="105" id="CGt-Hs-cxd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="忘记密码？"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="vdG-M0-Jk0" secondAttribute="bottom" id="2X2-5Y-oeQ"/>
                 <constraint firstItem="26m-Z8-I7i" firstAttribute="leading" secondItem="YWi-ca-BaT" secondAttribute="leading" constant="22" id="Bv0-TH-wOC"/>
                 <constraint firstItem="Tro-Rz-Yzo" firstAttribute="top" secondItem="26m-Z8-I7i" secondAttribute="bottom" constant="20" id="HRA-2O-B7F"/>
+                <constraint firstAttribute="trailing" secondItem="vdG-M0-Jk0" secondAttribute="trailing" id="JW0-QV-GH9"/>
                 <constraint firstAttribute="trailing" secondItem="Tro-Rz-Yzo" secondAttribute="trailing" constant="22" id="L2d-rc-QSZ"/>
                 <constraint firstAttribute="trailing" secondItem="26m-Z8-I7i" secondAttribute="trailing" constant="22" id="dTU-73-q6g"/>
                 <constraint firstItem="26m-Z8-I7i" firstAttribute="top" secondItem="YWi-ca-BaT" secondAttribute="top" constant="22" id="yZ8-ei-dzy"/>

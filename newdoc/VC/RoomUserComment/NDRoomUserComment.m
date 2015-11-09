@@ -83,7 +83,7 @@
         weakself.docComments = docComments;
         
         [weakself.tableView reloadData];
-    } failure:^(NSDictionary *result, NSError *error) {
+    } failure:^(NSString *error_message) {
         
     }];
 
@@ -136,14 +136,14 @@
         [self startCancelAttentionDoctorWithDocId:self.doc.ID success:^{
             weakself.doc.isFocus = NO;
             weakself.btnHeaderAttetion.selected = NO;
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
     }else{
         [self startAttentionDoctorWithDocId:self.doc.ID success:^{
             weakself.doc.isFocus = YES;
             weakself.btnHeaderAttetion.selected = YES;
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
     }

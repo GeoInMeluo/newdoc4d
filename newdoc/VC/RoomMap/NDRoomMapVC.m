@@ -219,7 +219,7 @@
             
             weakself.btnNavRight.enabled = YES;
         }
-    } failure:^(NSDictionary *result, NSError *error) {
+    } failure:^(NSString *error_message) {
         
     }];
 }
@@ -326,8 +326,27 @@
  *@param coordinate 空白处坐标点的经纬度
  */
 - (void)mapView:(BMKMapView *)mapView onClickedMapBlank:(CLLocationCoordinate2D)coordinate{
-
+    return;
 }
+/**
+ *点中覆盖物后会回调此接口，目前只支持点中BMKPolylineView时回调
+ *@param mapview 地图View
+ *@param overlayView 覆盖物view信息
+ */
+- (void)mapView:(BMKMapView *)mapView onClickedBMKOverlayView:(BMKOverlayView *)overlayView{
+    return;
+}
+
+/**
+ *点中底图标注后会回调此接口
+ *@param mapview 地图View
+ *@param mapPoi 标注点信息
+ */
+- (void)mapView:(BMKMapView *)mapView onClickedMapPoi:(BMKMapPoi*)mapPoi{
+    return;
+}
+
+
 
 //实现相关delegate 处理位置信息更新
 //处理方向变更信息

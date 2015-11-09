@@ -13,11 +13,19 @@
 
 @implementation NDBaseTableVC
 
-- (NSMutableArray *)cells{
-    if(_cells == nil){
-        _cells = [NSMutableArray array];
+- (UIView *)tempSectionHeader{
+    if(_tempSectionHeader == nil){
+        _tempSectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 8)];
+        _tempSectionHeader.backgroundColor = LightGray;
     }
-    return _cells;
+    return _tempSectionHeader;
+}
+
+- (NSMutableArray *)sections{
+    if(_sections == nil){
+        _sections = [NSMutableArray array];
+    }
+    return _sections;
 }
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(self.sections.count == 0){
+        [self appendSection:@[] withHeader:nil];
+    }
+
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHex:@"#0099ff"]] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.translucent = NO;
     
@@ -39,12 +51,61 @@
     self.tableView.height -= 44;
 }
 
+- (FormSection *)appendSection:(NSArray *)cells withHeader:(UIView *)headerView{
+    FormSection * section = [FormSection new];
+    section.headerView = headerView;
+//    section.cells = [NSMutableArray array];
+//    for(UIView * cell in cells)
+//    {
+//        if([cell isKindOfClass:[FormCell class]])
+//        {
+//            FormCell * bc = (FormCell *)cell;
+//            UIView * v = [bc.contentView subviews][0];
+//            if(bc.accessoryType == UITableViewCellAccessoryNone)
+//                v.width = [UIScreen mainScreen].bounds.size.width;
+//            else
+//                v.width = [UIScreen mainScreen].bounds.size.width - 30;
+//            v.height = cell.height;
+//            [v setNeedsLayout];
+//        }
+//    }
+    
+    section.cells = [NSMutableArray array];
+    for(UITableViewCell * c in cells)
+    {
+        if(! c.hidden)
+            [section.cells addObject:c];
+    }
+    [self.sections addObject:section];
+    return section;
+}
+
+- (FormSection *)appendSection:(NSArray *)cells withHeader:(UIView *)headerView andFooter:(UIView *)footerView{
+    FormSection * section = [FormSection new];
+    section.headerView = headerView;
+    section.footerView = footerView;
+    section.cells = [NSMutableArray array];
+    for(UITableViewCell * c in cells)
+    {
+        if(! c.hidden)
+            [section.cells addObject:c];
+    }
+    [self.sections addObject:section];
+    return section;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.sections.count;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(self.cells.count == 0){
+    if(self.sections.count == 0){
         return;
     }
     
-    UITableViewCell *cell = self.cells[indexPath.row];
+    FormSection *formSection = self.sections[indexPath.section];
+    
+    UITableViewCell *cell = formSection.cells[indexPath.row];
     
     if([cell isKindOfClass:[FormCell class]]){
         FormCell *formCell = (FormCell *)cell;
@@ -60,28 +121,85 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(self.cells.count == 0){
+    FormSection *formSection = self.sections[section];
+    
+    if(formSection == nil){
         return 0;
     }
-    
-    return self.cells.count;
+    return formSection.cells.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(self.cells.count == 0){
+    FormSection *formSection = self.sections[indexPath.section];
+    
+    if(formSection == nil){
         return nil;
     }
-    
-    return self.cells[indexPath.row];
+
+    return formSection.cells[indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(self.cells.count == 0){
+    FormSection *formSection = self.sections[indexPath.section];
+    
+    if(formSection == nil){
         return 0;
     }
     
-    return [self.cells[indexPath.row] height];
+    return [formSection.cells[indexPath.row] height];
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section < self.sections.count ){
+        FormSection *formSection = self.sections[section];
+        
+        if(formSection.headerView != nil){
+            return formSection.headerView;
+        }
+    }
+    
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if(section < self.sections.count ){
+        FormSection *formSection = self.sections[section];
+        
+        if(formSection.headerView != nil){
+            return formSection.footerView;
+        }
+    }
+    
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if(section < self.sections.count ){
+        FormSection *formSection = self.sections[section];
+        
+        if(formSection.headerView != nil){
+            return formSection.headerView.height;
+        }
+    }
+    
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section < self.sections.count ){
+        FormSection *formSection = self.sections[section];
+        
+        if(formSection.footerView != nil){
+            return formSection.footerView.height;
+        }
+    }
+    
+    
+    
+    return 0;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

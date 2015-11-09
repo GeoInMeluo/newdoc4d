@@ -14,13 +14,13 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import "APService.h"
+#import "NDLoginVC.h"
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
-//微信SDK头文件
-#import "WXApi.h"
+
 
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
@@ -36,11 +36,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    
     // Override point for customization after application launch.
     
 //    NSDictionary *param = @{};
 //
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
+//    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
+    
     
 //    [[NCNetManager sharedNetManager] GET:@"/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSDictionary *responseObj = responseObject;
@@ -48,7 +52,9 @@
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        
 //    }];
+
     
+    [self setupWechatLogin];
     
     [self setupBaiduMap];
 //
@@ -67,9 +73,14 @@
     [self.window makeKeyAndVisible];
     
     
-    
     return YES;
 }
+
+- (void)setupWechatLogin{
+    //向微信注册
+    [WXApi registerApp:@"wx79dcda258b479eeb" withDescription:@"weixin"];
+}
+
 
 - (void)setupUmengCommunity{
     //社区
@@ -134,6 +145,24 @@
         NSLog(@"manager start failed!");
     }
 }
+
+/*和QQ,新浪并列回调句柄*********/
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options{
+    return [WXApi handleOpenURL:url delegate:[NDLoginVC new]];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    
+    
+//    return [TencentOAuth HandleOpenURL:url] ||
+//    [WeiboSDK handleOpenURL:url delegate:self] ||
+//    [WXApi handleOpenURL:url delegate:self];
+    return [WXApi handleOpenURL:url delegate:[NDLoginVC new]];
+}
+/*******************/
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     [BMKMapView willBackGround];//当应用即将后台时调用，停止一切调用opengl相关的操作

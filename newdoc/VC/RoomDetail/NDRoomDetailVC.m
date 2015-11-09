@@ -46,7 +46,7 @@
         weakself.room = room;
         
         [weakself setupUI];
-    } failure:^(NSDictionary *result, NSError *error) {
+    } failure:^(NSString *error_message) {
         
     }];
 }
@@ -114,20 +114,23 @@
     cell.btnAttention.callback = ^(Button *btn){
         if(btn.selected){
             [weakself startCancelAttentionDoctorWithDocId:doctor.ID success:^{
-                
-            } failure:^(NSDictionary *result, NSError *error) {
+                btn.selected = !btn.selected;
+            } failure:^(NSString *error_message) {
                 
             }];
         }
         
         [weakself startAttentionDoctorWithDocId:doctor.ID success:^{
-            
-        } failure:^(NSDictionary *result, NSError *error) {
+            btn.selected = !btn.selected;
+        } failure:^(NSString *error_message) {
             
         }];
     };
     cell.btnGo2Order.callback = ^(Button *btn){
-        
+        NDRoomOrderVC *vc = [NDRoomOrderVC new];
+        vc.doc = weakself.docs[indexPath.row];
+        vc.roomId = weakself.room.ID;
+        [weakself.navigationController pushViewController:vc animated:YES];
     };
     
     return cell;
@@ -138,12 +141,9 @@
     return 139;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NDRoomOrderVC *vc = [NDRoomOrderVC new];
-    vc.doc = self.docs[indexPath.row];
-    vc.roomId = self.room.ID;
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//
+//}
 
 //- (void)push2RoomOrder{
 //    NDRoomOrderVC *vc = [NDRoomOrderVC new];

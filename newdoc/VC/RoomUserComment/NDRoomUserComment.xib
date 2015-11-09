@@ -131,6 +131,7 @@
                                 <constraint firstItem="3Cb-yo-wuq" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="5" id="IC6-fJ-Ovw"/>
                                 <constraint firstItem="8KR-fy-bO4" firstAttribute="top" secondItem="iWu-Rt-cYb" secondAttribute="bottom" constant="26" id="K9a-O3-FJW"/>
                                 <constraint firstItem="183-eL-fBC" firstAttribute="leading" secondItem="iWu-Rt-cYb" secondAttribute="trailing" constant="8" id="SHh-C1-peA"/>
+                                <constraint firstAttribute="trailing" secondItem="3Cb-yo-wuq" secondAttribute="trailing" constant="49" id="Vpn-mo-vOL"/>
                                 <constraint firstAttribute="trailing" secondItem="9uN-5N-ZqD" secondAttribute="trailing" constant="8" id="YVJ-KX-Ek9"/>
                                 <constraint firstAttribute="trailing" secondItem="lTy-eU-Sqg" secondAttribute="trailing" id="cPP-3p-ubT"/>
                                 <constraint firstItem="DLY-Vw-wsv" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="16" id="dax-wv-yoW"/>
@@ -145,6 +146,11 @@
                                 <constraint firstItem="DLY-Vw-wsv" firstAttribute="leading" secondItem="183-eL-fBC" secondAttribute="trailing" constant="3" id="vq7-mL-gWZ"/>
                                 <constraint firstItem="ny3-Pe-mLl" firstAttribute="leading" secondItem="igC-tQ-OSQ" secondAttribute="leading" id="xx6-vU-BJu"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="nox-Cj-E10"/>
+                                </mask>
+                            </variation>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

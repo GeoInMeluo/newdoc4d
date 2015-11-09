@@ -16,3 +16,5 @@ NSString * SafeString(NSString * s);
 NSValue * SafeValue(NSValue * value);
 
 NSNumber * SafeNumber(NSNumber * n);
+
+NSString * MD5_NSString(NSString* s);

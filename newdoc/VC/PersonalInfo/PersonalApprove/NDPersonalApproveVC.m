@@ -25,7 +25,8 @@
 }
 
 - (void)setupUI{
-    [self.cells addObjectsFromArray:@[self.cellName,self.cellId]];
+    [self appendSection:@[self.cellName,self.cellId] withHeader:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

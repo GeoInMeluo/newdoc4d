@@ -25,7 +25,8 @@
 }
 
 - (void)setupUI{
-    [self.cells addObjectsFromArray:@[self.cellOldPwd,self.cellNewPwd,self.cellVerify]];
+    [self appendSection:@[self.cellOldPwd,self.cellNewPwd,self.cellVerify] withHeader:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {

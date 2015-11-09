@@ -53,9 +53,17 @@
     childVc.tabBarItem.image = [UIImage imageNamed:imageName];
     
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
-    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:10];
-    [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+//    textAttrs[UITextAttributeTextColor] = [UIColor lightGrayColor];
+    
+    [childVc.tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+                                                   NSForegroundColorAttributeName : [UIColor colorWithHex:@"#00aaff"]} forState:UIControlStateSelected];
+    [childVc.tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
+                                                 NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateNormal];
+//    
+//    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:10];
+//    textAttrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
+//    textAttrs[NSBackgroundColorAttributeName] = [UIColor blueColor];
+//    [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     
     UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
     selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

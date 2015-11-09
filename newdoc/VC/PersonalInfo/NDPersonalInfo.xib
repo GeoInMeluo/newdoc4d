@@ -8,11 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDPersonalInfo">
             <connections>
+                <outlet property="btnHeadImage" destination="ALI-IH-unH" id="u4G-2r-AHf"/>
                 <outlet property="cellAcount" destination="kKY-4r-Ha6" id="zIO-Gh-7xh"/>
                 <outlet property="cellApprove" destination="JdS-JP-JqG" id="CFO-rO-kqb"/>
                 <outlet property="cellChangePwd" destination="raP-Xu-SXY" id="gLT-JQ-4he"/>
                 <outlet property="cellGender" destination="PeF-x5-Emd" id="8ap-Vj-H7h"/>
                 <outlet property="cellHeadImg" destination="wSa-yH-c6p" id="t3z-jo-PAA"/>
+                <outlet property="lblName" destination="HwP-rQ-oAE" id="3i0-yA-b8I"/>
+                <outlet property="lblSex" destination="pfw-tg-4cz" id="Bgp-ne-OuL"/>
                 <outlet property="view" destination="mpq-ik-duk" id="Bj5-Jo-1QQ"/>
             </connections>
         </placeholder>
@@ -56,6 +59,9 @@
                             <constraint firstAttribute="width" constant="65" id="CuQ-6F-fk9"/>
                         </constraints>
                         <state key="normal" backgroundImage="icon_placeHolder"/>
+                        <connections>
+                            <action selector="btnHeaderClicked:" destination="-1" eventType="touchUpInside" id="Igf-EX-wPe"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

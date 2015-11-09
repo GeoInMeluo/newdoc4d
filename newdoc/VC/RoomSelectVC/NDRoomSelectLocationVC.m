@@ -51,7 +51,7 @@
     [self startGetProvinceListAndSuccess:^(NSArray *provinces) {
         weakself.provinces = provinces;
         [weakself.tableProvince reloadData];
-    } failure:^(NSDictionary *result, NSError *error) {
+    } failure:^(NSString *error_message) {
         
     }];
 }
@@ -104,7 +104,7 @@
         [self startGetCityListWithProvince:self.provinces[indexPath.row] success:^(NSArray *citys) {
             weakself.citys = citys;
             [weakself.tableCity reloadData];
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
     }
@@ -114,7 +114,7 @@
         [self startGetCountyListWithCity:self.citys[indexPath.row] success:^(NSArray *countys) {
             weakself.countys = countys;
             [weakself.tableCounty reloadData];
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
     }

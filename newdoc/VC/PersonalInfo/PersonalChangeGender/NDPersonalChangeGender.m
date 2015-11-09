@@ -12,6 +12,10 @@
 @property (strong, nonatomic) IBOutlet FormCell *cellMale;
 
 @property (strong, nonatomic) IBOutlet FormCell *cellFemale;
+
+@property (weak, nonatomic) IBOutlet UIImageView *maleRight;
+@property (weak, nonatomic) IBOutlet UIImageView *femaleRight;
+
 @end
 
 @implementation NDPersonalChangeGender
@@ -31,7 +35,19 @@
 }
 
 - (void)initWithCells{
-    [self.cells addObjectsFromArray:@[self.cellMale,self.cellFemale]];
+    WEAK_SELF;
+    
+    [self appendSection:@[self.cellMale,self.cellFemale] withHeader:nil];
+    
+    self.cellMale.callback = ^(FormCell* sender,NSIndexPath * indexPath){
+        weakself.maleRight.hidden = NO;
+        weakself.femaleRight.hidden = YES;
+    };
+    
+    self.cellFemale.callback = ^(FormCell* sender,NSIndexPath * indexPath){
+        weakself.maleRight.hidden = YES;
+        weakself.femaleRight.hidden = NO;
+    };
 }
 
 

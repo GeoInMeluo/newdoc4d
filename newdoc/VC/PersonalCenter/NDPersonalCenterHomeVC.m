@@ -27,6 +27,9 @@
 @property (strong, nonatomic) IBOutlet FormCell *cellEhr;
 @property (weak, nonatomic) IBOutlet UIButton *headImg;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIView *vAccountAndPhone;
+@property (weak, nonatomic) IBOutlet UILabel *lblAccount;
+@property (weak, nonatomic) IBOutlet UILabel *lblPhoneNumber;
 
 @end
 
@@ -45,41 +48,79 @@
     self.headImg.layer.masksToBounds = YES;
     self.headImg.layer.borderColor = [UIColor whiteColor].CGColor;
     self.headImg.layer.borderWidth = 2;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if([NDCoreSession coreSession].openId.length != 0){
+        self.vAccountAndPhone.hidden = NO;
+        
+        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
+        tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        [self.headImg setImage:tempImage forState:UIControlStateNormal];
+        
+        self.lblAccount.text = [NDCoreSession coreSession].user.name;
+        self.lblPhoneNumber.text = [NDCoreSession coreSession].user.mobile;
+        self.btnLogin.hidden = YES;
+    }else{
+        self.vAccountAndPhone.hidden = YES;
+        self.btnLogin.hidden = NO;
+    }
 }
 
 - (void)initCells{
     WEAK_SELF;
     
-    [self.cells addObjectsFromArray:@[self.cellInfomation,self.cellMineDoc,self.cellRefer,self.cellOrder,self.cellEhr,self.cellMineRoom,self.cellSetting]];
+    [self appendSection:@[self.cellInfomation,self.cellMineDoc,self.cellRefer,self.cellOrder,self.cellEhr,self.cellMineRoom,self.cellSetting] withHeader:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)]];
  
     self.cellInfomation.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        CreateVC(NDPersonalInfo);
         
-        PushVCWeak(vc);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+            CreateVC(NDPersonalInfo);
+            
+            PushVCWeak(vc);
+        }
+    
     };
     
     self.cellEhr.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDPersonalEhrVC);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+            ShowVCWeak(NDPersonalEhrVC);
+        }
     };
     
     self.cellMineDoc.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDPersonalAttentionDocVC);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+            ShowVCWeak(NDPersonalAttentionDocVC);
+        }
     };
     
     self.cellMineRoom.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDPersonalBindingRoomVC);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+            ShowVCWeak(NDPersonalBindingRoomVC);
+        }
     };
     
     self.cellOrder.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDPersonalOrderVC);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+        
+            ShowVCWeak(NDPersonalOrderVC);
+        }
     };
     
     self.cellRefer.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDPersonalReferVC);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+            ShowVCWeak(NDPersonalReferVC);
+        }
     };
     
     self.cellSetting.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        ShowVCWeak(NDSettingTableViewController);
+        if([weakself checkLoginWithNav:weakself.navigationController]){
+            ShowVCWeak(NDSettingTableViewController);
+        }
     };
     
 }
@@ -87,8 +128,6 @@
 - (IBAction)btnLoginClick:(id)sender {
     ShowVC(NDLoginVC);
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

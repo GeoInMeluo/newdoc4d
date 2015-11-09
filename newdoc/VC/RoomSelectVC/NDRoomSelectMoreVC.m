@@ -85,7 +85,7 @@
             weakself.subrooms = room.catalogs;
             weakself.selectRoom = room;
             [weakself.rightTable reloadData];
-        } failure:^(NSDictionary *result, NSError *error) {
+        } failure:^(NSString *error_message) {
             
         }];
         

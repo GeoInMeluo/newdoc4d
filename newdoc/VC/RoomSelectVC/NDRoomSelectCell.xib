@@ -37,17 +37,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-DA-MEJ" customClass="Button">
-                                                <rect key="frame" x="177" y="17" width="48" height="15"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="48" id="1gK-Z8-q8x"/>
-                                                    <constraint firstAttribute="height" constant="15" id="HGn-JT-MCU"/>
-                                                </constraints>
-                                                <state key="normal" image="map_bindingRoom"/>
-                                                <state key="selected" image="map_bindingRoom_select"/>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主治：皮肤病、不孕不育、骨科、妇科、胸科、脑科、神经科等" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmY-8Y-46l">
-                                                <rect key="frame" x="43" y="40" width="182" height="29"/>
+                                                <rect key="frame" x="43" y="40" width="308" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="Koc-Zf-7IG"/>
                                                     <constraint firstAttribute="width" constant="182" id="VJE-Jt-E9A"/>
@@ -55,10 +46,25 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="VJE-Jt-E9A"/>
+                                                    </mask>
+                                                </variation>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-DA-MEJ" customClass="Button">
+                                                <rect key="frame" x="177" y="8" width="48" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="1gK-Z8-q8x"/>
+                                                    <constraint firstAttribute="height" constant="36" id="HGn-JT-MCU"/>
+                                                </constraints>
+                                                <state key="normal" image="map_bindingRoom"/>
+                                                <state key="selected" image="map_bindingRoom_select"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bmY-8Y-46l" secondAttribute="trailing" constant="8" id="2ao-WG-dsz"/>
                                             <constraint firstItem="Lch-qI-i8d" firstAttribute="top" secondItem="5wv-mi-Hi3" secondAttribute="top" constant="14" id="3fj-Xg-UX2"/>
                                             <constraint firstAttribute="height" constant="85" id="6HT-vy-IFP"/>
                                             <constraint firstItem="Lch-qI-i8d" firstAttribute="leading" secondItem="XE6-MW-R0E" secondAttribute="trailing" constant="8" id="9cP-HT-S66"/>
@@ -67,7 +73,7 @@
                                             <constraint firstItem="dJf-DA-MEJ" firstAttribute="leading" secondItem="Lch-qI-i8d" secondAttribute="trailing" constant="8" id="ZJJ-Wi-jsl"/>
                                             <constraint firstItem="XE6-MW-R0E" firstAttribute="top" secondItem="5wv-mi-Hi3" secondAttribute="top" constant="15" id="dF9-Ek-pbK"/>
                                             <constraint firstItem="bmY-8Y-46l" firstAttribute="leading" secondItem="5wv-mi-Hi3" secondAttribute="leading" constant="43" id="e2S-fp-AYW"/>
-                                            <constraint firstItem="dJf-DA-MEJ" firstAttribute="top" secondItem="5wv-mi-Hi3" secondAttribute="top" constant="17" id="fk7-NJ-fFM"/>
+                                            <constraint firstItem="dJf-DA-MEJ" firstAttribute="top" secondItem="5wv-mi-Hi3" secondAttribute="top" constant="8" id="fk7-NJ-fFM"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbU-PA-4kK">

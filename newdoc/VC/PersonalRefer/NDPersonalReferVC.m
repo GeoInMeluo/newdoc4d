@@ -13,7 +13,7 @@
 #import "NDPersonalReferDetail.h"
 
 @interface NDPersonalReferVC ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) NSMutableArray *sections;
+@property (nonatomic, strong) NSMutableArray *sectionsID;
 @property (nonatomic, assign) NSInteger lastSelectedIndex;
 @end
 
@@ -22,13 +22,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.sections = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+    
+    
+    self.sectionsID = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.sections.count;
+    return self.sectionsID.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -60,7 +62,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        if([self.sections[indexPath.section] isEqualToString: @"1"]){
+        if([self.sectionsID[indexPath.section] isEqualToString: @"1"]){
             //        CABasicAnimation *anim = [[CABasicAnimation alloc] init];
             //        anim.keyPath = @"transform.rotation";
             //        anim.toValue = [NSNumber numberWithDouble:(M_PI * 0.5)];
@@ -87,8 +89,8 @@
     if([tableView isKindOfClass:[NDPersonalReferFooter class]]){
         ShowVC(NDPersonalReferDetail);
     }else{
-        self.sections = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
-        self.sections[indexPath.section] = @"1";
+        self.sectionsID = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+        self.sectionsID[indexPath.section] = @"1";
         self.lastSelectedIndex = indexPath.section;
         //
         //    NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
@@ -108,7 +110,7 @@
     if([tableView isKindOfClass:[NDPersonalReferFooter class]]){
         
     }else{
-        if([self.sections[section] isEqualToString:@"1"]){
+        if([self.sectionsID[section] isEqualToString:@"1"]){
             NDPersonalReferFooter *view = [NDPersonalReferFooter new];
             //        view.width = [UIScreen mainScreen].bounds.size.width;
             //        [view setPreservesSuperviewLayoutMargins:YES];
@@ -125,7 +127,7 @@
     if([tableView isKindOfClass:[NDPersonalReferFooter class]]){
         
     }else{
-        if([self.sections[section] isEqualToString:@"1"]){
+        if([self.sectionsID[section] isEqualToString:@"1"]){
 //            return [self tableView:tableView viewForFooterInSection:section].height;
             return 50 * 10;
         }

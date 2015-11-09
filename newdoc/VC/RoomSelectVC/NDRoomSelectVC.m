@@ -32,10 +32,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WEAK_SELF;
+    
     
     static NSString *cellId = @"NDRoomSelectCell";
     
-    NDRoomSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    __block NDRoomSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     
     if(cell == nil){
         cell = [[NDRoomSelectCell alloc] init];
@@ -43,6 +45,26 @@
     
     NDRoom *room = self.rooms[indexPath.row];
     cell.room = room;
+    cell.btnGo2RoomDetail.callback = ^(Button *btn){
+        NDRoomDetailVC *vc =[NDRoomDetailVC new];
+        vc.room = self.rooms[indexPath.row];
+        [weakself.parentVC.navigationController pushViewController:vc animated:YES];
+    };
+    cell.btnIsBond.callback = ^(Button *btn){
+        if(btn.selected){
+            [weakself startCancelAttentionDoctorWithDocId:room.ID success:^{
+                cell.btnIsBond.selected = !cell.btnIsBond.selected;
+            } failure:^(NSString *error_message) {
+                
+            }];
+        }else{
+            [weakself startBindRoomWithRoomId:room.ID success:^{
+                cell.btnIsBond.selected = !cell.btnIsBond.selected;
+            } failure:^(NSString *error_message) {
+                
+            }];
+        }
+    };
     
     return cell;
     
@@ -55,9 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    ShowVC(NDRoomDetailVC);
     
-    NDRoomDetailVC *vc =[NDRoomDetailVC new];
-    vc.room = self.rooms[indexPath.row];
-    [self.parentVC.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -46,7 +46,7 @@
         weakself.lblEducation.text = [NSString stringWithFormat:@"学历：%@",intro.graduate_college];
         
         [weakself.tableView reloadData];
-    } failure:^(NSDictionary *result, NSError *error) {
+    } failure:^(NSString *error_message) {
         
     }];
 }

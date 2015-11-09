@@ -7,7 +7,8 @@
 //
 
 #import "NDBaseTableVC.h"
+#import "WXApi.h"
 
-@interface NDLoginVC : NDBaseTableVC
+@interface NDLoginVC : NDBaseTableVC<WXApiDelegate>
 
 @end
