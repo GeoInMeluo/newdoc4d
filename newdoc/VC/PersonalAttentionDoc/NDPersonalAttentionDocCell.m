@@ -17,6 +17,17 @@
     return self;
 }
 
+- (void)setTempDocDic:(NSDictionary *)tempDocDic{
+    _tempDocDic = tempDocDic;
+    
+    WEAK_SELF;
+    
+    _lblName.text = tempDocDic[@"name"];
+    [_ivHeadImg sd_setImageWithURL:[NSURL URLWithString:tempDocDic[@"picture_url"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [weakself.ivHeadImg setImage:image forState:UIControlStateNormal];
+    }];
+    
+}
 
 - (void)awakeFromNib {
     // Initialization code

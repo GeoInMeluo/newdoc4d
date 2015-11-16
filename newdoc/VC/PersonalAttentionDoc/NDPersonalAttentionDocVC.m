@@ -8,20 +8,31 @@
 
 #import "NDPersonalAttentionDocVC.h"
 #import "NDPersonalAttentionDocCell.h"
-#import "NDRoomDocDetail.h"
+#import "NDRoomOrderVC.h"
 
 @interface NDPersonalAttentionDocVC ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic, strong) NSArray *docs;
 @end
 
 @implementation NDPersonalAttentionDocVC
 
+- (NSArray *)docs{
+    if(_docs == nil){
+        _docs = [NSArray array];
+    }
+    return _docs;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"我关注的医生";
     
     WEAK_SELF;
     
     [self startGetAttetionDocsWithAndSuccess:^(NSArray *doc) {
+        weakself.docs = doc;
+        
         [weakself.tableView reloadData];
     } failure:^(NSString *error_message) {
         
@@ -29,7 +40,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.docs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -42,6 +53,8 @@
         cell = [NDPersonalAttentionDocCell new];
     }
     
+    cell.tempDocDic = self.docs[indexPath.row];
+    
     return cell;
     
 }
@@ -51,7 +64,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShowVC(NDRoomDocDetail);
+    CreateVC(NDRoomOrderVC);
+    NDDoctor *doc = [NDDoctor new];
+    doc.ID = self.docs[indexPath.row][@"id"];
+    vc.doc = doc;
+    PushVC(vc);
 }
 
 - (void)didReceiveMemoryWarning {

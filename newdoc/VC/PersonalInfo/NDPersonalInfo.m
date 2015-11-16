@@ -12,6 +12,9 @@
 #import "NDPersonalApproveVC.h"
 #import "NDPersonalChangePwd.h"
 #import "UUPhoto-Import.h"
+#import "NDBaseNavVC.h"
+
+static NSString *_newImgHeadUrl;
 
 @interface NDPersonalInfo ()<UUPhotoActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellHeadImg;
@@ -36,6 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"个人中心";
+    
     [self setupUI];
     // Do any additional setup after loading the view from its nib.
 }
@@ -48,17 +53,24 @@
     
     WEAK_SELF;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+//        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
+//        
+//        tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.btnHeadImage  setImage:tempImage forState:UIControlStateNormal];
+//        });
+//        
+//    });
+    
+    [self.btnHeadImage sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
-        UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
-        tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.btnHeadImage  setImage:tempImage forState:UIControlStateNormal];
-        });
-        
-    });
+        [weakself.btnHeadImage setImage:image forState:UIControlStateNormal];
+    }];
     
     
 //    UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user.picture_url]]];
@@ -69,12 +81,25 @@
     self.lblSex.text = [user.sex isEqualToString:@"0"] ? @"男":@"女" ;
     
     [self initWithCells];
+
+}
+
+- (void)pop{
+    self.callBack(_newImgHeadUrl);
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)initWithCells{
     WEAK_SELF;
     
-    [self appendSection:@[self.cellHeadImg,self.cellAcount,self.cellGender,self.cellApprove,self.cellChangePwd] withHeader:nil];
+    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
+        [self appendSection:@[self.cellHeadImg,self.cellAcount,self.cellGender,self.cellApprove] withHeader:nil];
+    }else{
+        [self appendSection:@[self.cellHeadImg,self.cellAcount,self.cellGender,self.cellApprove,self.cellChangePwd] withHeader:nil];
+    }
+    
+    
     
     self.cellAcount.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         CreateVC(NDPersonalChangeAccountVC);
@@ -119,7 +144,20 @@
 }
 
 - (void)actionSheetDidFinished:(NSArray *)obj{
-    todo();
+    WEAK_SELF;
+    
+    if([obj.lastObject isKindOfClass:[UIImage class]]){
+
+        
+        [self startUploadImageWithImage:[obj.lastObject imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] success:^(NSString *imageUrl) {
+                _newImgHeadUrl = imageUrl;
+            
+                [weakself.btnHeadImage setImage:[obj.lastObject imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+            
+        } failure:^(NSString *error_message) {
+            
+        }];
+    }
 }
 
 

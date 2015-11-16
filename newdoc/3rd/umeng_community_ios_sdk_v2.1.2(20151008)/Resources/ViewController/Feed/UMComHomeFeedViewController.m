@@ -70,9 +70,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    if ([UIApplication sharedApplication].keyWindow.rootViewController == self.navigationController) {
+//    if ([UIApplication sharedApplication].keyWindow.rootViewController == self.navigationController) {
         self.navigationItem.leftBarButtonItem = nil;
-    }
+//    }
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHex:@"#0099ff"]] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.translucent = NO;
     
     //创建导航条视图
     [self creatNigationItemView];

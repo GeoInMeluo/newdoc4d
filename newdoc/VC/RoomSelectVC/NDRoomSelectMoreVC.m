@@ -93,7 +93,8 @@
     }
     
     NDRoomDetailVC *roomDeatailVC = [NDRoomDetailVC new];
-    roomDeatailVC.room = self.selectRoom;
+//    roomDeatailVC.room = self.selectRoom;
+    roomDeatailVC.roomId = self.selectRoom.ID;
     [self.parentVC.navigationController pushViewController:roomDeatailVC animated:YES];
 }
 

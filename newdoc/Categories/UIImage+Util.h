@@ -12,4 +12,6 @@
 + (UIImage *)rgbToImage:(CGFloat)r g:(CGFloat)g b:(CGFloat)b;
 
 + (UIImage *)imageWithColor:(UIColor *)color;
+
++ (UIImage *)imageWithName:(NSString *)imageName;
 @end

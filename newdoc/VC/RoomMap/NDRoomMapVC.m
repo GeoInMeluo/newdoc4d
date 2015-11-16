@@ -428,7 +428,8 @@
         pop.lblLocation.text = pA.room.address;
         pop.btnRoomDetail.callback = ^(Button *btn){
             NDRoomDetailVC *vc = [NDRoomDetailVC new];
-            vc.room = pA.room;
+//            vc.room = pA.room;
+            vc.roomId = pA.room.ID;
             [weakself.navigationController pushViewController:vc animated:YES];
         };
         pop.btnPhoneNumber.callback = ^(Button *btn){

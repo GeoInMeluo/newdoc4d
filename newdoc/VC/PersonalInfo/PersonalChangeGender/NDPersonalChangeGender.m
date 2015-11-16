@@ -21,6 +21,8 @@
 @implementation NDPersonalChangeGender
 
 - (void)setupUI{
+    self.title = @"性别";
+    
     [self initWithCells];
     
     UIButton *button = [[UIButton alloc] init];

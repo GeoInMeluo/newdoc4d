@@ -10,5 +10,6 @@
 
 @interface NDRoomDocDetail : NDBaseTableVC
 @property (nonatomic, strong) NDDoctor *doctor;
+//@property (nonatomic, copy) NSString *docId;
 @property (nonatomic, strong) NDDoctorIntro *docIntro;
 @end

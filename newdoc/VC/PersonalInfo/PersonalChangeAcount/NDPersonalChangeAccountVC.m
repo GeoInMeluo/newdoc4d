@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"账号";
+    
     [self setupUI];
     // Do any additional setup after loading the view from its nib.
 }
@@ -39,12 +41,9 @@
     
     user.name = self.tf.text;
     
-//    [self startEditUserInfo:user success:^(NDUser *user) {
-//        self.nameCallBack(self.tf.text);
-//        [self.navigationController popViewControllerAnimated:YES];
-//    } failure:^(NSString *error_message) {
-//        
-//    }];
+    self.nameCallBack(self.tf.text);
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)initWithCells{

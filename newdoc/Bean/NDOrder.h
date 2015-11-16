@@ -37,4 +37,5 @@
 @property (nonatomic, copy) NSString *doctor_name;
 @property (nonatomic, copy) NSString *catalog_name;
 @property (nonatomic, copy) NSString *room_name;
+@property (nonatomic, copy) NSString *room_address;
 @end

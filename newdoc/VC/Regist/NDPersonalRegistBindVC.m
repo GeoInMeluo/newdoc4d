@@ -8,6 +8,8 @@
 
 #import "NDPersonalRegistBindVC.h"
 #import "NDPersonalCenterHomeVC.h"
+#import "NDVerifyCodeVC.h"
+#import "NDBaseTabVC.h"
 
 @interface NDPersonalRegistBindVC ()
 
@@ -16,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet FormCell *cellPhone;
 @property (weak, nonatomic) IBOutlet Button *btnBinding;
 @property (weak, nonatomic) IBOutlet Button *btnIgnore;
+@property (weak, nonatomic) IBOutlet UITextField *tfPhoneNumber;
 
 @end
 
@@ -32,25 +35,42 @@
 - (void)setupUI{
     WEAK_SELF;
     
+    self.title = @"第三方账号绑定手机号";
+    
     [self appendSection:@[self.cellPhone] withHeader:self.sectionHeader];
     
     self.btnBinding.layer.cornerRadius = 5;
     self.btnBinding.layer.masksToBounds = YES;
     self.btnBinding.callback = ^(Button *btn){
-    
+        if (![weakself isPhoneText:weakself.tfPhoneNumber.text]) {
+            return;
+        }
+        
+        CreateVC(NDVerifyCodeVC);
+        vc.phoneNumber = weakself.tfPhoneNumber.text;
+        PushVCWeak(vc);
     };
     
     self.btnIgnore.layer.cornerRadius = 5;
     self.btnIgnore.layer.masksToBounds = YES;
     self.btnIgnore.callback = ^(Button *btn){
-        for (UIViewController *controller in self.navigationController.viewControllers) {
-            if ([controller isKindOfClass:[NDPersonalCenterHomeVC class]]) {
-                
-                [weakself.navigationController popToViewController:controller animated:YES];
-            }
-        }
+        NDBaseTabVC *tabVC = [NDBaseTabVC new];
+        tabVC.selectedIndex = 2;
+        [[UIApplication sharedApplication].keyWindow setRootViewController:tabVC];
     };
 
+}
+
+-(BOOL)isPhoneText:(NSString *)str
+{
+    NSString * regex        = @"^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$";
+    NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch            = [pred evaluateWithObject:str];
+    if (isMatch) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

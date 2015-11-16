@@ -6,8 +6,40 @@
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <view contentMode="scaleToFill" id="8eW-ee-0t3" customClass="NDPersonalEhrFooter">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="297"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柳州市第一诊室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkO-C5-mWj">
+                    <rect key="frame" x="23" y="11" width="112" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="诊断时间：2015-10-12" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGo-Cc-Jpg">
+                    <rect key="frame" x="23" y="39" width="344" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="XGo-Cc-Jpg" firstAttribute="top" secondItem="wkO-C5-mWj" secondAttribute="bottom" constant="8" id="0ye-9J-sgZ"/>
+                <constraint firstAttribute="trailing" secondItem="XGo-Cc-Jpg" secondAttribute="trailing" constant="8" id="SLp-Yp-WD4"/>
+                <constraint firstItem="wkO-C5-mWj" firstAttribute="top" secondItem="8eW-ee-0t3" secondAttribute="top" constant="11" id="ixS-lh-k4C"/>
+                <constraint firstItem="XGo-Cc-Jpg" firstAttribute="leading" secondItem="8eW-ee-0t3" secondAttribute="leading" constant="23" id="rPd-0n-MV6"/>
+                <constraint firstItem="wkO-C5-mWj" firstAttribute="leading" secondItem="8eW-ee-0t3" secondAttribute="leading" constant="23" id="xiH-sx-6yu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="lblDetail" destination="XGo-Cc-Jpg" id="wjS-is-C14"/>
+                <outlet property="lblTitle" destination="wkO-C5-mWj" id="AZQ-aN-zoF"/>
+            </connections>
+            <point key="canvasLocation" x="193.5" y="-66.5"/>
+        </view>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="31C-No-Gtq" customClass="NDPersonalEhrFooter">
+        <view contentMode="scaleToFill" id="31C-No-Gtq">
             <rect key="frame" x="0.0" y="0.0" width="375" height="297"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -84,7 +116,7 @@
                 <constraint firstItem="vU9-QH-wWU" firstAttribute="top" secondItem="Jkt-P4-UpO" secondAttribute="bottom" constant="8" id="zmf-Nj-Lg9"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="264.5" y="-31.5"/>
+            <point key="canvasLocation" x="193.5" y="288.5"/>
         </view>
     </objects>
 </document>

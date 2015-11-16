@@ -8,6 +8,7 @@
 
 #import "NDPersonalOrderVC.h"
 #import "NDPersonalOrderCell.h"
+#import "NDRoomOrderVC.h"
 
 @interface NDPersonalOrderVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) NSArray *orders;
@@ -24,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"我的预约";
     
     WEAK_SELF;
     
@@ -52,14 +55,22 @@
         cell = [NDPersonalOrderCell new];
     }
     
+    if(indexPath.row == 0){
+        cell.ivNew.image = [UIImage imageNamed:@"icon_order_new"];
+    }
+    
     cell.order = order;
     
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110;
+    return 138;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -36,13 +36,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"真是详情";
+    
     [self startGet];
 }
 
 - (void)startGet{
     WEAK_SELF;
     
-    [self startGetRoomWithRoomId:self.room.ID success:^(NDRoom *room) {
+    [self startGetRoomWithRoomId:self.roomId success:^(NDRoom *room) {
         weakself.room = room;
         
         [weakself setupUI];

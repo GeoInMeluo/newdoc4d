@@ -169,6 +169,8 @@
 //        }
 //    }
     
+    [[NDCoreSession coreSession] logout];
+    
     [self startRegistWithUsername:self.tfPhoneNumber.text andPassWord:self.tfPwd.text andVerifyCode:self.tfVerifyCode.text andPhoneNumber:self.tfPhoneNumber.text success:^{
         for (UIViewController *controller in self.navigationController.viewControllers) {
             if ([controller isKindOfClass:[NDPersonalCenterHomeVC class]]) {

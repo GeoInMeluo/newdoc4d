@@ -10,4 +10,6 @@
 
 @interface NDBaseVC : UIViewController
 - (UIButton *)rightView;
+
+- (void)pop;
 @end

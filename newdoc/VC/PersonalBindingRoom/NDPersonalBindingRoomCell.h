@@ -10,5 +10,6 @@
 
 @interface NDPersonalBindingRoomCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet Button *btnEnter;
 
 @end

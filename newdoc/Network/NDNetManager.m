@@ -32,15 +32,23 @@
         
         [MBProgressHUD hideHUD];
         
-        FLog(@"%@", responseObject);
-        FLog(@"%@", operation.responseSerializer);
-        
         NSDictionary *result = responseObject;
         
+        if(!result){
+            [MBProgressHUD showError:@"服务器返回值为空"];
+            failure(@"服务器返回值为空");
+            
+            return;
+        }
+        
         if([[result allKeys] containsObject:@"errmsg"]){
+            FLog(@"%@", result);
+            
             [MBProgressHUD showError:result[@"errmsg"]];
             failure(result[@"errmsg"]);
         }else{
+            FLog(@"%@",result);
+            
             if([[result allKeys] containsObject:@"retcode"]){
                 if([result[@"retcode"] isEqualToString:@"0"]){
                     success(result);
@@ -60,8 +68,14 @@
                     [MBProgressHUD showError:@"列表为空"];
                     failure(@"列表为空");
                 }else if([result[@"retcode"] isEqualToString:@"8"]){
-//                    [MBProgressHUD showError:@"登陆失败"];
-//                    failure(@"登陆失败");
+
+                    
+                    if(![[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
+                        [MBProgressHUD showError:@"登陆失败"];
+                        failure(@"登陆失败");
+                        
+                        return;
+                    }
                     
                     //构造SendAuthReq结构体
                     SendAuthReq* req =[[SendAuthReq alloc ] init ];
@@ -78,10 +92,17 @@
                     [WXApi sendReq:req];
                     
                 }else if([result[@"retcode"] isEqualToString:@"9"]){
-//                    [MBProgressHUD showError:@"用户未注册"];
-//                    failure(@"用户未注册");
+
                     
                     //构造SendAuthReq结构体
+                    
+                    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"0"]){
+                        [MBProgressHUD showError:@"用户未注册"];
+                        failure(@"用户未注册");
+                            
+                            return;
+                    }
+                    
                     SendAuthReq* req =[[SendAuthReq alloc ] init ];
                     
 //                    if([NDCoreSession coreSession].openId.length){
@@ -98,10 +119,13 @@
                     [MBProgressHUD showError:@"用户权限不够"];
                     failure(@"用户权限不够");
                 }
+                
+                failure([NSString stringWithFormat:@"retcode == %@",result[@"retcode"]]);
             }
             
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD showError:@"网络请求失败？？？？？？？？？？？？？？？？？"];
         failure(@"网络请求失败？？？？？？？？？？？？？？？？？");
     }];
     

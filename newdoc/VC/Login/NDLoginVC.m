@@ -11,6 +11,8 @@
 #import "NDPersonalCenterHomeVC.h"
 #import "NDPersonalForgetPwdVC.h"
 #import "NDBaseTabVC.h"
+#import "NDBaseNavVC.h"
+#import "NDPersonalRegistBindVC.h"
 
 @interface NDLoginVC ()
 @property (strong, nonatomic) IBOutlet FormCell *cellAccount;
@@ -25,21 +27,6 @@
 
 @implementation NDLoginVC
 
-- (void)awakeFromNib{
-    Button *btnRegist = [[Button alloc] initWithFrame:CGRectMake(0, 0, 73, 30)];
-    [btnRegist setTitle:@"注册" forState:UIControlStateNormal];
-    [btnRegist setTitleColor:Blue forState:UIControlStateNormal];
-    btnRegist.layer.cornerRadius = 5;
-    btnRegist.layer.masksToBounds = YES;
-    btnRegist.layer.borderColor = Blue.CGColor;
-    btnRegist.layer.borderWidth = 1;
-    btnRegist.bottom = kScreenSize.height - 100;
-    btnRegist.centerX = kScreenSize.width * 0.5;
-    [btnRegist addTarget:self action:@selector(btnRegistClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnRegist];
-
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -49,7 +36,20 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    Button *btnRegist = [[Button alloc] initWithFrame:CGRectMake(0, 0, 73, 30)];
+    [btnRegist setTitle:@"注册" forState:UIControlStateNormal];
+    [btnRegist setTitleColor:Blue forState:UIControlStateNormal];
+    btnRegist.layer.cornerRadius = 5;
+    btnRegist.layer.masksToBounds = YES;
+    btnRegist.layer.borderColor = Blue.CGColor;
+    btnRegist.layer.borderWidth = 1;
+    btnRegist.bottom = kScreenSize.height - 200;
+    btnRegist.centerX = kScreenSize.width * 0.5;
+    [btnRegist addTarget:self action:@selector(btnRegistClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnRegist];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -58,6 +58,8 @@
 
 - (void)setupUI{
     WEAK_SELF;
+    
+    self.title = @"登录";
     
     [self appendSection:@[self.cellAccount,self.cellPwd] withHeader:nil];
     
@@ -73,17 +75,27 @@
     
     WEAK_SELF;
     
+    if(self.tfUsername.text.length == 0){
+        ShowAlert(@"请输入用户名");
+        
+        return;
+    }
+    
+    if(self.tfPassword.text.length == 0){
+        ShowAlert(@"请输入密码");
+        
+        return;
+    }
+    
+    if(![self isPhoneText:self.tfUsername.text]){
+        
+        ShowAlert(@"请输入正确手机号");
+        
+        return;
+    }
+    
     [self startLoginWithUsername:self.tfUsername.text andPassWord:self.tfPassword.text success:^{
 
-        [weakself startGetUserInfoAndSuccess:^(NDUser *user) {
-            [NDCoreSession coreSession].user = user;
-            
-            NSString *tempPath =  NSTemporaryDirectory();
-            
-            NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
-            
-            [NSKeyedArchiver archiveRootObject:user toFile:filePath];
-            
             [weakself.navigationController popViewControllerAnimated:YES];
             
 //            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
@@ -96,9 +108,6 @@
 //                    
 //                }
 //            }
-        } failure:^(NSString *error_message) {
-            
-        }];
         
         
     } failure:^(NSString *error_message) {
@@ -147,15 +156,29 @@
     if (aresp.errCode== 0) {
         NSString *code = aresp.code;
         
+        FLog(@"%@", code);
+        FLog(@"%@", self);
+        
         [self startRegistWithWXCode:code success:^(NSObject *resultDic) {
             
             __block NSDictionary * result = (NSDictionary *)resultDic;
             
-            [weakself startGetUserInfoAndSuccess:^(NDUser *user) {
+            FLog(@"%@", resultDic);
+            
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"openid"] forKey:@"openid"];
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"authkey"] forKey:@"authkey"];
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"1"] forKey:@"iswxlogin"];
+            
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [NDCoreSession coreSession].openId = result[@"openid"];
+            [NDCoreSession coreSession].isWxLogin = @"1";
+            
+            FLog(@"%@", self);
+            
+            [self startGetUserInfoAndSuccess:^(NDUser *user) {
                 if(user != nil){
-                    [[NSUserDefaults standardUserDefaults] setObject:result[@"openid"] forKey:@"openid"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    [NDCoreSession coreSession].openId = result[@"openid"];
+                    
                     [NDCoreSession coreSession].user = user;
                     
                     
@@ -166,13 +189,25 @@
                     [NSKeyedArchiver archiveRootObject:user toFile:filePath];
                     
                     FLog(@"%@", weakself);
-                    FLog(@"%@", self.navigationController);
+                    FLog(@"%@", weakself.navigationController);
                     
 //                    [self.navigationController popToRootViewControllerAnimated:YES];
 //                    [self dismissViewControllerAnimated:YES completion:nil];
-                    NDBaseTabVC *tabVC = [NDBaseTabVC new];
-                    tabVC.selectedIndex = 2;
-                    [[UIApplication sharedApplication].keyWindow setRootViewController:tabVC];
+                    
+                    
+                    
+                    if(user.mobile.length == 0){
+                        NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:[NDPersonalRegistBindVC new]];
+                        
+                        [[UIApplication sharedApplication].keyWindow setRootViewController:nav];
+                        
+                    }else{
+                        NDBaseTabVC *tabVC = [NDBaseTabVC new];
+                        tabVC.selectedIndex = 2;
+                        [[UIApplication sharedApplication].keyWindow setRootViewController:tabVC];
+                    }
+                    
+                    
                 }
             } failure:^(NSString *error_message) {
                 
@@ -189,6 +224,18 @@
 }
 
 - (IBAction)btnQQ:(id)sender {
+}
+
+-(BOOL)isPhoneText:(NSString *)str
+{
+    NSString * regex        = @"^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$";
+    NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch            = [pred evaluateWithObject:str];
+    if (isMatch) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (void)btnRegistClick{

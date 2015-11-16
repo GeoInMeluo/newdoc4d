@@ -8,10 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDRoomOrderVC">
             <connections>
                 <outlet property="btnAttention" destination="1jf-BL-hIR" id="Kot-vw-N0j"/>
+                <outlet property="btnDocHeadImg" destination="XOe-Ho-qZU" id="Tyc-xZ-bhO"/>
                 <outlet property="btnDocIntro" destination="ctc-Cm-wF7" id="uE5-Qr-nyF"/>
                 <outlet property="btnOrder" destination="jGI-9v-IGw" id="6zS-cd-bX7"/>
-                <outlet property="btnTimeArea1" destination="HcH-uv-X3Y" id="mIu-TM-a7c"/>
-                <outlet property="btnTimeArea3" destination="xTD-Mt-0vc" id="ECD-ZB-ec1"/>
                 <outlet property="btnUserComment" destination="3oK-Bm-6p9" id="70Q-s9-CEA"/>
                 <outlet property="dateView" destination="qXW-e4-ucV" id="7Jl-Vw-N7y"/>
                 <outlet property="lblCountMoment" destination="jIS-oy-HML" id="59s-Jc-DEj"/>
@@ -20,6 +19,7 @@
                 <outlet property="lblGoodat" destination="DeX-X9-rgw" id="K5b-zB-HQ0"/>
                 <outlet property="lblSubroom" destination="uoh-86-5pJ" id="748-iq-dBb"/>
                 <outlet property="roomCollectionView" destination="GZi-9D-Veg" id="MNc-pH-MvL"/>
+                <outlet property="vTimeScope" destination="bR4-6G-nit" id="vcj-DE-eiz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -230,36 +230,10 @@
                             </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bR4-6G-nit">
-                            <rect key="frame" x="8" y="167" width="304" height="36"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-uv-X3Y">
-                                    <rect key="frame" x="39" y="8" width="107" height="20"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="8:00 - 10:00"/>
-                                    <connections>
-                                        <action selector="btnTimeArea1Click:" destination="-1" eventType="touchUpInside" id="uhI-GX-a9g"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTD-Mt-0vc">
-                                    <rect key="frame" x="159" y="8" width="106" height="20"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="16:00 - 17:00"/>
-                                    <connections>
-                                        <action selector="btnTimeArea3Click:" destination="-1" eventType="touchUpInside" id="ipt-cO-Z46"/>
-                                    </connections>
-                                </button>
-                            </subviews>
+                            <rect key="frame" x="8" y="175" width="304" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="xTD-Mt-0vc" secondAttribute="trailing" constant="39" id="ASm-2B-w4w"/>
-                                <constraint firstItem="xTD-Mt-0vc" firstAttribute="width" secondItem="HcH-uv-X3Y" secondAttribute="width" id="Fjw-lC-BpQ"/>
-                                <constraint firstAttribute="bottom" secondItem="xTD-Mt-0vc" secondAttribute="bottom" constant="8" id="Lbz-UC-2N7"/>
-                                <constraint firstItem="xTD-Mt-0vc" firstAttribute="leading" secondItem="HcH-uv-X3Y" secondAttribute="trailing" constant="13" id="T1S-TJ-DKh"/>
-                                <constraint firstItem="HcH-uv-X3Y" firstAttribute="leading" secondItem="bR4-6G-nit" secondAttribute="leading" constant="39" id="U1j-i0-C6w"/>
-                                <constraint firstItem="xTD-Mt-0vc" firstAttribute="top" secondItem="bR4-6G-nit" secondAttribute="top" constant="8" id="XC2-AA-4b5"/>
-                                <constraint firstItem="HcH-uv-X3Y" firstAttribute="top" secondItem="bR4-6G-nit" secondAttribute="top" constant="8" id="bWy-P9-fD3"/>
-                                <constraint firstAttribute="height" constant="36" id="fdd-6T-LpM"/>
-                                <constraint firstAttribute="bottom" secondItem="HcH-uv-X3Y" secondAttribute="bottom" constant="8" id="nq0-6Q-H6y"/>
+                                <constraint firstAttribute="height" constant="20" id="fdd-6T-LpM"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务流程：免费预约 &gt; 准时报到 &gt; 医生安排加号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6S-Ef-gE3">
@@ -288,8 +262,8 @@
                         <constraint firstItem="S6S-Ef-gE3" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="34" id="6Eh-Vn-bCK"/>
                         <constraint firstAttribute="trailing" secondItem="bR4-6G-nit" secondAttribute="trailing" constant="8" id="8ll-if-Gs3"/>
                         <constraint firstItem="qXW-e4-ucV" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="8" id="EEm-Gl-bx8"/>
-                        <constraint firstItem="jGI-9v-IGw" firstAttribute="top" secondItem="bR4-6G-nit" secondAttribute="bottom" constant="8" id="JV6-Kf-ugb"/>
-                        <constraint firstItem="bR4-6G-nit" firstAttribute="top" secondItem="S6S-Ef-gE3" secondAttribute="bottom" constant="8" id="LI0-7h-zHy"/>
+                        <constraint firstItem="jGI-9v-IGw" firstAttribute="top" secondItem="bR4-6G-nit" secondAttribute="bottom" constant="16" id="JV6-Kf-ugb"/>
+                        <constraint firstItem="bR4-6G-nit" firstAttribute="top" secondItem="S6S-Ef-gE3" secondAttribute="bottom" constant="16" id="LI0-7h-zHy"/>
                         <constraint firstItem="jGI-9v-IGw" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="93" id="cAe-Nb-RXt"/>
                         <constraint firstItem="bR4-6G-nit" firstAttribute="leading" secondItem="Z6s-kM-Bjb" secondAttribute="leading" constant="8" id="cY7-1o-HEk"/>
                         <constraint firstItem="S6S-Ef-gE3" firstAttribute="top" secondItem="qXW-e4-ucV" secondAttribute="bottom" constant="8" id="ghc-yD-awW"/>

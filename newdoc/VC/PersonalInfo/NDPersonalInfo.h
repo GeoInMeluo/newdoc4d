@@ -8,6 +8,8 @@
 
 #import "NDBaseTableVC.h"
 
-@interface NDPersonalInfo : NDBaseTableVC
+typedef void(^VcCallBack)(NSString *str);
 
+@interface NDPersonalInfo : NDBaseTableVC
+@property (nonatomic, copy) VcCallBack callBack;
 @end

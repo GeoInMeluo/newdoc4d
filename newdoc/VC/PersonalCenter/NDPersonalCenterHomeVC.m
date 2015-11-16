@@ -17,6 +17,9 @@
 #import "NDPersonalAttentionDocVC.h"
 #import "NDPersonalOrderVC.h"
 
+
+
+
 @interface NDPersonalCenterHomeVC ()<UITableViewDataSource,UITabBarDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellInfomation;
 @property (strong, nonatomic) IBOutlet FormCell *cellRefer;
@@ -30,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIView *vAccountAndPhone;
 @property (weak, nonatomic) IBOutlet UILabel *lblAccount;
 @property (weak, nonatomic) IBOutlet UILabel *lblPhoneNumber;
-
 @end
 
 @implementation NDPersonalCenterHomeVC
@@ -49,35 +51,51 @@
     self.headImg.layer.borderColor = [UIColor whiteColor].CGColor;
     self.headImg.layer.borderWidth = 2;
     
+    
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if([NDCoreSession coreSession].openId.length != 0){
+    if([NDCoreSession coreSession].user.name.length != 0){
         self.vAccountAndPhone.hidden = NO;
         
         WEAK_SELF;
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
-            
-            tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakself.headImg setImage:tempImage forState:UIControlStateNormal];
-            });
-            
-        });
-        
-        
-        
-        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            
+//            UIImage *tempImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]];
+//            
+//            tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [weakself.headImg setImage:tempImage forState:UIControlStateNormal];
+//            });
+//            
+//        });
         self.lblAccount.text = [NDCoreSession coreSession].user.name;
         self.lblPhoneNumber.text = [NDCoreSession coreSession].user.mobile;
         self.btnLogin.hidden = YES;
+        
+        if([NDCoreSession coreSession].user.picture_url.length == 0){
+            [self.headImg setImage:[UIImage imageWithName:@"icon_placeHolder"] forState:UIControlStateNormal];
+            
+            return;
+        }
+        
+        [self.headImg sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+            
+            
+            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            
+            [weakself.headImg setImage:image forState:UIControlStateNormal];
+        }];
+    
     }else{
+        [self.headImg setImage:[UIImage imageWithName:@"icon_placeHolder"] forState:UIControlStateNormal];
         self.vAccountAndPhone.hidden = YES;
         self.btnLogin.hidden = NO;
     }
@@ -86,13 +104,29 @@
 - (void)initCells{
     WEAK_SELF;
     
+    
     [self appendSection:@[self.cellInfomation,self.cellMineDoc,self.cellRefer,self.cellOrder,self.cellEhr,self.cellMineRoom,self.cellSetting] withHeader:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.001, 0.001)]];
  
     self.cellInfomation.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         
         if([weakself checkLoginWithNav:weakself.navigationController]){
             CreateVC(NDPersonalInfo);
-            
+            vc.callBack = ^(NSString *imgUrl){
+                [NDCoreSession coreSession].user.picture_url = imgUrl;
+                
+                NSString *tempPath =  NSTemporaryDirectory();
+                
+                NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
+                
+                [NSKeyedArchiver archiveRootObject:[NDCoreSession coreSession].user toFile:filePath];
+                
+                [weakself.headImg sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    
+                    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                    
+                    [weakself.headImg setImage:image forState:UIControlStateNormal];
+                }];
+            };
             PushVCWeak(vc);
         }
     
@@ -140,6 +174,7 @@
 - (IBAction)btnLoginClick:(id)sender {
     ShowVC(NDLoginVC);
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -17,6 +17,14 @@
     return self;
 }
 
+- (void)setEhr:(NDEhr *)ehr{
+    _ehr = ehr;
+    
+    
+    _lblTitle.text = ehr.title;
+    _lblDetail.text = @"asdjfklaslkdfasjdflalkdjsf;jkaskl;djfljdsajflkjalskdjfjlsajfljalksdjfjasldjflkjalsdjfjadsljfkasdlkflkaldksajfaslkdjflkajsflkasjdfklajsjdflkjasjdfkjaslkjfjasldjfka";
+}
+
 - (void)awakeFromNib {
 //    self.width = [UIScreen mainScreen].bounds.size.width;
 }

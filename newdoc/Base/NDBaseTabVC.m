@@ -7,10 +7,10 @@
 //
 
 #import "NDBaseTabVC.h"
-#import "NDBaseNavVC.h"
 #import "NDRoomVC.h"
 #import "NDPersonalCenterHomeVC.h"
 #import "UMCommunity.h"
+#import "NDBaseNavVC.h"
 
 @interface NDBaseTabVC ()
 
@@ -28,6 +28,8 @@
 
 - (void)setup{
     
+    self.tabBar.translucent = NO;
+    
 //    self.hidesBottomBarWhenPushed = YES;
     
     NDRoomVC *roomVC = [NDRoomVC new];
@@ -44,7 +46,10 @@
     self.selectedIndex = 1;
 
     
+    
 }
+
+
 
 - (void)addOneChlildVc:(UIViewController *)childVc title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
 {

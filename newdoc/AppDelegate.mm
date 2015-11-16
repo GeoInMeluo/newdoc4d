@@ -39,6 +39,12 @@
     
     
     
+//    [self startCancelBindPhoneNumber:@"" andVerifyCode:@"012321" success:^{
+//        
+//    } failure:^(NSString *error_message) {
+//        
+//    } ];
+    
     // Override point for customization after application launch.
     
 //    NSDictionary *param = @{};
@@ -60,9 +66,9 @@
 //
 //    [self setupShareSdk3rd];
     
-//    [self setupJPush:launchOptions];
+    [self setupJPush:launchOptions];
     
-//    [self setupUmengCommunity];
+    [self setupUmengCommunity];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
@@ -72,14 +78,7 @@
     
     [self.window makeKeyAndVisible];
     
-//    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-//    
-//    for(int i= 0; i < cookies.count ; i++){
-//        NSHTTPCookie *cookie = cookies[i];
-//        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-//    }
-    
-//    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"openid"];
+
     
     
     return YES;
@@ -87,7 +86,8 @@
 
 - (void)setupWechatLogin{
     //向微信注册
-    [WXApi registerApp:@"wx79dcda258b479eeb" withDescription:@"weixin"];
+//    [WXApi registerApp:@"wx79dcda258b479eeb" withDescription:@"weixin"];
+    [WXApi registerApp:@"wxe5684b360ca8305b" withDescription:@"weixin"];
 }
 
 
@@ -117,25 +117,28 @@
     
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-//    
-//    // Required
-//    [APService registerDeviceToken:deviceToken];
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    
-//    // Required
-//    [APService handleRemoteNotification:userInfo];
-//}
-//
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-//    
-//    
-//    // IOS 7 Support Required
-//    [APService handleRemoteNotification:userInfo];
-//    completionHandler(UIBackgroundFetchResultNewData);
-//}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // Required
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    FLog(@"%@", userInfo);
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    FLog(@"%@", userInfo);
+    
+    // IOS 7 Support Required
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 
 - (void)setupBaiduMap{
 //    CLLocationManager *locationManager = [[CLLocationManager alloc] init];

@@ -80,7 +80,8 @@ static char imageURLStorageKey;
                 return;
             }
             else if (image) {
-                [sself setImage:image forState:state];
+                UIImage *temp = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                [sself setImage:temp forState:state];
             }
             if (completedBlock && finished) {
                 completedBlock(image, error, cacheType, url);

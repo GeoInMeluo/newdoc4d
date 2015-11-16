@@ -27,7 +27,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.title = @"我绑定的诊室";
     
+    [self startGet];
 }
 
 - (void)startGet{
@@ -47,6 +49,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WEAK_SELF;
+    
     static NSString *cellId = @"NDPersonalBindingRoomCell";
     
     NDPersonalBindingRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -55,7 +59,13 @@
         cell = [NDPersonalBindingRoomCell new];
     }
     
-    cell.lblRoomName.text = self.roomNames[indexPath.row];
+    cell.lblRoomName.text = self.roomNames[indexPath.row][@"name"];
+    cell.btnEnter.callback = ^(Button *btn){
+        NSString *roomId = self.roomNames[indexPath.row][@"id"];
+        CreateVC(NDRoomDetailVC);
+        vc.roomId = roomId;
+        PushVCWeak(vc);
+    };
     
     return cell;
     
@@ -66,7 +76,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ShowVC(NDRoomDetailVC);
 }
 
 - (void)didReceiveMemoryWarning {

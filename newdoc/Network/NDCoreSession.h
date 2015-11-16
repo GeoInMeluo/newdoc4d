@@ -15,7 +15,12 @@
 
 @property (nonatomic, copy) NSString *openId;
 
+@property (nonatomic, copy) NSString *isWxLogin;
+
+@property (nonatomic, copy) NSString *authKey;
+
 + (NDCoreSession *)coreSession;
 
+- (void)logout;
 //- (BOOL)isLogin;
 @end

@@ -74,7 +74,7 @@
                     <constraint firstItem="Ul2-HJ-ryM" firstAttribute="trailing" secondItem="hYI-rc-v4v" secondAttribute="trailingMargin" id="PGd-O6-rWC"/>
                     <constraint firstAttribute="bottomMargin" secondItem="rmY-KM-Fn9" secondAttribute="bottom" constant="-9" id="PTv-6K-Yc8"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Ul2-HJ-ryM" secondAttribute="bottom" constant="-8" id="YXk-DY-WUM"/>
-                    <constraint firstItem="Ul2-HJ-ryM" firstAttribute="leading" secondItem="vDq-2Z-pgW" secondAttribute="trailing" constant="8" id="alr-Za-gse"/>
+                    <constraint firstItem="Ul2-HJ-ryM" firstAttribute="leading" secondItem="hYI-rc-v4v" secondAttribute="leadingMargin" constant="49" id="c7t-AM-tXC"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rmY-KM-Fn9" secondAttribute="trailing" constant="-8" id="eag-53-hOx"/>
                     <constraint firstItem="vDq-2Z-pgW" firstAttribute="centerY" secondItem="hYI-rc-v4v" secondAttribute="centerY" id="pF1-Vo-lXO"/>
                 </constraints>
@@ -150,7 +150,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hun-mf-1Zv">
-                        <rect key="frame" x="60" y="0.0" width="252" height="57"/>
+                        <rect key="frame" x="57" y="0.0" width="252" height="57"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     </textField>
@@ -164,10 +164,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="hun-mf-1Zv" secondAttribute="bottom" constant="-8" id="2QH-kX-WEc"/>
-                    <constraint firstItem="hun-mf-1Zv" firstAttribute="leading" secondItem="G4Y-SV-Tmx" secondAttribute="leadingMargin" constant="52" id="43d-fP-05m"/>
+                    <constraint firstItem="hun-mf-1Zv" firstAttribute="leading" secondItem="G4Y-SV-Tmx" secondAttribute="leadingMargin" constant="49" id="43d-fP-05m"/>
                     <constraint firstItem="Mjd-O1-02j" firstAttribute="leading" secondItem="G4Y-SV-Tmx" secondAttribute="leadingMargin" constant="-8" id="InN-bG-Etb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Mjd-O1-02j" secondAttribute="trailing" constant="-8" id="U5N-fG-0Zx"/>
-                    <constraint firstItem="hun-mf-1Zv" firstAttribute="trailing" secondItem="G4Y-SV-Tmx" secondAttribute="trailingMargin" id="ck2-Mo-SEi"/>
+                    <constraint firstItem="hun-mf-1Zv" firstAttribute="trailing" secondItem="G4Y-SV-Tmx" secondAttribute="trailingMargin" constant="-3" id="ck2-Mo-SEi"/>
                     <constraint firstItem="hun-mf-1Zv" firstAttribute="top" secondItem="G4Y-SV-Tmx" secondAttribute="topMargin" constant="-8" id="dgI-IM-b5z"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Mjd-O1-02j" secondAttribute="bottom" constant="-9" id="xTx-uy-Y9Y"/>
                 </constraints>
@@ -214,7 +214,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="KZw-ce-eaT" secondAttribute="trailing" constant="-8" id="IdC-TF-7zl"/>
                     <constraint firstItem="e3p-nB-jgF" firstAttribute="trailing" secondItem="XB9-I3-xld" secondAttribute="trailingMargin" id="J8x-je-DYl"/>
                     <constraint firstItem="KZw-ce-eaT" firstAttribute="leading" secondItem="XB9-I3-xld" secondAttribute="leadingMargin" constant="-8" id="XAE-Bm-bum"/>
-                    <constraint firstItem="e3p-nB-jgF" firstAttribute="leading" secondItem="Dx4-7e-i2O" secondAttribute="trailing" constant="8" id="Zvi-aZ-GnD"/>
+                    <constraint firstItem="e3p-nB-jgF" firstAttribute="leading" secondItem="XB9-I3-xld" secondAttribute="leadingMargin" constant="49" id="ZIG-zx-VZk"/>
                     <constraint firstItem="e3p-nB-jgF" firstAttribute="top" secondItem="XB9-I3-xld" secondAttribute="topMargin" constant="-8" id="ok9-IE-Xdi"/>
                     <constraint firstItem="Dx4-7e-i2O" firstAttribute="centerY" secondItem="XB9-I3-xld" secondAttribute="centerY" id="s2V-DZ-IiK"/>
                 </constraints>

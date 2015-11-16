@@ -10,4 +10,12 @@
 
 @interface NDPersonalAttentionDocCell : UITableViewCell
 
+@property (nonatomic, strong) NSDictionary *tempDocDic;
+
+@property (weak, nonatomic) IBOutlet UIButton *ivHeadImg;
+@property (weak, nonatomic) IBOutlet UILabel *lblName;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
+@property (weak, nonatomic) IBOutlet UILabel *lblGoodat;
+
 @end

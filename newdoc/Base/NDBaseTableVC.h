@@ -21,4 +21,6 @@
 
 -(FormSection*)appendSection:(NSArray*)cells withHeader:(UIView*)headerView;
 -(FormSection*)appendSection:(NSArray*)cells withHeader:(UIView*)headerView andFooter:(UIView*)footerView;
+
+- (void)pop;
 @end

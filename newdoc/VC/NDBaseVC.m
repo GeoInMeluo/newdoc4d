@@ -7,6 +7,7 @@
 //
 
 #import "NDBaseVC.h"
+#import "NDBaseNavVC.h"
 
 @interface NDBaseVC ()
 
@@ -31,6 +32,24 @@
     }
     
     self.view.height -= 44;
+    
+    UIButton *leftNavBtn = [[UIButton alloc] init];
+    [leftNavBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [leftNavBtn setImage:[UIImage imageNamed:@"back"]
+                forState:UIControlStateHighlighted];
+    [leftNavBtn setTitle:@"返回" forState:UIControlStateNormal];
+    [leftNavBtn setTitle:@"返回" forState:UIControlStateHighlighted];
+    [leftNavBtn sizeToFit];
+    [leftNavBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+    
+    if([self.navigationController isKindOfClass:[NDBaseNavVC class]]){
+        NDBaseNavVC *nav = (NDBaseNavVC *)self.navigationController;
+        nav.leftBtn = leftNavBtn;
+    }
+}
+
+- (void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UIButton *)rightView{

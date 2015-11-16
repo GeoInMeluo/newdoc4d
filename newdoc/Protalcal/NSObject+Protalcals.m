@@ -291,7 +291,7 @@
 //        if([[result allKeys] containsObject:@"data"]){
 //            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow objectWithKeyValues:result[@"data"]];
 //            
-//            success(doctor);
+            success();
 //        }
         
         
@@ -338,20 +338,38 @@
 
 //主动登陆
 - (void)startLoginWithUsername:(NSString *)username andPassWord:(NSString *)pwd success:(void(^)())success failure:(void(^)(NSString *error_message))failure{
+    WEAK_SELF;
+    
+    [[NDCoreSession coreSession] logout];
+    
+    [NDCoreSession coreSession].isWxLogin = @"0";
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"iswxlogin"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     
     [param setObject:SafeString(username) forKey:@"newdocid"];
-    NSString *md5String = MD5_NSString([NSString stringWithFormat:@"%@:%@",username,pwd]);
-    FLog(@"%@", md5String);
-    NSString *finalString = [NSString stringWithFormat:@"Basic %@",md5String];
+//    NSString *md5String = ([NSString stringWithFormat:@"%@:%@",username,pwd]);
+    
+    NSString *base64Str = [NSString base64StringFromData:[[NSString stringWithFormat:@"%@:%@",username,pwd] dataUsingEncoding:NSUTF8StringEncoding] length:0];
+    
+    FLog(@"%@", base64Str);
+    NSString *finalString = [NSString stringWithFormat:@"Basic %@",base64Str];
     
     [[NDNetManager sharedNetManager].requestSerializer setValue:finalString forHTTPHeaderField:@"Authorization"];
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/login" parameters:param success:^(NSDictionary *result) {
         
+        [weakself startGetUserInfoAndSuccess:^(NDUser *user) {
+            success(user);
+        } failure:^(NSString *error_message) {
+            failure(error_message);
+        }];
+        
         FLog(@"%@", result);
         
-        success();
+        
         
         
         
@@ -408,6 +426,62 @@
         FLog(@"%@", result);
         
         if([[result allKeys] containsObject:@"data"]){
+            
+            NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
+            
+            FLog(@"%@", user);
+            FLog(@"%@", result[@"data"]);
+            
+            [NDCoreSession coreSession].user = user;
+            
+            NSString *tempPath =  NSTemporaryDirectory();
+            
+            NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
+            
+            [NSKeyedArchiver archiveRootObject:user toFile:filePath];
+
+            
+            success(user);
+        }
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//编辑用户信息
+- (void)startEditUserInfo:(NDUser *)user success:(void(^)(NDUser *user))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *item = @{@"name":SafeString(user.name),
+                           @"picture_url":SafeString(user.picture_url),
+                           @"sex":SafeString(user.sex),
+                           @"weixin":@"",
+                           @"city":@"",
+                           @"country":@"",
+                           @"province":@"",
+                           @"registration_id":@"",
+                           @"os":@""};
+    
+    NSArray *items = @[item];
+    
+    FLog(@"%@", items);
+    
+    if(items == nil){
+        return;
+    }
+    
+    NSString *jsonStr = [items jsonString];
+    
+    FLog(@"%@", jsonStr);
+    
+    NSDictionary *param = @{@"items":jsonStr};
+    
+    
+    
+    [[NDNetManager sharedNetManager] post:@"/app/1/Clients" parameters:param success:^(NSDictionary *result) {
+        
+        FLog(@"%@", result);
+        
+        if([[result allKeys] containsObject:@"data"]){
             NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
             
             FLog(@"%@", user);
@@ -419,38 +493,26 @@
     } failure:^(NSString *error_message) {
         failure(error_message);
     }];
-}
-
-//编辑用户信息（先不写）
-- (void)startEditUserInfo:(NDUser *)user success:(void(^)(NDUser *user))success failure:(void(^)(NSString *error_message))failure{
-//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-////    [param setValue:user.name forKey:@""];
-//    [param setValue:user.name forKey:@""];
-//    
-//    
-//    [[NDNetManager sharedNetManager] post:@"/app/1/Clients" parameters:param success:^(NSDictionary *result) {
-//        
-//        FLog(@"%@", result);
-//        
-//        if([[result allKeys] containsObject:@"data"]){
-//            NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
-//            
-//            FLog(@"%@", user);
-//            FLog(@"%@", result[@"data"]);
-//            
-//            success(user);
-//        }
-//        
-//    } failure:^(NSString *error_message) {
-//        failure(error_message);
-//    }];
 
 }
 
-//发送信息更新验证码
+//发送信息更新密码
 - (void)startSendVerifyCodeForUpdatePasswordWithPhoneNumber:(NSString *)phoneNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure{
     NSDictionary *param = @{@"mobile":SafeString(phoneNumber),
-                            @"f":@"secure"};
+                            @"f":@"forget"};
+    
+    
+    [[NDNetManager sharedNetManager] post:@"/Common/1/sms" parameters:param success:^(NSDictionary *result) {
+        success(result);
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//发送信息绑定手机
+- (void)startSendVerifyCodeForBindWithPhoneNumber:(NSString *)phoneNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{@"mobile":SafeString(phoneNumber),
+                            @"f":@"bind"};
     
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/sms" parameters:param success:^(NSDictionary *result) {
@@ -465,7 +527,7 @@
 - (void)startResetPasswordWithPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode andNewPassword:(NSString *)newPwd success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure{
     NSDictionary *param = @{ @"mobile":SafeString(phoneNumber),
                              @"smstoken":SafeString(verifyCode),
-                            @"new":MD5_NSString(newPwd)};
+                            @"newMd5":MD5_NSString(newPwd)};
     
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/forget" parameters:param success:^(NSDictionary *result) {
@@ -481,6 +543,7 @@
     NSDictionary *param = @{ @"type":@"app",
                              @"code":SafeString(code)};
     
+    FLog(@"%@", param);
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/wxlogin" parameters:param success:^(NSDictionary *result) {
         success(result);
@@ -543,6 +606,10 @@
         FLog(@"%@",result);
         
         if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                success(result[@"data"][@"subs"]);
+            }
+            
 #pragma 返回数据少参数
 /*
  data =     {
@@ -648,16 +715,94 @@
     NSDictionary *param = @{ @"pageNum":@"0",
                              @"pageCnt":@"10"};
     
+    NSMutableArray *roomNames = [NSMutableArray array];
     
     [[NDNetManager sharedNetManager] get:@"/app/1/Binding?action=index" parameters:param success:^(NSDictionary *result) {
         FLog(@"%@",result);
         
         if([[result allKeys] containsObject:@"data"]){
             if([[result[@"data"] allKeys] containsObject:@"subs"]){
-                NSArray *roomNames = result[@"data"][@"subs"];
+                for(id obj in result[@"data"][@"subs"]){
+                    NSDictionary *temp = obj;
+                    [roomNames addObject: temp];
+                }
+//                NSArray *roomNames = result[@"data"][@"subs"];
                 success(roomNames);
             }
         }
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//绑定手机
+- (void)startBindPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode  success:(void(^)())success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"mobile":phoneNumber,
+                             @"smstoken":verifyCode};
+    
+    [[NDNetManager sharedNetManager] post:@"/Common/1/mobile?" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        success();
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//解绑手机
+- (void)startCancelBindPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode  success:(void(^)())success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{ @"action":@"del",
+                             @"smstoken":verifyCode};
+    
+    [[NDNetManager sharedNetManager] post:@"/Common/1/mobile?" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        success();
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//上传图片
+- (void)startUploadImageWithImage:(UIImage *)image  success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure{
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
+//    NSString *dataStr = [[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
+    
+    NSString *base64Str = [imageData base64EncodedStringWithOptions:0];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%zd", datetime2Timestamp([NSDate date])];
+    
+    NSDictionary *item = @{@"pic_data":SafeString(base64Str),
+                           @"pic_name":fileName};
+    
+    NSArray *items = @[item];
+    
+    FLog(@"%@", items);
+    
+    if(items == nil){
+        return;
+    }
+    
+    NSString *jsonStr = [items jsonString];
+    
+    NSDictionary *param = @{@"items":jsonStr};
+
+    
+    [[NDNetManager sharedNetManager] post:@"/app/1/Images" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:fileName]){
+                NSString *imageUrl = result[@"data"][fileName];
+                success(imageUrl);
+            }
+        }
+        
+        failure([NSString stringWithFormat:@"retcode = %@", result[@"retcode"]]);
         
     } failure:^(NSString *error_message) {
         failure(error_message);

@@ -47,7 +47,9 @@
     cell.room = room;
     cell.btnGo2RoomDetail.callback = ^(Button *btn){
         NDRoomDetailVC *vc =[NDRoomDetailVC new];
-        vc.room = self.rooms[indexPath.row];
+//        vc.room = self.rooms[indexPath.row];
+        NDRoom *room = self.rooms[indexPath.row];
+        vc.roomId = room.ID;
         [weakself.parentVC.navigationController pushViewController:vc animated:YES];
     };
     cell.btnIsBond.callback = ^(Button *btn){

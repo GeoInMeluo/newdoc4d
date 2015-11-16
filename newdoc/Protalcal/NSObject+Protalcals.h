@@ -75,8 +75,11 @@
 //编辑用户信息
 - (void)startEditUserInfo:(NDUser *)user success:(void(^)(NDUser *user))success failure:(void(^)(NSString *error_message))failure;
 
-//发送信息更新验证码
+//发送信息更新密码
 - (void)startSendVerifyCodeForUpdatePasswordWithPhoneNumber:(NSString *)phoneNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure;
+
+//发送信息绑定手机
+- (void)startSendVerifyCodeForBindWithPhoneNumber:(NSString *)phoneNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure;
 
 //忘记密码，用手机号找回更新密码
 - (void)startResetPasswordWithPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode andNewPassword:(NSString *)newPwd success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure;
@@ -104,4 +107,13 @@
 
 //得到用户的绑定的诊室
 - (void)startGetBindRoomsWithAndSuccess:(void(^)(NSArray *roomNames))success failure:(void(^)(NSString *error_message))failure;
+
+//绑定手机
+- (void)startBindPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode  success:(void(^)())success failure:(void(^)(NSString *error_message))failure;
+
+//解绑手机
+- (void)startCancelBindPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode  success:(void(^)())success failure:(void(^)(NSString *error_message))failure;
+
+//上传图片
+- (void)startUploadImageWithImage:(UIImage *)image  success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure;
 @end

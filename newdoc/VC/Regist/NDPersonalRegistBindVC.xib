@@ -12,15 +12,17 @@
                 <outlet property="btnBinding" destination="tnv-kc-BVA" id="ehd-r3-4pA"/>
                 <outlet property="btnIgnore" destination="Dhv-OC-eiQ" id="iXP-O5-MnQ"/>
                 <outlet property="cellPhone" destination="0Fk-Xs-uqC" id="wKi-xu-uzo"/>
+                <outlet property="defaultFooter" destination="g5l-bp-WoG" id="qj4-Ma-1Wn"/>
                 <outlet property="sectionHeader" destination="pqb-9q-WDh" id="RoF-l4-5XF"/>
+                <outlet property="tfPhoneNumber" destination="hmC-Tw-v0f" id="vS2-eY-fFm"/>
                 <outlet property="view" destination="4pI-kP-4di" id="mpP-8V-XJL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4pI-kP-4di">
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4pI-kP-4di">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="lJC-5Z-DJN"/>
                 <outlet property="delegate" destination="-1" id="rr0-ZY-cnb"/>

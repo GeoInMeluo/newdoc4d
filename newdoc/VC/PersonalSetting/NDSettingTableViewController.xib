@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDSettingTableViewController">
             <connections>
+                <outlet property="btnLogout" destination="7hg-CY-fZ9" id="3Ym-v8-Y3c"/>
                 <outlet property="cellAbout" destination="doC-9u-Pc5" id="4HF-EF-4yB"/>
                 <outlet property="cellProtocal" destination="vaz-sV-CBQ" id="4CH-7f-zeG"/>
                 <outlet property="defaultFooter" destination="zQ1-De-7M4" id="EcI-JT-0gR"/>
@@ -25,12 +26,16 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hg-CY-fZ9">
-                        <rect key="frame" x="14" y="12" width="572" height="39"/>
+                        <rect key="frame" x="200" y="12" width="200" height="39"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="39" id="Fhp-zr-84n"/>
-                            <constraint firstAttribute="width" constant="572" id="fde-Ak-js1"/>
+                            <constraint firstAttribute="width" constant="200" id="fde-Ak-js1"/>
                         </constraints>
                         <state key="normal" title="退出登录"/>
+                        <connections>
+                            <action selector="btnLogout:" destination="-1" eventType="touchUpInside" id="E53-Bh-SLc"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>

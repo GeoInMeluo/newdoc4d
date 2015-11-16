@@ -17,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"我的咨询";
+    
     // Do any additional setup after loading the view from its nib.
 }
 

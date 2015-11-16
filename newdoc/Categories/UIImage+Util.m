@@ -32,4 +32,9 @@
     
     return pressedColorImg;
 }
+
++ (UIImage *)imageWithName:(NSString *)imageName{
+    UIImage *image = [UIImage imageNamed:imageName];
+    return [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+}
 @end

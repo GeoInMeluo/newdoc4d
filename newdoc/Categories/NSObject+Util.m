@@ -11,7 +11,7 @@
 
 @implementation NSObject (Util)
 - (BOOL)checkLoginWithNav:(UINavigationController *)nav{
-    if(![NDCoreSession coreSession].openId.length != 0){
+    if(![NDCoreSession coreSession].user.name.length != 0){
         [nav pushViewController:[NDLoginVC new] animated:YES];
         return NO;
     }

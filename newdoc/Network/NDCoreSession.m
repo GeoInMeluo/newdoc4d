@@ -41,7 +41,8 @@ static NDCoreSession * sharedInstance;
     }
     
     self.openId = [[NSUserDefaults standardUserDefaults] objectForKey:@"openid"];
-
+    self.authKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"authkey"];
+    self.isWxLogin = [[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"];
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
@@ -49,6 +50,31 @@ static NDCoreSession * sharedInstance;
     return sharedInstance;
 }
 
+- (void)logout{
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"openid"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"authkey"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"iswxlogin"];
+    
+    NSString *tempPath =  NSTemporaryDirectory();
+    
+    NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
+    
+    NDUser *user = [NDUser new];
+    
+    [NSKeyedArchiver archiveRootObject:user toFile:filePath];
+    
+    [NDCoreSession coreSession].user = nil;
+    [NDCoreSession coreSession].openId = nil;
+    [NDCoreSession coreSession].authKey = nil;
+    
+    //清空cookie
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    
+    for(int i= 0; i < cookies.count ; i++){
+        NSHTTPCookie *cookie = cookies[i];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
+}
 //- (BOOL)isLogin{
 ////    return self.user.name != nil;
 //    if(self.user.name != nil){

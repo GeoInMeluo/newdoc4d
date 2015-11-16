@@ -7,7 +7,18 @@
 //
 
 #import "NDBaseVC.h"
+#import "NDPhotoGridCell.h"
+#import "UUPhotoActionSheet.h"
 
-@interface NDQAOnlineVC : NDBaseVC
+@interface NDQAOnlineVC : NDBaseVC<UIPickerViewDelegate,UIPickerViewDataSource>
+@property (weak, nonatomic) IBOutlet UIButton *btnSubroom;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segGender;
+@property (weak, nonatomic) IBOutlet UITextField *tfAge;
+@property (weak, nonatomic) IBOutlet UITextView *tvQuestion;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *btnSubmit;
 
+@property (nonatomic, weak) UUPhotoActionSheet *photoActionSheet;
+
+@property (nonatomic, strong) NSMutableArray *imgs;
 @end

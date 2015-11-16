@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSubRoom;
 @property (weak, nonatomic) IBOutlet UILabel *lblDoc;
 @property (weak, nonatomic) IBOutlet UILabel *lblOrderTime;
+@property (weak, nonatomic) IBOutlet UIImageView *ivNew;
 
 @end

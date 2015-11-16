@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"我的病历";
+    
     [self startGet];
     
     
@@ -73,7 +75,7 @@
 //        anim.keyPath = @"transform.rotation";
 //        anim.toValue = [NSNumber numberWithDouble:(M_PI * 0.5)];
 //        [cell.imgArrow.layer addAnimation:anim forKey:@"imgArrow"];
-    
+        
     }
 
     return cell;
@@ -110,8 +112,7 @@
     
     if([self.sectionIds[section] isEqualToString:@"1"]){
         NDPersonalEhrFooter *view = [NDPersonalEhrFooter new];
-//        view.width = [UIScreen mainScreen].bounds.size.width;
-//        [view setPreservesSuperviewLayoutMargins:YES];
+        
         return view;
     }
     
