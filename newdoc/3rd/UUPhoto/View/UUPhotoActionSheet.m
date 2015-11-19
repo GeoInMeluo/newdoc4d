@@ -87,7 +87,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 
-    UIImage *editedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
     
     [_weakSuper dismissViewControllerAnimated:YES completion:^{
     
@@ -130,7 +130,7 @@
         }
 
         pickerImage.delegate = self;
-        pickerImage.allowsEditing = NO;
+        pickerImage.allowsEditing = YES;
         [_weakSuper presentViewController:pickerImage animated:YES completion:^{
 
             [self cancelAnimation];

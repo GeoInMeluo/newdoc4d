@@ -19,6 +19,8 @@
 #import "NDRealNameAuth.h"
 #import "NDOrder.h"
 #import "NDEhr.h"
+#import "NDQAMessage.h"
+#import "NDTalkMessage.h"
 
 @interface NSObject (Protalcals)
 //获取验证码
@@ -115,5 +117,17 @@
 - (void)startCancelBindPhoneNumber:(NSString *)phoneNumber andVerifyCode:(NSString *)verifyCode  success:(void(^)())success failure:(void(^)(NSString *error_message))failure;
 
 //上传图片
-- (void)startUploadImageWithImage:(UIImage *)image  success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure;
+- (void)startUploadImageWithImages:(NSArray *)images  success:(void(^)(NSArray *imgUrls))success failure:(void(^)(NSString *error_message))failure;
+
+//用户提交咨询
+- (void)startSubmitQAWithContent:(NSString *)content andSubroomId:(NSString *)subroomId andSex:(NSString *)sex andAge:(NSString *)age andImgs:(NSArray *)imgs success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure;
+
+//浏览咨询列表
+- (void)startGetQAListAndSuccess:(void(^)(NSArray *qaMessages))success failure:(void(^)(NSString *error_message))failure;
+
+//浏览咨询
+- (void)startGetQAWithQAId:(NSString *)qAId success:(void(^)(NSArray *talkMessages))success failure:(void(^)(NSString *error_message))failure;
+
+//用户追加咨询
+- (void)startSendTalkMessage:(NSString *)message andQAID:(NSString *)qAId success:(void(^)(NSArray *talkMessages))success failure:(void(^)(NSString *error_message))failure;
 @end

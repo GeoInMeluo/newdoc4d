@@ -36,21 +36,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
-    
-//    [self startCancelBindPhoneNumber:@"" andVerifyCode:@"012321" success:^{
-//        
-//    } failure:^(NSString *error_message) {
-//        
-//    } ];
-    
-    // Override point for customization after application launch.
-    
-//    NSDictionary *param = @{};
-//
-
-    
+     
     
 //    [[NCNetManager sharedNetManager] GET:@"/app/1/catalog?action=detail" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSDictionary *responseObj = responseObject;
@@ -93,7 +79,7 @@
 
 - (void)setupUmengCommunity{
     //社区
-    [UMCommunity setWithAppKey:@"54d19091fd98c55a19000406"];  //需要修改微社区的Appkey
+    [UMCommunity setWithAppKey:@"5617f55b67e58ee20a002fa8"];  //需要修改微社区的Appkey
 }
 
 - (void)setupJPush:(NSDictionary *)launchOptions{

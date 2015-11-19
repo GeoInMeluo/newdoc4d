@@ -345,7 +345,10 @@
     [NDCoreSession coreSession].isWxLogin = @"0";
     
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"iswxlogin"];
+
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     
@@ -361,6 +364,41 @@
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/login" parameters:param success:^(NSDictionary *result) {
         
+        [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+        [[NSUserDefaults standardUserDefaults] setObject:pwd forKey:@"pwd"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+        for(NSHTTPCookie *cookie in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies){
+            
+            //        if([cookie.name isEqualToString:@"AUTHKEY"] ){
+            //            [[NSUserDefaults standardUserDefaults] setObject:cookie.value forKey:@"authkey"];
+            //        }
+            //
+            //        if([cookie.name isEqualToString:@"OPENID"] ){
+            //            [[NSUserDefaults standardUserDefaults] setObject:cookie.value forKey:@"openid"];
+            //        }
+            
+            if([cookie.name isEqualToString:@"NDUID"] ){
+                
+                FLog(@"%@", cookie.value);
+                
+                [[NSUserDefaults standardUserDefaults] setObject:cookie.value forKey:@"nduid"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [NDCoreSession coreSession].nduid = cookie.value;
+            }
+            
+        }
+        
+        FLog(@"%@", result);
+        
+        //使用完cookie之后禁用cookie
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+        
         [weakself startGetUserInfoAndSuccess:^(NDUser *user) {
             success(user);
         } failure:^(NSString *error_message) {
@@ -368,10 +406,6 @@
         }];
         
         FLog(@"%@", result);
-        
-        
-        
-        
         
     } failure:^(NSString *error_message) {
         failure(error_message);
@@ -454,12 +488,12 @@
     NSDictionary *item = @{@"name":SafeString(user.name),
                            @"picture_url":SafeString(user.picture_url),
                            @"sex":SafeString(user.sex),
-                           @"weixin":@"",
+                           @"weixin":SafeString(user.weixin),
                            @"city":@"",
                            @"country":@"",
                            @"province":@"",
                            @"registration_id":@"",
-                           @"os":@""};
+                           @"os":@"0"};
     
     NSArray *items = @[item];
     
@@ -767,19 +801,33 @@
 }
 
 //上传图片
-- (void)startUploadImageWithImage:(UIImage *)image  success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure{
+- (void)startUploadImageWithImages:(NSArray *)images  success:(void(^)(NSArray *imgUrls))success failure:(void(^)(NSString *error_message))failure{
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
-//    NSString *dataStr = [[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
+    [MBProgressHUD showMessage:@""];
     
-    NSString *base64Str = [imageData base64EncodedStringWithOptions:0];
+    NSMutableArray *items = [NSMutableArray array];
     
-    NSString *fileName = [NSString stringWithFormat:@"%zd", datetime2Timestamp([NSDate date])];
+    for(id obj in images){
+        if([obj isKindOfClass:[UIImage class]]){
+            UIImage *image = obj;
+            
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.05);
+            //    NSString *dataStr = [[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
+            
+            NSString *base64Str = [imageData base64EncodedStringWithOptions:0];
+            
+            NSString *fileName = [NSString stringWithFormat:@"%zd.png", datetime2Timestamp([NSDate date])];
+            
+            NSDictionary *item = @{@"pic_data":SafeString(base64Str),
+                                   @"pic_name":fileName};
+            
+            [items addObject:item];
+        }
+    }
     
-    NSDictionary *item = @{@"pic_data":SafeString(base64Str),
-                           @"pic_name":fileName};
     
-    NSArray *items = @[item];
+    
+    
     
     FLog(@"%@", items);
     
@@ -793,19 +841,154 @@
 
     
     [[NDNetManager sharedNetManager] post:@"/app/1/Images" parameters:param success:^(NSDictionary *result) {
+        
+        [MBProgressHUD hideHUD];
+        
         FLog(@"%@",result);
         
+        NSMutableArray *imgUrls = [NSMutableArray array];
+        
         if([[result allKeys] containsObject:@"data"]){
-            if([[result[@"data"] allKeys] containsObject:fileName]){
-                NSString *imageUrl = result[@"data"][fileName];
-                success(imageUrl);
+            for(int i = 0; i < items.count; i++){
+                if([[result[@"data"] allKeys] containsObject:items[i][@"pic_name"]]){
+                    NSString *imageUrl = result[@"data"][items[i][@"pic_name"]];
+                    [imgUrls addObject:imageUrl];
+                }
             }
+            
+            success(imgUrls);
         }
         
         failure([NSString stringWithFormat:@"retcode = %@", result[@"retcode"]]);
         
     } failure:^(NSString *error_message) {
+        [MBProgressHUD hideHUD];
+        
         failure(error_message);
+    }];
+}
+
+//用户提交咨询
+- (void)startSubmitQAWithContent:(NSString *)content andSubroomId:(NSString *)subroomId andSex:(NSString *)sex andAge:(NSString *)age andImgs:(NSArray *)imgs success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure{
+    
+    NSDictionary *item = @{@"catalogid":SafeString(subroomId),
+                           @"sex":SafeString(sex),
+                           @"age":SafeString(age),
+                           @"content":SafeString(content),
+                           @"imgs":SafeArray(imgs),
+                           @"doctorid":SafeString(@"")};
+    
+    NSArray *items = @[item];
+    
+    FLog(@"%@", items);
+    
+    if(items == nil){
+        return;
+    }
+    
+    NSString *jsonStr = [items jsonString];
+    
+    NSDictionary *param = @{@"items":jsonStr};
+    
+    
+    [[NDNetManager sharedNetManager] post:@"/app/1/Consults" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+}
+
+//浏览咨询列表
+- (void)startGetQAListAndSuccess:(void(^)(NSArray *qaMessages))success failure:(void(^)(NSString *error_message))failure{
+    
+    NSDictionary *param = [NSDictionary dictionary];
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Consults?action=index" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        NSMutableArray *messages = [NSMutableArray array];
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                for(id obj in result[@"data"][@"subs"]){
+                    NDQAMessage *message = [NDQAMessage objectWithKeyValues:obj];
+                    
+                    [messages addObject:message];
+                }
+                
+                success(messages);
+            }
+        }
+        
+    } failure:^(NSString *error_message) {
+        
+        failure(error_message);
+        
+        
+    }];
+}
+
+//浏览咨询
+- (void)startGetQAWithQAId:(NSString *)qAId success:(void(^)(NSArray *talkMessages))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = [NSDictionary dictionary];
+    
+    [[NDNetManager sharedNetManager] get:[NSString stringWithFormat:@"/app/1/Consults/%@",qAId] parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        
+        NSMutableArray *talkMessages = [NSMutableArray array];
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"talks"]){
+                for(id obj in result[@"data"][@"talks"]){
+                    NDTalkMessage *message = [NDTalkMessage objectWithKeyValues:obj];
+                    
+                    [talkMessages addObject:message];
+                }
+                
+                success(talkMessages);
+            }
+        }
+
+        
+        
+    } failure:^(NSString *error_message) {
+        
+        failure(error_message);
+        
+        
+    }];
+}
+
+//用户追加咨询
+- (void)startSendTalkMessage:(NSString *)message andQAID:(NSString *)qAId success:(void(^)(NSArray *talkMessages))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *item = @{@"content":SafeString(message)};
+    
+    NSArray *items = @[item];
+    
+    FLog(@"%@", items);
+    
+    if(items == nil){
+        return;
+    }
+    
+    NSString *jsonStr = [items jsonString];
+    
+    FLog(@"%@", jsonStr);
+    
+    NSDictionary *param = @{@"items":jsonStr};
+    
+    [[NDNetManager sharedNetManager] post:[NSString stringWithFormat:@"/app/1/Consults/%@",qAId] parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        
+        
+    } failure:^(NSString *error_message) {
+        
+        failure(error_message);
+        
+        
     }];
 }
 @end

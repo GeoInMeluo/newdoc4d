@@ -86,6 +86,16 @@ static NSString *_newImgHeadUrl;
 
 - (void)pop{
     self.callBack(_newImgHeadUrl);
+
+   [NDCoreSession coreSession].user.name = self.lblName.text;
+   [NDCoreSession coreSession].user.sex = [self.lblSex.text isEqualToString: @"男"]? @"0":@"1";
+   [NDCoreSession coreSession].user.picture_url = _newImgHeadUrl;
+    
+    [self startEditUserInfo:[NDCoreSession coreSession].user success:^(NDUser *user) {
+        
+    } failure:^(NSString *error_message) {
+        
+    }];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -146,18 +156,26 @@ static NSString *_newImgHeadUrl;
 - (void)actionSheetDidFinished:(NSArray *)obj{
     WEAK_SELF;
     
-    if([obj.lastObject isKindOfClass:[UIImage class]]){
-
+    [self startUploadImageWithImages:obj success:^(NSArray *imgUrls) {
+        if(imgUrls.count == 0){
+            return;
+        }
         
-        [self startUploadImageWithImage:[obj.lastObject imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] success:^(NSString *imageUrl) {
-                _newImgHeadUrl = imageUrl;
-            
-                [weakself.btnHeadImage setImage:[obj.lastObject imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-            
-        } failure:^(NSString *error_message) {
-            
-        }];
-    }
+        _newImgHeadUrl = [NSString stringWithFormat:@"%@",imgUrls[0]];
+        [NDCoreSession coreSession].user.picture_url = imgUrls[0];
+        
+        NSString *tempPath =  NSTemporaryDirectory();
+        
+        NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
+        
+        [NSKeyedArchiver archiveRootObject:[NDCoreSession coreSession].user toFile:filePath];
+        
+        [weakself.btnHeadImage setImage:[obj.lastObject imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+        
+//        [weakself.btnHeadImage sd_setImageWithURL:[NSURL URLWithString:_newImgHeadUrl] forState:UIControlStateNormal];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 

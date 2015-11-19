@@ -9,6 +9,7 @@
 #import "NDCoreSession.h"
 #import "NDLoginVC.h"
 
+
 static NDCoreSession * sharedInstance;
 
 @implementation NDCoreSession
@@ -34,15 +35,21 @@ static NDCoreSession * sharedInstance;
     NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
     NDUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     
+    
+    
     if(user == nil){
         _user = [NDUser new];
     }else{
         _user = user;
     }
     
+    
+    
     self.openId = [[NSUserDefaults standardUserDefaults] objectForKey:@"openid"];
     self.authKey = [[NSUserDefaults standardUserDefaults] objectForKey:@"authkey"];
     self.isWxLogin = [[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"];
+    self.nduid = [[NSUserDefaults standardUserDefaults] objectForKey:@"nduid"];
+    
 }
 
 - (instancetype)copyWithZone:(NSZone *)zone
@@ -54,6 +61,9 @@ static NDCoreSession * sharedInstance;
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"openid"];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"authkey"];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"iswxlogin"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"nduid"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"pwd"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"username"];
     
     NSString *tempPath =  NSTemporaryDirectory();
     
@@ -66,12 +76,16 @@ static NDCoreSession * sharedInstance;
     [NDCoreSession coreSession].user = nil;
     [NDCoreSession coreSession].openId = nil;
     [NDCoreSession coreSession].authKey = nil;
+    [NDCoreSession coreSession].nduid = nil;
     
     //清空cookie
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     
     for(int i= 0; i < cookies.count ; i++){
         NSHTTPCookie *cookie = cookies[i];
+        
+        FLog(@"%@",cookie);
+        
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
 }

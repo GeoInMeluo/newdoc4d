@@ -42,10 +42,7 @@
     [leftNavBtn sizeToFit];
     [leftNavBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     
-    if([self.navigationController isKindOfClass:[NDBaseNavVC class]]){
-        NDBaseNavVC *nav = (NDBaseNavVC *)self.navigationController;
-        nav.leftBtn = leftNavBtn;
-    }
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftNavBtn];
 }
 
 - (void)pop{

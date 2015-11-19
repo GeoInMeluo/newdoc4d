@@ -108,16 +108,18 @@
     NDMessage *message = self.messageframe.message;
     //  时间
     self.timeView.text = message.time;
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:message.icon_url]];
     
     // 头像和气泡和文字颜色
     if (message.type == NDMessageTypeMe) {
-        self.iconView.image = [UIImage imageNamed:@"icon01"];
+//        self.iconView.image = [UIImage imageNamed:@"icon01"];
+        
  
         // 需要传一个拉伸好的图片
         [self.textView setBackgroundImage:[UIImage resizableImageWithImage:@"chat_send_nor"] forState:UIControlStateNormal];
         [self.textView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }else{
-        self.iconView.image = [UIImage imageNamed:@"icon02"];
+//        self.iconView.image = [UIImage imageNamed:@"icon02"];
         
         // 需要传一个拉伸好的图片
         [self.textView setBackgroundImage:[UIImage resizableImageWithImage:@"chat_recive_nor"] forState:UIControlStateNormal];

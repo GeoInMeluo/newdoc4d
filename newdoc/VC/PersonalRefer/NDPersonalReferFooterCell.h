@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NDQAMessage.h"
 
 @interface NDPersonalReferFooterCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lblTime;
+@property (weak, nonatomic) IBOutlet UIButton *btnIcon;
 
+@property (nonatomic, strong) NDQAMessage *qaMessage;
 @end

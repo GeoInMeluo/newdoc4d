@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NDPersonalReferCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *lblDate;
 
 @end

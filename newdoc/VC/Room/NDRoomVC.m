@@ -14,6 +14,7 @@
 #import "NDRoomMapVC.h"
 #import "NDQAOnlineVC.h"
 #import "NDRoomTempCellTableViewCell.h"
+#import "NDDocSelfVC.h"
 
 @interface NDRoomVC ()
 @property (strong, nonatomic) IBOutlet UITableViewCell *tempCell1;
@@ -88,7 +89,7 @@
 }
 
 - (IBAction)btnHeader1Click:(id)sender {
-//    todo();
+    ShowVC(NDDocSelfVC);
 }
 
 - (IBAction)btnHeader2Click:(id)sender {

@@ -15,27 +15,104 @@
 @interface NDPersonalReferVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray *sectionsID;
 @property (nonatomic, assign) NSInteger lastSelectedIndex;
+
+@property (nonatomic, strong) NSArray *qaMesaages;
+
+@property (nonatomic, strong) NSMutableArray *currentTalks;
+
+@property (nonatomic, strong) NSMutableArray *dateQAMessages;
 @end
 
 @implementation NDPersonalReferVC
+
+- (NSMutableArray *)currentTalks{
+    if(_currentTalks == nil){
+        _currentTalks = [NSMutableArray array];
+    }
+    return _currentTalks;
+}
+
+- (NSMutableArray *)dateQAMessages{
+    if(_dateQAMessages == nil){
+        _dateQAMessages = [NSMutableArray array];
+    }
+    return _dateQAMessages;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"我的咨询";
     
-    self.sectionsID = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+    [self setup];
+    
+//    self.sectionsID = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return self.sectionsID.count;
-    return 0;
+- (void)setup{
+    WEAK_SELF;
+    
+    [self startGetQAListAndSuccess:^(NSArray *qaMessages) {
+        weakself.qaMesaages = qaMessages;
+        
+//        @autoreleasepool {
+
+            if(!qaMessages){
+                return ;
+            }
+            
+            for(int i = 0; i < qaMessages.count ; i++){
+                NDQAMessage *iQA = qaMessages[i];
+                
+                FLog(@"iqaID == %@", iQA.ID);
+                FLog(@"content == %@", iQA.content);
+                FLog(@"startDate == %@", iQA.start_date);
+                
+                if(iQA.start_date){
+                    return;
+                }
+                
+                [self.dateQAMessages addObject:iQA.start_date];
+                for(int j = 0; j < i ; j++){
+                    NDQAMessage *jQA = qaMessages[j];
+                    
+                    if([iQA.start_date isEqualToString:jQA.start_date]){
+                        [self.dateQAMessages delete:jQA.start_date];
+                    }
+                }
+            }
+            
+            for(int i = 0; i < self.dateQAMessages.count; i++){
+                [weakself.sectionsID addObject:@"0"];
+            }
+            
+//        }
+        
+        [weakself.tableView reloadData];
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+////    return self.sectionsID.count;
+//    if([tableView isKindOfClass:[NDPersonalReferFooter class]]){
+//        return self.dateQAMessages.count;;
+//    }else{
+//        return 1;
+//    }
+//    
+////    return self.qaMesaages.count;
+//}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    if([tableView isKindOfClass:[NDPersonalReferFooter class]]){
+        return self.dateQAMessages.count;
+    }else{
+        return self.currentTalks.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -51,6 +128,10 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
+        NDQAMessage *qaMessage = self.currentTalks[indexPath.row];
+        
+        
+        
         return cell;
     }else{
         static NSString *cellId = @"NDPersonalReferCell";
@@ -62,6 +143,8 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
+        cell.lblDate.text = self.dateQAMessages[indexPath.row];
         
         if([self.sectionsID[indexPath.section] isEqualToString: @"1"]){
             //        CABasicAnimation *anim = [[CABasicAnimation alloc] init];
@@ -90,18 +173,23 @@
     if([tableView isKindOfClass:[NDPersonalReferFooter class]]){
         ShowVC(NDPersonalReferDetail);
     }else{
-        self.sectionsID = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+//        self.sectionsID = [NSMutableArray arrayWithArray:@[@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0"]];
+        for(int i = 0; i < self.dateQAMessages.count ; i++){
+            [self.sectionsID addObject:@"0"];
+        }
+        
         self.sectionsID[indexPath.section] = @"1";
         self.lastSelectedIndex = indexPath.section;
-        //
-        //    NSIndexSet *set = [NSIndexSet indexSetWithIndex:indexPath.section];
-        //    [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
-        //
-        //    NSIndexSet *lastSet = [NSIndexSet indexSetWithIndex:self.lastSelectedIndex];
-        //    [self.tableView reloadSections:lastSet withRowAnimation:UITableViewRowAnimationNone];
-        //
+   
+        for(int i = 0; i < self.qaMesaages.count; i++){
+            NDQAMessage *qaMessage =self.qaMesaages[i];
+            
+            if([qaMessage.start_date isEqualToString:self.dateQAMessages[indexPath.row]]){
+                [self.currentTalks addObject:qaMessage];
+            }
+        }
         
-        [self.tableView reloadData];
+        [tableView reloadData];
     }
     
     
@@ -113,8 +201,7 @@
     }else{
         if([self.sectionsID[section] isEqualToString:@"1"]){
             NDPersonalReferFooter *view = [NDPersonalReferFooter new];
-            //        view.width = [UIScreen mainScreen].bounds.size.width;
-            //        [view setPreservesSuperviewLayoutMargins:YES];
+            
             view.delegate = self;
             view.dataSource = self;
             return view;
@@ -134,25 +221,7 @@
         }
     }
     
-    
-    
     return 0;
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

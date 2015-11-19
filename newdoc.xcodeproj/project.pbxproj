@@ -77,6 +77,15 @@
 		328B78B71BD0171D000F38DA /* NDRoomSelectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328B78B51BD0171D000F38DA /* NDRoomSelectVC.xib */; };
 		328B78BB1BD03254000F38DA /* NDRoomSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328B78B91BD03254000F38DA /* NDRoomSelectCell.m */; };
 		328B78BC1BD03254000F38DA /* NDRoomSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */; };
+		3292A9051BF9E0B0003DF24E /* NDDocSelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292A9031BF9E0B0003DF24E /* NDDocSelfVC.m */; };
+		3292A9061BF9E0B0003DF24E /* NDDocSelfVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3292A9041BF9E0B0003DF24E /* NDDocSelfVC.xib */; };
+		3292A9091BFAD109003DF24E /* NDCookieBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292A9081BFAD109003DF24E /* NDCookieBox.m */; };
+		3292A90C1BFC2582003DF24E /* NDQAMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292A90B1BFC2582003DF24E /* NDQAMessage.m */; };
+		3292A9101BFC2BCF003DF24E /* NDQAMessageCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292A90E1BFC2BCF003DF24E /* NDQAMessageCenterCell.m */; };
+		3292A9111BFC2BCF003DF24E /* NDQAMessageCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3292A90F1BFC2BCF003DF24E /* NDQAMessageCenterCell.xib */; };
+		3292A9141BFC5585003DF24E /* NDTalkMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292A9131BFC5585003DF24E /* NDTalkMessage.m */; };
+		3292A9181BFD7F34003DF24E /* NDQACommonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3292A9161BFD7F34003DF24E /* NDQACommonVC.m */; };
+		3292A9191BFD7F34003DF24E /* NDQACommonVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3292A9171BFD7F34003DF24E /* NDQACommonVC.xib */; };
 		329344B41BD7E8630029CF0D /* NDPersonalBindingRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329344B21BD7E8630029CF0D /* NDPersonalBindingRoomCell.m */; };
 		329344B51BD7E8630029CF0D /* NDPersonalBindingRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329344B31BD7E8630029CF0D /* NDPersonalBindingRoomCell.xib */; };
 		329344BA1BD7EC6E0029CF0D /* NDPersonalReferVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 329344B81BD7EC6E0029CF0D /* NDPersonalReferVC.m */; };
@@ -647,6 +656,21 @@
 		328B78B81BD03254000F38DA /* NDRoomSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDRoomSelectCell.h; sourceTree = "<group>"; };
 		328B78B91BD03254000F38DA /* NDRoomSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDRoomSelectCell.m; sourceTree = "<group>"; };
 		328B78BA1BD03254000F38DA /* NDRoomSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDRoomSelectCell.xib; sourceTree = "<group>"; };
+		3292A9021BF9E0B0003DF24E /* NDDocSelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDDocSelfVC.h; sourceTree = "<group>"; };
+		3292A9031BF9E0B0003DF24E /* NDDocSelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDDocSelfVC.m; sourceTree = "<group>"; };
+		3292A9041BF9E0B0003DF24E /* NDDocSelfVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDDocSelfVC.xib; sourceTree = "<group>"; };
+		3292A9071BFAD109003DF24E /* NDCookieBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDCookieBox.h; sourceTree = "<group>"; };
+		3292A9081BFAD109003DF24E /* NDCookieBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDCookieBox.m; sourceTree = "<group>"; };
+		3292A90A1BFC2582003DF24E /* NDQAMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDQAMessage.h; sourceTree = "<group>"; };
+		3292A90B1BFC2582003DF24E /* NDQAMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDQAMessage.m; sourceTree = "<group>"; };
+		3292A90D1BFC2BCF003DF24E /* NDQAMessageCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDQAMessageCenterCell.h; sourceTree = "<group>"; };
+		3292A90E1BFC2BCF003DF24E /* NDQAMessageCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDQAMessageCenterCell.m; sourceTree = "<group>"; };
+		3292A90F1BFC2BCF003DF24E /* NDQAMessageCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDQAMessageCenterCell.xib; sourceTree = "<group>"; };
+		3292A9121BFC5585003DF24E /* NDTalkMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDTalkMessage.h; sourceTree = "<group>"; };
+		3292A9131BFC5585003DF24E /* NDTalkMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDTalkMessage.m; sourceTree = "<group>"; };
+		3292A9151BFD7F34003DF24E /* NDQACommonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDQACommonVC.h; sourceTree = "<group>"; };
+		3292A9161BFD7F34003DF24E /* NDQACommonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDQACommonVC.m; sourceTree = "<group>"; };
+		3292A9171BFD7F34003DF24E /* NDQACommonVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDQACommonVC.xib; sourceTree = "<group>"; };
 		329344B11BD7E8630029CF0D /* NDPersonalBindingRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDPersonalBindingRoomCell.h; sourceTree = "<group>"; };
 		329344B21BD7E8630029CF0D /* NDPersonalBindingRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDPersonalBindingRoomCell.m; sourceTree = "<group>"; };
 		329344B31BD7E8630029CF0D /* NDPersonalBindingRoomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NDPersonalBindingRoomCell.xib; sourceTree = "<group>"; };
@@ -1660,6 +1684,16 @@
 			path = RoomSelectVC;
 			sourceTree = "<group>";
 		};
+		3292A9011BF9E029003DF24E /* DocSelf */ = {
+			isa = PBXGroup;
+			children = (
+				3292A9021BF9E0B0003DF24E /* NDDocSelfVC.h */,
+				3292A9031BF9E0B0003DF24E /* NDDocSelfVC.m */,
+				3292A9041BF9E0B0003DF24E /* NDDocSelfVC.xib */,
+			);
+			path = DocSelf;
+			sourceTree = "<group>";
+		};
 		329344B61BD7EC220029CF0D /* PersonalRefer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1738,6 +1772,12 @@
 				32EF752D1BF593A9003CBB95 /* NDQAMessageCenter.h */,
 				32EF752E1BF593A9003CBB95 /* NDQAMessageCenter.m */,
 				32EF752F1BF593A9003CBB95 /* NDQAMessageCenter.xib */,
+				3292A90D1BFC2BCF003DF24E /* NDQAMessageCenterCell.h */,
+				3292A90E1BFC2BCF003DF24E /* NDQAMessageCenterCell.m */,
+				3292A90F1BFC2BCF003DF24E /* NDQAMessageCenterCell.xib */,
+				3292A9151BFD7F34003DF24E /* NDQACommonVC.h */,
+				3292A9161BFD7F34003DF24E /* NDQACommonVC.m */,
+				3292A9171BFD7F34003DF24E /* NDQACommonVC.xib */,
 			);
 			path = QAOnline;
 			sourceTree = "<group>";
@@ -1899,6 +1939,12 @@
 				325970AD1BF153EC006B1FD8 /* NDOrder.m */,
 				325970AF1BF15A5B006B1FD8 /* NDEhr.h */,
 				325970B01BF15A5B006B1FD8 /* NDEhr.m */,
+				3292A9071BFAD109003DF24E /* NDCookieBox.h */,
+				3292A9081BFAD109003DF24E /* NDCookieBox.m */,
+				3292A90A1BFC2582003DF24E /* NDQAMessage.h */,
+				3292A90B1BFC2582003DF24E /* NDQAMessage.m */,
+				3292A9121BFC5585003DF24E /* NDTalkMessage.h */,
+				3292A9131BFC5585003DF24E /* NDTalkMessage.m */,
 			);
 			path = Bean;
 			sourceTree = "<group>";
@@ -2359,6 +2405,7 @@
 		32FD498C1BC790A70054D2EA /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				3292A9011BF9E029003DF24E /* DocSelf */,
 				32EF75371BF5CAD2003CBB95 /* Chat */,
 				32F4CE9D1BEC5C230098958F /* PersonalForgetPwd */,
 				32D2E9F11BE768F900DC12C5 /* PersonalOrder */,
@@ -3331,6 +3378,7 @@
 				32FD4CC61BC81B560054D2EA /* um_album@2x.png in Resources */,
 				32647D7B1BD282590099D7A8 /* NDRoomOrderLabeCell.xib in Resources */,
 				32FD4CC51BC81B560054D2EA /* um_album.png in Resources */,
+				3292A9191BFD7F34003DF24E /* NDQACommonVC.xib in Resources */,
 				32FD4D7A1BC81B570054D2EA /* UMSShareListController.xib in Resources */,
 				32D2E9FB1BE7698D00DC12C5 /* NDPersonalOrderCell.xib in Resources */,
 				32FD4CED1BC81B560054D2EA /* um_share+@2x.png in Resources */,
@@ -3396,6 +3444,7 @@
 				32F0D4341BD54D3300229828 /* NDPersonalChangeGender.xib in Resources */,
 				32FD4D771BC81B570054D2EA /* UMShareEditViewControlleriPad.xib in Resources */,
 				32FD4C981BC81B560054D2EA /* Backx@2x.png in Resources */,
+				3292A9111BFC2BCF003DF24E /* NDQAMessageCenterCell.xib in Resources */,
 				32FD4CF51BC81B560054D2EA /* um_topic@2x.png in Resources */,
 				32FD4CDF1BC81B560054D2EA /* um_newcontent@2x.png in Resources */,
 				32FD4D4A1BC81B560054D2EA /* UMComFindTableViewCell.xib in Resources */,
@@ -3484,6 +3533,7 @@
 				32FD4CA61BC81B560054D2EA /* grayArrow1@2x.png in Resources */,
 				32647D5F1BD152820099D7A8 /* NDRoomSelectMoreVC.xib in Resources */,
 				32FD4DC01BC82ECE0054D2EA /* NCCommunityVC.xib in Resources */,
+				3292A9061BF9E0B0003DF24E /* NDDocSelfVC.xib in Resources */,
 				32EFFB6F1BCD3A3600A80994 /* Info.plist in Resources */,
 				32FD4CD51BC81B560054D2EA /* um_friend_logo@2x.png in Resources */,
 				32FD4CEE1BC81B560054D2EA /* um_share.png in Resources */,
@@ -3655,6 +3705,7 @@
 				32FD4C8C1BC81B560054D2EA /* UMComUMengMessageHandler.m in Sources */,
 				32FD4D571BC81B560054D2EA /* UMComTopicsTableView.m in Sources */,
 				32E229E21BDF3C7F00AF12E7 /* MJProperty.m in Sources */,
+				3292A90C1BFC2582003DF24E /* NDQAMessage.m in Sources */,
 				32FD4D9E1BC81DF20054D2EA /* AFURLRequestSerialization.m in Sources */,
 				32647D641BD169290099D7A8 /* NDRoomDetailVC.m in Sources */,
 				32FD4CFE1BC81B560054D2EA /* UMComBarButtonItem.m in Sources */,
@@ -3710,6 +3761,7 @@
 				32FD4D9F1BC81DF20054D2EA /* AFURLResponseSerialization.m in Sources */,
 				32FD49B51BC7A4E90054D2EA /* TextView.m in Sources */,
 				32E229F41BDF3C7F00AF12E7 /* MJRefreshNormalHeader.m in Sources */,
+				3292A9101BFC2BCF003DF24E /* NDQAMessageCenterCell.m in Sources */,
 				32FD4D301BC81B560054D2EA /* UMComFriendTableViewCell.m in Sources */,
 				32D2EA2F1BEB2DBE00DC12C5 /* UUPhotoGroupViewController.m in Sources */,
 				32FD4D521BC81B560054D2EA /* UMComHorizontalTableView.m in Sources */,
@@ -3777,6 +3829,8 @@
 				32F1C6481BE0D7D1001DCE34 /* NDDoctor.m in Sources */,
 				32F4CE8B1BEB47FD0098958F /* AESCrypt.m in Sources */,
 				32E22A071BDF3C7F00AF12E7 /* UIImage+WebP.m in Sources */,
+				3292A9091BFAD109003DF24E /* NDCookieBox.m in Sources */,
+				3292A9051BF9E0B0003DF24E /* NDDocSelfVC.m in Sources */,
 				32FD4D231BC81B560054D2EA /* UMComTableViewCell.m in Sources */,
 				32F0D41E1BD4954D00229828 /* NDPersonalCenterHomeVC.m in Sources */,
 				32FD4D451BC81B560054D2EA /* UMComFeedDetailViewController.m in Sources */,
@@ -3799,6 +3853,7 @@
 				32647D8B1BD3838B0099D7A8 /* NDRoomUserComment.m in Sources */,
 				32FD4D001BC81B560054D2EA /* UMComGridView.m in Sources */,
 				32FD4D131BC81B560054D2EA /* UMComSearchBar.m in Sources */,
+				3292A9141BFC5585003DF24E /* NDTalkMessage.m in Sources */,
 				32E22A081BDF3C7F00AF12E7 /* UIImageView+HighlightedWebCache.m in Sources */,
 				32EF75551BF5CD9E003CBB95 /* NDMessageFrame.m in Sources */,
 				32FD4D2D1BC81B560054D2EA /* UMComEditTopicsViewController.m in Sources */,
@@ -3807,6 +3862,7 @@
 				32EF75301BF593A9003CBB95 /* NDQAMessageCenter.m in Sources */,
 				328B78BB1BD03254000F38DA /* NDRoomSelectCell.m in Sources */,
 				32FD4CFF1BC81B560054D2EA /* UMComButton.m in Sources */,
+				3292A9181BFD7F34003DF24E /* NDQACommonVC.m in Sources */,
 				32F4CEA11BEC5C4E0098958F /* NDPersonalForgetPwdVC.m in Sources */,
 				32EF75581BF5CD9E003CBB95 /* UIImage+Help.m in Sources */,
 				32FD4D631BC81B560054D2EA /* UMComSettingViewController.m in Sources */,

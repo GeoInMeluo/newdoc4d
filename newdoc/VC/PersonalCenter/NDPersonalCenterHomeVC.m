@@ -85,14 +85,34 @@
             return;
         }
         
-        [self.headImg sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        FLog(@"%@", [NDCoreSession coreSession].user.picture_url);
+        
+//        [self.headImg sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//            
+//            __block UIImage *tempImage = image;
+//            
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                tempImage = [tempImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//                
+//                [weakself.headImg setImage:tempImage forState:UIControlStateNormal];
+//            });
+//            
+//            
+//        }];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            UIImage *image = [[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url]]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             
             
-            
-            image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            
-            [weakself.headImg setImage:image forState:UIControlStateNormal];
-        }];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [weakself.headImg setImage:image forState:UIControlStateNormal];
+            });
+        });
+        
+        
+        
+        
+//        [self.headImg sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"]];
     
     }else{
         [self.headImg setImage:[UIImage imageWithName:@"icon_placeHolder"] forState:UIControlStateNormal];
@@ -112,13 +132,7 @@
         if([weakself checkLoginWithNav:weakself.navigationController]){
             CreateVC(NDPersonalInfo);
             vc.callBack = ^(NSString *imgUrl){
-                [NDCoreSession coreSession].user.picture_url = imgUrl;
-                
-                NSString *tempPath =  NSTemporaryDirectory();
-                
-                NSString *filePath =  [tempPath stringByAppendingPathComponent:@"user.data"];
-                
-                [NSKeyedArchiver archiveRootObject:[NDCoreSession coreSession].user toFile:filePath];
+                FLog(@"%@", imgUrl);
                 
                 [weakself.headImg sd_setImageWithURL:[NSURL URLWithString:[NDCoreSession coreSession].user.picture_url] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_placeHolder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     

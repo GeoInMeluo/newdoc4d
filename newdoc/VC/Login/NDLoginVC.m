@@ -13,6 +13,8 @@
 #import "NDBaseTabVC.h"
 #import "NDBaseNavVC.h"
 #import "NDPersonalRegistBindVC.h"
+#import "UMComLoginManager.h"
+#import "UMComUserAccount.h"
 
 @interface NDLoginVC ()
 @property (strong, nonatomic) IBOutlet FormCell *cellAccount;
@@ -165,13 +167,24 @@
             
             FLog(@"%@", resultDic);
             
-            [[NSUserDefaults standardUserDefaults] setObject:result[@"openid"] forKey:@"openid"];
-            [[NSUserDefaults standardUserDefaults] setObject:result[@"authkey"] forKey:@"authkey"];
+            for(NSHTTPCookie *cookie in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies){
+                
+                if([cookie.name isEqualToString:@"AUTHKEY"] ){
+                    [[NSUserDefaults standardUserDefaults] setObject:cookie.value forKey:@"authkey"];
+                }
+                
+                if([cookie.name isEqualToString:@"OPENID"] ){
+                    [[NSUserDefaults standardUserDefaults] setObject:cookie.value forKey:@"openid"];
+                }
+                
+            }
+        
             [[NSUserDefaults standardUserDefaults] setObject:result[@"1"] forKey:@"iswxlogin"];
             
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             [NDCoreSession coreSession].openId = result[@"openid"];
+            [NDCoreSession coreSession].authKey = result[@"authkey"];
             [NDCoreSession coreSession].isWxLogin = @"1";
             
             FLog(@"%@", self);
@@ -242,8 +255,14 @@
     ShowVC(NDPersonalRegistVC);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)loginUMWithUsername:(NSString *)username andID:(NSString *)ID andIconUrl:(NSString *)url{
+//    //把用户资料上传到友盟
+//    UMComUserAccount *userAccount = [[UMComUserAccount alloc] initWithSnsType:UMComSnsTypeSelfAccount];
+//    //使用UMComSnsTypeSelfAccount代表自定义登录，该枚举类型必须和安卓SDK保持一致，否则会出现不能对应同一用户的问题
+//    userAccount.usid = @"用户id";
+//    userAccount.name = @"昵称";
+//    userAccount.icon_url = @"http://xxxx.jpg"; //登录用户头像
+//    [UMComLoginManager loginWithUser:userAccount completion:^(NSArray *data, NSError *error) {
+//    }];
 }
 @end

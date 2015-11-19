@@ -1,26 +1,26 @@
 //
-//  NDPersonalReferFooterCell.m
+//  NDQAMessageCenterCell.m
 //  newdoc
 //
-//  Created by zzc on 15/10/22.
+//  Created by zzc on 15/11/18.
 //  Copyright © 2015年 zzc. All rights reserved.
 //
 
-#import "NDPersonalReferFooterCell.h"
+#import "NDQAMessageCenterCell.h"
 
-@implementation NDPersonalReferFooterCell
+@implementation NDQAMessageCenterCell
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
-        self = [[NSBundle mainBundle] loadNibNamed:@"NDPersonalReferFooterCell" owner:nil options:nil][0];
+        self = [[NSBundle mainBundle] loadNibNamed:@"NDQAMessageCenterCell" owner:nil options:nil][0];
     }
     return self;
 }
 
-- (void)setQaMessage:(NDQAMessage *)qaMessage{
-    _qaMessage = qaMessage;
+- (void)setMessage:(NDQAMessage *)message{
+    _message = message;
     
-    _lblTime.text = qaMessage.start_date;
+    _lblTitle.text = message.content;
 }
 
 - (void)awakeFromNib {

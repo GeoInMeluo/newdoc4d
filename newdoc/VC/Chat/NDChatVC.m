@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *inputView;
 
+@property (nonatomic, strong) NSArray *talkMessages;
+
 /**
  *  带有frame的模型 容器
  */
@@ -52,7 +54,57 @@
     
     self.inputView.delegate = self;
     
-    [self scrollToLastRow];
+    
+    [self startGet];
+}
+
+- (void)startGet{
+    WEAK_SELF;
+    
+    [self startGetQAWithQAId:self.qaMesaage.ID success:^(NSArray *talkMessages) {
+        
+        FLog(@"%@", talkMessages);
+        
+        weakself.talkMessages = talkMessages;
+        
+        NSMutableArray *tempArray = [NSMutableArray array];
+        for (NDTalkMessage *talkMessage in talkMessages) {
+            NDMessage *message = [[NDMessage alloc] init];
+            message.text = talkMessage.content;
+            if([talkMessage.poster_name isEqualToString:[NDCoreSession coreSession].user.name]){
+                message.type = NDMessageTypeMe;
+                message.icon_url = [NDCoreSession coreSession].user.picture_url;
+            }else{
+                message.type = NDMessageTypeOther;
+                message.icon_url = talkMessage.poster_img;
+            }
+            
+            //            message.time = qaMessage
+            
+            // 取出上一个大的数据模型
+            NDMessageFrame *lastMf = [tempArray lastObject];
+            // 取出上一个小的数据模型
+            NDMessage *lastMsg = lastMf.message;
+            
+            // 判断当前条message的时间和上一条message的时间是否一样
+            message.hideTime = [message.time isEqualToString:lastMsg.time];
+            
+            NDMessageFrame *messageFrame = [[NDMessageFrame alloc] init];
+            
+            // 这个set方法结束以后，子控件的frame和cell行高计算完了
+            messageFrame.message = message;
+            
+            [tempArray addObject:messageFrame];
+        }
+        weakself.messageFrames = tempArray;
+        
+        [weakself.tableView reloadData];
+        
+        [weakself scrollToLastRow];
+
+    } failure:^(NSString *error_message) {
+        
+    }];
 }
 
 #pragma mark -输入框的代理方法
@@ -62,7 +114,7 @@
     [self sendMessage:textField.text andType:NDMessageTypeMe];
     
     // 2. 自动回复一条
-    [self sendMessage:[self autoRelayWithText:textField.text] andType:NDMessageTypeOther];
+//    [self sendMessage:[self autoRelayWithText:textField.text] andType:NDMessageTypeOther];
     
     // 3. 清空文字
     self.inputView.text = nil;
@@ -89,11 +141,19 @@
  */
 - (void)sendMessage:(NSString *)text andType:(NDMessageType)type
 {
+    
+    [self startSendTalkMessage:text andQAID:self.qaMesaage.ID success:^(NSArray *talkMessages) {
+        
+    } failure:^(NSString *error_message) {
+        
+    }];
+    
     // 1. 自己发一条消息
     // 1. 小的数据模型
     NDMessage *message = [[NDMessage alloc] init];
     message.type = type;
     message.text = text;
+    message.icon_url = [NDCoreSession coreSession].user.picture_url;
     // 时间
     NSDate *now = [NSDate date];
     //    NSLog(@"now = %@", now);
@@ -102,7 +162,7 @@
     fmt.dateFormat = @"HH:mm";
     //    yyyy-MM-dd HH:mm:ss
     NSString *nowTime = [fmt stringFromDate:now];
-    message.time = nowTime;
+//    message.time = nowTime;
     
     // 是否需要隐藏时间
     NDMessageFrame *lastMsgFrame = [self.messageFrames lastObject];
@@ -198,27 +258,35 @@
 - (NSMutableArray *)messageFrames
 {
     if (_messageFrames == nil) {
-        NSArray *dictArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages.plist" ofType:nil]];
-        NSMutableArray *tempArray = [NSMutableArray array];
-        for (NSDictionary *dict in dictArray) {
-            NDMessage *message = [NDMessage messageWithDict:dict];
-            
-            // 取出上一个大的数据模型
-            NDMessageFrame *lastMf = [tempArray lastObject];
-            // 取出上一个小的数据模型
-            NDMessage *lastMsg = lastMf.message;
-            
-            // 判断当前条message的时间和上一条message的时间是否一样
-            message.hideTime = [message.time isEqualToString:lastMsg.time];
-            
-            NDMessageFrame *messageFrame = [[NDMessageFrame alloc] init];
-            
-            // 这个set方法结束以后，子控件的frame和cell行高计算完了
-            messageFrame.message = message;
-            
-            [tempArray addObject:messageFrame];
-        }
-        _messageFrames = tempArray;
+////        NSArray *dictArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"messages.plist" ofType:nil]];
+//        NSMutableArray *tempArray = [NSMutableArray array];
+//        for (NDTalkMessage *talkMessage in self.talkMessages) {
+//            NDMessage *message = [[NDMessage alloc] init];
+//            message.text = talkMessage.content;
+//            if([talkMessage.poster_name isEqualToString:[NDCoreSession coreSession].user.name]){
+//                message.type = NDMessageTypeMe;
+//            }else{
+//                message.type = NDMessageTypeOther;
+//            }
+////            message.time = qaMessage
+//            
+//            // 取出上一个大的数据模型
+//            NDMessageFrame *lastMf = [tempArray lastObject];
+//            // 取出上一个小的数据模型
+//            NDMessage *lastMsg = lastMf.message;
+//            
+//            // 判断当前条message的时间和上一条message的时间是否一样
+//            message.hideTime = [message.time isEqualToString:lastMsg.time];
+//            
+//            NDMessageFrame *messageFrame = [[NDMessageFrame alloc] init];
+//            
+//            // 这个set方法结束以后，子控件的frame和cell行高计算完了
+//            messageFrame.message = message;
+//            
+//            [tempArray addObject:messageFrame];
+//        }
+//        _messageFrames = tempArray;
+        _messageFrames = [NSMutableArray array];
     }
     return _messageFrames;
 }
@@ -248,7 +316,18 @@
 
 - (void)scrollToLastRow
 {
-    NSIndexPath *lastPath = [NSIndexPath indexPathForRow:self.messageFrames.count - 5 inSection:0];
+    NSInteger row = self.messageFrames.count - 1;
+    
+    FLog(@"%zd", row);
+    
+    if(row <= 0){
+        return;
+    }
+    
+    NSIndexPath *lastPath = [NSIndexPath indexPathForRow:row inSection:0];
+    
+    FLog(@"%@", lastPath);
+    
     [self.tableView scrollToRowAtIndexPath:lastPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 

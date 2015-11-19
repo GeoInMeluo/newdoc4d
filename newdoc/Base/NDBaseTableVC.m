@@ -51,18 +51,19 @@
     
     self.tableView.height -= 44;
     
-    UIButton *leftNavBtn = [[UIButton alloc] init];
-    [leftNavBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [leftNavBtn setImage:[UIImage imageNamed:@"back"]
-                forState:UIControlStateHighlighted];
-    [leftNavBtn setTitle:@"返回" forState:UIControlStateNormal];
-    [leftNavBtn setTitle:@"返回" forState:UIControlStateHighlighted];
-    [leftNavBtn sizeToFit];
-    [leftNavBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+    FLog(@"%zd", self.parentViewController.navigationController.viewControllers.count);
     
-    if([self.navigationController isKindOfClass:[NDBaseNavVC class]]){
-        NDBaseNavVC *nav = (NDBaseNavVC *)self.navigationController;
-        nav.leftBtn = leftNavBtn;
+    if (self.parentViewController.navigationController.viewControllers.count > 0) {
+        UIButton *leftNavBtn = [[UIButton alloc] init];
+        [leftNavBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [leftNavBtn setImage:[UIImage imageNamed:@"back"]
+                    forState:UIControlStateHighlighted];
+        [leftNavBtn setTitle:@"返回" forState:UIControlStateNormal];
+        [leftNavBtn setTitle:@"返回" forState:UIControlStateHighlighted];
+        [leftNavBtn sizeToFit];
+        [leftNavBtn addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftNavBtn];
     }
 }
 

@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) NSArray *subrooms;
 
+@property (nonatomic, copy) NSString *currentSubroomIndex;
+
 @end
 
 @implementation NDQAOnlineVC
@@ -64,8 +66,8 @@
 }
 
 - (void)rightBtnClicked:(UIButton *)btn{
-//    ShowVC(NDQAMessageCenter);
-    ShowVC(NDChatVC);
+    ShowVC(NDQAMessageCenter);
+//    ShowVC(NDChatVC);
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -82,8 +84,31 @@
 }
 
 - (IBAction)btnSubmitClicked:(id)sender {
-    [MBProgressHUD showSuccess:@"问题提交成功！"];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if(self.tfAge.text.length == 0){
+        ShowAlert(@"年龄不能为空");
+        return;
+    }
+    
+    if(self.tvQuestion.text.length == 0){
+        ShowAlert(@"问题描述不能为空");
+        return;
+    }
+    
+    WEAK_SELF;
+    
+    [self startUploadImageWithImages:self.imgs success:^(NSArray *imgUrls) {
+        [weakself startSubmitQAWithContent:weakself.tvQuestion.text andSubroomId:weakself.currentSubroomIndex andSex:[NSString stringWithFormat:@"%zd", weakself.segGender.selectedSegmentIndex] andAge:weakself.tfAge.text andImgs:imgUrls success:^(NSString *imageUrl) {
+            
+        } failure:^(NSString *error_message) {
+            
+        }];
+    } failure:^(NSString *error_message) {
+        
+    }];
+    
+//    [MBProgressHUD showSuccess:@"问题提交成功！"];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)btnSubroomClicked:(id)sender {
@@ -92,6 +117,7 @@
 
 - (IBAction)btnConfirmPickSubroom:(id)sender {
     self.vPickClass.hidden = YES;
+    self.currentSubroomIndex = [NSString stringWithFormat:@"%zd",[self.pickerSubroom selectedRowInComponent:0]];
     [self.btnSubroom setTitle:self.subrooms[[self.pickerSubroom selectedRowInComponent:0]] forState:UIControlStateNormal];
 }
 

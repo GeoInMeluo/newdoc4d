@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NDUser.h"
+#import "NDCookieBox.h"
 
 @interface NDCoreSession : NSObject
 
@@ -18,6 +19,8 @@
 @property (nonatomic, copy) NSString *isWxLogin;
 
 @property (nonatomic, copy) NSString *authKey;
+
+@property (nonatomic, copy) NSString *nduid;
 
 + (NDCoreSession *)coreSession;
 

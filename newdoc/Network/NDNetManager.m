@@ -21,6 +21,8 @@
 
         NSMutableSet *set = [NSMutableSet setWithSet:instance.responseSerializer.acceptableContentTypes];
         [set addObject:@"text/html"];
+        [set addObject:@"text/plain"];
+        [set addObject:@"text/xml"];
         instance.responseSerializer.acceptableContentTypes = set;
         
     });
@@ -28,9 +30,49 @@
 }
 
 - (AFHTTPRequestOperation *)post:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString *error_message))failure{
-    AFHTTPRequestOperation *operation = [self POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    
+    if(![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:@""]){
+        
+        
+        NSString *base64Str = [NSString base64StringFromData:[[NSString stringWithFormat:@"%@:%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"username"],[[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"]] dataUsingEncoding:NSUTF8StringEncoding] length:0];
+        
+        FLog(@"%@", base64Str);
+        NSString *finalString = [NSString stringWithFormat:@"Basic %@",base64Str];
+        
+        [[NDNetManager sharedNetManager].requestSerializer setValue:finalString forHTTPHeaderField:@"Authorization"];
+    }
+    
+    NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    
+    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
+        [parm setObject:SafeString([NDCoreSession coreSession].openId) forKey:@"openid"];
+        [parm setObject:SafeString([NDCoreSession coreSession].authKey) forKey:@"authkey"];
+    }else{
+        [parm setObject:SafeString([NDCoreSession coreSession].nduid) forKey:@"nduid"];
+    }
+    
+    FLog(@"parm == %@", parm);
+    
+    //使用完cookie之后禁用cookie
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    
+    AFHTTPRequestOperation *operation = [self POST:URLString parameters:parm success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        FLog(@"%@",responseObject);
         
         [MBProgressHUD hideHUD];
+        
+        if(![responseObject isKindOfClass:[NSDictionary class]]){
+            
+            [MBProgressHUD showError:@"response格式错误"];
+            
+            return ;
+        }
         
         NSDictionary *result = responseObject;
         
@@ -78,18 +120,18 @@
                     }
                     
                     //构造SendAuthReq结构体
-                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
-                    
-//                    if([NDCoreSession coreSession].openId.length){
-                    req.scope = @"snsapi_base";
-                    
-//                    }else{
-//                        req.scope = @"snsapi_userinfo" ;
-//                    }
-                    
-                    req.state = @"123" ;
-                    //第三方向微信终端发送一个SendAuthReq消息结构
-                    [WXApi sendReq:req];
+//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+//                    
+////                    if([NDCoreSession coreSession].openId.length){
+//                    req.scope = @"snsapi_base";
+//                    
+////                    }else{
+////                        req.scope = @"snsapi_userinfo" ;
+////                    }
+//                    
+//                    req.state = @"123" ;
+//                    //第三方向微信终端发送一个SendAuthReq消息结构
+//                    [WXApi sendReq:req];
                     
                 }else if([result[@"retcode"] isEqualToString:@"9"]){
 
@@ -103,17 +145,17 @@
                             return;
                     }
                     
-                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
-                    
-//                    if([NDCoreSession coreSession].openId.length){
-//                        req.scope = @"snsapi_base" ;
-//                    }else{
-                    req.scope = @"snsapi_userinfo" ;
-//                    }
-                    
-                    req.state = @"123" ;
-                    //第三方向微信终端发送一个SendAuthReq消息结构
-                    [WXApi sendReq:req];
+//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+//                    
+////                    if([NDCoreSession coreSession].openId.length){
+////                        req.scope = @"snsapi_base" ;
+////                    }else{
+//                    req.scope = @"snsapi_userinfo" ;
+////                    }
+//                    
+//                    req.state = @"123" ;
+//                    //第三方向微信终端发送一个SendAuthReq消息结构
+//                    [WXApi sendReq:req];
                 }
                 else if([result[@"retcode"] isEqualToString:@"10"]){
                     [MBProgressHUD showError:@"用户权限不够"];
@@ -125,20 +167,63 @@
             
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MBProgressHUD showError:@"网络请求失败？？？？？？？？？？？？？？？？？"];
-        failure(@"网络请求失败？？？？？？？？？？？？？？？？？");
+        FLog(@"%@", operation.response);
+        
+        NSInteger erroCode = operation.response.statusCode;
+        
+        [MBProgressHUD showError:[NSString stringWithFormat:@"网络请求失败 erroCode = %zd", erroCode]];
+        failure([NSString stringWithFormat:@"网络请求失败 erroCode = %zd", erroCode]);
     }];
     
     return operation;
 }
 
 - (AFHTTPRequestOperation *)get:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString *error_message))failure{
-    AFHTTPRequestOperation *operation = [self GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    if(![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:@""]){
+        
+        
+        NSString *base64Str = [NSString base64StringFromData:[[NSString stringWithFormat:@"%@:%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"username"],[[NSUserDefaults standardUserDefaults] objectForKey:@"pwd"]] dataUsingEncoding:NSUTF8StringEncoding] length:0];
+        
+        FLog(@"%@", base64Str);
+        NSString *finalString = [NSString stringWithFormat:@"Basic %@",base64Str];
+        
+        [[NDNetManager sharedNetManager].requestSerializer setValue:finalString forHTTPHeaderField:@"Authorization"];
+    }
+
+    
+    NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    
+    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
+        [parm setObject:SafeString([NDCoreSession coreSession].openId) forKey:@"openid"];
+        [parm setObject:SafeString([NDCoreSession coreSession].authKey) forKey:@"authkey"];
+    }else{
+        [parm setObject:SafeString([NDCoreSession coreSession].nduid) forKey:@"nduid"];
+    }
+    
+    FLog(@"parm == %@", parm);
+    
+    
+    //使用完cookie之后禁用cookie
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    
+    AFHTTPRequestOperation *operation = [self GET:URLString parameters:parm success:^(AFHTTPRequestOperation *operation, id responseObject) {
         WEAK_SELF;
         
         [MBProgressHUD hideHUD];
         
         FLog(@"%@", responseObject);
+        
+        if(![responseObject isKindOfClass:[NSDictionary class]]){
+            
+            [MBProgressHUD showError:@"response格式错误"];
+            
+            return ;
+        }
         
         NSDictionary *result = responseObject;
         
@@ -169,13 +254,13 @@
 //                    failure(@"登陆失败");
 //                    
                     //构造SendAuthReq结构体
-                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
                     
-                    req.scope = @"snsapi_base" ;
-                    
-                    req.state = @"123" ;
+//                    req.scope = @"snsapi_base" ;
+//                    
+//                    req.state = @"123" ;
                     //第三方向微信终端发送一个SendAuthReq消息结构
-                    [WXApi sendReq:req];
+//                    [WXApi sendReq:req];
                     
 //                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
                 }else if([result[@"retcode"] isEqualToString:@"9"]){
@@ -186,13 +271,13 @@
 //                    failure(@"用户未注册");
                     
                     //构造SendAuthReq结构体
-                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
 
-                    req.scope = @"snsapi_userinfo";
-                    
-                    req.state = @"123" ;
+//                    req.scope = @"snsapi_userinfo";
+//                    
+//                    req.state = @"123" ;
                     //第三方向微信终端发送一个SendAuthReq消息结构
-                    [WXApi sendReq:req];
+//                    [WXApi sendReq:req];
                 }
                 else if([result[@"retcode"] isEqualToString:@"10"]){
                     [MBProgressHUD showError:@"用户权限不够"];

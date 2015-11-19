@@ -53,3 +53,10 @@ NSNumber * SafeNumber(NSNumber * n){
     }
     return n;
 }
+
+NSArray * SafeArray(NSArray * n){
+    if(n == nil){
+        return [NSArray new];
+    }
+    return n;
+}

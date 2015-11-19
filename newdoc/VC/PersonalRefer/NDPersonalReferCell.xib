@@ -39,6 +39,9 @@
                     <constraint firstItem="Zae-1e-VKc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="42" id="znJ-QG-4t3"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lblDate" destination="Zae-1e-VKc" id="cnK-28-iWR"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

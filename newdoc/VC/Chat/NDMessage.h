@@ -11,6 +11,10 @@ typedef enum {
 }NDMessageType;
 
 @interface NDMessage : NSObject
+/*
+ *  头像
+ */
+@property (nonatomic, copy) NSString *icon_url;
 
 /**
  *  聊天内容

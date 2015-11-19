@@ -4,7 +4,8 @@
 //  Copyright © 2015年 zzc. All rights reserved.
 
 #import <UIKit/UIKit.h>
+#import "NDQAMessage.h"
 
 @interface NDChatVC : NDBaseVC<UITextFieldDelegate>
-
+@property (nonatomic, strong) NDQAMessage *qaMesaage;
 @end
