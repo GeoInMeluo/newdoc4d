@@ -13,8 +13,17 @@
 #import "NDBaseTabVC.h"
 #import "NDBaseNavVC.h"
 #import "NDPersonalRegistBindVC.h"
+
 #import "UMComLoginManager.h"
 #import "UMComUserAccount.h"
+
+#import "UMSocialDataService.h"
+#import "UMSocial.h"
+
+#import "UMComFeed.h"
+#import "UMComImageModel.h"
+#import "UMComSession.h"
+#import "UMComFeed+UMComManagedObject.h"
 
 @interface NDLoginVC ()
 @property (strong, nonatomic) IBOutlet FormCell *cellAccount;
@@ -34,6 +43,14 @@
     // Do any additional setup after loading the view from its nib.
     
     [self setupUI];
+}
+
+- (void)pop{
+    if(self.isPresent){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -98,20 +115,10 @@
     
     [self startLoginWithUsername:self.tfUsername.text andPassWord:self.tfPassword.text success:^{
 
-            [weakself.navigationController popViewControllerAnimated:YES];
-            
-//            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:[NSHTTPCookie cookieWithProperties:@{@"openid":@"000000000007",@"newdocid":@"newdocid00weixin000000007"}]];
-//            for (UIViewController *controller in self.navigationController.viewControllers) {
-//                if ([controller isKindOfClass:[NDPersonalCenterHomeVC class]]) {
-//                    
-//                    NDPersonalCenterHomeVC *vc = (NDPersonalCenterHomeVC *)controller;
-//                    vc.user = user;
-//                    [weakself.navigationController popToViewController:vc animated:YES];
-//                    
-//                }
-//            }
+        [weakself loginUMWithUsername:[NDCoreSession coreSession].user.name andID:[NDCoreSession coreSession].nduid andIconUrl:[NDCoreSession coreSession].user.picture_url];
         
-        
+        [weakself pop];
+
     } failure:^(NSString *error_message) {
         
     }];
@@ -123,11 +130,11 @@
     //构造SendAuthReq结构体
     SendAuthReq* req =[[SendAuthReq alloc ] init ];
     
-    if([NDCoreSession coreSession].openId.length){
-        req.scope = @"snsapi_base" ;
-    }else{
+//    if([NDCoreSession coreSession].openId.length){
+//        req.scope = @"snsapi_base" ;
+//    }else{
         req.scope = @"snsapi_userinfo" ;
-    }
+//    }
     
     req.state = @"123" ;
     //第三方向微信终端发送一个SendAuthReq消息结构
@@ -144,6 +151,14 @@
 -(void)onResp:(BaseReq *)resp
 {
     WEAK_SELF;
+    
+    
+    if(![resp isKindOfClass:[SendAuthResp class]]){//这种回调为分享
+        
+//        [MBProgressHUD showSuccess:@"分享成功"];
+        
+        return;
+    }
     
     /*
      ErrCode ERR_OK = 0(用户同意)
@@ -179,7 +194,7 @@
                 
             }
         
-            [[NSUserDefaults standardUserDefaults] setObject:result[@"1"] forKey:@"iswxlogin"];
+            [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"iswxlogin"];
             
             [[NSUserDefaults standardUserDefaults] synchronize];
             
@@ -194,6 +209,7 @@
                     
                     [NDCoreSession coreSession].user = user;
                     
+                    [self loginUMWithUsername:[NDCoreSession coreSession].user.name andID:[NDCoreSession coreSession].openId andIconUrl:[NDCoreSession coreSession].user.picture_url];
                     
                     NSString *tempPath =  NSTemporaryDirectory();
                     
@@ -203,11 +219,6 @@
                     
                     FLog(@"%@", weakself);
                     FLog(@"%@", weakself.navigationController);
-                    
-//                    [self.navigationController popToRootViewControllerAnimated:YES];
-//                    [self dismissViewControllerAnimated:YES completion:nil];
-                    
-                    
                     
                     if(user.mobile.length == 0){
                         NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:[NDPersonalRegistBindVC new]];
@@ -233,10 +244,8 @@
 }
 /********************/
 
-- (IBAction)btnWeibo:(id)sender {
-}
-
 - (IBAction)btnQQ:(id)sender {
+    ShowAlert(@"敬请期待~");
 }
 
 -(BOOL)isPhoneText:(NSString *)str
@@ -257,12 +266,92 @@
 
 - (void)loginUMWithUsername:(NSString *)username andID:(NSString *)ID andIconUrl:(NSString *)url{
 //    //把用户资料上传到友盟
-//    UMComUserAccount *userAccount = [[UMComUserAccount alloc] initWithSnsType:UMComSnsTypeSelfAccount];
-//    //使用UMComSnsTypeSelfAccount代表自定义登录，该枚举类型必须和安卓SDK保持一致，否则会出现不能对应同一用户的问题
-//    userAccount.usid = @"用户id";
-//    userAccount.name = @"昵称";
-//    userAccount.icon_url = @"http://xxxx.jpg"; //登录用户头像
-//    [UMComLoginManager loginWithUser:userAccount completion:^(NSArray *data, NSError *error) {
-//    }];
+    UMComUserAccount *userAccount = [[UMComUserAccount alloc] initWithSnsType:UMComSnsTypeSelfAccount];     //使用UMComSnsTypeSelfAccount代表自定义登录，该枚举类型必须和安卓SDK保持一致，否则会出现不能对应同一用户的问题
+    userAccount.usid = username;
+    userAccount.name = username;
+    userAccount.icon_url = url; //登录用户头像
+    // 将数据传递给友盟微社区SDK
+    [UMComLoginManager finishLoginWithAccount:userAccount completion:^(NSArray *data, NSError *error) {
+//        [UMComLoginManager finishDismissViewController:self data:data error:error];
+    }];
+}
+
+- (void)presentLoginViewController:(UIViewController *)viewController finishResponse:(LoadDataCompletion)loginCompletion{
+    
+    CreateVC(NDLoginVC);
+    vc.isPresent = YES;
+    NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:vc];
+    [viewController presentViewController:nav animated:YES completion:nil];
+}
+
+/**
+ 点击某个分享平台之后的回调方法
+ 
+ @param platformName 分享平台名
+ @param feed 分享的当条Feed
+ @param viewController 当前ViewController
+ 
+ */
+- (void)didSelectPlatform:(NSString *)platformName
+                     feed:(UMComFeed *)feed
+           viewController:(UIViewController *)viewControlller{
+    
+    UMComFeed *shareFeed = nil;
+    if (feed.origin_feed) {
+        shareFeed = feed.origin_feed;
+    } else{
+        shareFeed = feed;
+    }
+//    self.feed = feed;
+    NSArray *imageModels = [feed imageModels];
+    UMComImageModel *imageModel = nil;
+    if (imageModels.count > 0) {
+        imageModel = [[shareFeed imageModels] firstObject];
+    }
+    NSString *imageUrl = imageModel.smallImageUrlString;//[[shareFeed.images firstObject] valueForKey:@"360"];
+    
+    //取转发的feed才有链接
+    NSString *urlString = feed.share_link;
+    urlString = [NSString stringWithFormat:@"%@?ak=%@&platform=%@",urlString,[UMComSession sharedInstance].appkey,platformName];
+    [UMSocialData defaultData].extConfig.qqData.url = urlString;
+    [UMSocialData defaultData].extConfig.qzoneData.url = urlString;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = urlString;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = urlString;
+    
+    NSString *shareText = [NSString stringWithFormat:@"%@ %@",shareFeed.text,urlString];
+//    NSString *feedString = [shareFeed.text substringToIndex:MaxShareLength - MaxLinkLength];
+    [UMSocialData defaultData].extConfig.sinaData.shareText = shareText;
+    
+    [UMSocialData defaultData].title = shareFeed.text;
+    
+    UIImage *shareImage = nil;
+    if (imageUrl) {
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageUrl];
+    } else{
+        shareImage = UMComImageWithImageName(@"icon");
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeDefault];
+    }
+
+    
+    [UMSocialData defaultData].extConfig.sinaData.shareText = shareText;
+    
+    [UMSocialData defaultData].title = shareFeed.text;
+    
+    [[UMSocialControllerService defaultControllerService] setShareText:shareFeed.text shareImage:shareImage socialUIDelegate:self];
+    
+    UMSocialSnsPlatform *socialPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:platformName];
+    socialPlatform.snsClickHandler(viewControlller,[UMSocialControllerService defaultControllerService],YES);
+    
+//        NSString *platformName = [self.platformArray objectAtIndex:indexPath.row] ;
+//        [[UMComLoginManager getLoginHandler] didSelectPlatform:platformName feed:self.feed viewController:self.shareViewController];
+//        [self dismiss];
+//        if (self.didSelectedIndex) {
+//            self.didSelectedIndex(indexPath);
+//        }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.tfPassword resignFirstResponder];
+    [self.tfUsername resignFirstResponder];
 }
 @end

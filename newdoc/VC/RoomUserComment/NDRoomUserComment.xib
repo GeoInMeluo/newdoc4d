@@ -19,6 +19,7 @@
                 <outlet property="mineCommentView" destination="iNe-Id-fCw" id="uwn-3O-fym"/>
                 <outlet property="startRateDiv" destination="Xsb-r6-E5Z" id="npy-TG-L4O"/>
                 <outlet property="tableView" destination="Amk-T7-aF1" id="L88-e6-6i4"/>
+                <outlet property="tvComment" destination="Fbf-RN-zb6" id="67P-8G-hWA"/>
                 <outlet property="view" destination="xcB-da-dJD" id="35O-sW-cwf"/>
             </connections>
         </placeholder>
@@ -33,14 +34,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="igC-tQ-OSQ">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWu-Rt-cYb">
-                                    <rect key="frame" x="40" y="10" width="74" height="90"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="Elo-aw-Dko"/>
-                                        <constraint firstAttribute="width" constant="74" id="z6J-QR-ngv"/>
-                                    </constraints>
-                                    <state key="normal" backgroundImage="icon_placeHolder"/>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="段兴武" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="183-eL-fBC">
                                     <rect key="frame" x="122" y="10" width="54" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -119,6 +112,14 @@
                                         <action selector="btnMineCommentClick:" destination="-1" eventType="touchUpInside" id="HHL-FE-6gQ"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWu-Rt-cYb">
+                                    <rect key="frame" x="24" y="9" width="90" height="90"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="90" id="Elo-aw-Dko"/>
+                                        <constraint firstAttribute="width" constant="90" id="z6J-QR-ngv"/>
+                                    </constraints>
+                                    <state key="normal" backgroundImage="icon_placeHolder"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -129,18 +130,18 @@
                                 <constraint firstItem="V9A-xI-Bka" firstAttribute="top" secondItem="183-eL-fBC" secondAttribute="bottom" constant="8" id="Car-Vh-8ah"/>
                                 <constraint firstAttribute="trailing" secondItem="8KR-fy-bO4" secondAttribute="trailing" id="DF2-cp-6IP"/>
                                 <constraint firstItem="3Cb-yo-wuq" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="5" id="IC6-fJ-Ovw"/>
-                                <constraint firstItem="8KR-fy-bO4" firstAttribute="top" secondItem="iWu-Rt-cYb" secondAttribute="bottom" constant="26" id="K9a-O3-FJW"/>
+                                <constraint firstItem="8KR-fy-bO4" firstAttribute="top" secondItem="iWu-Rt-cYb" secondAttribute="bottom" constant="27" id="K9a-O3-FJW"/>
                                 <constraint firstItem="183-eL-fBC" firstAttribute="leading" secondItem="iWu-Rt-cYb" secondAttribute="trailing" constant="8" id="SHh-C1-peA"/>
                                 <constraint firstAttribute="trailing" secondItem="3Cb-yo-wuq" secondAttribute="trailing" constant="49" id="Vpn-mo-vOL"/>
                                 <constraint firstAttribute="trailing" secondItem="9uN-5N-ZqD" secondAttribute="trailing" constant="8" id="YVJ-KX-Ek9"/>
                                 <constraint firstAttribute="trailing" secondItem="lTy-eU-Sqg" secondAttribute="trailing" id="cPP-3p-ubT"/>
                                 <constraint firstItem="DLY-Vw-wsv" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="16" id="dax-wv-yoW"/>
-                                <constraint firstItem="ny3-Pe-mLl" firstAttribute="top" secondItem="iWu-Rt-cYb" secondAttribute="bottom" constant="37" id="fme-1N-mf0"/>
+                                <constraint firstItem="ny3-Pe-mLl" firstAttribute="top" secondItem="iWu-Rt-cYb" secondAttribute="bottom" constant="38" id="fme-1N-mf0"/>
                                 <constraint firstItem="183-eL-fBC" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="10" id="hDS-sG-awM"/>
                                 <constraint firstAttribute="bottom" secondItem="ny3-Pe-mLl" secondAttribute="bottom" constant="1" id="i3U-oS-MAT"/>
-                                <constraint firstItem="iWu-Rt-cYb" firstAttribute="leading" secondItem="igC-tQ-OSQ" secondAttribute="leading" constant="40" id="iE9-2x-iXi"/>
+                                <constraint firstItem="iWu-Rt-cYb" firstAttribute="leading" secondItem="igC-tQ-OSQ" secondAttribute="leading" constant="24" id="iE9-2x-iXi"/>
                                 <constraint firstItem="9uN-5N-ZqD" firstAttribute="leading" secondItem="iWu-Rt-cYb" secondAttribute="trailing" constant="8" id="ijY-Fx-OVM"/>
-                                <constraint firstItem="iWu-Rt-cYb" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="10" id="nE1-MJ-yEl"/>
+                                <constraint firstItem="iWu-Rt-cYb" firstAttribute="top" secondItem="igC-tQ-OSQ" secondAttribute="top" constant="9" id="nE1-MJ-yEl"/>
                                 <constraint firstItem="3Cb-yo-wuq" firstAttribute="leading" secondItem="DLY-Vw-wsv" secondAttribute="trailing" constant="8" id="nox-Cj-E10"/>
                                 <constraint firstItem="9uN-5N-ZqD" firstAttribute="top" secondItem="V9A-xI-Bka" secondAttribute="bottom" constant="8" id="pRm-b0-bxw"/>
                                 <constraint firstItem="DLY-Vw-wsv" firstAttribute="leading" secondItem="183-eL-fBC" secondAttribute="trailing" constant="3" id="vq7-mL-gWZ"/>
@@ -229,7 +230,6 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="137" id="5jh-jt-jAY"/>
                     </constraints>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

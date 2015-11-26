@@ -11,14 +11,14 @@
 @implementation NDDoctor
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{@"ID" : @"id"};
-}
-
-+ (NSDictionary *)objectClassInArray{
-    return @{@"catalog" : @"NDSubroom"};
+    return @{@"ID" : @"id", @"slots" : @"preserve_window"};
 }
 
 //+ (NSDictionary *)objectClassInArray{
-//    return @{@"catalog" : @"NDSubroom",@"preserve_window":@"NDPreserveWindow"};
+//    return @{@"catalog" : @"NDSubroom"};
 //}
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"catalog" : @"NDSubroom",@"slots":@"NDSlot"};
+}
 @end

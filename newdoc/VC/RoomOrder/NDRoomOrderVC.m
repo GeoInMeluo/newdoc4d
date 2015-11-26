@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *btnUserComment;
 @property (weak, nonatomic) IBOutlet UIButton *btnDocHeadImg;
 
+@property (weak, nonatomic) IBOutlet UIView *vUserComment;
+
 @property (nonatomic, strong) NSMutableArray *canOrderBtns;
 @end
 
@@ -77,7 +79,8 @@
     self.btnUserComment.layer.masksToBounds = YES;
     self.btnUserComment.layer.cornerRadius = 5;
     
-    
+    self.vUserComment.layer.masksToBounds = YES;
+    self.vUserComment.layer.cornerRadius = 5;
     
     UIButton *button = [[UIButton alloc] init];
     [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
@@ -130,13 +133,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    
 //    self.selectedOrderDates = [NSMutableArray array];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
+    self.tableView.tableHeaderView.height = 528;
     
     WEAK_SELF;
     
@@ -294,6 +297,8 @@
     
     NDSlot *selectSlot = self.currentPreserveWindow.slots[btn.tag - 100];
     
+    [self.vTimeScope clearSubviews];
+    
     NSMutableArray *timeScopes = [NSMutableArray array];
     self.currentDateScopeSlots = timeScopes;
     for(NDSlot *slot in self.currentPreserveWindow.slots){
@@ -375,7 +380,7 @@
     cell.preserveWindow = preserveWindow;
     cell.btnBond.callback = ^(Button *btn){
         if(btn.selected){
-            [weakself startCancelAttentionDoctorWithDocId:weakself.roomId success:^{
+            [weakself startCancelBindRoomWithRoomId:weakself.roomId success:^{
                 cell.btnBond.selected = !cell.btnBond.selected;
             } failure:^(NSString *error_message) {
                 
@@ -441,9 +446,8 @@
     PushVC(vc);
 }
 
-- (IBAction)btnAttentionClick:(id)sender {
+- (IBAction)btnAttentionClick:(UIButton *)sender {
     WEAK_SELF;
-    
     if(self.docMorePreserveWindow.isFocus){
         [self startCancelAttentionDoctorWithDocId:self.docMorePreserveWindow.ID success:^{
             weakself.docMorePreserveWindow.isFocus = NO;

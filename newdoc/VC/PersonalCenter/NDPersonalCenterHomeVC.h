@@ -9,10 +9,6 @@
 #import "NDBaseTableVC.h"
 #import "NDUser.h"
 
-
-
 @interface NDPersonalCenterHomeVC : NDBaseTableVC
-
-
 //@property (nonatomic, strong) NDUser *user;
 @end

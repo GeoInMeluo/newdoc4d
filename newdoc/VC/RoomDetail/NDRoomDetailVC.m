@@ -9,6 +9,7 @@
 #import "NDRoomDetailVC.h"
 #import "NDRoomDetailDocCell.h"
 #import "NDRoomOrderVC.h"
+#import "NDRoomMapVC.h"
 
 @interface NDRoomDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -36,15 +37,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"真是详情";
+    self.title = @"诊室详情";
+    
+    
     
     [self startGet];
+}
+
+- (void)pop{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)startGet{
     WEAK_SELF;
     
     [self startGetRoomWithRoomId:self.roomId success:^(NDRoom *room) {
+        NSMutableArray *temp = [NSMutableArray arrayWithArray:room.catalogs];
+        
+        NDSubroom *subroom = [[NDSubroom alloc] init];
+        subroom.name = @"全部";
+        [temp insertObject:subroom atIndex:0];
+        
+        room.catalogs = temp;
+        
         weakself.room = room;
         
         [weakself setupUI];
@@ -54,17 +69,24 @@
 }
 
 - (void)startGetDocsListWithSelectSubroom{
-    NSMutableArray *temp = [NSMutableArray array];
     
-    for(NDDoctor *doctor in self.room.doctors){
-        for(NDSubroom *subroom in doctor.catalog){
-            if([subroom.name isEqualToString:self.selectSubroom]){
-                [temp addObject:doctor];
+    if([self.selectSubroom isEqualToString:@"全部"]){
+        self.docs = self.room.doctors;
+    }else{
+        NSMutableArray *temp = [NSMutableArray array];
+        
+        for(NDDoctor *doctor in self.room.doctors){
+            for(NDSubroom *subroom in doctor.catalog){
+                if([subroom.name isEqualToString:self.selectSubroom]){
+                    [temp addObject:doctor];
+                }
             }
         }
+        
+        self.docs = temp;
     }
     
-    self.docs = temp;
+   
     [self.tableView reloadData];
 }
 
@@ -80,8 +102,6 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -89,7 +109,8 @@
     
     self.pickClass.left = self.moreView.left;
     self.pickClass.top = self.moreView.bottom;
-    self.pickClass.width = self.moreView.width;
+    self.pickClass.width = self.tableView.width;
+    self.pickClass.height = self.view.height - self.moreView.bottom;
     self.pickClass.hidden = YES;
     
     [self.view addSubview:self.pickClass];
@@ -120,13 +141,13 @@
             } failure:^(NSString *error_message) {
                 
             }];
+        }else{
+            [weakself startAttentionDoctorWithDocId:doctor.ID success:^{
+                btn.selected = !btn.selected;
+            } failure:^(NSString *error_message) {
+                
+            }];
         }
-        
-        [weakself startAttentionDoctorWithDocId:doctor.ID success:^{
-            btn.selected = !btn.selected;
-        } failure:^(NSString *error_message) {
-            
-        }];
     };
     cell.btnGo2Order.callback = ^(Button *btn){
         NDRoomOrderVC *vc = [NDRoomOrderVC new];
@@ -183,7 +204,7 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    NDSubroom *subroom = self.room.catalogs[component];
+    NDSubroom *subroom = self.room.catalogs[row];
     return subroom.name;
 }
 

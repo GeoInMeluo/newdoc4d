@@ -59,7 +59,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if([NDCoreSession coreSession].user.name.length != 0){
+    if([NDCoreSession coreSession].user.mobile.length != 0){
         self.vAccountAndPhone.hidden = NO;
         
         WEAK_SELF;

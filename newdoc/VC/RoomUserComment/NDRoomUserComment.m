@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnHeaderAttetion;
 @property (weak, nonatomic) IBOutlet UILabel *lblHeaderSubroom;
 @property (weak, nonatomic) IBOutlet UILabel *lblHeaderDocGoodat;
+@property (weak, nonatomic) IBOutlet UITextView *tvComment;
+
 
 @end
 
@@ -45,6 +47,9 @@
 }
 
 - (void)setupUI{
+    self.title = @"用户评价";
+    
+    [self.showKeyboardViews addObjectsFromArray:@[self.tvComment]];
     
     self.lblHeaderDocName.text = self.doc.name;
     self.lblHeaderDocTitle.text = self.doc.title;

@@ -10,7 +10,7 @@
 #import "NDPhotoGridCell.h"
 #import "UUPhotoActionSheet.h"
 
-@interface NDQAOnlineVC : NDBaseVC<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface NDQAOnlineVC : NDBaseTableVC<UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton *btnSubroom;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segGender;
 @property (weak, nonatomic) IBOutlet UITextField *tfAge;

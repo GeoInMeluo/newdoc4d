@@ -7,6 +7,7 @@
 //
 
 #import "NDSettingTableViewController.h"
+#import "UMComLoginManager.h"
 
 @interface NDSettingTableViewController ()<UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellProtocal;
@@ -47,13 +48,17 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self logout];
+    if(buttonIndex == 1){
+        [self logout];
+    }
 }
 
 - (void)logout{
     
     [[NDCoreSession coreSession] logout];
     
+    [UMComLoginManager userLogout];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

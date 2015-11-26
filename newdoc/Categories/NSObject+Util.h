@@ -10,4 +10,6 @@
 
 @interface NSObject (Util)
 - (BOOL)checkLoginWithNav:(UINavigationController *)nav;
+
+- (void)share;
 @end

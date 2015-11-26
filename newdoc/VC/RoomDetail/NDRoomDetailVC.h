@@ -16,6 +16,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblRoomName;
 @property (weak, nonatomic) IBOutlet UILabel *lblRoomGoodat;
 @property (weak, nonatomic) IBOutlet UILabel *lblRoomAddress;
-
-
 @end

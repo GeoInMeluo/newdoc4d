@@ -42,8 +42,6 @@
 @property (nonatomic, weak) UIButton *btnNavRight;
 
 
-
-
 @end
 
 @implementation NDRoomMapVC
@@ -62,66 +60,6 @@
     return _annotations;
 }
 
-//- (NDRoomSelectLocationVC *)selectLocationVC{
-//    if(_selectLocationVC == nil){
-//        WEAK_SELF;
-//        
-//        NDRoomSelectLocationVC *selectLocationVC = [NDRoomSelectLocationVC new];
-//        selectLocationVC.view.width = _mapView.width;
-//        selectLocationVC.view.height = _mapView.height;
-//        selectLocationVC.view.top = self.topView.bottom;
-//        selectLocationVC.parentVC = self;
-//        
-//        __weak typeof(selectLocationVC) weakSelectionVC = selectLocationVC;
-//        //选择完地点后进行的操作
-//        selectLocationVC.countyCellCallback = ^(){
-//            weakself.mapView.hidden = NO;
-//            BMKGeoCodeSearchOption *geocodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
-//            geocodeSearchOption.city = weakSelectionVC.cityName;
-//            geocodeSearchOption.address = weakSelectionVC.countyName;
-//            BOOL flag = [weakself.geoSearch geoCode:geocodeSearchOption];
-//            if(flag)
-//            {
-//                NSLog(@"geo检索发送成功");
-//            }
-//            else
-//            {
-//                NSLog(@"geo检索发送失败");
-//            }
-//        };
-//        [self.view addSubview:selectLocationVC.view];
-//        _selectLocationVC = selectLocationVC;
-//    }
-//    return _selectLocationVC;
-//}
-
-//- (NDRoomSelectVC *)selectVC{
-//    if(_selectVC == nil){
-//        NDRoomSelectVC *selectVC = [NDRoomSelectVC new];
-//        selectVC.tableView.width = _mapView.width;
-//        selectVC.tableView.height = _mapView.height - self.segmentView.height;
-//        selectVC.tableView.top = self.segmentView.bottom;
-//        [self.view addSubview:selectVC.tableView];
-//        selectVC.view.hidden = self.currentMap;
-//        selectVC.parentVC = self;
-//        _selectVC = selectVC;
-//    }
-//    return _selectVC;
-//}
-
-//- (NDRoomSelectMoreVC *)selectMoreVC{
-//    if(_selectMoreVC == nil){
-//        NDRoomSelectMoreVC *selectMoreVC = [NDRoomSelectMoreVC new];
-//        selectMoreVC.view.width = _mapView.width;
-//        selectMoreVC.view.height = _mapView.height - self.segmentView.height;
-//        selectMoreVC.view.top = self.segmentView.bottom;
-//        [self.view addSubview:selectMoreVC.view];
-//        selectMoreVC.view.hidden = YES;
-//        selectMoreVC.parentVC = self;
-//        _selectMoreVC = selectMoreVC;
-//    }
-//    return _selectMoreVC;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -177,7 +115,7 @@
     _selectVC.tableView.hidden = YES;
     [self.view addSubview:selectVC.tableView];
     
-    
+    self.segmentView.hidden = YES;
 }
 
 - (void)changeSearchFieldText:(NSNotification *)notification{
@@ -268,7 +206,6 @@
     
      WEAK_SELF;
     
-    self.segmentView.hidden = YES;
     self.segmentView.top = self.topView.bottom;
     self.segmentView.width = self.view.width;
     
@@ -289,6 +226,7 @@
     //选择完地点后进行的操作
     _selectLocationVC.countyCellCallback = ^(){
         weakself.mapView.hidden = NO;
+        weakself.segmentView.hidden = YES;
         BMKGeoCodeSearchOption *geocodeSearchOption = [[BMKGeoCodeSearchOption alloc]init];
         geocodeSearchOption.city = weakSelectionVC.cityName;
         geocodeSearchOption.address = weakSelectionVC.countyName;
@@ -312,12 +250,19 @@
     _selectVC.parentVC = self;
     _selectVC.rooms = self.rooms;
     
-    [self.mapView.superview bringSubviewToFront:self.mapView];
-    self.mapView.hidden = NO;
+    if(self.selectVC.tableView.hidden){
+        [self.mapView.superview bringSubviewToFront:self.mapView];
+        self.mapView.hidden = NO;
+    }
+    
+    if(!self.mapView.hidden || !self.selectVC.tableView.hidden){
+        self.selectLocationVC.view.hidden = YES;
+    }
     
     self.slider.frame = CGRectMake(0, self.segmentView.height - 2, self.segmentView.width * 0.4, 2);
     self.slider.backgroundColor = Blue;
     self.slider.centerX = kScreenSize.width * 0.75;
+
 }
 
 /**
@@ -514,6 +459,8 @@
     
     [self.mapView viewWillDisappear];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     self.mapView.delegate = nil; // 不用时，置nil
     self.loactionService.delegate = nil;
     self.geoSearch.delegate = nil;
@@ -583,7 +530,6 @@
     [_selectLocationVC.view removeFromSuperview];
     _selectLocationVC = nil;
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

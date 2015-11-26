@@ -14,8 +14,6 @@
 #import "UUPhoto-Import.h"
 #import "NDBaseNavVC.h"
 
-static NSString *_newImgHeadUrl;
-
 @interface NDPersonalInfo ()<UUPhotoActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet FormCell *cellHeadImg;
 @property (strong, nonatomic) IBOutlet FormCell *cellAcount;
@@ -31,7 +29,6 @@ static NSString *_newImgHeadUrl;
 @property (weak, nonatomic) IBOutlet UILabel *lblSex;
 
 @property (nonatomic, strong) NDUser *tempUser;
-
 @end
 
 @implementation NDPersonalInfo
@@ -85,13 +82,12 @@ static NSString *_newImgHeadUrl;
 }
 
 - (void)pop{
-    self.callBack(_newImgHeadUrl);
-
+    WEAK_SELF;
+    
    [NDCoreSession coreSession].user.name = self.lblName.text;
    [NDCoreSession coreSession].user.sex = [self.lblSex.text isEqualToString: @"男"]? @"0":@"1";
-   [NDCoreSession coreSession].user.picture_url = _newImgHeadUrl;
     
-    [self startEditUserInfo:[NDCoreSession coreSession].user success:^(NDUser *user) {
+    [self startEditUserInfo:[NDCoreSession coreSession].user success:^() {
         
     } failure:^(NSString *error_message) {
         
@@ -111,14 +107,14 @@ static NSString *_newImgHeadUrl;
     
     
     
-    self.cellAcount.callback = ^(FormCell *cell, NSIndexPath *indexPath){
-        CreateVC(NDPersonalChangeAccountVC);
-        vc.nameCallBack = ^(NSString *name){
-            weakself.lblName.text = name;
-            weakself.tempUser.name = name;
-        };
-        PushVCWeak(vc);
-    };
+//    self.cellAcount.callback = ^(FormCell *cell, NSIndexPath *indexPath){
+//        CreateVC(NDPersonalChangeAccountVC);
+//        vc.nameCallBack = ^(NSString *name){
+//            weakself.lblName.text = name;
+//            weakself.tempUser.name = name;
+//        };
+//        PushVCWeak(vc);
+//    };
     
     self.cellGender.callback = ^(FormCell *cell, NSIndexPath *indexPath){
         CreateVC(NDPersonalChangeGender);
@@ -161,7 +157,6 @@ static NSString *_newImgHeadUrl;
             return;
         }
         
-        _newImgHeadUrl = [NSString stringWithFormat:@"%@",imgUrls[0]];
         [NDCoreSession coreSession].user.picture_url = imgUrls[0];
         
         NSString *tempPath =  NSTemporaryDirectory();
@@ -172,7 +167,7 @@ static NSString *_newImgHeadUrl;
         
         [weakself.btnHeadImage setImage:[obj.lastObject imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         
-//        [weakself.btnHeadImage sd_setImageWithURL:[NSURL URLWithString:_newImgHeadUrl] forState:UIControlStateNormal];
+//        [weakself.btnHeadImage sd_setImageWithURL:[NSURL URLWithString:_imgUrl] forState:UIControlStateNormal];
     } failure:^(NSString *error_message) {
         
     }];

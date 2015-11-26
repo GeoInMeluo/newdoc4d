@@ -7,7 +7,8 @@
 //
 
 #import "NDBaseTableVC.h"
+#import "NDCommonQA.h"
 
-@interface NDQACommonVC : NDBaseTableVC
-
+@interface NDQACommonVC : NDBaseVC
+@property (nonatomic, strong) NDCommonQA *commonQA;
 @end

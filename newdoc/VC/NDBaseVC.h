@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface NDBaseVC : UIViewController
+@property (nonatomic, strong) NSMutableArray *showKeyboardViews;
+
+@property (nonatomic, assign) BOOL isPresent;
+
 - (UIButton *)rightView;
 
 - (void)pop;

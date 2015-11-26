@@ -200,6 +200,10 @@
     
     NSInteger index = [[UUAssetManager sharedInstance] currentGroupFirstIndex];
     
+    if(!index){
+        return;
+    }
+    
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]
                             atScrollPosition:UICollectionViewScrollPositionCenteredVertically
                                     animated:NO];

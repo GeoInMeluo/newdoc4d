@@ -15,11 +15,12 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import "APService.h"
 #import "NDLoginVC.h"
+#import "UMComLoginManager.h"
+#import "UMSocialWechatHandler.h"
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
-
 
 
 //新浪微博SDK头文件
@@ -45,6 +46,7 @@
 //        
 //    }];
 
+    [self setupUMShare];
     
     [self setupWechatLogin];
     
@@ -70,6 +72,13 @@
     return YES;
 }
 
+- (void)setupUMShare{
+    
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:@"wx4868b35061f87885" appSecret:@"64020361b8ec4c99936c0e3999a9f249" url:@"http://www.umeng.com/social"];
+
+}
+
 - (void)setupWechatLogin{
     //向微信注册
 //    [WXApi registerApp:@"wx79dcda258b479eeb" withDescription:@"weixin"];
@@ -80,6 +89,10 @@
 - (void)setupUmengCommunity{
     //社区
     [UMCommunity setWithAppKey:@"5617f55b67e58ee20a002fa8"];  //需要修改微社区的Appkey
+    
+    //设置社区登录界面为自定义界面
+    NDLoginVC *loginViewController = [NDLoginVC new];
+    [UMComLoginManager setLoginHandler:loginViewController];
 }
 
 - (void)setupJPush:(NSDictionary *)launchOptions{
@@ -138,7 +151,7 @@
     // 要使用百度地图，请先启动
     _mapManager = [[BMKMapManager alloc]init];
     // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
-    BOOL ret = [_mapManager start:@"PuZ6YVdbpbbuj9pmOwj1rBhK"  generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"GrclsmilW2yIY4Q75Q7VCgZx"  generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed!");
     }
@@ -154,10 +167,9 @@
 {
     
     
-//    return [TencentOAuth HandleOpenURL:url] ||
-//    [WeiboSDK handleOpenURL:url delegate:self] ||
-//    [WXApi handleOpenURL:url delegate:self];
-    return [WXApi handleOpenURL:url delegate:[NDLoginVC new]];
+    return [TencentOAuth HandleOpenURL:url]  ||
+    [WXApi handleOpenURL:url delegate:[NDLoginVC new]];
+//    return [WXApi handleOpenURL:url delegate:[NDLoginVC new]];
 }
 /*******************/
 
@@ -177,17 +189,18 @@
      *  在此事件中写入连接代码。第四个参数则为配置本地社交平台时触发，根据返回的平台类型来配置平台信息。
      *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
      */
-    [ShareSDK registerApp:@"iosv1101"
+    [ShareSDK registerApp:@"b0ffff49fe58"
      
           activePlatforms:@[
-                            @(SSDKPlatformTypeSinaWeibo),
-                            @(SSDKPlatformTypeMail),
-                            @(SSDKPlatformTypeSMS),
-                            @(SSDKPlatformTypeCopy),
-                            @(SSDKPlatformTypeWechat),
-                            @(SSDKPlatformTypeQQ),
-                            @(SSDKPlatformTypeRenren),
-                            @(SSDKPlatformTypeGooglePlus)]
+//                            @(SSDKPlatformTypeSinaWeibo),
+//                            @(SSDKPlatformTypeMail),
+//                            @(SSDKPlatformTypeSMS),
+//                            @(SSDKPlatformTypeCopy),
+                            @(SSDKPlatformTypeWechat)
+//                            @(SSDKPlatformTypeQQ),
+//                            @(SSDKPlatformTypeRenren),
+//                            @(SSDKPlatformTypeGooglePlus)
+                            ]
                  onImport:^(SSDKPlatformType platformType)
      {
          switch (platformType)
@@ -195,12 +208,12 @@
              case SSDKPlatformTypeWechat:
                  [ShareSDKConnector connectWeChat:[WXApi class]];
                  break;
-             case SSDKPlatformTypeQQ:
-                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-                 break;
-             case SSDKPlatformTypeSinaWeibo:
-                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-                 break;
+//             case SSDKPlatformTypeQQ:
+//                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+//                 break;
+//             case SSDKPlatformTypeSinaWeibo:
+//                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+//                 break;
              default:
                  break;
          }
@@ -210,38 +223,39 @@
          
          switch (platformType)
          {
-             case SSDKPlatformTypeSinaWeibo:
-                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243"
-                                           appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                                         redirectUri:@"http://www.sharesdk.cn"
-                                            authType:SSDKAuthTypeBoth];
-                 break;
+//             case SSDKPlatformTypeSinaWeibo:
+//                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+//                 [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243"
+//                                           appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
+//                                         redirectUri:@"http://www.sharesdk.cn"
+//                                            authType:SSDKAuthTypeBoth];
+//                 break;
              case SSDKPlatformTypeWechat:
                  [appInfo SSDKSetupWeChatByAppId:@"wx4868b35061f87885"
                                        appSecret:@"64020361b8ec4c99936c0e3999a9f249"];
                  break;
-             case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:@"100371282"
-                                      appKey:@"aed9b0303e3ed1e27bae87c33761161d"
-                                    authType:SSDKAuthTypeBoth];
-                 break;
-             case SSDKPlatformTypeRenren:
-                 [appInfo        SSDKSetupRenRenByAppId:@"226427"
-                                                 appKey:@"fc5b8aed373c4c27a05b712acba0f8c3"
-                                              secretKey:@"f29df781abdd4f49beca5a2194676ca4"
-                                               authType:SSDKAuthTypeBoth];
-                 break;
-             case SSDKPlatformTypeGooglePlus:
-                 [appInfo SSDKSetupGooglePlusByClientID:@"232554794995.apps.googleusercontent.com"
-                                           clientSecret:@"PEdFgtrMw97aCvf0joQj7EMk"
-                                            redirectUri:@"http://localhost"
-                                               authType:SSDKAuthTypeBoth];
-                 break;
+//             case SSDKPlatformTypeQQ:
+//                 [appInfo SSDKSetupQQByAppId:@"100371282"
+//                                      appKey:@"aed9b0303e3ed1e27bae87c33761161d"
+//                                    authType:SSDKAuthTypeBoth];
+//                 break;
+//             case SSDKPlatformTypeRenren:
+//                 [appInfo        SSDKSetupRenRenByAppId:@"226427"
+//                                                 appKey:@"fc5b8aed373c4c27a05b712acba0f8c3"
+//                                              secretKey:@"f29df781abdd4f49beca5a2194676ca4"
+//                                               authType:SSDKAuthTypeBoth];
+//                 break;
+//             case SSDKPlatformTypeGooglePlus:
+//                 [appInfo SSDKSetupGooglePlusByClientID:@"232554794995.apps.googleusercontent.com"
+//                                           clientSecret:@"PEdFgtrMw97aCvf0joQj7EMk"
+//                                            redirectUri:@"http://localhost"
+//                                               authType:SSDKAuthTypeBoth];
+//                 break;
              default:
                  break;
          }
      }];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

@@ -11,6 +11,6 @@
 @implementation NDQAMessage
 + (NSDictionary *)replacedKeyFromPropertyName
 {
-    return @{@"ID" : @"id",@"start_date":[NSString stringWithFormat:@"\"start_date\""]};
+    return @{@"ID" : @"id"};
 }
 @end

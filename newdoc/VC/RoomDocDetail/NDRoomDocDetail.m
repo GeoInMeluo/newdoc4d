@@ -94,6 +94,10 @@
     return cell.cellHeight;//    return 100;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+}
+
 /*
 #pragma mark - Navigation
 

@@ -20,7 +20,7 @@
 - (void)setMessage:(NDQAMessage *)message{
     _message = message;
     
-    _lblTitle.text = message.content;
+    _lblTitle.text = [NSString stringWithFormat:@" 咨询： %@",message.content];
 }
 
 - (void)awakeFromNib {

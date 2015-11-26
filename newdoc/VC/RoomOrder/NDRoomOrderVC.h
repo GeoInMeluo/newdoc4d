@@ -8,8 +8,11 @@
 
 #import "NDBaseVC.h"
 
-@interface NDRoomOrderVC : NDBaseVC
+@interface NDRoomOrderVC : NDBaseTableVC
 @property (nonatomic, strong) NDDoctor *doc;
 @property (nonatomic, strong) NDDoctorMorePreserveWindow *docMorePreserveWindow;
 @property (nonatomic, copy) NSString *roomId;
+
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+
 @end

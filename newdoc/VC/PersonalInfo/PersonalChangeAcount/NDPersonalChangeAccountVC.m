@@ -28,6 +28,8 @@
 - (void)setupUI{
     [self initWithCells];
     
+    [self.showKeyboardViews addObjectsFromArray:@[self.tf,self.tfAccount]];
+    
     UIButton *button = [[UIButton alloc] init];
     [button setTitle:@"保存" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];

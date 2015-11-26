@@ -52,6 +52,9 @@
 -(BOOL)isAfter:(NSDate*)d;
 -(BOOL)isBefore:(NSDate*)d;
 
+//判断两个日期是否是同一天
+- (BOOL)isSame2Other:(NSDate *)other;
+
 @end
 NSCalendar * sharedCalendar();
 
@@ -65,6 +68,7 @@ NSString* timestamp2String_chinese2(int64_t timestamp);
 NSString * date2String(NSDate * date);
 NSString * date2Simeple_String(NSDate * date);
 NSDate * string2Date(NSString * s);
+NSDate * string2Date2(NSString * s);
 NSString * datetime2String(NSDate * date);
 NSDate * string2Datetime(NSString * s);
 NSString * date2StringShort(NSDate * date);

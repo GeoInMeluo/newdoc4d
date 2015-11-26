@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSArray *catalog;
 @property (nonatomic, copy) NSString *goodat;
 @property (nonatomic, assign) BOOL isFocus;
-@property (nonatomic, strong) NDPreserveWindow *preserve_window;
+//@property (nonatomic, strong) NDPreserveWindow *preserve_window;
+@property (nonatomic, strong) NSArray *slots;
 @end

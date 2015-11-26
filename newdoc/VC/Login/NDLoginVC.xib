@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -34,7 +34,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0mn-CG-RSG" id="dB1-Xl-YGN">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录名或手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOP-Cs-bxv">
@@ -85,7 +85,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rH9-hu-P1T" id="Aa1-Jv-3fH">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLo-1l-Ejw">
@@ -172,22 +172,11 @@
                                         <action selector="btnWechat:" destination="-1" eventType="touchUpInside" id="zsM-lU-7PS"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcL-6S-gS6">
-                                    <rect key="frame" x="68" y="0.0" width="30" height="30"/>
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92c-DS-ReK">
+                                    <rect key="frame" x="65" y="0.0" width="30" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="h0L-EV-YCq"/>
-                                        <constraint firstAttribute="height" constant="30" id="pD8-cX-5g5"/>
-                                    </constraints>
-                                    <state key="normal" image="icon_weibo"/>
-                                    <connections>
-                                        <action selector="btnWeibo:" destination="-1" eventType="touchUpInside" id="hCy-Am-5VO"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92c-DS-ReK">
-                                    <rect key="frame" x="128" y="0.0" width="30" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="bVk-Ex-nfP"/>
-                                        <constraint firstAttribute="height" constant="30" id="ogK-jV-4ya"/>
+                                        <constraint firstAttribute="width" constant="30" id="Rur-2E-7y1"/>
+                                        <constraint firstAttribute="height" constant="30" id="tdB-uR-Gpk"/>
                                     </constraints>
                                     <state key="normal" image="icon_qq"/>
                                     <connections>
@@ -198,11 +187,9 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="rMb-aP-Y8F" firstAttribute="leading" secondItem="UsX-RS-2sV" secondAttribute="leading" constant="8" id="3BL-FW-tqA"/>
-                                <constraint firstItem="92c-DS-ReK" firstAttribute="centerY" secondItem="UsX-RS-2sV" secondAttribute="centerY" id="8GO-2G-9hd"/>
-                                <constraint firstItem="92c-DS-ReK" firstAttribute="leading" secondItem="vcL-6S-gS6" secondAttribute="trailing" constant="30" id="8b3-C9-Itc"/>
-                                <constraint firstItem="vcL-6S-gS6" firstAttribute="leading" secondItem="rMb-aP-Y8F" secondAttribute="trailing" constant="30" id="CAV-tb-K3X"/>
+                                <constraint firstItem="92c-DS-ReK" firstAttribute="leading" secondItem="rMb-aP-Y8F" secondAttribute="trailing" constant="27" id="TYP-21-65j"/>
                                 <constraint firstItem="rMb-aP-Y8F" firstAttribute="centerY" secondItem="UsX-RS-2sV" secondAttribute="centerY" id="beq-Lh-SJL"/>
-                                <constraint firstItem="vcL-6S-gS6" firstAttribute="centerY" secondItem="UsX-RS-2sV" secondAttribute="centerY" id="ecW-ZX-Zj3"/>
+                                <constraint firstItem="92c-DS-ReK" firstAttribute="top" secondItem="UsX-RS-2sV" secondAttribute="top" id="yX2-dF-K8h"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -245,6 +232,5 @@
     <resources>
         <image name="icon_qq" width="30" height="30"/>
         <image name="icon_wechat" width="30" height="29"/>
-        <image name="icon_weibo" width="30" height="30"/>
     </resources>
 </document>

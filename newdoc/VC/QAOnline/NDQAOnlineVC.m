@@ -9,6 +9,9 @@
 #import "NDQAOnlineVC.h"
 #import "NDQAMessageCenter.h"
 #import "NDChatVC.h"
+#import "NDQACommonCell.h"
+#import "NDQACommonVC.h"
+
 @interface NDQAOnlineVC ()
 
 @property (strong, nonatomic) IBOutlet UIView *vPickClass;
@@ -19,14 +22,11 @@
 
 @property (nonatomic, copy) NSString *currentSubroomIndex;
 
+@property (nonatomic, strong) NSArray *commonQAs;
+
 @end
 
 @implementation NDQAOnlineVC
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [self.tfAge resignFirstResponder];
-    [self.tvQuestion resignFirstResponder];
-}
 
 - (NSMutableArray *)imgs{
     if(_imgs == nil){
@@ -43,6 +43,19 @@
 
 - (void)setupUI{
     self.title = @"在线咨询";
+    
+    [self.showKeyboardViews addObjectsFromArray:@[self.tfAge,self.tvQuestion]];
+    
+    WEAK_SELF;
+    
+    [self startGetCommonQAListAndSuccess:^(NSArray *qAs) {
+        weakself.commonQAs = qAs;
+        
+        [weakself.tableView reloadData];
+    } failure:^(NSString *error_message) {
+        
+    }];
+    
     
     [_collectionView registerClass:[NDPhotoGridCell class] forCellWithReuseIdentifier:@"NDPhotoGridCell"];
     [self.imgs addObject:[UIImage imageNamed:@"icon_img_plus"]];
@@ -95,11 +108,17 @@
         return;
     }
     
+    if([self.btnSubroom.titleLabel.text isEqualToString:@"点击选择科室"]){
+        ShowAlert(@"请选择科室");
+        return;
+    }
+    
     WEAK_SELF;
     
     [self startUploadImageWithImages:self.imgs success:^(NSArray *imgUrls) {
-        [weakself startSubmitQAWithContent:weakself.tvQuestion.text andSubroomId:weakself.currentSubroomIndex andSex:[NSString stringWithFormat:@"%zd", weakself.segGender.selectedSegmentIndex] andAge:weakself.tfAge.text andImgs:imgUrls success:^(NSString *imageUrl) {
-            
+        [weakself startSubmitQAWithContent:weakself.tvQuestion.text andSubroomId:weakself.currentSubroomIndex andSex:[NSString stringWithFormat:@"%zd", weakself.segGender.selectedSegmentIndex] andAge:weakself.tfAge.text andImgs:imgUrls success:^() {
+            [MBProgressHUD showSuccess:@"问题提交成功~"];
+            [weakself.navigationController popViewControllerAnimated:YES];
         } failure:^(NSString *error_message) {
             
         }];
@@ -136,6 +155,37 @@
     return self.subrooms[row];
 }
 
+
+#pragma tableView Delegate
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellId = @"NDQACommonCell";
+    
+    NDQACommonCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    
+    if(cell == nil){
+        cell = [NDQACommonCell new];
+    }
+    
+    NDCommonQA *qa = self.commonQAs[indexPath.row];
+    
+    cell.lblQuestion.text = qa.question;
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.commonQAs.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 18;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    CreateVC(NDQACommonVC);
+    vc.commonQA = self.commonQAs[indexPath.row];
+    PushVC(vc);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

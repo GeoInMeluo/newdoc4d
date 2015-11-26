@@ -8,6 +8,7 @@
 
 #import "NDNetManager.h"
 #import "NDLoginVC.h"
+#import "NDBaseNavVC.h"
 
 @implementation NDNetManager
 
@@ -29,7 +30,7 @@
     return instance;
 }
 
-- (AFHTTPRequestOperation *)post:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString *error_message))failure{
+- (void)post:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString *error_message))failure{
     
     
     if(![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:@""]){
@@ -45,10 +46,12 @@
     
     NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:parameters];
     
-    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
+    FLog(@"iswxlogin == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"]);
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"] isEqualToString:@"1"]){
         [parm setObject:SafeString([NDCoreSession coreSession].openId) forKey:@"openid"];
         [parm setObject:SafeString([NDCoreSession coreSession].authKey) forKey:@"authkey"];
-    }else{
+    }else if([[[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"] isEqualToString:@"0"]){
         [parm setObject:SafeString([NDCoreSession coreSession].nduid) forKey:@"nduid"];
     }
     
@@ -61,7 +64,10 @@
         [storage deleteCookie:cookie];
     }
     
-    AFHTTPRequestOperation *operation = [self POST:URLString parameters:parm success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    FLog(@"currentThread %@", [NSThread currentThread]);
+        
+    [self POST:URLString parameters:parm success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         FLog(@"%@",responseObject);
         
@@ -76,95 +82,74 @@
         
         NSDictionary *result = responseObject;
         
-        if(!result){
-            [MBProgressHUD showError:@"服务器返回值为空"];
-            failure(@"服务器返回值为空");
-            
-            return;
+        if([[result allKeys] containsObject:@"authkey"]){
+            [NDCoreSession coreSession].authKey = result[@"authkey"];
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"authkey"] forKey:@"authkey"];
         }
         
-        if([[result allKeys] containsObject:@"errmsg"]){
-            FLog(@"%@", result);
-            
+        if([[result allKeys] containsObject:@"retcode"]){
+            if([result[@"retcode"] isEqualToString:@"0"]){
+                success(result);
+            }else if([[result allKeys] containsObject:@"errmsg"]){
+                [MBProgressHUD showError:result[@"errmsg"]];
+                failure(result[@"errmsg"]);
+            }else if([result[@"retcode"] isEqualToString:@"1"]){
+                [MBProgressHUD showError:@"GET 参数错误"];
+                failure(@"GET 参数错误");
+            }else if([result[@"retcode"] isEqualToString:@"2"]){
+                [MBProgressHUD showError:@"POST参数错误"];
+                failure(@"POST参数错误");
+            }else if([result[@"retcode"] isEqualToString:@"5"]){
+                [MBProgressHUD showError:@"空结果"];
+                failure(@"空结果");
+            }else if([result[@"retcode"] isEqualToString:@"6"]){
+                [MBProgressHUD showError:@"授权问题"];
+                failure(@"授权问题");
+            }else if([result[@"retcode"] isEqualToString:@"7"]){
+                [MBProgressHUD showError:@"列表为空"];
+                failure(@"列表为空");
+            }else if([result[@"retcode"] isEqualToString:@"8"]){
+                
+                NDLoginVC *loginVC = [NDLoginVC new];
+                loginVC.isPresent = YES;
+                
+                NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:loginVC];
+                
+                [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
+                
+//                [MBProgressHUD showError:@"登陆失败"];
+//                failure(@"登陆失败");
+            }else if([result[@"retcode"] isEqualToString:@"9"]){
+                
+                //                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
+                
+                                    [MBProgressHUD showError:@"用户未注册"];
+                                    failure(@"用户未注册");
+                
+                //构造SendAuthReq结构体
+                //                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+                
+                //                    req.scope = @"snsapi_userinfo";
+                //
+                //                    req.state = @"123" ;
+                //第三方向微信终端发送一个SendAuthReq消息结构
+                //                    [WXApi sendReq:req];
+            }
+            else if([result[@"retcode"] isEqualToString:@"10"]){
+                [MBProgressHUD showError:@"用户权限不够"];
+                failure(@"用户权限不够");
+            }
+            else if([result[@"retcode"] isEqualToString:@"11"]){
+                [MBProgressHUD showError:@"非法请求"];
+                failure(@"非法请求");
+            }
+            else if([result[@"retcode"] isEqualToString:@"12"]){
+                [MBProgressHUD showError:@"请求失败"];
+                failure(@"请求失败");
+            }
+        }else if([[result allKeys] containsObject:@"errmsg"]){
             [MBProgressHUD showError:result[@"errmsg"]];
             failure(result[@"errmsg"]);
-        }else{
-            FLog(@"%@",result);
-            
-            if([[result allKeys] containsObject:@"retcode"]){
-                if([result[@"retcode"] isEqualToString:@"0"]){
-                    success(result);
-                }else if([result[@"retcode"] isEqualToString:@"1"]){
-                    [MBProgressHUD showError:@"GET 参数错误"];
-                    failure(@"GET 参数错误");
-                }else if([result[@"retcode"] isEqualToString:@"2"]){
-                    [MBProgressHUD showError:@"POST参数错误"];
-                    failure(@"POST参数错误");
-                }else if([result[@"retcode"] isEqualToString:@"5"]){
-                    [MBProgressHUD showError:@"空结果"];
-                    failure(@"空结果");
-                }else if([result[@"retcode"] isEqualToString:@"6"]){
-                    [MBProgressHUD showError:@"授权问题"];
-                    failure(@"授权问题");
-                }else if([result[@"retcode"] isEqualToString:@"7"]){
-                    [MBProgressHUD showError:@"列表为空"];
-                    failure(@"列表为空");
-                }else if([result[@"retcode"] isEqualToString:@"8"]){
-
-                    
-                    if(![[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
-                        [MBProgressHUD showError:@"登陆失败"];
-                        failure(@"登陆失败");
-                        
-                        return;
-                    }
-                    
-                    //构造SendAuthReq结构体
-//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
-//                    
-////                    if([NDCoreSession coreSession].openId.length){
-//                    req.scope = @"snsapi_base";
-//                    
-////                    }else{
-////                        req.scope = @"snsapi_userinfo" ;
-////                    }
-//                    
-//                    req.state = @"123" ;
-//                    //第三方向微信终端发送一个SendAuthReq消息结构
-//                    [WXApi sendReq:req];
-                    
-                }else if([result[@"retcode"] isEqualToString:@"9"]){
-
-                    
-                    //构造SendAuthReq结构体
-                    
-                    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"0"]){
-                        [MBProgressHUD showError:@"用户未注册"];
-                        failure(@"用户未注册");
-                            
-                            return;
-                    }
-                    
-//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
-//                    
-////                    if([NDCoreSession coreSession].openId.length){
-////                        req.scope = @"snsapi_base" ;
-////                    }else{
-//                    req.scope = @"snsapi_userinfo" ;
-////                    }
-//                    
-//                    req.state = @"123" ;
-//                    //第三方向微信终端发送一个SendAuthReq消息结构
-//                    [WXApi sendReq:req];
-                }
-                else if([result[@"retcode"] isEqualToString:@"10"]){
-                    [MBProgressHUD showError:@"用户权限不够"];
-                    failure(@"用户权限不够");
-                }
-                
-                failure([NSString stringWithFormat:@"retcode == %@",result[@"retcode"]]);
-            }
-            
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         FLog(@"%@", operation.response);
@@ -175,7 +160,8 @@
         failure([NSString stringWithFormat:@"网络请求失败 erroCode = %zd", erroCode]);
     }];
     
-    return operation;
+    
+//    return operation;
 }
 
 - (AFHTTPRequestOperation *)get:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSDictionary *result))success failure:(void (^)(NSString *error_message))failure{
@@ -194,7 +180,9 @@
     
     NSMutableDictionary *parm = [NSMutableDictionary dictionaryWithDictionary:parameters];
     
-    if([[NDCoreSession coreSession].isWxLogin isEqualToString:@"1"]){
+    FLog(@"iswxlogin == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"]);
+    
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"iswxlogin"] isEqualToString:@"1"]){
         [parm setObject:SafeString([NDCoreSession coreSession].openId) forKey:@"openid"];
         [parm setObject:SafeString([NDCoreSession coreSession].authKey) forKey:@"authkey"];
     }else{
@@ -214,9 +202,9 @@
     AFHTTPRequestOperation *operation = [self GET:URLString parameters:parm success:^(AFHTTPRequestOperation *operation, id responseObject) {
         WEAK_SELF;
         
-        [MBProgressHUD hideHUD];
-        
         FLog(@"%@", responseObject);
+        
+        [MBProgressHUD hideHUD];
         
         if(![responseObject isKindOfClass:[NSDictionary class]]){
             
@@ -227,13 +215,17 @@
         
         NSDictionary *result = responseObject;
         
-        if([[result allKeys] containsObject:@"errmsg"]){
-            [MBProgressHUD showError:result[@"errmsg"]];
-            failure(result[@"errmsg"]);
-        }else{
-            if([[result allKeys] containsObject:@"retcode"]){
+        if([[result allKeys] containsObject:@"authkey"]){
+            [NDCoreSession coreSession].authKey = result[@"authkey"];
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"authkey"] forKey:@"authkey"];
+        }
+        
+        if([[result allKeys] containsObject:@"retcode"]){
                 if([result[@"retcode"] isEqualToString:@"0"]){
                     success(result);
+                }else if([[result allKeys] containsObject:@"errmsg"]){
+                    [MBProgressHUD showError:result[@"errmsg"]];
+                    failure(result[@"errmsg"]);
                 }else if([result[@"retcode"] isEqualToString:@"1"]){
                     [MBProgressHUD showError:@"GET 参数错误"];
                     failure(@"GET 参数错误");
@@ -250,34 +242,42 @@
                     [MBProgressHUD showError:@"列表为空"];
                     failure(@"列表为空");
                 }else if([result[@"retcode"] isEqualToString:@"8"]){
+                    
+                    NDLoginVC *loginVC = [NDLoginVC new];
+                    loginVC.isPresent = YES;
+                    
+                    NDBaseNavVC *nav = [[NDBaseNavVC alloc] initWithRootViewController:loginVC];
+                    
+                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
+                    
 //                    [MBProgressHUD showError:@"登陆失败"];
 //                    failure(@"登陆失败");
-//                    
+                    
                     //构造SendAuthReq结构体
-//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+                    //                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
                     
-//                    req.scope = @"snsapi_base" ;
-//                    
-//                    req.state = @"123" ;
+                    //                    req.scope = @"snsapi_base" ;
+                    //
+                    //                    req.state = @"123" ;
                     //第三方向微信终端发送一个SendAuthReq消息结构
-//                    [WXApi sendReq:req];
+                    //                    [WXApi sendReq:req];
                     
-//                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
+                    //                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
                 }else if([result[@"retcode"] isEqualToString:@"9"]){
                     
-//                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
+                    //                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[NDLoginVC new] animated:YES completion:nil];
                     
-//                    [MBProgressHUD showError:@"用户未注册"];
-//                    failure(@"用户未注册");
+                    [MBProgressHUD showError:@"用户未注册"];
+                    failure(@"用户未注册");
                     
                     //构造SendAuthReq结构体
-//                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
-
-//                    req.scope = @"snsapi_userinfo";
-//                    
-//                    req.state = @"123" ;
+                    //                    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+                    
+                    //                    req.scope = @"snsapi_userinfo";
+                    //
+                    //                    req.state = @"123" ;
                     //第三方向微信终端发送一个SendAuthReq消息结构
-//                    [WXApi sendReq:req];
+                    //                    [WXApi sendReq:req];
                 }
                 else if([result[@"retcode"] isEqualToString:@"10"]){
                     [MBProgressHUD showError:@"用户权限不够"];
@@ -291,11 +291,17 @@
                     [MBProgressHUD showError:@"请求失败"];
                     failure(@"请求失败");
                 }
-            }
-            
+        }else if([[result allKeys] containsObject:@"errmsg"]){
+            [MBProgressHUD showError:result[@"errmsg"]];
+            failure(result[@"errmsg"]);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(@"网络请求失败？？？？？？？？？？？？？？？？？");
+        FLog(@"%@", operation.response);
+        
+        NSInteger erroCode = operation.response.statusCode;
+        
+        [MBProgressHUD showError:[NSString stringWithFormat:@"网络请求失败 erroCode = %zd", erroCode]];
+        failure([NSString stringWithFormat:@"网络请求失败 erroCode = %zd", erroCode]);
     }];
     
     return operation;

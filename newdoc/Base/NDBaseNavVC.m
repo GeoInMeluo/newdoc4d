@@ -80,11 +80,7 @@
     
     
     if (self.viewControllers.count > 0) {
-//        viewController.hidesBottomBarWhenPushed = YES;
-        
-//        viewController.navigationItem.leftBarButtonItem = [self itemWithImageName:@"back" highImageName:@"back" target:self action:@selector(back)];
-//        viewController.navigationItem.rightBarButtonItem = [self itemWithImageName:@"back" highImageName:@"back" target:self action:@selector(more)];
-        
+
         if(!self.leftBtn){
             UIButton *button = [[UIButton alloc] init];
             self.leftBtn = button;
@@ -99,11 +95,6 @@
         
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn]
         ;
-        
-//        if(self.rightBtn){
-//            viewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn]
-//            ;
-//        }
     }
     
     [super pushViewController:viewController animated:animated];
@@ -112,6 +103,7 @@
 - (void)back
 {
 #warning 这里用的是self, 因为self就是当前正在使用的导航控制器
+
     [self popViewControllerAnimated:YES];
 }
 

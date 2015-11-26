@@ -54,7 +54,7 @@
     };
     cell.btnIsBond.callback = ^(Button *btn){
         if(btn.selected){
-            [weakself startCancelAttentionDoctorWithDocId:room.ID success:^{
+            [weakself startCancelBindRoomWithRoomId:room.ID success:^{
                 cell.btnIsBond.selected = !cell.btnIsBond.selected;
             } failure:^(NSString *error_message) {
                 

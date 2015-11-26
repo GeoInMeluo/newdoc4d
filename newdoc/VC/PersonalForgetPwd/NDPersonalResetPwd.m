@@ -38,8 +38,11 @@
 }
 
 - (IBAction)btnConfirmClicked:(id)sender {
+    WEAK_SELF;
+    
     [self startResetPasswordWithPhoneNumber:self.phoneNumber andVerifyCode:self.verifyCode andNewPassword:self.tfPassword.text success:^(NSObject *resultDic) {
         
+        [weakself.navigationController popToRootViewControllerAnimated:YES];
     } failure:^(NSString *error_message) {
         
     }];

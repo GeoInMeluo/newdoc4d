@@ -50,7 +50,7 @@
             if([[result[@"data"] allKeys] containsObject:@"subs"]){
                 NSArray *dics = result[@"data"][@"subs"];
                 for(id obj in dics){
-                    NDRoom *room = [NDRoom objectWithKeyValues:obj];
+                    NDRoom *room = [NDRoom mj_objectWithKeyValues:obj];
                     [rooms addObject:room];
                 }
             }
@@ -153,17 +153,15 @@
         FLog(@"%@", result);
         
         if([[result allKeys] containsObject:@"data"]){
-            if([[result[@"data"] allKeys] containsObject:@"catalogs"]){
-                NDRoom *room = [NDRoom objectWithKeyValues:result[@"data"]];
-                
-                success(room);
-            }
+            NDRoom *room = [NDRoom mj_objectWithKeyValues:result[@"data"]];
+
+            success(room);
 
 //            if([[result[@"data"] allKeys] containsObject:@"catalogs"]){
 //                NSArray *dics = result[@"data"][@"catalogs"];
 //
 //                for(id obj in dics){
-//                    NDSubroom *subroom = [NDSubroom objectWithKeyValues:obj];
+//                    NDSubroom *subroom = [NDSubroom mj_mj_objectWithKeyValues:obj];
 //                    [subRooms addObject:subroom];
 //                }
 //            }
@@ -217,7 +215,7 @@
         FLog(@"%@", result);
         
         if([[result allKeys] containsObject:@"data"]){
-            NDDoctorIntro *intro = [NDDoctorIntro objectWithKeyValues:result[@"data"]];
+            NDDoctorIntro *intro = [NDDoctorIntro mj_objectWithKeyValues:result[@"data"]];
             success(intro);
         }
         
@@ -239,7 +237,7 @@
             if([[result[@"data"] allKeys] containsObject:@"subs"]){
                 NSArray *dics = result[@"data"][@"subs"];
                 for(id obj in dics){
-                    NDDoctorComment *comment = [NDDoctorComment objectWithKeyValues:obj];
+                    NDDoctorComment *comment = [NDDoctorComment mj_objectWithKeyValues:obj];
                     [comments addObject:comment];
                 }
             }
@@ -264,7 +262,7 @@
         FLog(@"%@", result);
         
         if([[result allKeys] containsObject:@"data"]){
-            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow objectWithKeyValues:result[@"data"]];
+            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow mj_objectWithKeyValues:result[@"data"]];
             
             success(doctor);
         }
@@ -289,7 +287,7 @@
         FLog(@"%@", result);
         
 //        if([[result allKeys] containsObject:@"data"]){
-//            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow objectWithKeyValues:result[@"data"]];
+//            NDDoctorMorePreserveWindow *doctor =[NDDoctorMorePreserveWindow mj_mj_objectWithKeyValues:result[@"data"]];
 //            
             success();
 //        }
@@ -461,7 +459,7 @@
         
         if([[result allKeys] containsObject:@"data"]){
             
-            NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
+            NDUser *user = [NDUser mj_objectWithKeyValues:result[@"data"]];
             
             FLog(@"%@", user);
             FLog(@"%@", result[@"data"]);
@@ -484,15 +482,11 @@
 }
 
 //编辑用户信息
-- (void)startEditUserInfo:(NDUser *)user success:(void(^)(NDUser *user))success failure:(void(^)(NSString *error_message))failure{
-    NSDictionary *item = @{@"name":SafeString(user.name),
-                           @"picture_url":SafeString(user.picture_url),
+- (void)startEditUserInfo:(NDUser *)user success:(void(^)())success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *item = @{@"picture_url":SafeString(user.picture_url),
+//                           @"name":SafeString(user.name),
                            @"sex":SafeString(user.sex),
-                           @"weixin":SafeString(user.weixin),
-                           @"city":@"",
-                           @"country":@"",
-                           @"province":@"",
-                           @"registration_id":@"",
+//                           @"weixin":SafeString(user.weixin),
                            @"os":@"0"};
     
     NSArray *items = @[item];
@@ -515,14 +509,14 @@
         
         FLog(@"%@", result);
         
-        if([[result allKeys] containsObject:@"data"]){
-            NDUser *user = [NDUser objectWithKeyValues:result[@"data"]];
-            
-            FLog(@"%@", user);
-            FLog(@"%@", result[@"data"]);
-            
-            success(user);
-        }
+//        if([[result allKeys] containsObject:@"data"]){
+//            NDUser *user = [NDUser mj_objectWithKeyValues:result[@"data"]];
+//            
+//            FLog(@"%@", user);
+//            FLog(@"%@", result[@"data"]);
+//            
+            success();
+//        }
         
     } failure:^(NSString *error_message) {
         failure(error_message);
@@ -533,7 +527,7 @@
 //发送信息更新密码
 - (void)startSendVerifyCodeForUpdatePasswordWithPhoneNumber:(NSString *)phoneNumber success:(void(^)(NSObject *resultDic))success failure:(void(^)(NSString *error_message))failure{
     NSDictionary *param = @{@"mobile":SafeString(phoneNumber),
-                            @"f":@"forget"};
+                            @"f":@"secure"};
     
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/sms" parameters:param success:^(NSDictionary *result) {
@@ -541,6 +535,35 @@
     } failure:^(NSString *error_message) {
         failure(error_message);
     }];
+}
+
+//更新密码
+- (void)startUpdatePwdWithUserId:(NSString *)userId andOldPwd:(NSString *)oldPwd andNewPwd:(NSString *)newPwd andVerifyCode:(NSString *)verifyCode success:(void(^)())success failure:(void(^)(NSString *error_message))failure{
+    
+    WEAK_SELF;
+    
+    NSString *base64Str = [NSString base64StringFromData:[[NSString stringWithFormat:@"%@:%@",SafeString(userId),SafeString(oldPwd)] dataUsingEncoding:NSUTF8StringEncoding] length:0];
+    
+    NSString *finalString = [NSString stringWithFormat:@"Basic %@",base64Str];
+    
+   
+    
+    NSDictionary *param = @{@"newdocid":SafeString(userId),
+                            @"baseauth":SafeString(finalString),
+                            @"newMd5":MD5_NSString(SafeString(newPwd)),
+                            @"smstoken":SafeString(verifyCode)};
+    
+    
+     FLog(@"%@", param);
+    
+    [[NDNetManager sharedNetManager] post:@"/Common/1/passwd" parameters:param success:^(NSDictionary *result) {
+        [[NSUserDefaults standardUserDefaults] setObject:newPwd forKey:@"pwd"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        success();
+    } failure:^(NSString *error_message) {
+        failure(error_message);
+    }];
+
 }
 
 //发送信息绑定手机
@@ -565,6 +588,8 @@
     
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/forget" parameters:param success:^(NSDictionary *result) {
+        [MBProgressHUD showSuccess:@"修改成功"];
+        
         success(result);
     } failure:^(NSString *error_message) {
         failure(error_message);
@@ -580,6 +605,11 @@
     FLog(@"%@", param);
     
     [[NDNetManager sharedNetManager] post:@"/Common/1/wxlogin" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@", result);
+        
+        [[NSUserDefaults standardUserDefaults] setObject:result[@"authkey"] forKey:@"authkey"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         success(result);
     } failure:^(NSString *error_message) {
         failure(error_message);
@@ -621,7 +651,7 @@
 //    
 //    [[NDNetManager sharedNetManager] get:@"/Common/1/wxlogin" parameters:param success:^(NSDictionary *result) {
 //        if([[result allKeys] containsObject:@"data"]){
-//            NDRealNameAuth *auth = [NDRealNameAuth objectWithKeyValues:result[@"data"]];
+//            NDRealNameAuth *auth = [NDRealNameAuth mj_mj_objectWithKeyValues:result[@"data"]];
 //            
 //            success(auth);
 //        }
@@ -702,7 +732,7 @@
         if([[result allKeys] containsObject:@"data"]){
             if([[result[@"data"] allKeys] containsObject:@"subs"]){
                 for(id obj in result[@"data"][@"subs"]){
-                    NDOrder *order = [NDOrder objectWithKeyValues:obj];
+                    NDOrder *order = [NDOrder mj_objectWithKeyValues:obj];
                     [orders addObject:order];
                 }
                 
@@ -729,7 +759,7 @@
         if([[result allKeys] containsObject:@"data"]){
             if([[result[@"data"] allKeys] containsObject:@"subs"]){
                 for(id obj in result[@"data"][@"subs"]){
-                    NDEhr *ehr = [NDEhr objectWithKeyValues:obj];
+                    NDEhr *ehr = [NDEhr mj_objectWithKeyValues:obj];
                     [ehrs addObject:ehr];
                 }
                 
@@ -803,11 +833,14 @@
 //上传图片
 - (void)startUploadImageWithImages:(NSArray *)images  success:(void(^)(NSArray *imgUrls))success failure:(void(^)(NSString *error_message))failure{
     
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:images];
+    [temp removeLastObject];
+    
     [MBProgressHUD showMessage:@""];
     
     NSMutableArray *items = [NSMutableArray array];
     
-    for(id obj in images){
+    for(id obj in temp){
         if([obj isKindOfClass:[UIImage class]]){
             UIImage *image = obj;
             
@@ -869,7 +902,7 @@
 }
 
 //用户提交咨询
-- (void)startSubmitQAWithContent:(NSString *)content andSubroomId:(NSString *)subroomId andSex:(NSString *)sex andAge:(NSString *)age andImgs:(NSArray *)imgs success:(void(^)(NSString *imageUrl))success failure:(void(^)(NSString *error_message))failure{
+- (void)startSubmitQAWithContent:(NSString *)content andSubroomId:(NSString *)subroomId andSex:(NSString *)sex andAge:(NSString *)age andImgs:(NSArray *)imgs success:(void(^)())success failure:(void(^)(NSString *error_message))failure{
     
     NSDictionary *item = @{@"catalogid":SafeString(subroomId),
                            @"sex":SafeString(sex),
@@ -890,10 +923,11 @@
     
     NSDictionary *param = @{@"items":jsonStr};
     
+    FLog(@"param == %@", param);
     
     [[NDNetManager sharedNetManager] post:@"/app/1/Consults" parameters:param success:^(NSDictionary *result) {
         FLog(@"%@",result);
-        
+        success();
     } failure:^(NSString *error_message) {
         failure(error_message);
     }];
@@ -912,7 +946,8 @@
         if([[result allKeys] containsObject:@"data"]){
             if([[result[@"data"] allKeys] containsObject:@"subs"]){
                 for(id obj in result[@"data"][@"subs"]){
-                    NDQAMessage *message = [NDQAMessage objectWithKeyValues:obj];
+                    
+                    NDQAMessage *message = [NDQAMessage mj_objectWithKeyValues:obj];
                     
                     [messages addObject:message];
                 }
@@ -942,7 +977,7 @@
         if([[result allKeys] containsObject:@"data"]){
             if([[result[@"data"] allKeys] containsObject:@"talks"]){
                 for(id obj in result[@"data"][@"talks"]){
-                    NDTalkMessage *message = [NDTalkMessage objectWithKeyValues:obj];
+                    NDTalkMessage *message = [NDTalkMessage mj_objectWithKeyValues:obj];
                     
                     [talkMessages addObject:message];
                 }
@@ -990,5 +1025,40 @@
         
         
     }];
+}
+
+//浏览常见问题列表
+- (void)startGetCommonQAListAndSuccess:(void(^)(NSArray *qAs))success failure:(void(^)(NSString *error_message))failure{
+    NSDictionary *param = @{@"pageCnt":@"10",
+                            @"pageNum":@"0",
+                            @"catalogid":@"0"};
+    
+    [[NDNetManager sharedNetManager] get:@"/app/1/Faqs?action=index" parameters:param success:^(NSDictionary *result) {
+        FLog(@"%@",result);
+        
+        
+        NSMutableArray *commonQAs = [NSMutableArray array];
+        
+        if([[result allKeys] containsObject:@"data"]){
+            if([[result[@"data"] allKeys] containsObject:@"subs"]){
+                for(id obj in result[@"data"][@"subs"]){
+                    NDCommonQA *qa = [NDCommonQA mj_objectWithKeyValues:obj];
+                    
+                    [commonQAs addObject:qa];
+                }
+                
+                success(commonQAs);
+            }
+        }
+        
+        
+        
+    } failure:^(NSString *error_message) {
+        
+        failure(error_message);
+        
+        
+    }];
+
 }
 @end

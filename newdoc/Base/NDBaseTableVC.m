@@ -10,9 +10,19 @@
 #import "NDBaseNavVC.h"
 
 @interface NDBaseTableVC ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, weak) UIButton *doneButton;
 @end
 
 @implementation NDBaseTableVC
+
+
+- (NSMutableArray *)showKeyboardViews{
+    if(_showKeyboardViews == nil){
+        _showKeyboardViews = [NSMutableArray array];
+    }
+    
+    return _showKeyboardViews;
+}
 
 - (UIView *)tempSectionHeader{
     if(_tempSectionHeader == nil){
@@ -38,6 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (doneButtonshow:) name: UIKeyboardDidShowNotification object:nil];
+    
     if(self.sections.count == 0){
         [self appendSection:@[] withHeader:nil];
     }
@@ -53,7 +65,7 @@
     
     FLog(@"%zd", self.parentViewController.navigationController.viewControllers.count);
     
-    if (self.parentViewController.navigationController.viewControllers.count > 0) {
+    if (!self.hiddenLeft) {
         UIButton *leftNavBtn = [[UIButton alloc] init];
         [leftNavBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         [leftNavBtn setImage:[UIImage imageNamed:@"back"]
@@ -68,7 +80,11 @@
 }
 
 - (void)pop{
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.isPresent){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (FormSection *)appendSection:(NSArray *)cells withHeader:(UIView *)headerView{
@@ -220,47 +236,27 @@
     return 0;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) doneButtonshow: (NSNotification *)notification {
+    if(self.doneButton){
+        return;
+    }
+    
+    UIButton *doneButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    _doneButton = doneButton;
+    _doneButton.frame = [UIScreen mainScreen].bounds;
+//    [_doneButton setTitle:@"完成编辑" forState: UIControlStateNormal];
+    [_doneButton addTarget: self action:@selector(hideKeyboard) forControlEvents: UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_doneButton];
 }
 
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void) hideKeyboard {
+    [_doneButton removeFromSuperview];
+    
+    for(UIView *view in self.showKeyboardViews){
+        [view resignFirstResponder];
+    }
+    
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

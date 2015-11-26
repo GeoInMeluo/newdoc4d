@@ -35,6 +35,8 @@
     
     WEAK_SELF;
     
+    [self.showKeyboardViews addObjectsFromArray:@[self.tfCitizenNumber,self.tfIdCard,self.tfName]];
+    
 //    [self startGetRealNameAuthenticationWithNameAndSuccess:^(NDRealNameAuth *realNameAuth) {
 //        weakself.tfName.text = realNameAuth.real_name;
 //        weakself.tfIdCard.text = realNameAuth.insuranceid;
@@ -59,6 +61,32 @@
 - (void)rightBtnClicked:(UIButton *)btn{
     WEAK_SELF;
     
+    if(self.tfName.text.length == 0){
+        [MBProgressHUD showError:@"姓名不能为空"];
+        return;
+    }
+    
+    if(self.tfIdCard.text.length == 0){
+        [MBProgressHUD showError:@"身份证号不能为空"];
+        return;
+    }
+    
+    if(self.tfCitizenNumber.text.length == 0){
+        [MBProgressHUD showError:@"社保卡号不能为空"];
+        return;
+    }
+    
+    
+    if(![self isIdCard:self.tfIdCard.text]){
+        [MBProgressHUD showError:@"身份证号格式不正确"];
+        return;
+    }
+    
+    if(![self isIdCard:self.tfCitizenNumber.text]){
+        [MBProgressHUD showError:@"社保卡号格式不正确"];
+        return;
+    }
+    
     [self startRealNameAuthenticationWithName:self.tfName.text andIdCard:self.tfIdCard.text andCitizenNumber:self.tfCitizenNumber.text success:^(NSObject *resultDic) {
         weakself.vcCallback(self.tfName.text,self.tfIdCard.text);
         [weakself.navigationController popViewControllerAnimated:YES];
@@ -67,19 +95,16 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(BOOL)isIdCard:(NSString *)str
+{
+    NSString * regex        = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch            = [pred evaluateWithObject:str];
+    if (isMatch) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -14,10 +14,10 @@
 
 @interface NDBaseTabVC ()
 
+
 @end
 
 @implementation NDBaseTabVC
-
 
 
 - (void)viewDidLoad {
@@ -28,14 +28,18 @@
 
 - (void)setup{
     
+    [super viewDidLoad];
+    
+    
     self.tabBar.translucent = NO;
     
 //    self.hidesBottomBarWhenPushed = YES;
     
     NDRoomVC *roomVC = [NDRoomVC new];
+    roomVC.hiddenLeft = YES;
     NDPersonalCenterHomeVC *personalVC = [NDPersonalCenterHomeVC new];
+    personalVC.hiddenLeft = YES;
     UIViewController *communityVC = [UMCommunity getFeedsViewController];
-
     
     [self addOneChlildVc:communityVC title:@"社区交流" imageName:@"room" selectedImageName:@"room_select"];
     

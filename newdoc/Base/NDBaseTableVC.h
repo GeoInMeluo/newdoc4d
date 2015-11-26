@@ -11,7 +11,14 @@
 #import "FormSection.h"
 
 @interface NDBaseTableVC : UITableViewController
+
+@property (nonatomic, assign) BOOL isPresent;
+
+@property (nonatomic, strong) NSMutableArray *showKeyboardViews;
+
 @property (nonatomic, strong) UIView *tempSectionHeader;
+
+@property (nonatomic, assign) BOOL hiddenLeft;
 
 @property(nonatomic,retain) IBOutlet UIView * defaultHeader;
 @property(nonatomic,retain) IBOutlet UIView * defaultFooter;

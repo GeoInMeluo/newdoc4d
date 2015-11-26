@@ -12,5 +12,5 @@
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 
 @interface NDRoomMapVC : NDBaseVC<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
-
+@property (nonatomic, assign) BOOL isShowList;
 @end

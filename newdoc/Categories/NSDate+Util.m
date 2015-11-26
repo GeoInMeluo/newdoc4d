@@ -241,6 +241,21 @@ NSCalendar * sharedCalendar()
     return NO;
 }
 
+- (BOOL)isSame2Other:(NSDate *)other;{
+    if (other==nil) return NO;
+    
+//    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:self];
+    NSDate *today = [cal dateFromComponents:components];
+    components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:other];
+    NSDate *otherDate = [cal dateFromComponents:components];
+    if([today isEqualToDate:otherDate])
+        return YES;
+    
+    return NO;
+}
+
 @end
 
 NSDate * dateInterset(NSDate * d1,int cnt1 ,NSDate * d2,int cnt2,int * cntret)
@@ -351,6 +366,14 @@ NSDate * string2Date(NSString * s)
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     return [dateFormat dateFromString:s];
 }
+
+NSDate * string2Date2(NSString * s)
+{
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [dateFormat dateFromString:s];
+}
+
 NSString * datetime2String(NSDate * date)
 {
     if(date)

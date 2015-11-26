@@ -9,14 +9,6 @@
 #import "NDDocSelfVC.h"
 
 @interface NDDocSelfVC ()<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet Button *btnArm;
-@property (weak, nonatomic) IBOutlet Button *btnArmRight;
-@property (weak, nonatomic) IBOutlet Button *btnNeck;
-@property (weak, nonatomic) IBOutlet Button *btnChest;
-@property (weak, nonatomic) IBOutlet Button *btnStomach;
-@property (weak, nonatomic) IBOutlet Button *btnLeg;
-@property (weak, nonatomic) IBOutlet Button *btnLegRight;
-@property (weak, nonatomic) IBOutlet Button *btnBack;
 
 @property (weak, nonatomic) IBOutlet UIImageView *ivBackground;
 @property (strong, nonatomic) IBOutlet UIView *vBack;
@@ -27,32 +19,75 @@
 @property (weak, nonatomic) IBOutlet UITableView *leftTable;
 @property (weak, nonatomic) IBOutlet UITableView *rightTable;
 
+@property (nonatomic, weak) UISwitch *swithFB;
 
+@property (nonatomic, weak) UIView *vContent;
 
+@property (nonatomic, strong) NSMutableArray *fBottons;
+@property (nonatomic, strong) NSMutableArray *BBottons;
 @end
 
 @implementation NDDocSelfVC
 
-- (IBAction)switchBack:(UISwitch *)sender {
+- (NSMutableArray *)fBottons{
+    if(_fBottons == nil){
+        _fBottons = [NSMutableArray array];
+    }
+    return _fBottons;
+}
+
+- (NSMutableArray *)BBottons{
+    if(_BBottons == nil){
+        _BBottons = [NSMutableArray array];
+    }
+    return _BBottons;
+}
+
+- (void)switchBack:(UISwitch *)sender {
     
-    if(sender.on){
-        self.vBack.hidden = YES;
+    if(!sender.on){
         self.ivBackground.image = [UIImage imageWithName:@"正面"];
-        self.vFront.hidden = NO;
+        
+        
+        for(Button *btn in self.fBottons){
+            
+            @autoreleasepool {
+                btn.hidden = NO;
+            }
+        }
+        
+        for(Button *btn in self.BBottons){
+            @autoreleasepool {
+                btn.hidden = YES;
+            }
+        }
+        
+        
     }else{
-        self.vBack.hidden = NO;
         self.ivBackground.image = [UIImage imageWithName:@"背面"];
-        self.vFront.hidden = YES;
+        
+        for(Button *btn in self.fBottons){
+            @autoreleasepool {
+                btn.hidden = YES;
+            }
+        }
+        
+        for(Button *btn in self.BBottons){
+            @autoreleasepool {
+                btn.hidden = NO;
+            }
+        }
     }
 }
 
 - (IBAction)change2List:(UISegmentedControl *)sender {
     if(sender.selectedSegmentIndex == 0){
+        self.swithFB.hidden = NO;
         self.vDetail.hidden = YES;
     }else{
+        self.swithFB.hidden = YES;
         self.vDetail.hidden = NO;
     }
-    
 }
 
 - (void)viewDidLoad {
@@ -64,67 +99,110 @@
 - (void)setupUI{
     self.title = @"新医自诊";
     
-    WEAK_SELF;
-    
-    self.btnArm.callback = ^(Button *btn){
-        
-    };
-    self.btnArmRight.callback = ^(Button *btn){
-
-    };
-    self.btnBack.callback = ^(Button *btn){
-        
-    };
-    self.btnChest.callback = ^(Button *btn){
-        
-    };
-    self.btnLeg.callback = ^(Button *btn){
-        
-    };
-    self.btnLegRight.callback = ^(Button *btn){
-   
-    };
-    self.btnNeck.callback = ^(Button *btn){
-        
-    };
-    self.btnStomach.callback = ^(Button *btn){
-        
-    };
-    
-    [self.view addSubview:self.vBack];
-    self.vBack.hidden = YES;
-    [self.view addSubview:self.vDetail];
-    self.vDetail.hidden = YES;
-}
-
-- (IBAction)btnArmTouchDown:(id)sender {
-    self.ivBackground.image = [UIImage imageWithName:@"上肢"];
-}
-- (IBAction)btnNeckTouchDown:(id)sender {
-    self.ivBackground.image = [UIImage imageWithName:@"头颈部"];
-}
-- (IBAction)btnChestTouchDown:(id)sender {
-    self.ivBackground.image = [UIImage imageWithName:@"胸腔"];
-}
-- (IBAction)btnStomatch:(id)sender {
-    self.ivBackground.image = [UIImage imageWithName:@"腹部"];
-}
-- (IBAction)btnLegTouchDown:(id)sender {
-    self.ivBackground.image = [UIImage imageWithName:@"下肢"];
-}
-- (IBAction)btnBackTouchDown:(id)sender {
-    self.ivBackground.image = [UIImage imageWithName:@"后背"];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    self.vBack.frame = self.vFront.frame;
-    self.vBack.hidden = YES;
-    self.vDetail.frame = self.vFront.frame;
-    self.vDetail.height = self.view.height - self.vTop.height;
-    self.vDetail.top = self.vTop.bottom - 1;
+    WEAK_SELF;
+    
+    CGFloat bili = 0.52;
+    
+    CGFloat bgImgH = kScreenSize.height - 45 - 64 - 49;
+    CGFloat bgImgW = bgImgH * bili;
+    
+    UIView *vContent = [[UIView alloc] initWithFrame:CGRectMake((kScreenSize.width - bgImgW) * 0.5, 45, bgImgW, bgImgH)];
+    self.vContent = vContent;
+    
+    UIImageView *ivBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, vContent.width, vContent.height)];
+    ivBackground.image = [UIImage imageNamed:@"正面"];
+    self.ivBackground = ivBackground;
+    
+    [vContent addSubview:ivBackground];
+    
+    [self.view addSubview:vContent];
+
+    Button *btnLeftArm = [[Button alloc] initWithFrame:CGRectMake(0, vContent.height * 0.22, vContent.width * 0.28, vContent.height * 0.36)];
+    [self.fBottons addObject:btnLeftArm];
+    btnLeftArm.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"上肢"];
+    };
+    [vContent addSubview: btnLeftArm];
+    
+    Button *btnRightArm = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.71, vContent.height * 0.22, vContent.width * 0.28, vContent.height * 0.36)];
+    [self.fBottons addObject:btnRightArm];
+    btnRightArm.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"上肢"];
+    };
+    [vContent addSubview: btnRightArm];
+    
+    Button *btnHead = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.393, vContent.height * 0.014, vContent.width * 0.217, vContent.height * 0.178)];
+    [self.fBottons addObject:btnHead];
+    btnHead.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"头颈部"];
+    };
+    [vContent addSubview: btnHead];
+    
+    Button *btnChest = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.307, vContent.height * 0.211, vContent.width * 0.39, vContent.height * 0.124)];
+    [self.fBottons addObject:btnChest];
+    btnChest.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"胸腔"];
+    };
+    [vContent addSubview: btnChest];
+    
+    Button *btnStomatch = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.358, vContent.height * 0.33, vContent.width * 0.322, vContent.height * 0.134)];
+    [self.fBottons addObject:btnStomatch];
+    btnStomatch.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"腹部"];
+    };
+    [vContent addSubview: btnStomatch];
+    
+    Button *btnKudang = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.336, vContent.height * 0.463, vContent.width * 0.364, vContent.height * 0.1)];
+    [self.fBottons addObject:btnKudang];
+    btnKudang.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"盆腔"];
+    };
+    [vContent addSubview: btnKudang];
+    
+    Button *btnLeftLeg = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.281, vContent.height * 0.568, vContent.width * 0.158, vContent.height * 0.428)];
+    [self.fBottons addObject:btnLeftArm];
+    btnLeftLeg.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"下肢"];
+    };
+    [vContent addSubview: btnLeftLeg];
+    
+    Button *btnRightLeg = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.552, vContent.height * 0.568, vContent.width * 0.158, vContent.height * 0.428)];
+    [self.fBottons addObject:btnRightLeg];
+    btnRightLeg.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"下肢"];
+    };
+    [vContent addSubview: btnRightLeg];
+    
+    Button *btnBack = [[Button alloc] initWithFrame:CGRectMake(vContent.width * 0.3, vContent.height * 0.196, vContent.width * 0.451, vContent.height * 0.28)];
+    [self.BBottons addObject:btnBack];
+    btnBack.callback = ^(Button *btn){
+        weakself.ivBackground.image = [UIImage imageNamed:@"后背"];
+    };
+    [vContent addSubview: btnBack];
+    
+    self.vDetail.frame = self.vContent.frame;
+    self.vDetail.left = 0;
+    self.vDetail.width = kScreenSize.width;
     self.vDetail.hidden = YES;
+    [self.view addSubview:self.vDetail];
+    
+    UISwitch *switchFB = [[UISwitch alloc] init];
+    self.swithFB = switchFB;
+    [switchFB addTarget:self action:@selector(switchBack:) forControlEvents:UIControlEventValueChanged];
+    switchFB.left = 20;
+    switchFB.top  = self.vTop.bottom + 10;
+    [self.view addSubview:switchFB];
+    
+    for(Button *btn in self.BBottons){
+        @autoreleasepool {
+            btn.hidden = YES;
+        }
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -150,21 +228,5 @@
     return cell;
     
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

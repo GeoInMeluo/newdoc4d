@@ -10,10 +10,18 @@
 #import "NDBaseNavVC.h"
 
 @interface NDBaseVC ()
-
+@property (nonatomic, weak) UIButton *doneButton;
 @end
 
 @implementation NDBaseVC
+
+- (NSMutableArray *)showKeyboardViews{
+    if(_showKeyboardViews == nil){
+        _showKeyboardViews = [NSMutableArray array];
+    }
+    
+    return _showKeyboardViews;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +30,8 @@
 }
 
 - (void)setup{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector (doneButtonshow:) name: UIKeyboardDidShowNotification object:nil];
+    
     // 设置CGRectZero从导航栏下开始计算
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -46,26 +56,39 @@
 }
 
 - (void)pop{
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if(self.isPresent){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (UIButton *)rightView{
     return nil;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) doneButtonshow: (NSNotification *)notification {
+    if(self.doneButton){
+        return;
+    }
+    
+    UIButton *doneButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    _doneButton = doneButton;
+    _doneButton.frame = [UIScreen mainScreen].bounds;
+    //    [_doneButton setTitle:@"完成编辑" forState: UIControlStateNormal];
+    [_doneButton addTarget: self action:@selector(hideKeyboard) forControlEvents: UIControlEventTouchUpInside];
+    
+    [self.view addSubview:_doneButton];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) hideKeyboard {
+    [_doneButton removeFromSuperview];
+    
+    for(UIView *view in self.showKeyboardViews){
+        [view resignFirstResponder];
+    }
+    
 }
-*/
 
 @end

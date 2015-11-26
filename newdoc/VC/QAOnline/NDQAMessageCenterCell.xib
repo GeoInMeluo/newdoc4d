@@ -12,26 +12,36 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-Oo-32O">
-                        <rect key="frame" x="8" y="13" width="304" height="17"/>
+                        <rect key="frame" x="16" y="13" width="296" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gkc-AN-MgS">
+                        <rect key="frame" x="0.0" y="42" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ywW-2k-g0r"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Gkc-AN-MgS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Qz9-Zw-Jk7"/>
                     <constraint firstItem="tRs-Oo-32O" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="bSz-r8-rEZ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Gkc-AN-MgS" secondAttribute="bottom" constant="-7.5" id="dHk-ie-fdP"/>
                     <constraint firstItem="tRs-Oo-32O" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jqp-Hq-kqV"/>
-                    <constraint firstItem="tRs-Oo-32O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="yS7-b7-AQt"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Gkc-AN-MgS" secondAttribute="trailing" constant="-8" id="vhJ-HA-kNv"/>
+                    <constraint firstItem="tRs-Oo-32O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="yS7-b7-AQt"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lblTitle" destination="tRs-Oo-32O" id="Jj0-zU-y7T"/>
             </connections>
-            <point key="canvasLocation" x="229" y="201"/>
+            <point key="canvasLocation" x="92" y="177"/>
         </tableViewCell>
     </objects>
 </document>

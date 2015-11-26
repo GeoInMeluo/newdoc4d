@@ -7,8 +7,10 @@
 //
 
 #import "NDBaseTableVC.h"
+#import "UMComLoginDelegate.h"
 #import "WXApi.h"
+#import "UMSocialControllerService.h"
 
-@interface NDLoginVC : NDBaseTableVC<WXApiDelegate>
+@interface NDLoginVC : NDBaseTableVC<WXApiDelegate,UMComLoginDelegate,UMSocialUIDelegate>
 
 @end

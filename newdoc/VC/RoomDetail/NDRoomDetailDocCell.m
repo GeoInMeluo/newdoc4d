@@ -28,9 +28,20 @@
     self.lblDocName.text = doctor.name;
     self.lblDocDetail.text = [NSString stringWithFormat:@"(%@)",doctor.title];
     self.lblGoodat.text = [NSString stringWithFormat:@"擅长：%@",doctor.goodat];
-    NDPreserveWindow *preserveWindow = doctor.preserve_window;
-    NDSlot *slot = preserveWindow.slots[0];
-//    self.lblCanOrder.text = slot.timescope;
+    
+
+    
+    NDSlot *slot = [doctor.slots lastObject];
+    
+    NSDate *nearlyDate = timestamp2Datetime([slot.ts integerValue] * 1000);
+    
+    FLog(@"%@ \n", slot.ts);
+    FLog(@"%@", nearlyDate);
+    
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    self.lblCanOrder.text = [NSString stringWithFormat:@"最近可预约时间：%@",[dateFormat stringFromDate:nearlyDate]];
     
 //    NSMutableString *subrooms = [NSMutableString string];
 //    for(NDSubroom *subroom in doctor.catalog){
