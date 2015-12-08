@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDPersonalEhrVC">
+            <connections>
+                <outlet property="view" destination="ocQ-xX-gdC" id="IRf-7H-oOi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ocQ-xX-gdC">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="EW9-oz-9vZ"/>
+                <outlet property="delegate" destination="-1" id="bKF-4p-Nas"/>
+            </connections>
+            <point key="canvasLocation" x="302.5" y="-124.5"/>
+        </tableView>
+        <view contentMode="scaleToFill" id="PRI-Tp-6AY">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="525"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiW-IL-zcg">
+                    <rect key="frame" x="0.0" y="98" width="359" height="330"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </pickerView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3f-0V-JMt">
+                    <rect key="frame" x="260" y="39" width="91" height="59"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="91" id="hce-4N-6nk"/>
+                    </constraints>
+                    <state key="normal" title="确定"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xiW-IL-zcg" secondAttribute="bottom" constant="97" id="0ER-kr-TSa"/>
+                <constraint firstItem="xiW-IL-zcg" firstAttribute="top" secondItem="U3f-0V-JMt" secondAttribute="bottom" id="8aS-hg-fE9"/>
+                <constraint firstItem="U3f-0V-JMt" firstAttribute="top" secondItem="PRI-Tp-6AY" secondAttribute="top" constant="39" id="9vF-CE-F4L"/>
+                <constraint firstAttribute="trailing" secondItem="xiW-IL-zcg" secondAttribute="trailing" id="OR7-Go-hZv"/>
+                <constraint firstItem="xiW-IL-zcg" firstAttribute="top" secondItem="PRI-Tp-6AY" secondAttribute="top" constant="98" id="rnF-px-e00"/>
+                <constraint firstAttribute="trailing" secondItem="U3f-0V-JMt" secondAttribute="trailing" constant="8" id="sEl-ue-ShD"/>
+                <constraint firstItem="xiW-IL-zcg" firstAttribute="leading" secondItem="PRI-Tp-6AY" secondAttribute="leading" id="uel-H6-Dxw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="254.5" y="984.5"/>
+        </view>
+    </objects>
+</document>

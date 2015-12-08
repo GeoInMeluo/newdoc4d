@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDPersonalRegistBindVC">
+            <connections>
+                <outlet property="btnBinding" destination="tnv-kc-BVA" id="ehd-r3-4pA"/>
+                <outlet property="btnIgnore" destination="Dhv-OC-eiQ" id="iXP-O5-MnQ"/>
+                <outlet property="cellPhone" destination="0Fk-Xs-uqC" id="wKi-xu-uzo"/>
+                <outlet property="defaultFooter" destination="g5l-bp-WoG" id="qj4-Ma-1Wn"/>
+                <outlet property="sectionHeader" destination="pqb-9q-WDh" id="RoF-l4-5XF"/>
+                <outlet property="tfPhoneNumber" destination="hmC-Tw-v0f" id="vS2-eY-fFm"/>
+                <outlet property="view" destination="4pI-kP-4di" id="mpP-8V-XJL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4pI-kP-4di">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="lJC-5Z-DJN"/>
+                <outlet property="delegate" destination="-1" id="rr0-ZY-cnb"/>
+            </connections>
+            <point key="canvasLocation" x="115" y="205"/>
+        </tableView>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0Fk-Xs-uqC" customClass="FormCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Fk-Xs-uqC" id="deg-o6-ygt">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_phone" translatesAutoresizingMaskIntoConstraints="NO" id="Yac-6d-Xgt">
+                        <rect key="frame" x="36" y="20" width="13" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="J7r-oP-U3f"/>
+                            <constraint firstAttribute="height" constant="23" id="tJa-1j-71g"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="J7r-oP-U3f"/>
+                                <exclude reference="tJa-1j-71g"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hmC-Tw-v0f">
+                        <rect key="frame" x="57" y="0.0" width="255" height="57"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXd-Xt-Xc4">
+                        <rect key="frame" x="0.0" y="57" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="llb-JK-EAq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bXd-Xt-Xc4" firstAttribute="leading" secondItem="deg-o6-ygt" secondAttribute="leadingMargin" constant="-8" id="ACc-XB-p2O"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bXd-Xt-Xc4" secondAttribute="bottom" constant="-9" id="AJP-Ta-LmK"/>
+                    <constraint firstItem="Yac-6d-Xgt" firstAttribute="leading" secondItem="deg-o6-ygt" secondAttribute="leadingMargin" constant="28" id="J4b-Ky-UnE"/>
+                    <constraint firstItem="Yac-6d-Xgt" firstAttribute="centerY" secondItem="deg-o6-ygt" secondAttribute="centerY" id="QCe-Qj-2cH"/>
+                    <constraint firstItem="hmC-Tw-v0f" firstAttribute="top" secondItem="deg-o6-ygt" secondAttribute="topMargin" constant="-8" id="Yku-aC-Yy9"/>
+                    <constraint firstItem="hmC-Tw-v0f" firstAttribute="leading" secondItem="Yac-6d-Xgt" secondAttribute="trailing" constant="8" id="ePq-YA-MET"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="hmC-Tw-v0f" secondAttribute="bottom" constant="-8" id="en7-Rz-r84"/>
+                    <constraint firstItem="hmC-Tw-v0f" firstAttribute="trailing" secondItem="deg-o6-ygt" secondAttribute="trailingMargin" id="hfP-84-bh6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bXd-Xt-Xc4" secondAttribute="trailing" constant="-8" id="sKN-V7-zKd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-10" y="588"/>
+        </tableViewCell>
+        <view contentMode="scaleToFill" id="pqb-9q-WDh">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定手机号将会提高安全性" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jed-mg-EbD">
+                    <rect key="frame" x="76" y="6" width="168" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="jed-mg-EbD" firstAttribute="centerY" secondItem="pqb-9q-WDh" secondAttribute="centerY" id="AdD-Hj-DSh"/>
+                <constraint firstItem="jed-mg-EbD" firstAttribute="centerX" secondItem="pqb-9q-WDh" secondAttribute="centerX" id="d5O-6M-J6N"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="8" y="731"/>
+        </view>
+        <view contentMode="scaleToFill" id="g5l-bp-WoG">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhv-OC-eiQ" customClass="Button">
+                    <rect key="frame" x="206" y="21" width="69" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Hkc-ND-LkM"/>
+                        <constraint firstAttribute="width" constant="69" id="oLp-z5-Y8D"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="跳过">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnv-kc-BVA" customClass="Button">
+                    <rect key="frame" x="46" y="21" width="69" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.66666666666666663" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="MHq-qj-7Jg"/>
+                        <constraint firstAttribute="width" constant="69" id="vMY-pi-6uf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="绑定手机">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="tnv-kc-BVA" firstAttribute="centerX" secondItem="g5l-bp-WoG" secondAttribute="centerX" multiplier="0.5" id="BvB-fp-hhh"/>
+                <constraint firstItem="Dhv-OC-eiQ" firstAttribute="centerY" secondItem="g5l-bp-WoG" secondAttribute="centerY" id="b6g-K1-k7R"/>
+                <constraint firstItem="tnv-kc-BVA" firstAttribute="centerY" secondItem="g5l-bp-WoG" secondAttribute="centerY" id="dRW-Fi-llr"/>
+                <constraint firstItem="Dhv-OC-eiQ" firstAttribute="centerX" secondItem="g5l-bp-WoG" secondAttribute="centerX" multiplier="1.5" id="nvF-hD-yyv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="8" y="835.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_phone" width="13" height="18"/>
+    </resources>
+</document>

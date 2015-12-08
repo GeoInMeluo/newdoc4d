@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDSigningVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signing" translatesAutoresizingMaskIntoConstraints="NO" id="z6p-zy-Rwj">
+                    <rect key="frame" x="251" y="95" width="98" height="98"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="98" id="exg-tD-Gzt"/>
+                        <constraint firstAttribute="width" constant="98" id="p8W-xZ-ftl"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irD-wF-Rcl">
+                    <rect key="frame" x="240" y="287" width="121" height="38"/>
+                    <state key="normal" image="research"/>
+                    <state key="highlighted" image="research_highlight"/>
+                    <connections>
+                        <action selector="btnResearch:" destination="-1" eventType="touchUpInside" id="J8y-zB-USM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="z6p-zy-Rwj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="07q-EC-rXO"/>
+                <constraint firstItem="irD-wF-Rcl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Cev-Lt-GDs"/>
+                <constraint firstItem="irD-wF-Rcl" firstAttribute="top" secondItem="z6p-zy-Rwj" secondAttribute="bottom" constant="50" id="iBc-Wx-w2V"/>
+                <constraint firstItem="z6p-zy-Rwj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="m6s-07-poU"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="research" width="121" height="38"/>
+        <image name="research_highlight" width="121" height="38"/>
+        <image name="signing" width="98" height="98"/>
+    </resources>
+</document>

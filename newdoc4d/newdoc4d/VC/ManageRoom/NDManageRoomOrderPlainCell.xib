@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NDManageRoomOrderPlainCell" id="KGk-i7-Jjw" customClass="NDManageRoomOrderPlainCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="柳州市第一诊室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19S-fu-bCq">
+                        <rect key="frame" x="29" y="13" width="91" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="广西省柳州市中心区xxxxxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXQ-8w-4bt">
+                        <rect key="frame" x="29" y="38" width="125" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015.10.23上午 8:00-11:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFC-tl-wtI">
+                        <rect key="frame" x="207" y="16" width="105" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015.10.23上午 8:00-11:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Arn-ft-MiJ">
+                        <rect key="frame" x="207" y="38" width="105" height="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ug-uS-6h8" customClass="Button">
+                        <rect key="frame" x="164" y="8" width="56" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="IMg-dU-or5"/>
+                            <constraint firstAttribute="height" constant="25" id="SLd-Jf-S4I"/>
+                        </constraints>
+                        <state key="normal" image="icon_agree"/>
+                        <state key="selected" image="icon_agree_selected"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGk-BK-Jjr" customClass="Button">
+                        <rect key="frame" x="164" y="30" width="56" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="4ge-FP-QnK"/>
+                            <constraint firstAttribute="height" constant="25" id="CHk-L4-kmJ"/>
+                        </constraints>
+                        <state key="normal" image="icon_agree"/>
+                        <state key="selected" image="icon_agree_selected"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="5Ug-uS-6h8" secondAttribute="trailing" constant="92" id="16p-rk-2Jn"/>
+                    <constraint firstItem="19S-fu-bCq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="21" id="2eD-tl-rQD"/>
+                    <constraint firstItem="OFC-tl-wtI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="3hy-sd-5b8"/>
+                    <constraint firstItem="5Ug-uS-6h8" firstAttribute="centerY" secondItem="OFC-tl-wtI" secondAttribute="centerY" id="5np-tS-k6t"/>
+                    <constraint firstItem="19S-fu-bCq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="63q-dL-aKA"/>
+                    <constraint firstItem="OFC-tl-wtI" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="CDK-fp-Yk1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Arn-ft-MiJ" secondAttribute="bottom" constant="3.5" id="EfH-xI-bcN"/>
+                    <constraint firstItem="Arn-ft-MiJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Vfc-i9-zkd"/>
+                    <constraint firstItem="nXQ-8w-4bt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="21" id="aJ7-xz-Fja"/>
+                    <constraint firstItem="uGk-BK-Jjr" firstAttribute="centerY" secondItem="Arn-ft-MiJ" secondAttribute="centerY" id="bX2-du-kn6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uGk-BK-Jjr" secondAttribute="trailing" constant="92" id="bfP-WC-4rm"/>
+                    <constraint firstItem="nXQ-8w-4bt" firstAttribute="top" secondItem="19S-fu-bCq" secondAttribute="bottom" constant="9" id="f1u-Be-RcG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btnFirst" destination="5Ug-uS-6h8" id="Dfp-4M-yo7"/>
+                <outlet property="btnSecond" destination="uGk-BK-Jjr" id="vMW-MP-6sW"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_agree" width="12" height="12"/>
+        <image name="icon_agree_selected" width="12" height="13"/>
+    </resources>
+</document>

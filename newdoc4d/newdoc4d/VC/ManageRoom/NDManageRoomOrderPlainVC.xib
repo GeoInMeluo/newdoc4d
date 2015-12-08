@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NDManageRoomOrderPlainVC">
+            <connections>
+                <outlet property="defaultHeader" destination="9L1-fL-MKh" id="hPk-2W-7VP"/>
+                <outlet property="view" destination="se8-hN-w4X" id="reg-cT-nU8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="se8-hN-w4X">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="Zse-OT-9c5"/>
+                <outlet property="delegate" destination="-1" id="KIa-8d-Kx0"/>
+            </connections>
+            <point key="canvasLocation" x="553" y="192"/>
+        </tableView>
+        <view contentMode="scaleToFill" id="9L1-fL-MKh">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMv-t2-FZB" customClass="Button">
+                    <rect key="frame" x="160" y="0.0" width="160" height="30"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="诊室">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bB3-3J-CCe" customClass="Button">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="时间">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="bB3-3J-CCe" firstAttribute="leading" secondItem="9L1-fL-MKh" secondAttribute="leading" id="2VZ-P4-slt"/>
+                <constraint firstItem="gMv-t2-FZB" firstAttribute="top" secondItem="9L1-fL-MKh" secondAttribute="top" id="37P-AY-EQY"/>
+                <constraint firstItem="gMv-t2-FZB" firstAttribute="width" secondItem="bB3-3J-CCe" secondAttribute="width" id="S9D-jV-vNy"/>
+                <constraint firstAttribute="bottom" secondItem="bB3-3J-CCe" secondAttribute="bottom" id="eaI-4Z-NmX"/>
+                <constraint firstItem="gMv-t2-FZB" firstAttribute="leading" secondItem="bB3-3J-CCe" secondAttribute="trailing" id="jJz-2C-j1c"/>
+                <constraint firstAttribute="bottom" secondItem="gMv-t2-FZB" secondAttribute="bottom" id="z1g-WZ-xwd"/>
+                <constraint firstAttribute="trailing" secondItem="gMv-t2-FZB" secondAttribute="trailing" id="zMB-cM-hE9"/>
+                <constraint firstItem="bB3-3J-CCe" firstAttribute="top" secondItem="9L1-fL-MKh" secondAttribute="top" id="zqk-qI-b92"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="277" y="-368"/>
+        </view>
+    </objects>
+</document>
